@@ -15,12 +15,12 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from django.http import HttpResponse
-
-def home(req):
-    return HttpResponse('Hello World!')
+from home import views as home_views
+from users import views as users_views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', home),
+    path('', home_views.main, name = 'project_portal-home'),
+    path('profile/', users_views.main, name = 'project_portal-profile'),
+    path('register/', users_views.register, name = 'project_portal-register'),
 ]
