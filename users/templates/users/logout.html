@@ -1,0 +1,14 @@
+{% extends 'home/base.html' %}
+{% block content %}
+	<div>
+		{% if messages %}
+			{% for message in messages %}
+				<div>{{message}}</div>
+			{% endfor %}
+		{% endif %}
+		<br> You have been logged out
+		<div>
+			<a href="{% url 'login' %}">Log In Again</a>
+		</div>
+	</div>
+{% endblock content %}

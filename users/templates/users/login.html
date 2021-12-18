@@ -1,0 +1,22 @@
+{% extends 'home/base.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+	{% if messages %}
+		{% for message in messages %}
+			<div>{{message}}</div>
+		{% endfor %}
+	{% endif %}
+	<form method="POST">
+		{% csrf_token %}
+		<fieldset>
+			<legend>Log In</legend>
+			{{ form|crispy }}
+		</fieldset>
+		<div>
+			<button type="submit">Login</button>
+		</div>
+	</form>
+	<div>
+		Don't have an account? | <a href="{% url 'register' %}">Sign Up</a>
+	</div>
+{% endblock content %}
