@@ -7,20 +7,23 @@ from django.contrib.auth.decorators import login_required
 
 @login_required
 def profile(request):
-    return render(request, 'users/profile.html')
+    context = {
+        'title':'Profile'
+    }
+    return render(request, 'users/profile.html', context)
 
 def register(request):
     # request.POST is actually a dictionary containing all the form fields as key and there form values as values for respective keys
     # request.user -> person creating request i.e. person logged in django-admin
     if request.method == 'POST':
         user_form = UserForm(request.POST)
-        profile_form = ProfileForm(request.POST)
+        profile_form = ProfileForm(request.POST, request.FILES)
         if user_form.is_valid() and profile_form.is_valid():
             user_form.save()
             newusername = user_form.cleaned_data.get('username')
             newuser = User.objects.filter(username = newusername).first()
 
-            profile_form = ProfileForm(request.POST, instance = newuser.profile)
+            profile_form = ProfileForm(request.POST,request.FILES, instance = newuser.profile)
             # instance tells to which profile should we save the data
             # we could manually also save the data
             # newuserprofile = Profile(user = newuser, rollno = request.Post.rollno ............)
@@ -28,7 +31,10 @@ def register(request):
             profile_form.save()
 
             messages.success(request, f"Account created for {newusername}!")
-            return redirect('login')
+            context = {
+                'title':'Login'
+            }
+            return redirect('login', context)
         else:
             messages.error(request, 'Please correct the error below.')
     else:
@@ -36,6 +42,7 @@ def register(request):
         profile_form = ProfileForm()
 
     context = {
+        'title': 'Register',
         'user_form': user_form,
         'profile_form': profile_form
     }

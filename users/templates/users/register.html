@@ -1,29 +1,23 @@
-<!DOCTYPE html>
+{% extends 'home/base.html' %}
 {% load crispy_forms_tags %}
-<html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<title>Project_portal | Register</title>
-	</head>
-	<body>
-		<div>
-			{% if messages %} {% for message in messages %}
+{% block content %}
+<div>
+	{% if messages %}
+		{% for message in messages %}
 			<div>{{message}}</div>
-			{% endfor %} {% endif %}
-			<form method="POST">
-				{% csrf_token %}
-				<fieldset>
-					<legend>Register</legend>
-					{{ user_form|crispy }} 
-					{{ profile_form|crispy }}
-				</fieldset>
-				<div>
-					<button type="submit">Sign Up</button>
-				</div>
-			</form>
-			<div>Already have an account? | <a href="{% url 'login' %}">Log in</a></div>
+		{% endfor %}
+	{% endif %}
+	<form method="POST" enctype="multipartform-data">
+		{% csrf_token %}
+		<fieldset>
+			<legend>Register</legend>
+			{{ user_form|crispy }} 
+			{{ profile_form|crispy }}
+		</fieldset>
+		<div>
+			<button type="submit">Sign Up<button>
 		</div>
-	</body>
-</html>
+	</form>
+</div>
+<div>Already have an account? | <a href="{% url 'login' %}">Log in</a></div>
+{% endblock content %}

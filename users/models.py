@@ -13,7 +13,7 @@ YEAR_CHOICES = (
 
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    image = models.ImageField(default = 'default.jpg', upload_to='profile_pics')
+    image = models.ImageField(default = 'default.jpg', upload_to='profile_pics', blank=True)
     rollno = models.CharField(max_length=10)
     year = models.CharField(max_length=10,choices=YEAR_CHOICES, default='1st')
     branch = models.CharField(max_length=30)
