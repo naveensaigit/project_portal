@@ -1,7 +1,5 @@
 from django.db import models
 from django.contrib.auth.models import User
-from django.db.models.signals import post_save
-from django.dispatch import receiver
 
 
 YEAR_CHOICES = (
@@ -15,20 +13,12 @@ YEAR_CHOICES = (
 
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
+    image = models.ImageField(default = 'default.jpg', upload_to='profile_pics')
     rollno = models.CharField(max_length=10)
-    year = models.CharField(max_length=10,choices=YEAR_CHOICES)
+    year = models.CharField(max_length=10,choices=YEAR_CHOICES, default='1st')
     branch = models.CharField(max_length=30)
     techskills = models.TextField()
-    # cv = models.FileField()
+    cv = models.FileField(blank = True, upload_to='resumes')
 
     def __str__(self):
         return f"{self.user}({self.rollno})"
-
-@receiver(post_save, sender=User)
-def create_user_profile(sender, instance, created, **kwargs):
-    if created:
-        Profile.objects.create(user = instance)
-
-@receiver(post_save, sender=User)
-def save_user_profile(sender,instance, **kwargs):
-    instance.profile.save()

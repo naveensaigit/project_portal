@@ -1,13 +1,13 @@
 from django.contrib.auth.models import User
 from django.shortcuts import redirect, render
 from .forms import UserForm, ProfileForm
-from django.http import HttpResponse
 from django.contrib import messages
 from .models import Profile
+from django.contrib.auth.decorators import login_required
 
-def main(req):
-    return HttpResponse('Hi , On profile page')
-
+@login_required
+def profile(request):
+    return render(request, 'users/profile.html')
 
 def register(request):
     # request.POST is actually a dictionary containing all the form fields as key and there form values as values for respective keys
@@ -28,7 +28,7 @@ def register(request):
             profile_form.save()
 
             messages.success(request, f"Account created for {newusername}!")
-            return redirect('project_portal-home')
+            return redirect('login')
         else:
             messages.error(request, 'Please correct the error below.')
     else:
