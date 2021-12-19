@@ -14,8 +14,8 @@
 				<a href="{% url 'logout' %}">LOGOUT</a>
 			{% else %}
 				<a href="{% url 'login' %}">LOGIN</a>
+				<a href="{% url 'signup' %}">SIGN UP</a>
 			{% endif %}
-			<a href="{% url 'signup' %}">SIGN UP</a>
 		</div>
 		{% block content %}{% endblock content %}
 	</body>
