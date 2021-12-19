@@ -1,29 +1,24 @@
 from django.contrib.auth.models import User
+from django.urls import reverse
 from django.shortcuts import redirect, render
-from .forms import UserForm, ProfileForm
+from .forms import UserRegisterForm, ProfileRegisterForm, UserCreationForm, ProfileUpdateForm, UserUpdateForm
 from django.contrib import messages
 from .models import Profile
 from django.contrib.auth.decorators import login_required
 
-@login_required
-def profile(request):
-    context = {
-        'title':'Profile'
-    }
-    return render(request, 'users/profile.html', context)
 
 def register(request):
     # request.POST is actually a dictionary containing all the form fields as key and there form values as values for respective keys
     # request.user -> person creating request i.e. person logged in django-admin
     if request.method == 'POST':
-        user_form = UserForm(request.POST)
-        profile_form = ProfileForm(request.POST, request.FILES)
+        user_form = UserRegisterForm(request.POST)
+        profile_form = ProfileRegisterForm(request.POST, request.FILES)
         if user_form.is_valid() and profile_form.is_valid():
             user_form.save()
             newusername = user_form.cleaned_data.get('username')
             newuser = User.objects.filter(username = newusername).first()
 
-            profile_form = ProfileForm(request.POST,request.FILES, instance = newuser.profile)
+            profile_form = ProfileRegisterForm(request.POST,request.FILES, instance = newuser.profile)
             # instance tells to which profile should we save the data
             # we could manually also save the data
             # newuserprofile = Profile(user = newuser, rollno = request.Post.rollno ............)
@@ -31,15 +26,12 @@ def register(request):
             profile_form.save()
 
             messages.success(request, f"Account created for {newusername}!")
-            context = {
-                'title':'Login'
-            }
-            return redirect('login', context)
+            return redirect('login')
         else:
             messages.error(request, 'Please correct the error below.')
     else:
-        user_form = UserForm()
-        profile_form = ProfileForm()
+        user_form = UserRegisterForm()
+        profile_form = ProfileRegisterForm()
 
     context = {
         'title': 'Register',
@@ -48,6 +40,32 @@ def register(request):
     }
 
     return render(request, 'users/register.html', context)
+
+
+@login_required
+def profile(request):
+    if request.method == 'POST':
+        user_update_form = UserUpdateForm(request.POST, instance = request.user)
+        profile_update_form = ProfileUpdateForm(request.POST, request.FILES, instance = request.user.profile)
+        if user_update_form.is_valid() and profile_update_form.is_valid():
+            user_update_form.save()
+            profile_update_form.save()
+
+            messages.success(request, "Your profile has been updated!")
+            return redirect('profile')
+        else:
+            messages.error(request, 'Please correct the error below.')
+    else:
+        user_update_form = UserUpdateForm(instance = request.user)
+        profile_update_form = ProfileUpdateForm(instance = request.user.profile)
+
+    context = {
+        'title': 'Profile',
+        'user_form': user_update_form,
+        'profile_form': profile_update_form
+    }
+
+    return render(request, 'users/profile.html', context)
 
 # Database queries
     # Profile.objects.all() -> it gives queryset
