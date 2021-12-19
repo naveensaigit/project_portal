@@ -1,5 +1,4 @@
 from django.contrib.auth.models import User
-from django.urls import reverse
 from django.shortcuts import redirect, render
 from .forms import UserRegisterForm, ProfileRegisterForm, UserCreationForm, ProfileUpdateForm, UserUpdateForm
 from django.contrib import messages
@@ -7,7 +6,7 @@ from .models import Profile
 from django.contrib.auth.decorators import login_required
 
 
-def register(request):
+def signup(request):
     # request.POST is actually a dictionary containing all the form fields as key and there form values as values for respective keys
     # request.user -> person creating request i.e. person logged in django-admin
     if request.method == 'POST':
@@ -39,7 +38,7 @@ def register(request):
         'profile_form': profile_form
     }
 
-    return render(request, 'users/register.html', context)
+    return render(request, 'users/signup.html', context)
 
 
 @login_required

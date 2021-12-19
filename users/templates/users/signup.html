@@ -10,7 +10,7 @@
 	<form method="POST" enctype="multipart/form-data">
 		{% csrf_token %}
 		<fieldset>
-			<legend>Register</legend>
+			<legend>Sign Up</legend>
 			{{ user_form|crispy }} 
 			{{ profile_form|crispy }}
 		</fieldset>
