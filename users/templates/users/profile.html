@@ -1,5 +1,25 @@
 {% extends 'home/base.html' %}
+{% load crispy_forms_tags %}
 {% block content %}
 	Hi {{ user.username }} <br> You are on profile page.
-	<img src="{{ user.profile.image.url }}" alt="">
+	<br>
+	<img src="{{ user.profile.image.url }}" alt="" style="height:100px;height:100px">
+	<div>
+		{% if messages %}
+			{% for message in messages %}
+				<div>{{message}}</div>
+			{% endfor %}
+		{% endif %}
+		<form method="POST" enctype="multipart/form-data">
+			{% csrf_token %}
+			<fieldset>
+				<legend>Profile Info</legend>
+				{{ user_form|crispy }} 
+				{{ profile_form|crispy }}
+			</fieldset>
+			<div>
+				<button type="submit">Update<button>
+			</div>
+		</form>
+	</div>
 {% endblock content %}
