@@ -4,7 +4,7 @@ from .forms import UserRegisterForm, ProfileRegisterForm, UserCreationForm, Prof
 from django.contrib import messages
 from .models import Profile
 from django.contrib.auth.decorators import login_required
-
+from django.core.files.storage import default_storage
 
 def signup(request):
     # request.POST is actually a dictionary containing all the form fields as key and there form values as values for respective keys
@@ -47,6 +47,12 @@ def profile(request):
         user_update_form = UserUpdateForm(request.POST, instance = request.user)
         profile_update_form = ProfileUpdateForm(request.POST, request.FILES, instance = request.user.profile)
         if user_update_form.is_valid() and profile_update_form.is_valid():
+            print(request.user.profile.image)
+            user = request.user
+            user_img = User.objects.filter(username = user).first().profile.image
+            image_to_be_deleted = str(user_img)
+            if(len(request.FILES)!=0 and image_to_be_deleted!="default.jpg"):
+                default_storage.delete(image_to_be_deleted)
             user_update_form.save()
             profile_update_form.save()
 
