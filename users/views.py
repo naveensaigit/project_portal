@@ -47,12 +47,16 @@ def profile(request):
         user_update_form = UserUpdateForm(request.POST, instance = request.user)
         profile_update_form = ProfileUpdateForm(request.POST, request.FILES, instance = request.user.profile)
         if user_update_form.is_valid() and profile_update_form.is_valid():
-            print(request.user.profile.image)
-            user = request.user
-            user_img = User.objects.filter(username = user).first().profile.image
-            image_to_be_deleted = str(user_img)
-            if(len(request.FILES)!=0 and image_to_be_deleted!="default.jpg"):
-                default_storage.delete(image_to_be_deleted)
+
+            user_profile = User.objects.filter(username=request.user).first().profile
+            user_img = str(user_profile.image)
+            user_cv = str(user_profile.cv)
+            if len(request.FILES)!=0:
+                if request.FILES.get('image') and user_img!="default.jpg":
+                    default_storage.delete(user_img)
+                elif request.FILES.get('cv') and user_cv:
+                    default_storage.delete(user_cv)
+
             user_update_form.save()
             profile_update_form.save()
 
