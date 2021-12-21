@@ -5,5 +5,9 @@
             <div>{{message}}</div>
         {% endfor %}
     {% endif %}
-    <div>Hello World!</div>
+    {% for project in projects %}
+        <div>
+            {{ project.Title }} - {{ project.Description }}
+        </div>
+    {% endfor %}
 {% endblock content %}
