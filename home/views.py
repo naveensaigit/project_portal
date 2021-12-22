@@ -20,10 +20,11 @@ def projectRegister(request):
         project_form = ProjectRegisterForm(request.POST)
         if project_form.is_valid():
 
-            Project.objects.create(FloatedBy = request.user)
-            request.user.project.save()
+            newproj = Project(FloatedBy = request.user)
+            newproj.save()
 
-            project_form = ProjectRegisterForm(request.POST, instance = request.user.project)
+            request.user.profile.projects.add(newproj)
+            project_form = ProjectRegisterForm(request.POST, instance = newproj)
             project_form.save()
 
             project_title = project_form.cleaned_data.get('Title')
