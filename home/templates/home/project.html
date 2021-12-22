@@ -1,0 +1,36 @@
+{% extends 'home/base.html' %}
+{% block content %}
+    {% if messages %} 
+        {% for message in messages %}
+            <div>{{message}}</div>
+        {% endfor %}
+    {% endif %}
+    <div>
+        <h1>
+            Project - {{ project.Title }}
+        </h1>
+    </div>
+    <div>
+        Description -: {{ project.Description }}
+        <br>
+        Floated By -: {{ project.FloatedBy }} 
+        <br>
+        Status -: {{ project.Status }} 
+        <br>
+        Difficulty -: {{ project.Difficulty }} 
+        <br>
+        Date Posted -: {{ project.DatePosted }} 
+        <br>
+        Duration -: {{ project.Duration }} 
+        <br>
+        Mentors -: {{ project.Mentors }} 
+        <br>
+        Selection Criteria -: {{ project.SelectionCriteria }} 
+        <br>
+        Already Applied -: {{ project.AlreadyApplied }} 
+        <br>
+        Opened for -: {{ project.OpenedFor }} 
+        <br>
+        Pre requisites -: {{ project.PreRequisite }} 
+    </div>
+{% endblock content %}

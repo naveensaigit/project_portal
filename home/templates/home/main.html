@@ -8,7 +8,7 @@
     <a href="{% url 'new-project' %}">CREATE NEW PROJECT</a>
     {% for project in projects %}
         <div>
-            {{ project.Title }} - {{ project.Description }}
+            <a href="{% url 'project' project.id %}"> {{ project.Title }} </a> - {{ project.Description }}
         </div>
     {% endfor %}
 {% endblock content %}

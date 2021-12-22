@@ -40,4 +40,12 @@ def projectRegister(request):
         'project_form': project_form,
     }
 
-    return render(request, 'home/projects.html', context)
+    return render(request, 'home/projectsRegister.html', context)
+
+
+def project(request, project_id):
+    context = {
+        'title': 'Project',
+        'project': Project.objects.get(id = project_id),
+    }
+    return render(request, 'home/project.html', context)
