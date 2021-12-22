@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 from PIL import Image
+from home.models import Project
 
 YEAR_CHOICES = (
     ('1', '1st'),
@@ -18,6 +19,7 @@ class Profile(models.Model):
     year = models.CharField(max_length=10,choices=YEAR_CHOICES, default='1st')
     branch = models.CharField(max_length=30)
     techskills = models.TextField()
+    projects = models.ManyToManyField(Project, related_name='projects', blank=True)
     cv = models.FileField(blank = True, upload_to='resumes')
 
     def __str__(self):
