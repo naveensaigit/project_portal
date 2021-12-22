@@ -1,5 +1,6 @@
 from django.db import models
 from django.utils import timezone
+from django.contrib.auth.models import User
 
 STATUS_CHOICES = (
     ('1','Open'),
@@ -16,8 +17,8 @@ DIFFICULTY_CHOICES = (
 class Project(models.Model):
     Title = models.CharField(max_length=30)
     Description = models.TextField()
-    FloatedBy = models.CharField(max_length=30)
-    Mentors = models.TextField()
+    FloatedBy = models.ForeignKey(User, on_delete=models.CASCADE)
+    Mentors = models.ManyToManyField(User, related_name='Mentors')
     Status = models.CharField(max_length=1, choices=STATUS_CHOICES, default='Open')
     Difficulty = models.CharField(max_length=1, choices=DIFFICULTY_CHOICES, default='Beginner')
     PreRequisite = models.TextField()
@@ -25,7 +26,7 @@ class Project(models.Model):
     DatePosted = models.DateTimeField(default = timezone.now)
     SelectionCriteria = models.TextField()
     OpenedFor = models.TextField()
-    AlreadyApplied = models.TextField()
+    AlreadyApplied = models.ManyToManyField(User, related_name='AlreadyApplied')
 
     def __str__(self):
         return f"{self.Title}({self.DatePosted})"
