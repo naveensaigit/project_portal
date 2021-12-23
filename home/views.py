@@ -4,12 +4,17 @@ from django.contrib.auth.decorators import login_required
 from .models import Project
 from .forms import ProjectRegisterForm, ProjectUpdateForm
 from home.decorators import user_is_project_author
+from home.models import Project
 
 @login_required
 def main(request):
+    user_projects_id = []
+    for project in request.user.profile.projects.all():
+        user_projects_id.append(project.id)
     context = {
         'title': 'Home',
-        'projects': Project.objects.all().order_by('-DatePosted')
+        'projects': Project.objects.all().order_by('-DatePosted'),
+        'user_projects_id': user_projects_id
     }
     return render(request, 'home/main.html', context)
 
@@ -86,3 +91,21 @@ def projectDelete(request, project_id):
     }
 
     return render(request, 'home/projectDelete.html', context)
+
+def projectApply(request, project_id):
+    project = Project.objects.get(id=project_id)
+    current_user = request.user
+
+    project.AlreadyApplied.add(current_user)
+    current_user.profile.projects.add(project)
+
+    return redirect('home')
+
+def projectLeave(request, project_id):
+    project = Project.objects.get(id=project_id)
+    current_user = request.user
+
+    project.AlreadyApplied.remove(current_user)
+    current_user.profile.projects.remove(project)
+
+    return redirect('home')
