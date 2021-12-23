@@ -29,4 +29,5 @@ class Project(models.Model):
     AlreadyApplied = models.ManyToManyField(User, related_name='AlreadyApplied')
 
     def __str__(self):
-        return f"{self.Title}({self.DatePosted.date()})"
+        print(self.Title)
+        return f"({self.Title} -> {self.DatePosted.date()})"
