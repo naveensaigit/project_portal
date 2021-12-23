@@ -60,6 +60,7 @@ def project(request, project_id):
     return render(request, 'home/project.html', context)
 
 
+@login_required
 @user_is_project_author
 def projectUpdate(request, project_id):
     project = Project.objects.get(id=project_id)
@@ -82,6 +83,8 @@ def projectUpdate(request, project_id):
 
     return render(request, 'home/projectUpdate.html', context)
 
+
+@login_required
 @user_is_project_author
 def projectDelete(request, project_id):
     project = Project.objects.get(id=project_id)
@@ -97,6 +100,8 @@ def projectDelete(request, project_id):
 
     return render(request, 'home/projectDelete.html', context)
 
+
+@login_required
 def projectApply(request, project_id):
     project = Project.objects.get(id=project_id)
     current_user = request.user
@@ -106,13 +111,18 @@ def projectApply(request, project_id):
     messages.success(request,"Successfully Apllied!")
     return redirect('home')
 
+
+@login_required
 def projectLeave(request, project_id):
     project = Project.objects.get(id=project_id)
     current_user = request.user
-
-    project.AlreadyApplied.remove(current_user)
-    current_user.profile.projects.remove(project)
-    messages.success(request,f"{project} is dropped successfully.")
+    
+    if project.FloatedBy != current_user:
+        project.AlreadyApplied.remove(current_user)
+        current_user.profile.projects.remove(project)
+        messages.success(request,f"{project} is dropped successfully.")
+    else:
+        messages.error(request, 'You cannot leave this project because it is floated by you.')
     return redirect('home')
 
 def projectStar(request, project_id):
@@ -127,5 +137,4 @@ def projectUnStar(request, project_id):
     current_user = request.user
 
     current_user.profile.starred_projects.remove(project)
-
     return redirect('home')

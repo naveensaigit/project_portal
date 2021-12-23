@@ -10,23 +10,15 @@
         <div>
             <a href="{% url 'project' project.id %}"> {{ project.Title }} </a> - {{ project.Description }}
             {% if project.id not in user_projects_id %}
-                <a href="{% url 'apply-to-project' project.id %}">
-                    <button >Apply</button>
-                </a>
+                <a href="{% url 'apply-to-project' project.id %}"><button >Apply</button></a>
             {% else %}
-                <a href="{% url 'leave-project' project.id %}">
-                    <button >Leave</button>
-                </a>
+                <a href="{% url 'leave-project' project.id %}"><button >Leave</button></a>
             {% endif %}
 
             {% if project.id not in user_starred_projects_id %}
-                <a href="{% url 'star-project' project.id %}">
-                    <button >Star</button>
-                </a>
+                <a href="{% url 'star-project' project.id %}"><button >Star</button></a>
             {% else %}
-                <a href="{% url 'unstar-project' project.id %}">
-                    <button >Unstar</button>
-                </a>
+                <a href="{% url 'unstar-project' project.id %}"><button >Unstar</button></a>
             {% endif %}
             
         </div>

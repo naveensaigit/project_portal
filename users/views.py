@@ -5,6 +5,7 @@ from django.contrib import messages
 from .models import Profile
 from django.contrib.auth.decorators import login_required
 from django.core.files.storage import default_storage
+from home.models import Project
 
 def signup(request):
     if request.method == 'POST':
@@ -67,7 +68,8 @@ def profile(request):
         'title': 'Profile',
         'user_form': user_update_form,
         'profile_form': profile_update_form,
-        'projects_already_applied' : request.user.profile.projects.all()
+        'projects_already_applied' : request.user.profile.projects.all(),
+        'projects_floated': Project.objects.all().filter(FloatedBy = request.user)
     }
 
     return render(request, 'users/profile.html', context)
