@@ -1,14 +1,12 @@
 from django.contrib.auth.models import User
 from django.shortcuts import redirect, render
-from .forms import UserRegisterForm, ProfileRegisterForm, UserCreationForm, ProfileUpdateForm, UserUpdateForm
+from .forms import UserRegisterForm, ProfileRegisterForm, ProfileUpdateForm, UserUpdateForm
 from django.contrib import messages
 from .models import Profile
 from django.contrib.auth.decorators import login_required
 from django.core.files.storage import default_storage
 
 def signup(request):
-    # request.POST is actually a dictionary containing all the form fields as key and there form values as values for respective keys
-    # request.user -> person creating request i.e. person logged in django-admin
     if request.method == 'POST':
         user_form = UserRegisterForm(request.POST)
         profile_form = ProfileRegisterForm(request.POST, request.FILES)
@@ -18,10 +16,6 @@ def signup(request):
             newuser = User.objects.filter(username = newusername).first()
 
             profile_form = ProfileRegisterForm(request.POST,request.FILES, instance = newuser.profile)
-            # instance tells to which profile should we save the data
-            # we could manually also save the data
-            # newuserprofile = Profile(user = newuser, rollno = request.Post.rollno ............)
-            # newuserprofile.save()
             profile_form.save()
 
             messages.success(request, f"Account created for {newusername}!")
@@ -46,11 +40,12 @@ def profile(request):
     if request.method == 'POST':
         user_update_form = UserUpdateForm(request.POST, instance = request.user)
         profile_update_form = ProfileUpdateForm(request.POST, request.FILES, instance = request.user.profile)
-        if user_update_form.is_valid() and profile_update_form.is_valid():
 
-            user_profile = User.objects.filter(username=request.user).first().profile
+        if user_update_form.is_valid() and profile_update_form.is_valid():
+            user_profile = Profile.objects.get(user = request.user)
             user_img = str(user_profile.image)
             user_cv = str(user_profile.cv)
+
             if len(request.FILES)!=0:
                 if request.FILES.get('image') and user_img!="default.jpg":
                     default_storage.delete(user_img)
@@ -75,11 +70,3 @@ def profile(request):
     }
 
     return render(request, 'users/profile.html', context)
-
-# Database queries
-    # Profile.objects.all() -> it gives queryset
-    # Profile.objects.all().first() -> first element of queryset
-    # Profile.objects.filter(<anyfilter like username = 'rajat'>)
-    # tempvar = Profile(user = User.objects.all().first(),rollno = 'B20123'...)
-    # tempvar.rollno -> accessing fields
-    # tempvar.save()

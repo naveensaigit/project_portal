@@ -1,5 +1,3 @@
-from django.shortcuts import render
-from django.contrib.auth.decorators import login_required
 from django.shortcuts import redirect, render
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
@@ -11,7 +9,7 @@ from home.decorators import user_is_project_author
 def main(request):
     context = {
         'title': 'Home',
-        'projects': Project.objects.all()
+        'projects': Project.objects.all().order_by('-DatePosted')
     }
     return render(request, 'home/main.html', context)
 
@@ -73,3 +71,18 @@ def projectUpdate(request, project_id):
     }
 
     return render(request, 'home/projectUpdate.html', context)
+
+@user_is_project_author
+def projectDelete(request, project_id):
+    project = Project.objects.get(id=project_id)
+    if request.method == 'POST':
+        project.delete()
+        messages.success(request, "Project has been deleted!")
+        return redirect('home')
+
+    context = {
+        'title': 'Update-Project',
+        'project': project
+    }
+
+    return render(request, 'home/projectDelete.html', context)

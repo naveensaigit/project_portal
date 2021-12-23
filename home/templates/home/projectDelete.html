@@ -1,5 +1,4 @@
 {% extends 'home/base.html' %}
-{% load crispy_forms_tags %}
 {% block content %}
 	<div>
 		{% if messages %}
@@ -10,11 +9,12 @@
 		<form method="POST">
 			{% csrf_token %}
 			<fieldset>
-				<legend>Project - {{ project_title }}</legend>
-				{{ project_form|crispy }} 
+				<legend>Project Delete</legend>
+				Are you sure you want to delete Project- {{ project.Title }}.
 			</fieldset>
 			<div>
-				<button type="submit">Update<button>
+				<button type="submit">Delete<button>
+                <a href="{% url 'project' project.id %}">Cancel</a>
 			</div>
 		</form>
 	</div>
