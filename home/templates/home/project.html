@@ -7,13 +7,13 @@
     {% endif %}
     {% if project.FloatedBy == user %}
     <a href="{% url 'update-project' project.id %}"> UPDATE PROJECT </a> 
+    <br>
+    <a href="{% url 'delete-project' project.id %}"> DELETE PROJECT </a> 
     {% endif %}
     <div>
-        <h1>
+        <h3>
             Project - {{ project.Title }}
-        </h1>
-    </div>
-    <div>
+        </h3>
         Description -: {{ project.Description }}
         <br>
         Floated By -: {{ project.FloatedBy }} 
