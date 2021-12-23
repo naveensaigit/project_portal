@@ -49,3 +49,24 @@ def project(request, project_id):
         'project': Project.objects.get(id = project_id),
     }
     return render(request, 'home/project.html', context)
+
+
+def projectUpdate(request, project_id):
+    project = Project.objects.get(id=project_id)
+    if request.method == 'POST':
+        project_update_form = ProjectUpdateForm(request.POST, instance=project)
+        if project_update_form.is_valid():
+            project_update_form.save()
+            messages.success(request, "Project details has been updated!")
+            return redirect('project', project_id = project.id)
+        else:
+            messages.error(request, 'Please correct the error below.')
+    else:
+        project_update_form = ProjectUpdateForm(instance=project)
+
+    context = {
+        'title': 'Profile',
+        'project_form': project_update_form
+    }
+
+    return render(request, 'home/projectUpdate.html', context)

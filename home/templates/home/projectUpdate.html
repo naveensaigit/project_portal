@@ -1,0 +1,21 @@
+{% extends 'home/base.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+	<div>
+		{% if messages %}
+			{% for message in messages %}
+				<div>{{message}}</div>
+			{% endfor %}
+		{% endif %}
+		<form method="POST">
+			{% csrf_token %}
+			<fieldset>
+				<legend>Project-{{ project_form.Title }}</legend>
+				{{ project_form|crispy }} 
+			</fieldset>
+			<div>
+				<button type="submit">Update<button>
+			</div>
+		</form>
+	</div>
+{% endblock content %}

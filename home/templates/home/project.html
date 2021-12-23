@@ -5,6 +5,7 @@
             <div>{{message}}</div>
         {% endfor %}
     {% endif %}
+    <a href="{% url 'update-project' project.id %}"> UPDATE PROJECT </a> 
     <div>
         <h1>
             Project - {{ project.Title }}
