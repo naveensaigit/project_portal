@@ -19,7 +19,7 @@ class Profile(models.Model):
     year = models.CharField(max_length=10,choices=YEAR_CHOICES, default='1st')
     branch = models.CharField(max_length=30)
     techskills = models.TextField()
-    projects = models.ManyToManyField(Project, related_name='projects', blank=True)
+    projects = models.ManyToManyField(Project, related_name='projects')
     cv = models.FileField(blank = True, upload_to='resumes')
 
     def __str__(self):

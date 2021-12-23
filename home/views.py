@@ -5,6 +5,7 @@ from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from .models import Project
 from .forms import ProjectRegisterForm, ProjectUpdateForm
+from home.decorators import user_is_project_author
 
 @login_required
 def main(request):
@@ -14,7 +15,7 @@ def main(request):
     }
     return render(request, 'home/main.html', context)
 
-
+@login_required
 def projectRegister(request):
     if request.method == 'POST':
         project_form = ProjectRegisterForm(request.POST)
@@ -42,7 +43,7 @@ def projectRegister(request):
 
     return render(request, 'home/projectsRegister.html', context)
 
-
+@login_required
 def project(request, project_id):
     context = {
         'title': 'Project',
@@ -51,6 +52,7 @@ def project(request, project_id):
     return render(request, 'home/project.html', context)
 
 
+@user_is_project_author
 def projectUpdate(request, project_id):
     project = Project.objects.get(id=project_id)
     if request.method == 'POST':
@@ -65,7 +67,8 @@ def projectUpdate(request, project_id):
         project_update_form = ProjectUpdateForm(instance=project)
 
     context = {
-        'title': 'Profile',
+        'title': 'Update-Project',
+        'project_title': project.Title,
         'project_form': project_update_form
     }
 

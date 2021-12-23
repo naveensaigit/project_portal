@@ -5,7 +5,9 @@
             <div>{{message}}</div>
         {% endfor %}
     {% endif %}
+    {% if project.FloatedBy == user %}
     <a href="{% url 'update-project' project.id %}"> UPDATE PROJECT </a> 
+    {% endif %}
     <div>
         <h1>
             Project - {{ project.Title }}
