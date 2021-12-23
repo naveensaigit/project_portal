@@ -22,4 +22,10 @@
 			</div>
 		</form>
 	</div>
+	<div>
+		Projects already Applied For:
+		{% for project in projects_already_applied %}
+			<div>{{project}}</div>
+		{% endfor %}
+	</div>
 {% endblock content %}

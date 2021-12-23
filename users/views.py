@@ -66,7 +66,8 @@ def profile(request):
     context = {
         'title': 'Profile',
         'user_form': user_update_form,
-        'profile_form': profile_update_form
+        'profile_form': profile_update_form,
+        'projects_already_applied' : request.user.profile.projects.all()
     }
 
     return render(request, 'users/profile.html', context)

@@ -20,6 +20,7 @@ class Profile(models.Model):
     branch = models.CharField(max_length=30)
     techskills = models.TextField()
     projects = models.ManyToManyField(Project, related_name='projects')
+    starred_projects = models.ManyToManyField(Project, related_name='starred_projects')
     cv = models.FileField(blank = True, upload_to='resumes')
 
     def __str__(self):

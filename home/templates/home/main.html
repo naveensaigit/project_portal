@@ -5,6 +5,7 @@
             <div>{{message}}</div>
         {% endfor %}
     {% endif %}
+    <h2>This page shows all projects.</h2>
     {% for project in projects %}
         <div>
             <a href="{% url 'project' project.id %}"> {{ project.Title }} </a> - {{ project.Description }}
@@ -17,6 +18,17 @@
                     <button >Leave</button>
                 </a>
             {% endif %}
+
+            {% if project.id not in user_starred_projects_id %}
+                <a href="{% url 'star-project' project.id %}">
+                    <button >Star</button>
+                </a>
+            {% else %}
+                <a href="{% url 'unstar-project' project.id %}">
+                    <button >Unstar</button>
+                </a>
+            {% endif %}
+            
         </div>
     {% endfor %}
 {% endblock content %}
