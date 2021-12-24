@@ -6,9 +6,9 @@
         {% endfor %}
     {% endif %}
     {% if project.FloatedBy == user %}
-    <a href="{% url 'update-project' project.id %}"> UPDATE PROJECT </a> 
     <br>
-    <a href="{% url 'delete-project' project.id %}"> DELETE PROJECT </a> 
+    <a href="{% url 'update-project' project.id %}"><button>UPDATE PROJECT</button></a> 
+    <a href="{% url 'delete-project' project.id %}"><button>DELETE PROJECT</button></a> 
     {% endif %}
     <div>
         <h3>

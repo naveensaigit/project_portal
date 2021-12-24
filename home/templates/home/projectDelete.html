@@ -13,8 +13,8 @@
 				Are you sure you want to delete Project- {{ project.Title }}.
 			</fieldset>
 			<div>
-				<button type="submit">Delete<button>
-                <a href="{% url 'project' project.id %}">Cancel</a>
+				<button type="submit">Delete</button>
+				<a href="{% url 'project' project.id %}"> <button type = 'button'>Cancel</button> </a>
 			</div>
 		</form>
 	</div>
