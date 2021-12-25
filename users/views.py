@@ -64,12 +64,20 @@ def profile(request):
         user_update_form = UserUpdateForm(instance = request.user)
         profile_update_form = ProfileUpdateForm(instance = request.user.profile)
 
+    projects = Project.objects.all()
+    projects_requested = projects.filter(ApplyRequest = request.user)
+    projects_already_applied = projects.filter(AlreadyApplied = request.user)
+    projects_floated = projects.filter(FloatedBy = request.user)
+    projects_starred = request.user.profile.starred_projects.all()
+    
     context = {
         'title': 'Profile',
         'user_form': user_update_form,
         'profile_form': profile_update_form,
-        'projects_already_applied' : request.user.profile.projects.all(),
-        'projects_floated': Project.objects.all().filter(FloatedBy = request.user)
+        'projects_requested': projects_requested,
+        'projects_already_applied' : projects_already_applied,
+        'projects_floated': projects_floated,
+        'projects_starred' : projects_starred,
     }
 
     return render(request, 'users/profile.html', context)

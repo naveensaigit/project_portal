@@ -12,5 +12,7 @@ urlpatterns = [
     path('project/<int:project_id>/leave',views.projectLeave, name='leave-project'),
     path('project/<int:project_id>/star',views.projectStar, name='star-project'),
     path('project/<int:project_id>/unstar',views.projectUnStar, name='unstar-project'),
+    path('project/<int:project_id>/accept/<request_user_name>',views.projectAccept, name='accept-project'),
+    path('project/<int:project_id>/reject/<request_user_name>',views.projectReject, name='reject-project'),
 ]
 

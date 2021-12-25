@@ -27,11 +27,35 @@
 		{% for project in projects_already_applied %}
 			<div>{{project}}</div>
 		{% endfor %}
+		{% if projects_already_applied.count == 0 %}
+			<div> No projects </div>
+		{% endif %}
 	</div>
 	<div>
 		<h2>Projects Floated:</h2>
 		{% for project in projects_floated %}
 			<div>{{project}}</div>
 		{% endfor %}
+		{% if projects_floated.count == 0 %}
+			<div> No projects </div>
+		{% endif %}
+	</div>
+	<div>
+		<h2>Projects Requested:</h2>
+		{% for project in projects_requested %}
+			<div>{{project}}</div>
+		{% endfor %}
+		{% if projects_requested.count == 0 %}
+			<div> No projects </div>
+		{% endif %}
+	</div>
+	<div>
+		<h2>Projects Starred:</h2>
+		{% for project in projects_starred %}
+			<div>{{project}}</div>
+		{% endfor %}
+		{% if projects_starred.count == 0 %}
+			<div> No projects </div>
+		{% endif %}
 	</div>
 {% endblock content %}

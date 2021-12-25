@@ -5,21 +5,34 @@ from .models import Project
 from .forms import ProjectRegisterForm, ProjectUpdateForm
 from home.decorators import user_is_project_author
 from home.models import Project
+from django.contrib.auth.models import User
 
 @login_required
 def main(request):
     user_projects_id = []
     user_starred_projects_id = []
-    for project in request.user.profile.projects.all():
+    user_requested_projects_id = []
+
+    user_applied_projects = Project.objects.all().filter(AlreadyApplied =  request.user)
+    user_floated_projects = Project.objects.all().filter(FloatedBy =  request.user)
+    for project in user_applied_projects:
         user_projects_id.append(project.id)
+    for project in user_floated_projects:
+        user_projects_id.append(project.id)
+
+    user_requested_projects = Project.objects.all().filter(ApplyRequest = request.user)
+    for project in user_requested_projects:
+        user_requested_projects_id.append(project.id)
 
     for project in request.user.profile.starred_projects.all():
         user_starred_projects_id.append(project.id)
+
     context = {
         'title': 'Home',
         'projects': Project.objects.all().order_by('-DatePosted'),
         'user_projects_id': user_projects_id,
-        'user_starred_projects_id' : user_starred_projects_id
+        'user_starred_projects_id' : user_starred_projects_id,
+        'user_requested_projects_id' : user_requested_projects_id
     }
     return render(request, 'home/main.html', context)
 
@@ -32,7 +45,6 @@ def projectRegister(request):
             newproj = Project(FloatedBy = request.user)
             newproj.save()
 
-            request.user.profile.projects.add(newproj)
             project_form = ProjectRegisterForm(request.POST, instance = newproj)
             project_form.save()
 
@@ -53,9 +65,12 @@ def projectRegister(request):
 
 @login_required
 def project(request, project_id):
+    project = Project.objects.get(id=project_id)
+    apply_requests = project.ApplyRequest.all()
     context = {
         'title': 'Project',
-        'project': Project.objects.get(id = project_id),
+        'project': project,
+        'apply_requests' : apply_requests,
     }
     return render(request, 'home/project.html', context)
 
@@ -106,9 +121,10 @@ def projectApply(request, project_id):
     project = Project.objects.get(id=project_id)
     current_user = request.user
 
-    project.AlreadyApplied.add(current_user)
-    current_user.profile.projects.add(project)
-    messages.success(request,"Successfully Apllied!")
+    project.ApplyRequest.add(current_user)
+    # project.AlreadyApplied.add(current_user)
+    # current_user.profile.projects.add(project)
+    messages.success(request,"Successfully Requested!")
     return redirect('home')
 
 
@@ -119,7 +135,6 @@ def projectLeave(request, project_id):
     
     if project.FloatedBy != current_user:
         project.AlreadyApplied.remove(current_user)
-        current_user.profile.projects.remove(project)
         messages.success(request,f"{project} is dropped successfully.")
     else:
         messages.error(request, 'You cannot leave this project because it is floated by you.')
@@ -138,3 +153,18 @@ def projectUnStar(request, project_id):
 
     current_user.profile.starred_projects.remove(project)
     return redirect('home')
+
+def projectAccept(request, project_id, request_user_name):
+    project = Project.objects.get(id=project_id)
+    request_user = User.objects.filter(username = request_user_name).first()
+    
+    project.ApplyRequest.remove(request_user)
+    project.AlreadyApplied.add(request_user)
+    return redirect('project', project_id = project.id)
+
+def projectReject(request, project_id, request_user_name):
+    project = Project.objects.get(id=project_id)
+    request_user = User.objects.filter(username = request_user_name).first()
+
+    project.ApplyRequest.remove(request_user)
+    return redirect('project', project_id = project.id)
