@@ -11,9 +11,7 @@
     <a href="{% url 'delete-project' project.id %}"><button>DELETE PROJECT</button></a> 
     {% endif %}
     <div>
-        <h3>
-            Project - {{ project.Title }}
-        </h3>
+        <h3>Project - {{ project.Title }}</h3>
         Description -: {{ project.Description }}
         <br>
         Floated By -: {{ project.FloatedBy }} 
@@ -26,14 +24,42 @@
         <br>
         Duration -: {{ project.Duration }} 
         <br>
-        Mentors -: {{ project.Mentors }} 
+        Mentors -:
+        {% for users in project.Mentors.all %}
+            {{ users }}
+        {% endfor %}
+        {% if project.Mentors.all.count == 0 %}
+            No one
+		{% endif %}
         <br>
         Selection Criteria -: {{ project.SelectionCriteria }} 
-        <br>
-        Already Applied -: {{ project.AlreadyApplied }} 
         <br>
         Opened for -: {{ project.OpenedFor }} 
         <br>
         Pre requisites -: {{ project.PreRequisite }} 
     </div>
+    {% if project.FloatedBy == user %}
+    <div>
+        Already Applied -:
+        {% for users in project.AlreadyApplied.all %}
+            {{ users }}
+        {% endfor %}
+        {% if project.AlreadyApplied.all.count == 0 %}
+            No one
+		{% endif %}
+    </div>
+    <div>
+        <h3>Project Apply Requests:</h3>
+		{% for request_user in apply_requests %}
+            <div>
+                {{request_user}} -
+                <a href="{% url 'accept-project' project.id request_user %}"><button>ACCEPT</button></a>
+                <a href="{% url 'reject-project' project.id request_user %}"><button>REJECT</button></a>
+            </div>
+		{% endfor %}
+		{% if apply_requests.count == 0 %}
+            <div> No requests </div>
+		{% endif %}
+	</div>
+    {% endif %}
 {% endblock content %}
