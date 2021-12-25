@@ -38,6 +38,12 @@ def signup(request):
 
 @login_required
 def profile(request):
+    context = {
+        'title': 'Profile',
+    }
+    return render(request, 'users/profile.html', context)
+
+def profile_edit(request):
     if request.method == 'POST':
         user_update_form = UserUpdateForm(request.POST, instance = request.user)
         profile_update_form = ProfileUpdateForm(request.POST, request.FILES, instance = request.user.profile)
@@ -64,20 +70,53 @@ def profile(request):
         user_update_form = UserUpdateForm(instance = request.user)
         profile_update_form = ProfileUpdateForm(instance = request.user.profile)
 
+    context = {
+        'title': 'Profile Edit',
+        'user_form': user_update_form,
+        'profile_form': profile_update_form,
+    }
+
+    return render(request, 'users/profile_edit.html', context)
+
+def projects_floated(request):
     projects = Project.objects.all()
-    projects_requested = projects.filter(ApplyRequest = request.user)
-    projects_already_applied = projects.filter(AlreadyApplied = request.user)
     projects_floated = projects.filter(FloatedBy = request.user)
+    
+    context = {
+        'title': 'Projects Floated',
+        'projects': projects_floated,
+    }
+
+    return render(request, 'users/profile_floated.html', context)
+
+def projects_applied(request):
+    projects = Project.objects.all()
+    projects_applied = projects.filter(AlreadyApplied = request.user)
+    
+    context = {
+        'title': 'Projects Applied',
+        'projects' : projects_applied,
+    }
+
+    return render(request, 'users/profile_applied.html', context)
+    pass
+
+def projects_starred(request):
     projects_starred = request.user.profile.starred_projects.all()
     
     context = {
-        'title': 'Profile',
-        'user_form': user_update_form,
-        'profile_form': profile_update_form,
-        'projects_requested': projects_requested,
-        'projects_already_applied' : projects_already_applied,
-        'projects_floated': projects_floated,
-        'projects_starred' : projects_starred,
+        'title': 'Projects Starred',
+        'projects' : projects_starred,
     }
 
-    return render(request, 'users/profile.html', context)
+    return render(request, 'users/profile_starred.html', context)
+    pass
+
+def projects_requested(request):
+    projects = Project.objects.all()
+    projects_requested = projects.filter(ApplyRequest = request.user)
+    context = {
+        'title': 'Projects Requested',
+        'projects': projects_requested,
+    }
+    return render(request, 'users/profile_requested.html', context)

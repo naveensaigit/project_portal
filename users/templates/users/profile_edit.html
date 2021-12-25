@@ -1,0 +1,22 @@
+{% extends 'users/profile.html' %}
+{% load crispy_forms_tags %}
+{% block profile %}
+	<div>
+		{% if messages %}
+            {% for message in messages %}
+                <div>{{message}}</div>
+            {% endfor %}
+		{% endif %}
+		<form method="POST" enctype="multipart/form-data">
+			{% csrf_token %}
+			<fieldset>
+				<legend>Profile Info</legend>
+				{{ user_form|crispy }} 
+				{{ profile_form|crispy }}
+			</fieldset>
+			<div>
+				<button type="submit">Update</button>
+			</div>
+		</form>
+	</div>
+{% endblock profile %}
