@@ -1,61 +1,31 @@
 {% extends 'home/base.html' %}
-{% load crispy_forms_tags %}
 {% block content %}
 	Hi {{ user.username }} <br> You are on profile page.
 	<br>
 	<img src="{{ user.profile.image.url }}" alt="" style="height:100px;height:100px">
 	<div>
-		{% if messages %}
-			{% for message in messages %}
-				<div>{{message}}</div>
-			{% endfor %}
-		{% endif %}
-		<form method="POST" enctype="multipart/form-data">
-			{% csrf_token %}
-			<fieldset>
-				<legend>Profile Info</legend>
-				{{ user_form|crispy }} 
-				{{ profile_form|crispy }}
-			</fieldset>
-			<div>
-				<button type="submit">Update</button>
-			</div>
-		</form>
+		<a href="{% url 'profile-edit' %}">Edit Profile</a>
+		<a href="{% url 'projects-applied' %}">Projects Applied</a>
+		<a href="{% url 'projects-floated' %}">Projects Floated</a>
+		<a href="{% url 'projects-requested' %}">Projects Requested</a>
+		<a href="{% url 'projects-starred' %}">Starred Projects</a>
 	</div>
-	<div>
-		<h2>Pojects already Applied For:</h2>
-		{% for project in projects_already_applied %}
-			<div>{{project}}</div>
-		{% endfor %}
-		{% if projects_already_applied.count == 0 %}
-			<div> No projects </div>
-		{% endif %}
-	</div>
-	<div>
-		<h2>Projects Floated:</h2>
-		{% for project in projects_floated %}
-			<div>{{project}}</div>
-		{% endfor %}
-		{% if projects_floated.count == 0 %}
-			<div> No projects </div>
-		{% endif %}
-	</div>
-	<div>
-		<h2>Projects Requested:</h2>
-		{% for project in projects_requested %}
-			<div>{{project}}</div>
-		{% endfor %}
-		{% if projects_requested.count == 0 %}
-			<div> No projects </div>
-		{% endif %}
-	</div>
-	<div>
-		<h2>Projects Starred:</h2>
-		{% for project in projects_starred %}
-			<div>{{project}}</div>
-		{% endfor %}
-		{% if projects_starred.count == 0 %}
-			<div> No projects </div>
-		{% endif %}
-	</div>
+	{% block profile %}
+		<div>
+			<h3>Username - {{ user.username }}</h3>
+			First name -: {{ user.first_name }}
+			<br>
+			Last name -: {{ user.last_name }}
+			<br>
+			Email -: {{ user.email }}
+			<br>
+			Rollno -: {{ user.profile.rollno }}
+			<br>
+			Year -: {{ user.profile.year }}
+			<br>
+			Branch -: {{ user.profile.branch }}
+			<br>
+			Tech Skills -: {{ user.profile.techskills }}
+		</div>
+	{% endblock profile %}
 {% endblock content %}
