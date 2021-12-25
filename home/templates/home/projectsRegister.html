@@ -1,3 +1,4 @@
+
 {% extends 'home/base.html' %}
 {% load crispy_forms_tags %}
 {% block content %}
@@ -6,7 +7,7 @@
 			<div>{{message}}</div>
 		{% endfor %}
 	{% endif %}
-	<form method="POST">
+	<!-- <form method="POST">
 		{% csrf_token %}
 		<fieldset>
 			<legend>New Project</legend>
@@ -15,5 +16,41 @@
 		<div>
 			<button type="submit">Create</button>
 		</div>
-	</form>
+	</form> -->
+
+
+
+
+		</div>
+
+		<div class="container card shadow-lg py-3" style="width:80%;">
+
+			<div class="card-header py-3" >
+		      <h6 class="m-0 font-weight-bold text-primary text-center" >Create New Project</h6>
+		  </div>
+		<div class="card-body">
+			<form class=method="POST">
+			{% csrf_token %}
+			<fieldset>
+
+				{{ project_form|crispy }}
+			</fieldset>
+			<div>
+				<button class="btn btn-primary btn-user btn-block" type="submit">Create</button>
+			</div>
+		</form>
+		</div>
+
+
+<!-- Bootstrap core JavaScript-->
+<script src="vendor/jquery/jquery.min.js"></script>
+<script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+<!-- Core plugin JavaScript-->
+<script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+
+<!-- Custom scripts for all pages-->
+<script src="js/sb-admin-2.min.js"></script>
+
+
 {% endblock content %}
