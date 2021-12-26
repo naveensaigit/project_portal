@@ -41,6 +41,17 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
+    'django.contrib.sites',
+
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    'allauth.socialaccount.providers.google',
+    # 'allauth.socialaccount.providers.github',
+    # 'allauth.socialaccount.providers.instagram',
+    # 'allauth.socialaccount.providers.linkedin',
+    # 'allauth.socialaccount.providers.facebook',
 ]
 
 MIDDLEWARE = [
@@ -69,6 +80,14 @@ TEMPLATES = [
             ],
         },
     },
+]
+
+AUTHENTICATION_BACKENDS = [
+    # Needed to login by username in Django admin, regardless of `allauth`
+    'django.contrib.auth.backends.ModelBackend',
+
+    # `allauth` specific authentication methods, such as login by e-mail
+    'allauth.account.auth_backends.AuthenticationBackend',
 ]
 
 WSGI_APPLICATION = 'project_portal.wsgi.application'
@@ -135,3 +154,27 @@ CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 LOGIN_REDIRECT_URL = 'home'
 LOGIN_URL = 'login'
+
+SITE_ID = 1
+
+# Provider specific settings
+SOCIALACCOUNT_PROVIDERS = {
+    'google': {
+        # For each OAuth based provider, either add a ``SocialApp``
+        # (``socialaccount`` app) containing the required client
+        # credentials, or list them here:
+        'APP': {
+            'client_id': '287293174124-sa09nhc6qophhhlhoa0mlca71gjpba1u.apps.googleusercontent.com',
+            'secret': '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',
+            'key': ''
+        }
+    }
+}
+# to set up google outh , make a project in google developer console
+
+# add gmail api from api libraries and then in gmail api>manage>credentials add oath client
+# go to api's and services and then in credentials add oauth client
+# oauth client used in both are same
+
+# add js authorized url as http://localhost:8000 and redirect url as http://localhost:8000/accounts/google/login/callback/
+# Now copy client id and secret in socialaccounts_providers in settings.py
