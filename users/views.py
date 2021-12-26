@@ -120,3 +120,7 @@ def projects_requested(request):
         'projects': projects_requested,
     }
     return render(request, 'users/profile_requested.html', context)
+
+def oauth(request):
+    url = '/accounts/google/login/?process=login/'
+    return redirect(url)
