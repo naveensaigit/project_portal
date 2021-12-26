@@ -45,7 +45,7 @@
     color: #333;
 }
 .profile-head h6{
-    color: #0062cc;
+    color: #022160;
 }
 .profile-edit-btn{
     border: none;
@@ -75,7 +75,7 @@
 }
 .profile-head .nav-tabs .nav-link.active{
     border: none;
-    border-bottom:2px solid #0062cc;
+    border-bottom: 2px solid #022160;
 }
 .profile-work{
     padding: 14%;
@@ -101,7 +101,7 @@
 }
 .profile-tab p{
     font-weight: 600;
-    color: #0062cc;
+    color: #022160;
 }
  /* ---------------------------------- */
  :root {
@@ -9880,6 +9880,10 @@
 
   body {
     height: 100%;
+    /*background-color: #e3e6f0;*/
+    background: #F7971E;
+    background: -webkit-linear-gradient(to right, #FFD200, #F7971E);
+    background: linear-gradient(to right, #FFD200, #F7971E);
   }
 
   a:focus {
@@ -9908,6 +9912,10 @@
   .container-xl {
     padding-left: 1.5rem;
     padding-right: 1.5rem;
+    /*border-left: 30px solid #EE7210;*/
+}
+
+
   }
 
   .scroll-to-top {

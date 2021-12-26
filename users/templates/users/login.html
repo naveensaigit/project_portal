@@ -44,13 +44,19 @@
 											<button type="submit"
 												class="btn btn-primary btn-user btn-block">Login</button>
 										</div>
+										<br>
+                                        <a href="{% url 'oauth' %}" class="btn btn-google btn-user btn-block">
+                                            <i class="fab fa-google fa-fw"></i> Login with Google
+                                        </a>
+										<hr>
+
 									</form>
 
 
-									<hr>
-									<div class="text-center">
-										<a href="{% url 'oauth' %}">Google</a>
-									</div>
+<!--									<hr>-->
+<!--									<div class="text-center">-->
+<!--										<a href="{% url 'oauth' %}">Google</a>-->
+<!--									</div>-->
 
 									<div class="text-center">
 										<div class="small" href="forgot-password.html">
