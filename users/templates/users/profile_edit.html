@@ -7,16 +7,47 @@
                 <div>{{message}}</div>
             {% endfor %}
 		{% endif %}
-		<form method="POST" enctype="multipart/form-data">
-			{% csrf_token %}
-			<fieldset>
-				<legend>Profile Info</legend>
-				{{ user_form|crispy }} 
-				{{ profile_form|crispy }}
-			</fieldset>
-			<div>
-				<button type="submit">Update</button>
-			</div>
-		</form>
+		<div style="background-color:#e3e6f0 ;">
+			<br>
+			<br>
+				<div class="container card shadow-lg py-3" style="width:80%; border-left: 20px solid #022160">
+
+					<div class="card-header py-3" >
+				      <h5 class="m-0 font-weight-bold text-primary text-center">UPDATE YOUR PROFILE</h5>
+				  </div>
+				<div class="card-body">
+					Hi {{ user.username }} <br> You are on profile page.
+					<br>
+					<img src="{{ user.profile.image.url }}" alt="" style="height:100px;height:100px">
+					<form method="POST" enctype="multipart/form-data">
+
+						{% csrf_token %}
+						<fieldset>
+							<legend>Profile Info</legend>
+							{{ user_form|crispy }}
+							{{ profile_form|crispy }}
+						</fieldset>
+						<div>
+							<button class="btn btn-primary btn-user btn-block" type="submit">Update</button>
+						</div>
+					</form>
+				</div>
+				</div>
+			<br>
+			<br>
+		</div>
+
+
+		<!-- Bootstrap core JavaScript-->
+		<script src="vendor/jquery/jquery.min.js"></script>
+		<script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+		<!-- Core plugin JavaScript-->
+		<script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+
+		<!-- Custom scripts for all pages-->
+		<script src="js/sb-admin-2.min.js"></script>
+
+
 	</div>
 {% endblock profile %}

@@ -1,8 +1,6 @@
 {% extends 'home/base.html' %}
 {% block content %}
-	Hi {{ user.username }} <br> You are on profile page.
-	<br>
-	<img src="{{ user.profile.image.url }}" alt="" style="height:100px;height:100px">
+
 	<div>
 		<a href="{% url 'profile-edit' %}">Edit Profile</a>
 		<a href="{% url 'projects-applied' %}">Projects Applied</a>
