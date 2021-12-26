@@ -170,6 +170,7 @@ SOCIALACCOUNT_PROVIDERS = {
         }
     }
 }
+SOCIALACCOUNT_LOGIN_ON_GET = True
 # to set up google outh , make a project in google developer console
 
 # add gmail api from api libraries and then in gmail api>manage>credentials add oath client
