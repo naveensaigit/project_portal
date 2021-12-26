@@ -28,20 +28,20 @@ def main(request):
     for project in request.user.profile.starred_projects.all():
         user_starred_projects_id.append(project.id)
 
-    project_list = Project.objects.all()
+    all_project_list = Project.objects.all().order_by('-DatePosted')
     page = request.GET.get('page', 1)
 
-    paginator = Paginator(project_list, 5)
+    paginator = Paginator(all_project_list, 5)
     try:
-        all_projects = paginator.page(page)
+        projects = paginator.page(page)
     except PageNotAnInteger:
-        all_projects = paginator.page(1)
+        projects = paginator.page(1)
     except EmptyPage:
-        all_projects = paginator.page(paginator.num_pages)
+        projects = paginator.page(paginator.num_pages)
 
     context = {
         'title': 'Home',
-        'projects': all_projects,
+        'projects': projects,
         'user_projects_id': user_projects_id,
         'user_starred_projects_id' : user_starred_projects_id,
         'user_requested_projects_id' : user_requested_projects_id
