@@ -6,6 +6,7 @@ from .forms import ProjectRegisterForm, ProjectUpdateForm
 from home.decorators import user_is_project_author
 from home.models import Project
 from django.contrib.auth.models import User
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 @login_required
 def main(request):
@@ -27,9 +28,20 @@ def main(request):
     for project in request.user.profile.starred_projects.all():
         user_starred_projects_id.append(project.id)
 
+    project_list = Project.objects.all()
+    page = request.GET.get('page', 1)
+
+    paginator = Paginator(project_list, 5)
+    try:
+        all_projects = paginator.page(page)
+    except PageNotAnInteger:
+        all_projects = paginator.page(1)
+    except EmptyPage:
+        all_projects = paginator.page(paginator.num_pages)
+
     context = {
         'title': 'Home',
-        'projects': Project.objects.all().order_by('-DatePosted'),
+        'projects': all_projects,
         'user_projects_id': user_projects_id,
         'user_starred_projects_id' : user_starred_projects_id,
         'user_requested_projects_id' : user_requested_projects_id
