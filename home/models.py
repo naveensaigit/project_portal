@@ -20,12 +20,12 @@ class Project(models.Model):
     FloatedBy = models.ForeignKey(User, on_delete=models.CASCADE)
     Mentors = models.ManyToManyField(User, related_name='Mentors', blank = True)
     Status = models.CharField(max_length=10, choices=STATUS_CHOICES, default='Open')
+    OpenedFor = models.CharField(max_length=300)
     Difficulty = models.CharField(max_length=15, choices=DIFFICULTY_CHOICES, default='Beginner')
     PreRequisite = models.TextField()
     Duration = models.CharField(max_length=30)
     DatePosted = models.DateTimeField(default = timezone.now)
     SelectionCriteria = models.TextField()
-    OpenedFor = models.TextField()
     ApplyRequest = models.ManyToManyField(User, related_name='ApplyRequest', blank = True)
     AlreadyApplied = models.ManyToManyField(User, related_name='AlreadyApplied', blank = True)
 
