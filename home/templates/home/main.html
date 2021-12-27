@@ -10,7 +10,7 @@
         <div>
             <a href="{% url 'project' project.id %}"> {{ project.Title }} </a> - {{ project.Description }}
             {% if project.id in user_requested_projects_id %}
-                <button>Requested</button>
+                <a href="{% url 'withdraw-from-project' project.id %}"><button >Withdraw Request</button></a>
             {% else %}
                 {% if project.id not in user_projects_id %}
                 <a href="{% url 'apply-to-project' project.id %}"><button >Apply</button></a>
