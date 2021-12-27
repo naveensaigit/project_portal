@@ -2,27 +2,27 @@
 {% block content %}
     {% if messages %} 
         {% for message in messages %}
-            <div>{{message}}</div>
+            <div style="margin-left: 20px; color: #022160; font-size: 30px; background-color: white;">{{message}}</div>
         {% endfor %}
     {% endif %}
-    <h2>This page shows all projects.</h2>
     {% for project in projects %}
+        <br>
         <div>
             <a href="{% url 'project' project.id %}"> {{ project.Title }} </a> - {{ project.Description }}
             {% if project.id in user_requested_projects_id %}
-                <a href="{% url 'task-project' project.id projects.number 'Withdraw'%}"><button >Withdraw Request</button></a>
+                <a href="{% url 'withdraw-from-project' project.id %}"><button >Withdraw Request</button></a>
             {% else %}
                 {% if project.id not in user_projects_id %}
-                <a href="{% url 'task-project' project.id projects.number 'Apply'%}"><button >Apply</button></a>
+                <a href="{% url 'apply-to-project' project.id %}"><button >Apply</button></a>
                 {% else %}
-                <a href="{% url 'task-project' project.id projects.number 'Leave'%}"><button >Leave</button></a>
+                <a href="{% url 'leave-project' project.id %}"><button >Leave</button></a>
                 {% endif %}
             {% endif %}
 
             {% if project.id not in user_starred_projects_id %}
-                <a href="{% url 'task-project' project.id projects.number 'Star'%}"><button >Star</button></a>
+                <a href="{% url 'star-project' project.id %}"><button >Star</button></a>
             {% else %}
-                <a href="{% url 'task-project' project.id projects.number 'Unstar'%}"><button >Unstar</button></a>
+                <a href="{% url 'unstar-project' project.id %}"><button >Unstar</button></a>
             {% endif %}
             
         </div>
@@ -30,17 +30,17 @@
     {% if projects.has_other_pages %}
         <ul class="pagination">
             {% if projects.has_previous %}
-            <li><a href="/?page={{ projects.previous_page_number }}">&laquo;</a></li>
+            <li><a href="?page={{ projects.previous_page_number }}">&laquo;</a></li>
             {% endif %}
             {% for i in projects.paginator.page_range %}
                 {% if projects.number == i %}
                     <li class="active"><span>{{ i }} <span class="sr-only">(current)</span></span></li>
                 {% else %}
-                    <li><a href="/?page={{ i }}">{{ i }}</a></li>
+                    <li><a href="?page={{ i }}">{{ i }}</a></li>
                 {% endif %}
             {% endfor %}
             {% if projects.has_next %}
-            <li><a href="/?page={{ projects.next_page_number }}">&raquo;</a></li>
+            <li><a href="?page={{ projects.next_page_number }}">&raquo;</a></li>
             {% endif %}
         </ul>
     {% endif %}

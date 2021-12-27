@@ -1,6 +1,11 @@
 {% extends 'home/base.html' %}
 {% block content %}
 {% block profile %}
+<div>{% if messages %}
+            {% for message in messages %}
+                <div style="margin-left: 20px; color: #022160; font-size: 30px; background-color: white;">{{message}}</div>
+            {% endfor %}
+		{% endif %}</div>
 <div class="container emp-profile" style="border-left: 30px solid #EE7210;">
             <form method="post">
                 <div class="row">
@@ -29,7 +34,7 @@
                         </div>
                     </div>
                     <div class="col-md-2">
-                        <a href="{% url 'profile-edit' %}""><input class="btn btn-primary btn-user btn-block" name="btnAddMore" value="Edit Profile"/></a>
+                        <a href="{% url 'profile-edit' %}"><input class="btn btn-primary btn-user btn-block" name="btnAddMore" value="Edit Profile"/></a>
                     </div>
                 </div>
                 <div class="row">
