@@ -1,11 +1,5 @@
 {% extends 'home/base.html' %}
 {% block content %}
-    {% if messages %} 
-        {% for message in messages %}
-            <div style="margin-left: 20px; color: #022160; font-size: 30px; background-color: white;">{{message}}</div>
-        {% endfor %}
-    {% endif %}
-
     <div class="row">
 
         <div class="col-xl-3 col-md-6 mb-4">
@@ -14,7 +8,7 @@
                     <div class="row no-gutters align-items-center">
                         <div class="col mr-2">
                             <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
-                                Projects Applied</div>
+                                <a href="{% url 'projects-applied'%}" style = "color:#EE7210">Projects Applied</a></div>
                             <div class="h5 mb-0 font-weight-bold text-gray-800">{{ num_projects_applied }}</div>
                         </div>
                         <!-- <div class="col-auto">
@@ -31,7 +25,7 @@
                     <div class="row no-gutters align-items-center">
                         <div class="col mr-2">
                             <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
-                                Projects Floated</div>
+                                <a href="{% url 'projects-floated'%}" style = "color:#EE7210">Projects Floated</a></div>
                             <div class="h5 mb-0 font-weight-bold text-gray-800">{{ num_projects_floated }}</div>
                         </div>
                         <!-- <div class="col-auto">
@@ -49,7 +43,7 @@
                     <div class="row no-gutters align-items-center">
                         <div class="col mr-2">
                             <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
-                                Projects Requested</div>
+                                <a href="{% url 'projects-requested'%}" style = "color:#EE7210">Projects Requested</a></div>
                             <div class="h5 mb-0 font-weight-bold text-gray-800">{{ num_projects_req }}</div>
                         </div>
                         <!-- <div class="col-auto">
@@ -67,7 +61,7 @@
                     <div class="row no-gutters align-items-center">
                         <div class="col mr-2">
                             <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
-                                Projects Starred</div>
+                                <a href="{% url 'projects-starred'%}" style = "color:#EE7210">Projects Starred</a></div>
                             <div class="h5 mb-0 font-weight-bold text-gray-800">{{ user.profile.starred_projects.count }}</div>
                         </div>
                         <!-- <div class="col-auto">
@@ -78,8 +72,11 @@
             </div>
         </div>
     </div>
-
-    <h2>This page shows all projects.</h2>
+    {% if messages %} 
+        {% for message in messages %}
+            <div style="margin-left: 20px; color: #022160; font-size: 30px; background-color: white;">{{message}}</div>
+        {% endfor %}
+    {% endif %}
     {% for project in projects %}
         <br>
         <div>

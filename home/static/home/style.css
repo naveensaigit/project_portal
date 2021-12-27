@@ -9719,7 +9719,7 @@
   }
 
   .text-warning {
-    color: #f6c23e !important;
+    color: #EE7210 !important;
   }
 
   a.text-warning:hover, a.text-warning:focus {
@@ -10173,7 +10173,7 @@
   }
 
   .border-left-warning {
-    border-left: 0.25rem solid #f6c23e !important;
+    border-left: 0.25rem solid #EE7210 !important;
   }
 
   .border-bottom-warning {

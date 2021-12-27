@@ -1,3 +1,4 @@
+from django.http.request import HttpRequest
 from django.shortcuts import redirect, render
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
@@ -167,41 +168,8 @@ def projectTask(request, project_id, page_number, task):
         current_user.profile.starred_projects.remove(project)
 
     user_projects_id = []
-    user_starred_projects_id = []
-    user_requested_projects_id = []
-
-    user_applied_projects = Project.objects.all().filter(AlreadyApplied =  request.user)
-    user_floated_projects = Project.objects.all().filter(FloatedBy =  request.user)
-    for project in user_applied_projects:
-        user_projects_id.append(project.id)
-    for project in user_floated_projects:
-        user_projects_id.append(project.id)
-
-    user_requested_projects = Project.objects.all().filter(ApplyRequest = request.user)
-    for project in user_requested_projects:
-        user_requested_projects_id.append(project.id)
-
-    for project in request.user.profile.starred_projects.all():
-        user_starred_projects_id.append(project.id)
-
-    all_project_list = Project.objects.all().order_by('-DatePosted')
-
-    paginator = Paginator(all_project_list, 5)
-    try:
-        projects = paginator.page(page_number)
-    except PageNotAnInteger:
-        projects = paginator.page(1)
-    except EmptyPage:
-        projects = paginator.page(paginator.num_pages)
-
-    context = {
-        'title': 'Home',
-        'projects': projects,
-        'user_projects_id': user_projects_id,
-        'user_starred_projects_id' : user_starred_projects_id,
-        'user_requested_projects_id' : user_requested_projects_id
-    }
-    return render(request, 'home/main.html', context)
+    url = f'/?page={page_number}'
+    return redirect(url)
 
 
 def projectAccept(request, project_id, request_user_name):
