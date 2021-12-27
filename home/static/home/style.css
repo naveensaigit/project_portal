@@ -295,6 +295,7 @@
   img {
     vertical-align: middle;
     border-style: none;
+    background: white;
   }
 
   svg {
@@ -5048,12 +5049,12 @@
 
   .badge-danger {
     color: #fff;
-    background-color: #e74a3b;
+    background-color: #022160;
   }
 
   a.badge-danger:hover, a.badge-danger:focus {
     color: #fff;
-    background-color: #d52a1a;
+    background-color: #022160;
   }
 
   a.badge-danger:focus, a.badge-danger.focus {
@@ -6585,7 +6586,7 @@
   }
 
   .bg-white {
-    background-color: #fff !important;
+    background-color: white !important;
   }
 
   .bg-transparent {
@@ -10808,7 +10809,7 @@
   }
 
   .sidebar-dark .nav-item .nav-link[data-toggle="collapse"]::after {
-    color: rgba(255, 255, 255, 0.5);
+    color: #022160;
   }
 
   .sidebar-dark .nav-item.active .nav-link {
