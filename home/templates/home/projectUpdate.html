@@ -1,21 +1,38 @@
 {% extends 'home/base.html' %}
 {% load crispy_forms_tags %}
 {% block content %}
-	<div>
-		{% if messages %}
+
+<div >
+	<br>
+	<br>
+		<div class="container card shadow-lg py-3" style="width:80%; border-left: 20px solid #EE7210">
+
+			{% if messages %}
 			{% for message in messages %}
-				<div>{{message}}</div>
+				<div class="card-header py-3" >{{message}}</div>
 			{% endfor %}
 		{% endif %}
-		<form method="POST">
+			<br>
+			<div class="card-header py-3" >
+		      <h5 class="m-0 font-weight-bold text-primary text-center">UPDATE PROJECT</h5>
+		  </div>
+			<br>
+		<div class="card-body">
+			<form method="POST">
 			{% csrf_token %}
 			<fieldset>
 				<legend>Project - {{ project_title }}</legend>
-				{{ project_form|crispy }} 
+				{{ project_form|crispy }}
 			</fieldset>
 			<div>
-				<button type="submit">Update</button>
+				<button class="btn btn-primary btn-user btn-block" type="submit">Update</button>
 			</div>
 		</form>
-	</div>
+		</div>
+		</div>
+	<br>
+	<br>
+</div>
+
+
 {% endblock content %}
