@@ -6,6 +6,7 @@ from .models import Profile
 from django.contrib.auth.decorators import login_required
 from django.core.files.storage import default_storage
 from home.models import Project
+from home.filters import ProjectFilter
 
 def signup(request):
     if request.method == 'POST':
@@ -79,23 +80,29 @@ def profile_edit(request):
     return render(request, 'users/profile_edit.html', context)
 
 def projects_floated(request):
-    projects = Project.objects.all()
-    projects_floated = projects.filter(FloatedBy = request.user)
+    all_project_list = Project.objects.all().order_by('-DatePosted')
+    myFilter = ProjectFilter(request.GET,queryset=all_project_list)
+    all_project_list= myFilter.qs
+    projects_floated = all_project_list.filter(FloatedBy = request.user)
     
     context = {
         'title': 'Projects Floated',
         'projects': projects_floated,
+        'myFilter': myFilter,
     }
 
     return render(request, 'users/profile_floated.html', context)
 
 def projects_applied(request):
-    projects = Project.objects.all()
-    projects_applied = projects.filter(AlreadyApplied = request.user)
+    all_project_list = Project.objects.all().order_by('-DatePosted')
+    myFilter = ProjectFilter(request.GET,queryset=all_project_list)
+    all_project_list= myFilter.qs
+    projects_applied = all_project_list.filter(AlreadyApplied = request.user)
     
     context = {
         'title': 'Projects Applied',
         'projects' : projects_applied,
+        'myFilter': myFilter,
     }
 
     return render(request, 'users/profile_applied.html', context)
@@ -113,11 +120,14 @@ def projects_starred(request):
     pass
 
 def projects_requested(request):
-    projects = Project.objects.all()
-    projects_requested = projects.filter(ApplyRequest = request.user)
+    all_project_list = Project.objects.all().order_by('-DatePosted')
+    myFilter = ProjectFilter(request.GET,queryset=all_project_list)
+    all_project_list= myFilter.qs
+    projects_requested = all_project_list.filter(ApplyRequest = request.user)
     context = {
         'title': 'Projects Requested',
         'projects': projects_requested,
+        'myFilter': myFilter,
     }
     return render(request, 'users/profile_requested.html', context)
 
