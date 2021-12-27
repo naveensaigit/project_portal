@@ -4595,7 +4595,7 @@
     word-wrap: break-word;
     background-color: #fff;
     background-clip: border-box;
-    border: 1px solid #e3e6f0;
+    border-left: 5px solid #EE7210;
     border-radius: 0.35rem;
   }
 
@@ -4658,6 +4658,7 @@
     margin-bottom: 0;
     background-color: #f8f9fc;
     border-bottom: 1px solid #e3e6f0;
+    color: #022160;
   }
 
   .card-header:first-child {

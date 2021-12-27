@@ -1,21 +1,40 @@
 {% extends 'home/base.html' %}
 {% block content %}
-	<div>
-		{% if messages %}
+
+
+
+<div >
+	<br>
+	<br>
+		<div class="container card shadow-lg py-3" style="width:80%; border-left: 20px solid #EE7210">
+
+			{% if messages %}
 			{% for message in messages %}
-				<div>{{message}}</div>
+				<div class="card-header py-3" >{{message}}</div>
 			{% endfor %}
 		{% endif %}
-		<form method="POST">
+			<br>
+			<div class="card-header py-3" >
+		      <h5 class="m-0 font-weight-bold text-primary text-center">DELETE PROJECT</h5>
+		  </div>
+			<br>
+		<div class="card-body">
+			<form method="POST">
 			{% csrf_token %}
 			<fieldset>
 				<legend>Project Delete</legend>
 				Are you sure you want to delete Project- {{ project.Title }}.
 			</fieldset>
-			<div>
-				<button type="submit">Delete</button>
-				<a href="{% url 'project' project.id %}"> <button type = 'button'>Cancel</button> </a>
+				<div style="display: flex; "><br>
+				<button type="submit" class="btn btn-primary btn-user btn-block" style="width: 10%; margin-right: 15px;">Delete</button><br>
+				<a href="{% url 'project' project.id %}"> <button class="btn btn-primary btn-user btn-block" type = 'button' style="margin-right: 15px;">Cancel</button> </a>
 			</div>
+
 		</form>
-	</div>
+		</div>
+		</div>
+	<br>
+	<br>
+</div>
+
 {% endblock content %}

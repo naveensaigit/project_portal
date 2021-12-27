@@ -2,27 +2,32 @@
 {% block content %}
     {% if messages %} 
         {% for message in messages %}
-            <div>{{message}}</div>
+            <div class="card-header py-3" >{{message}}</div>
         {% endfor %}
     {% endif %}
     {% if project.FloatedBy == user %}
     <br>
-    <a href="{% url 'update-project' project.id %}"><button>UPDATE PROJECT</button></a> 
-    <a href="{% url 'delete-project' project.id %}"><button>DELETE PROJECT</button></a> 
+    <a href="{% url 'update-project' project.id %}" ><button class="btn btn-primary btn-user btn-block" style="width: 30%; ">UPDATE PROJECT</button></a><br>
+    <a href="{% url 'delete-project' project.id %}" ><button class="btn btn-primary btn-user btn-block" style="width: 30%; ">DELETE PROJECT</button></a>
     {% endif %}
-    <div>
-        <h3>Project - {{ project.Title }}</h3>
+<br>
+
+<div class="card shadow mb-4">
+        <div class="card-header py-3" >
+           <h3>Project - {{ project.Title }}</h3>
+        </div>
+        <div class="card-body" >
         Description -: {{ project.Description }}
         <br>
-        Floated By -: {{ project.FloatedBy }} 
+        Floated By -: {{ project.FloatedBy }}
         <br>
-        Status -: {{ project.Status }} 
+        Status -: {{ project.Status }}
         <br>
-        Difficulty -: {{ project.Difficulty }} 
+        Difficulty -: {{ project.Difficulty }}
         <br>
-        Date Posted -: {{ project.DatePosted }} 
+        Date Posted -: {{ project.DatePosted }}
         <br>
-        Duration -: {{ project.Duration }} 
+        Duration -: {{ project.Duration }}
         <br>
         Mentors -:
         {% for users in project.Mentors.all %}
@@ -32,13 +37,12 @@
             No one
 		{% endif %}
         <br>
-        Selection Criteria -: {{ project.SelectionCriteria }} 
+        Selection Criteria -: {{ project.SelectionCriteria }}
         <br>
         Opened for -: {{project.OpenedFor}}
         <br>
-        Pre requisites -: {{ project.PreRequisite }} 
-    </div>
-    {% if project.FloatedBy == user %}
+        Pre requisites -: {{ project.PreRequisite }}
+            {% if project.FloatedBy == user %}
     <div>
         Already Applied -:
         {% for users in project.AlreadyApplied.all %}
@@ -48,18 +52,30 @@
             No one
 		{% endif %}
     </div>
-    <div>
-        <h3>Project Apply Requests:</h3>
-		{% for request_user in apply_requests %}
+
+        </div>
+</div>
+
+
+<div class="card shadow mb-4">
+        <div class="card-header py-3">
+           <h3>Project Apply Requests:</h3>
+        </div>
+        <div class="card-body" >
+       {% for request_user in apply_requests %}
             <div>
                 {{request_user}} -
-                <a href="{% url 'accept-project' project.id request_user %}"><button>ACCEPT</button></a>
-                <a href="{% url 'reject-project' project.id request_user %}"><button>REJECT</button></a>
+                <a href="{% url 'accept-project' project.id request_user %}"><button class="btn btn-primary btn-user btn-block" style="width: 30%; ">ACCEPT</button></a>
+                <a href="{% url 'reject-project' project.id request_user %}"><button class="btn btn-primary btn-user btn-block" style="width: 30%; ">REJECT</button></a>
             </div>
 		{% endfor %}
 		{% if apply_requests.count == 0 %}
             <div> No requests </div>
 		{% endif %}
-	</div>
+
+        </div>
+</div>
+
+
     {% endif %}
 {% endblock content %}

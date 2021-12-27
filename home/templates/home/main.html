@@ -79,14 +79,14 @@
 </div>
 {% if messages %}
 {% for message in messages %}
-<div style="padding-left: 20px; color: #022160; font-size: 30px; background-color: white;">{{message}}</div>
+<div class="card-header py-3" >{{message}}</div>
 {% endfor %}
 {% endif %}
 
 
 <div class="project_cards">
 
-    <h2 style="padding-top: 20px;">Projects Floated:</h2>
+    <h2 style="padding-top: 20px;">Projects :</h2>
     <br>
     {% for project in projects %}
 
@@ -98,36 +98,35 @@
             <h6 class="m-0 font-weight-bold text-primary"><a href="{% url 'project' project.id %}"> {{ project.Title }}
                 </a> </h6>
         </div>
-        <div class="card-body">
+        <div class="card-body" >
             {{ project.Description }}
             <br><br>
 
-
+        <div style="display: flex; flex-direction: row; justify-content: space-evenly; ">
             {% if project.id in user_requested_projects_id %}
             <a href="{% url 'task-project' project.id projects.number 'Withdraw'%}"><button
-                    class="btn btn-primary btn-user btn-block">Withdraw Request</button></a>
+                    class="btn btn-primary btn-user btn-block" style="width: 300%; ">Withdraw Request</button></a>
             {% else %}
             {% if project.id not in user_projects_id %}
             <a href="{% url 'task-project' project.id projects.number 'Apply'%}"><button
-                    class="btn btn-primary btn-user btn-block">Apply</button></a>
+                    class="btn btn-primary btn-user btn-block" style="width: 300%; ">Apply</button></a>
             {% else %}
             <a href="{% url 'task-project' project.id projects.number 'Leave'%}"><button
-                    class="btn btn-primary btn-user btn-block">Leave</button></a>
+                    class="btn btn-primary btn-user btn-block" style="width: 300%; ">Leave</button></a>
             {% endif %}
             {% endif %}
 
-            <hr>
             
             {% if project.id not in user_starred_projects_id %}
             <a href="{% url 'task-project' project.id projects.number 'Star'%}"><button
-                    class="btn btn-primary btn-user btn-block">Star</button></a>
+                    class="btn btn-primary btn-user btn-block" style="width: 300%;">Star</button></a>
             {% else %}
             <a href="{% url 'task-project' project.id projects.number 'Unstar'%}"><button
-                    class="btn btn-primary btn-user btn-block">Unstar</button></a>
+                    class="btn btn-primary btn-user btn-block" style="width: 300%;">Unstar</button></a>
             {% endif %}
 
           
-
+        </div>
         </div>
     </div>
     <!-- </div> -->
