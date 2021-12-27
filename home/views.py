@@ -44,8 +44,14 @@ def main(request):
         'projects': projects,
         'user_projects_id': user_projects_id,
         'user_starred_projects_id' : user_starred_projects_id,
-        'user_requested_projects_id' : user_requested_projects_id
+        'user_requested_projects_id' : user_requested_projects_id,
+        'num_projects_applied' : user_applied_projects.count(),
+        'num_projects_req':len(user_requested_projects_id),
+        'num_projects_floated': user_floated_projects.count()
     }
+
+    # print(type(user_starred_projects_id))
+
     return render(request, 'home/main.html', context)
 
 @login_required
