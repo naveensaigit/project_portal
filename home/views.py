@@ -129,7 +129,7 @@ def projectDelete(request, project_id):
 
 
 @login_required
-def projectApply(request, project_id):
+def projectApply(request, project_id, page_number):
     project = Project.objects.get(id=project_id)
     current_user = request.user
     year= current_user.profile.year
@@ -146,14 +146,85 @@ def projectApply(request, project_id):
         else:
             messages.warning(request,"You are not eligible to opt this project.")
 
-    return redirect('home')
+    user_projects_id = []
+    user_starred_projects_id = []
+    user_requested_projects_id = []
 
-def projectWithdraw(request, project_id):
+    user_applied_projects = Project.objects.all().filter(AlreadyApplied =  request.user)
+    user_floated_projects = Project.objects.all().filter(FloatedBy =  request.user)
+    for project in user_applied_projects:
+        user_projects_id.append(project.id)
+    for project in user_floated_projects:
+        user_projects_id.append(project.id)
+
+    user_requested_projects = Project.objects.all().filter(ApplyRequest = request.user)
+    for project in user_requested_projects:
+        user_requested_projects_id.append(project.id)
+
+    for project in request.user.profile.starred_projects.all():
+        user_starred_projects_id.append(project.id)
+
+    all_project_list = Project.objects.all().order_by('-DatePosted')
+
+    paginator = Paginator(all_project_list, 5)
+    try:
+        projects = paginator.page(page_number)
+    except PageNotAnInteger:
+        projects = paginator.page(1)
+    except EmptyPage:
+        projects = paginator.page(paginator.num_pages)
+
+    context = {
+        'title': 'Home',
+        'projects': projects,
+        'user_projects_id': user_projects_id,
+        'user_starred_projects_id' : user_starred_projects_id,
+        'user_requested_projects_id' : user_requested_projects_id
+    }
+    return render(request, 'home/main.html', context)
+
+def projectWithdraw(request, project_id, page_number):
     project = Project.objects.get(id=project_id)
     current_user = request.user
 
     project.ApplyRequest.remove(current_user)
-    return redirect('home')
+
+    user_projects_id = []
+    user_starred_projects_id = []
+    user_requested_projects_id = []
+
+    user_applied_projects = Project.objects.all().filter(AlreadyApplied =  request.user)
+    user_floated_projects = Project.objects.all().filter(FloatedBy =  request.user)
+    for project in user_applied_projects:
+        user_projects_id.append(project.id)
+    for project in user_floated_projects:
+        user_projects_id.append(project.id)
+
+    user_requested_projects = Project.objects.all().filter(ApplyRequest = request.user)
+    for project in user_requested_projects:
+        user_requested_projects_id.append(project.id)
+
+    for project in request.user.profile.starred_projects.all():
+        user_starred_projects_id.append(project.id)
+
+    all_project_list = Project.objects.all().order_by('-DatePosted')
+
+    paginator = Paginator(all_project_list, 5)
+    try:
+        projects = paginator.page(page_number)
+    except PageNotAnInteger:
+        projects = paginator.page(1)
+    except EmptyPage:
+        projects = paginator.page(paginator.num_pages)
+
+    context = {
+        'title': 'Home',
+        'projects': projects,
+        'user_projects_id': user_projects_id,
+        'user_starred_projects_id' : user_starred_projects_id,
+        'user_requested_projects_id' : user_requested_projects_id
+    }
+    return render(request, 'home/main.html', context)
 
 
 @login_required
