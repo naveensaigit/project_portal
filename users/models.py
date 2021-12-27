@@ -8,7 +8,7 @@ class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     image = models.ImageField(default = 'default.jpg', upload_to='profile_pics', blank=True)
     rollno = models.CharField(max_length=10)
-    year = models.CharField(max_length=10)
+    year = models.CharField(max_length=30)
     branch = models.CharField(max_length=30)
     techskills = models.TextField()
     starred_projects = models.ManyToManyField(Project, related_name='starred_projects', blank = True)
