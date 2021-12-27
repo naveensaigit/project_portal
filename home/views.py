@@ -8,28 +8,32 @@ from home.decorators import user_is_project_author
 from home.models import Project
 from django.contrib.auth.models import User
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+from .filters import ProjectFilter
 
 @login_required
 def main(request):
+    all_project_list = Project.objects.all().order_by('-DatePosted')
+    myFilter = ProjectFilter(request.GET,queryset=all_project_list)
+    all_project_list= myFilter.qs
     user_projects_id = []
     user_starred_projects_id = []
     user_requested_projects_id = []
 
-    user_applied_projects = Project.objects.all().filter(AlreadyApplied =  request.user)
-    user_floated_projects = Project.objects.all().filter(FloatedBy =  request.user)
+    user_applied_projects = all_project_list.filter(AlreadyApplied =  request.user)
+    user_floated_projects = all_project_list.filter(FloatedBy =  request.user)
     for project in user_applied_projects:
         user_projects_id.append(project.id)
     for project in user_floated_projects:
         user_projects_id.append(project.id)
 
-    user_requested_projects = Project.objects.all().filter(ApplyRequest = request.user)
+    user_requested_projects = all_project_list.filter(ApplyRequest = request.user)
     for project in user_requested_projects:
         user_requested_projects_id.append(project.id)
 
     for project in request.user.profile.starred_projects.all():
         user_starred_projects_id.append(project.id)
 
-    all_project_list = Project.objects.all().order_by('-DatePosted')
+
     page = request.GET.get('page', 1)
 
     paginator = Paginator(all_project_list, 5)
@@ -48,7 +52,8 @@ def main(request):
         'user_requested_projects_id' : user_requested_projects_id,
         'num_projects_applied' : user_applied_projects.count(),
         'num_projects_req':len(user_requested_projects_id),
-        'num_projects_floated': user_floated_projects.count()
+        'num_projects_floated': user_floated_projects.count(),
+        'myFilter':myFilter
     }
 
     # print(type(user_starred_projects_id))
@@ -186,4 +191,3 @@ def projectReject(request, project_id, request_user_name):
 
     project.ApplyRequest.remove(request_user)
     return redirect('project', project_id = project.id)
-

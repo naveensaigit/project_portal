@@ -52,6 +52,7 @@ INSTALLED_APPS = [
     # 'allauth.socialaccount.providers.instagram',
     # 'allauth.socialaccount.providers.linkedin',
     # 'allauth.socialaccount.providers.facebook',
+    'django_filters',
 ]
 
 MIDDLEWARE = [
