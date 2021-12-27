@@ -1,3 +1,4 @@
+from django.http.request import HttpRequest
 from django.shortcuts import redirect, render
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
@@ -135,58 +136,41 @@ def projectDelete(request, project_id):
 
 
 @login_required
-def projectApply(request, project_id):
+def projectTask(request, project_id, page_number, task):
     project = Project.objects.get(id=project_id)
     current_user = request.user
-    year= current_user.profile.year
-    branch=current_user.profile.branch
-    if(len(year)==0 or len(branch)==0):
-        messages.warning(request,"Please update your year and branch in profile section")
-        return redirect('/profile/edit')
-    else:
-        user_branch = f"{year} Year {branch}"
-        if(user_branch in project.OpenedFor):
-            project.ApplyRequest.add(current_user)
-            messages.success(request,"Successfully Requested!")
-            # Project Mail Notification to be implemented
+
+    if task == "Apply":
+        year= current_user.profile.year
+        branch=current_user.profile.branch
+        if(len(year)==0 or len(branch)==0):
+            messages.warning(request,"Please update your year and branch in profile section")
+            return redirect('/profile/edit')
         else:
-            messages.warning(request,"You are not eligible to opt this project.")
+            user_branch = f"{year} Year {branch}"
+            if(user_branch in project.OpenedFor):
+                project.ApplyRequest.add(current_user)
+                messages.success(request,"Successfully Requested!")
+                # Project Mail Notification to be implemented
+            else:
+                messages.warning(request,"You are not eligible to opt this project.")
+    if task == "Withdraw":
+        project.ApplyRequest.remove(current_user)
+    if task == "Leave":
+        if project.FloatedBy != current_user:
+            project.AlreadyApplied.remove(current_user)
+            messages.success(request,f"{project} is dropped successfully.")
+        else:
+            messages.error(request, 'You cannot leave this project because it is floated by you.')
+    if task == "Star":
+        current_user.profile.starred_projects.add(project)
+    if task == "Unstar":
+        current_user.profile.starred_projects.remove(project)
 
-    return redirect('home')
+    user_projects_id = []
+    url = f'/?page={page_number}'
+    return redirect(url)
 
-def projectWithdraw(request, project_id):
-    project = Project.objects.get(id=project_id)
-    current_user = request.user
-
-    project.ApplyRequest.remove(current_user)
-    return redirect('home')
-
-
-@login_required
-def projectLeave(request, project_id):
-    project = Project.objects.get(id=project_id)
-    current_user = request.user
-
-    if project.FloatedBy != current_user:
-        project.AlreadyApplied.remove(current_user)
-        messages.success(request,f"{project} is dropped successfully.")
-    else:
-        messages.error(request, 'You cannot leave this project because it is floated by you.')
-    return redirect('home')
-
-def projectStar(request, project_id):
-    project = Project.objects.get(id=project_id)
-    current_user = request.user
-
-    current_user.profile.starred_projects.add(project)
-    return redirect('home')
-
-def projectUnStar(request, project_id):
-    project = Project.objects.get(id=project_id)
-    current_user = request.user
-
-    current_user.profile.starred_projects.remove(project)
-    return redirect('home')
 
 def projectAccept(request, project_id, request_user_name):
     project = Project.objects.get(id=project_id)
@@ -202,3 +186,4 @@ def projectReject(request, project_id, request_user_name):
 
     project.ApplyRequest.remove(request_user)
     return redirect('project', project_id = project.id)
+
