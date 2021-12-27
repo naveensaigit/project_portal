@@ -1,119 +1,158 @@
 {% extends 'home/base.html' %}
 {% block content %}
-    <div class="row">
+<div class="row">
 
-        <div class="col-xl-3 col-md-6 mb-4">
-            <div class="card border-left-warning shadow h-100 py-2">
-                <div class="card-body">
-                    <div class="row no-gutters align-items-center">
-                        <div class="col mr-2">
-                            <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
-                                <a href="{% url 'projects-applied'%}" style = "color:#EE7210">Projects Applied</a></div>
-                            <div class="h5 mb-0 font-weight-bold text-gray-800">{{ num_projects_applied }}</div>
+    <div class="col-xl-3 col-md-6 mb-4">
+        <div class="card border-left-warning shadow h-100 py-2">
+            <div class="card-body">
+                <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                        <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
+                            <a href="{% url 'projects-applied'%}" style="color:#EE7210">Projects Applied</a>
                         </div>
-                        <!-- <div class="col-auto">
+                        <div class="h5 mb-0 font-weight-bold text-gray-800">{{ num_projects_applied }}</div>
+                    </div>
+                    <!-- <div class="col-auto">
                             <i class="fas fa-comments fa-2x text-gray-300"></i>
                         </div> -->
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="col-xl-3 col-md-6 mb-4">
-            <div class="card border-left-warning shadow h-100 py-2">
-                <div class="card-body">
-                    <div class="row no-gutters align-items-center">
-                        <div class="col mr-2">
-                            <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
-                                <a href="{% url 'projects-floated'%}" style = "color:#EE7210">Projects Floated</a></div>
-                            <div class="h5 mb-0 font-weight-bold text-gray-800">{{ num_projects_floated }}</div>
-                        </div>
-                        <!-- <div class="col-auto">
-                            <i class="fas fa-comments fa-2x text-gray-300"></i>
-                        </div> -->
-                    </div>
-                </div>
-            </div>
-        </div>
-
-  
-        <div class="col-xl-3 col-md-6 mb-4">
-            <div class="card border-left-warning shadow h-100 py-2">
-                <div class="card-body">
-                    <div class="row no-gutters align-items-center">
-                        <div class="col mr-2">
-                            <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
-                                <a href="{% url 'projects-requested'%}" style = "color:#EE7210">Projects Requested</a></div>
-                            <div class="h5 mb-0 font-weight-bold text-gray-800">{{ num_projects_req }}</div>
-                        </div>
-                        <!-- <div class="col-auto">
-                            <i class="fas fa-comments fa-2x text-gray-300"></i>
-                        </div> -->
-                    </div>
-                </div>
-            </div>
-        </div>
-
-    
-        <div class="col-xl-3 col-md-6 mb-4">
-            <div class="card border-left-warning shadow h-100 py-2">
-                <div class="card-body">
-                    <div class="row no-gutters align-items-center">
-                        <div class="col mr-2">
-                            <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
-                                <a href="{% url 'projects-starred'%}" style = "color:#EE7210">Projects Starred</a></div>
-                            <div class="h5 mb-0 font-weight-bold text-gray-800">{{ user.profile.starred_projects.count }}</div>
-                        </div>
-                        <!-- <div class="col-auto">
-                            <i class="fas fa-comments fa-2x text-gray-300"></i>
-                        </div> -->
-                    </div>
                 </div>
             </div>
         </div>
     </div>
-    {% if messages %} 
-        {% for message in messages %}
-            <div style="margin-left: 20px; color: #022160; font-size: 30px; background-color: white;">{{message}}</div>
-        {% endfor %}
-    {% endif %}
+
+    <div class="col-xl-3 col-md-6 mb-4">
+        <div class="card border-left-warning shadow h-100 py-2">
+            <div class="card-body">
+                <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                        <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
+                            <a href="{% url 'projects-floated'%}" style="color:#EE7210">Projects Floated</a>
+                        </div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800">{{ num_projects_floated }}</div>
+                    </div>
+                    <!-- <div class="col-auto">
+                            <i class="fas fa-comments fa-2x text-gray-300"></i>
+                        </div> -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="col-xl-3 col-md-6 mb-4">
+        <div class="card border-left-warning shadow h-100 py-2">
+            <div class="card-body">
+                <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                        <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
+                            <a href="{% url 'projects-requested'%}" style="color:#EE7210">Projects Requested</a>
+                        </div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800">{{ num_projects_req }}</div>
+                    </div>
+                    <!-- <div class="col-auto">
+                            <i class="fas fa-comments fa-2x text-gray-300"></i>
+                        </div> -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="col-xl-3 col-md-6 mb-4">
+        <div class="card border-left-warning shadow h-100 py-2">
+            <div class="card-body">
+                <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                        <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
+                            <a href="{% url 'projects-starred'%}" style="color:#EE7210">Projects Starred</a>
+                        </div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800">{{ user.profile.starred_projects.count }}
+                        </div>
+                    </div>
+                    <!-- <div class="col-auto">
+                            <i class="fas fa-comments fa-2x text-gray-300"></i>
+                        </div> -->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% if messages %}
+{% for message in messages %}
+<div style="padding-left: 20px; color: #022160; font-size: 30px; background-color: white;">{{message}}</div>
+{% endfor %}
+{% endif %}
+
+
+<div class="project_cards">
+
+    <h2 style="padding-top: 20px;">Projects Floated:</h2>
+    <br>
     {% for project in projects %}
-        <br>
-        <div>
-            <a href="{% url 'project' project.id %}"> {{ project.Title }} </a> - {{ project.Description }}
+
+    <!-- Collapsable Card Example -->
+    <!-- <div class="col-lg-6"> -->
+    <!-- Basic Card Example -->
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary"><a href="{% url 'project' project.id %}"> {{ project.Title }}
+                </a> </h6>
+        </div>
+        <div class="card-body">
+            {{ project.Description }}
+            <br><br>
+
+
             {% if project.id in user_requested_projects_id %}
-                <a href="{% url 'task-project' project.id projects.number 'Withdraw'%}"><button >Withdraw Request</button></a>
+            <a href="{% url 'task-project' project.id projects.number 'Withdraw'%}"><button
+                    class="btn btn-primary btn-user btn-block">Withdraw Request</button></a>
             {% else %}
-                {% if project.id not in user_projects_id %}
-                <a href="{% url 'task-project' project.id projects.number 'Apply'%}"><button >Apply</button></a>
-                {% else %}
-                <a href="{% url 'task-project' project.id projects.number 'Leave'%}"><button >Leave</button></a>
-                {% endif %}
+            {% if project.id not in user_projects_id %}
+            <a href="{% url 'task-project' project.id projects.number 'Apply'%}"><button
+                    class="btn btn-primary btn-user btn-block">Apply</button></a>
+            {% else %}
+            <a href="{% url 'task-project' project.id projects.number 'Leave'%}"><button
+                    class="btn btn-primary btn-user btn-block">Leave</button></a>
+            {% endif %}
             {% endif %}
 
-            {% if project.id not in user_starred_projects_id %}
-                <a href="{% url 'task-project' project.id projects.number 'Star'%}"><button >Star</button></a>
-            {% else %}
-                <a href="{% url 'task-project' project.id projects.number 'Unstar'%}"><button >Unstar</button></a>
-            {% endif %}
+            <hr>
             
+            {% if project.id not in user_starred_projects_id %}
+            <a href="{% url 'task-project' project.id projects.number 'Star'%}"><button
+                    class="btn btn-primary btn-user btn-block">Star</button></a>
+            {% else %}
+            <a href="{% url 'task-project' project.id projects.number 'Unstar'%}"><button
+                    class="btn btn-primary btn-user btn-block">Unstar</button></a>
+            {% endif %}
+
+          
+
         </div>
+    </div>
+    <!-- </div> -->
+
     {% endfor %}
-    {% if projects.has_other_pages %}
-        <ul class="pagination">
-            {% if projects.has_previous %}
-            <li><a href="/?page={{ projects.previous_page_number }}">&laquo;</a></li>
-            {% endif %}
-            {% for i in projects.paginator.page_range %}
-                {% if projects.number == i %}
-                    <li class="active"><span>{{ i }} <span class="sr-only">(current)</span></span></li>
-                {% else %}
-                    <li><a href="/?page={{ i }}">{{ i }}</a></li>
-                {% endif %}
-            {% endfor %}
-            {% if projects.has_next %}
-            <li><a href="/?page={{ projects.next_page_number }}">&raquo;</a></li>
-            {% endif %}
-        </ul>
+
+</div>
+
+
+
+{% if projects.has_other_pages %}
+<ul class="pagination">
+    {% if projects.has_previous %}
+    <li><a href="/?page={{ projects.previous_page_number }}">&laquo;</a></li>
     {% endif %}
+    {% for i in projects.paginator.page_range %}
+    {% if projects.number == i %}
+    <li class="active"><span>{{ i }} <span class="sr-only">(current)</span></span></li>
+    {% else %}
+    <li><a href="/?page={{ i }}">{{ i }}</a></li>
+    {% endif %}
+    {% endfor %}
+    {% if projects.has_next %}
+    <li><a href="/?page={{ projects.next_page_number }}">&raquo;</a></li>
+    {% endif %}
+</ul>
+{% endif %}
 {% endblock content %}
