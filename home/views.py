@@ -14,7 +14,8 @@ from .filters import ProjectFilter
 def main(request):
     all_project_list = Project.objects.all().order_by('-DatePosted')
     myFilter = ProjectFilter(request.GET,queryset=all_project_list)
-    all_project_list= myFilter.qs
+    filtered_projects= myFilter.qs
+
     user_projects_id = []
     user_starred_projects_id = []
     user_requested_projects_id = []
@@ -36,17 +37,17 @@ def main(request):
 
     page = request.GET.get('page', 1)
 
-    paginator = Paginator(all_project_list, 5)
+    paginator = Paginator(filtered_projects, 5)
     try:
-        projects = paginator.page(page)
+        filtered_projects = paginator.page(page)
     except PageNotAnInteger:
-        projects = paginator.page(1)
+        filtered_projects = paginator.page(1)
     except EmptyPage:
-        projects = paginator.page(paginator.num_pages)
+        filtered_projects = paginator.page(paginator.num_pages)
 
     context = {
         'title': 'Home',
-        'projects': projects,
+        'projects': filtered_projects,
         'user_projects_id': user_projects_id,
         'user_starred_projects_id' : user_starred_projects_id,
         'user_requested_projects_id' : user_requested_projects_id,

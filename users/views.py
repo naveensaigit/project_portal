@@ -80,33 +80,30 @@ def profile_edit(request):
     return render(request, 'users/profile_edit.html', context)
 
 def projects_floated(request):
-    all_project_list = Project.objects.all().order_by('-DatePosted')
+    all_project_list = Project.objects.all().filter(FloatedBy = request.user).order_by('-DatePosted')
     myFilter = ProjectFilter(request.GET,queryset=all_project_list)
-    all_project_list= myFilter.qs
-    projects_floated = all_project_list.filter(FloatedBy = request.user)
+    filtered_projects= myFilter.qs
     
     context = {
         'title': 'Projects Floated',
-        'projects': projects_floated,
+        'projects': filtered_projects,
         'myFilter': myFilter,
     }
 
     return render(request, 'users/profile_floated.html', context)
 
 def projects_applied(request):
-    all_project_list = Project.objects.all().order_by('-DatePosted')
+    all_project_list = Project.objects.all().filter(AlreadyApplied = request.user).order_by('-DatePosted')
     myFilter = ProjectFilter(request.GET,queryset=all_project_list)
-    all_project_list= myFilter.qs
-    projects_applied = all_project_list.filter(AlreadyApplied = request.user)
+    filtered_projects= myFilter.qs
     
     context = {
         'title': 'Projects Applied',
-        'projects' : projects_applied,
+        'projects' : filtered_projects,
         'myFilter': myFilter,
     }
 
     return render(request, 'users/profile_applied.html', context)
-    pass
 
 def projects_starred(request):
     projects_starred = request.user.profile.starred_projects.all()
@@ -117,16 +114,15 @@ def projects_starred(request):
     }
 
     return render(request, 'users/profile_starred.html', context)
-    pass
 
 def projects_requested(request):
-    all_project_list = Project.objects.all().order_by('-DatePosted')
+    all_project_list = Project.objects.all().filter(ApplyRequest = request.user).order_by('-DatePosted')
     myFilter = ProjectFilter(request.GET,queryset=all_project_list)
-    all_project_list= myFilter.qs
-    projects_requested = all_project_list.filter(ApplyRequest = request.user)
+    filtered_projects= myFilter.qs
+
     context = {
         'title': 'Projects Requested',
-        'projects': projects_requested,
+        'projects': filtered_projects,
         'myFilter': myFilter,
     }
     return render(request, 'users/profile_requested.html', context)
