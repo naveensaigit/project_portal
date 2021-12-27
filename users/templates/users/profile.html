@@ -1,15 +1,5 @@
 {% extends 'home/base.html' %}
 {% block content %}
-
-
-<div>
-	<a href="{% url 'profile-edit' %}">Edit Profile</a>
-	<a href="{% url 'projects-applied' %}">Projects Applied</a>
-	<a href="{% url 'projects-floated' %}">Projects Floated</a>
-	<a href="{% url 'projects-requested' %}">Projects Requested</a>
-	<a href="{% url 'projects-starred' %}">Starred Projects</a>
-</div>
-
 {% block profile %}
 <div class="container emp-profile" style="border-left: 30px solid #EE7210;">
             <form method="post">
