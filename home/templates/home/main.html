@@ -1,5 +1,6 @@
 {% extends 'home/base.html' %}
 {% block content %}
+{% load crispy_forms_tags %}
 <div class="row">
 
     <div class="col-xl-3 col-md-6 mb-4">
@@ -85,7 +86,7 @@
 
 <!-- Filter options -->
 <form method="get">
-    {{myFilter.form}}
+    {{myFilter.form|crispy}}
     <button class="btn btn-primary" type="Submit">Filter</button>
 </form>
 
