@@ -12,7 +12,10 @@ DIFFICULTY_CHOICES = (
     ('Intermediate','Intermediate'),
     ('Hard','Hard')
 )
-
+NOTIFICATION_CHOICES = (
+    ('On','On'),
+    ('Off','Off'),
+)
 # Create your models here.
 class Project(models.Model):
     Title = models.CharField(max_length=30)
@@ -26,6 +29,7 @@ class Project(models.Model):
     Duration = models.CharField(max_length=30)
     DatePosted = models.DateTimeField(default = timezone.now)
     SelectionCriteria = models.TextField()
+    MailNotification = models.CharField(max_length=5, choices=NOTIFICATION_CHOICES,default='On')
     ApplyRequest = models.ManyToManyField(User, related_name='ApplyRequest', blank = True)
     AlreadyApplied = models.ManyToManyField(User, related_name='AlreadyApplied', blank = True)
 
