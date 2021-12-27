@@ -22,10 +22,10 @@
 	<body>
 		<div>
 			{% if user.is_authenticated %}
-				<a href="{% url 'home' %}">HOME</a>
-				<a href="{% url 'new-project' %}">CREATE NEW PROJECT</a>
-				<a href="{% url 'profile' %}">PROFILE</a>
-				<a href="{% url 'logout' %}">LOGOUT</a>
+<!--				<a href="{% url 'home' %}">HOME</a>-->
+<!--				<a href="{% url 'new-project' %}">CREATE NEW PROJECT</a>-->
+<!--				<a href="{% url 'profile' %}">PROFILE</a>-->
+<!--				<a href="{% url 'logout' %}">LOGOUT</a>-->
 			{% else %}
 <!--				<a href="{% url 'login' %}">LOGIN</a>-->
 <!--				<a href="{% url 'signup' %}">SIGN UP</a>-->
@@ -47,7 +47,7 @@
                     <div class="sidebar-brand-icon">
                         <img src="https://wiki.iitmandi.co.in/images/thumb/8/87/AcademicCouncillogo.png/300px-AcademicCouncillogo.png" alt="" style = "height:60px">
                     </div>
-                    <div class="sidebar-brand-text mx-3">Project Portal</div>
+<!--                    <div class="sidebar-brand-text mx-3">Project Portal</div>-->
                 </a>
 
                 <!-- Divider -->
@@ -56,7 +56,7 @@
                 <!-- Nav Item - Dashboard -->
                 <li class="nav-item">
                     <a class="nav-link"  href="{% url 'home' %}"">
-                        <i class="fas fa-fw fa-tachometer-alt"></i>
+                        <i class="fas fa-home"></i>
                         <span>Home</span></a>
                 </li>
 
@@ -72,7 +72,7 @@
                 <li class="nav-item">
                     <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
                         aria-expanded="true" aria-controls="collapseTwo">
-                        <i class="fas fa-fw fa-cog"></i>
+                        <i class="fas fa-tasks"></i>
                         <span>Projects</span>
                     </a>
                     <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
@@ -93,7 +93,7 @@
 
     						<li class="nav-item">
     								<a class="nav-link"  href="{% url 'logout' %}"">
-    										<i class="fas fa-fw fa-tachometer-alt"></i>
+    										<i class="fas fa-sign-out-alt"></i>
     										<span>Logout</span></a>
     						</li>
 
@@ -110,10 +110,9 @@
 
                 <!-- Main Content -->
                 <div id="content">
-
                     <!-- Topbar -->
                     <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
-
+                    <div class="sidebar-brand-text mx-3" style="color: #022160; font-size: large; font-weight: bold">  UGAC PROJECT PORTAL     </div>
                         <!-- Sidebar Toggle (Topbar) -->
                         <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
                             <i class="fa fa-bars"></i>
@@ -124,7 +123,7 @@
                             class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
                             <div class="input-group">
                                 <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..."
-                                    aria-label="Search" aria-describedby="basic-addon2">
+                                    aria-label="Search" aria-describedby="basic-addon2" >
                                 <div class="input-group-append">
                                     <button class="btn btn-primary" type="button">
                                         <i class="fas fa-search fa-sm"></i>
@@ -283,9 +282,9 @@
                             <li class="nav-item dropdown no-arrow">
                                 <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                     data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    <span class="mr-2 d-none d-lg-inline text-gray-600 small">Douglas McGee</span>
+                                    <span class="mr-2 d-none d-lg-inline text-gray-600 small">{{user.username}}</span>
                                     <img class="img-profile rounded-circle"
-                                        src="img/undraw_profile.svg">
+                                        src="{{user.profile.image.url}}">
                                 </a>
                                 <!-- Dropdown - User Information -->
                                 <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
