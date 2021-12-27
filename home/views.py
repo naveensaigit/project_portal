@@ -129,22 +129,36 @@ def projectDelete(request, project_id):
 
 
 @login_required
-def projectApply(request, project_id, page_number):
+def projectTask(request, project_id, page_number, task):
     project = Project.objects.get(id=project_id)
     current_user = request.user
-    year= current_user.profile.year
-    branch=current_user.profile.branch
-    if(len(year)==0 or len(branch)==0):
-        messages.warning(request,"Please update your year and branch in profile section")
-        return redirect('/profile/edit')
-    else:
-        user_branch = f"{year} Year {branch}"
-        if(user_branch in project.OpenedFor):
-            project.ApplyRequest.add(current_user)
-            messages.success(request,"Successfully Requested!")
-            # Project Mail Notification to be implemented
+
+    if task == "Apply":
+        year= current_user.profile.year
+        branch=current_user.profile.branch
+        if(len(year)==0 or len(branch)==0):
+            messages.warning(request,"Please update your year and branch in profile section")
+            return redirect('/profile/edit')
         else:
-            messages.warning(request,"You are not eligible to opt this project.")
+            user_branch = f"{year} Year {branch}"
+            if(user_branch in project.OpenedFor):
+                project.ApplyRequest.add(current_user)
+                messages.success(request,"Successfully Requested!")
+                # Project Mail Notification to be implemented
+            else:
+                messages.warning(request,"You are not eligible to opt this project.")
+    if task == "Withdraw":
+        project.ApplyRequest.remove(current_user)
+    if task == "Leave":
+        if project.FloatedBy != current_user:
+            project.AlreadyApplied.remove(current_user)
+            messages.success(request,f"{project} is dropped successfully.")
+        else:
+            messages.error(request, 'You cannot leave this project because it is floated by you.')
+    if task == "Star":
+        current_user.profile.starred_projects.add(project)
+    if task == "Unstar":
+        current_user.profile.starred_projects.remove(project)
 
     user_projects_id = []
     user_starred_projects_id = []
@@ -183,75 +197,6 @@ def projectApply(request, project_id, page_number):
     }
     return render(request, 'home/main.html', context)
 
-def projectWithdraw(request, project_id, page_number):
-    project = Project.objects.get(id=project_id)
-    current_user = request.user
-
-    project.ApplyRequest.remove(current_user)
-
-    user_projects_id = []
-    user_starred_projects_id = []
-    user_requested_projects_id = []
-
-    user_applied_projects = Project.objects.all().filter(AlreadyApplied =  request.user)
-    user_floated_projects = Project.objects.all().filter(FloatedBy =  request.user)
-    for project in user_applied_projects:
-        user_projects_id.append(project.id)
-    for project in user_floated_projects:
-        user_projects_id.append(project.id)
-
-    user_requested_projects = Project.objects.all().filter(ApplyRequest = request.user)
-    for project in user_requested_projects:
-        user_requested_projects_id.append(project.id)
-
-    for project in request.user.profile.starred_projects.all():
-        user_starred_projects_id.append(project.id)
-
-    all_project_list = Project.objects.all().order_by('-DatePosted')
-
-    paginator = Paginator(all_project_list, 5)
-    try:
-        projects = paginator.page(page_number)
-    except PageNotAnInteger:
-        projects = paginator.page(1)
-    except EmptyPage:
-        projects = paginator.page(paginator.num_pages)
-
-    context = {
-        'title': 'Home',
-        'projects': projects,
-        'user_projects_id': user_projects_id,
-        'user_starred_projects_id' : user_starred_projects_id,
-        'user_requested_projects_id' : user_requested_projects_id
-    }
-    return render(request, 'home/main.html', context)
-
-
-@login_required
-def projectLeave(request, project_id):
-    project = Project.objects.get(id=project_id)
-    current_user = request.user
-
-    if project.FloatedBy != current_user:
-        project.AlreadyApplied.remove(current_user)
-        messages.success(request,f"{project} is dropped successfully.")
-    else:
-        messages.error(request, 'You cannot leave this project because it is floated by you.')
-    return redirect('home')
-
-def projectStar(request, project_id):
-    project = Project.objects.get(id=project_id)
-    current_user = request.user
-
-    current_user.profile.starred_projects.add(project)
-    return redirect('home')
-
-def projectUnStar(request, project_id):
-    project = Project.objects.get(id=project_id)
-    current_user = request.user
-
-    current_user.profile.starred_projects.remove(project)
-    return redirect('home')
 
 def projectAccept(request, project_id, request_user_name):
     project = Project.objects.get(id=project_id)
@@ -267,3 +212,4 @@ def projectReject(request, project_id, request_user_name):
 
     project.ApplyRequest.remove(request_user)
     return redirect('project', project_id = project.id)
+
