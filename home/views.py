@@ -132,13 +132,19 @@ def projectDelete(request, project_id):
 def projectApply(request, project_id):
     project = Project.objects.get(id=project_id)
     current_user = request.user
-
-    user_branch = f"{current_user.profile.year} Year {current_user.profile.branch}"
-    if(user_branch in project.OpenedFor):
-        project.ApplyRequest.add(current_user)
-        messages.success(request,"Successfully Requested!")
+    year= current_user.profile.year
+    branch=current_user.profile.branch
+    if(len(year)==0 or len(branch)==0):
+        messages.warning(request,"Please update your year and branch in profile section")
+        return redirect('/profile/edit')
     else:
-        messages.warning(request,"You are not eligible to opt this project.")
+        user_branch = f"{year} Year {branch}"
+        if(user_branch in project.OpenedFor):
+            project.ApplyRequest.add(current_user)
+            messages.success(request,"Successfully Requested!")
+            # Project Mail Notification to be implemented
+        else:
+            messages.warning(request,"You are not eligible to opt this project.")
 
     return redirect('home')
 

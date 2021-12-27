@@ -27,11 +27,15 @@ class ProjectRegisterForm(forms.ModelForm):
         ('4th Year CE', '4th Year CE'),
         ('4th Year BioE', '4th Year BioE'),
     )
+    NOTIFICATION_CHOICES = (
+        ('ON','ON'),
+        ('OFF','OFF'),
+    )
     OpenedFor = forms.MultipleChoiceField(
         label="Opened For", choices=CHOICES, required=True)
     class Meta:
         model = Project
-        fields = ['Title','Description','Mentors','Status','OpenedFor','Difficulty','PreRequisite','Duration','SelectionCriteria']
+        fields = ['Title','Description','Mentors','Status','OpenedFor','Difficulty','PreRequisite','Duration','SelectionCriteria','MailNotification']
 
 
 
@@ -59,8 +63,12 @@ class ProjectUpdateForm(forms.ModelForm):
         ('4th Year CE', '4th Year CE'),
         ('4th Year BioE', '4th Year BioE'),
     )
+    NOTIFICATION_CHOICES = (
+        ('ON','ON'),
+        ('OFF','OFF'),
+    )
     OpenedFor = forms.MultipleChoiceField(
         label="Opened For", choices=CHOICES, required=True)
     class Meta:
         model = Project
-        fields = ['Title','Description','Mentors','Status','OpenedFor','Difficulty','PreRequisite','Duration','SelectionCriteria']
+        fields = ['Title','Description','Mentors','Status','OpenedFor','Difficulty','PreRequisite','Duration','SelectionCriteria','MailNotification']
