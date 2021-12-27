@@ -3,13 +3,28 @@ from django.contrib.auth.models import User
 from PIL import Image
 from home.models import Project
 
+YEAR_CHOICES = (
+    ('1st', '1st'),
+    ('2nd', '2nd'),
+    ('3rd', '3rd'),
+    ('4th', '4th'),
+    ('5th', '5th'),
+)
+BRANCH_CHOICES = (
+    ('CSE', 'CSE'),
+    ('DSE', 'DSE'),
+    ('ME', 'ME'),
+    ('EE', 'EE'),
+    ('CE', 'CE'),
+    ('BioE', 'BioE'),
+)
 
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     image = models.ImageField(default = 'default.jpg', upload_to='profile_pics', blank=True)
     rollno = models.CharField(max_length=10)
-    year = models.CharField(max_length=30)
-    branch = models.CharField(max_length=30)
+    year = models.CharField(max_length=30, choices = YEAR_CHOICES)
+    branch = models.CharField(max_length=30, choices = BRANCH_CHOICES)
     techskills = models.TextField()
     starred_projects = models.ManyToManyField(Project, related_name='starred_projects', blank = True)
     cv = models.FileField(blank = True, upload_to='resumes')

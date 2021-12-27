@@ -140,8 +140,13 @@ def projectApply(request, project_id):
     else:
         messages.warning(request,"You are not eligible to opt this project.")
 
-    # project.AlreadyApplied.add(current_user)
-    # current_user.profile.projects.add(project)
+    return redirect('home')
+
+def projectWithdraw(request, project_id):
+    project = Project.objects.get(id=project_id)
+    current_user = request.user
+
+    project.ApplyRequest.remove(current_user)
     return redirect('home')
 
 
@@ -149,7 +154,7 @@ def projectApply(request, project_id):
 def projectLeave(request, project_id):
     project = Project.objects.get(id=project_id)
     current_user = request.user
-    
+
     if project.FloatedBy != current_user:
         project.AlreadyApplied.remove(current_user)
         messages.success(request,f"{project} is dropped successfully.")
