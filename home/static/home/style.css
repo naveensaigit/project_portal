@@ -9882,9 +9882,7 @@
   body {
     height: 100%;
     /*background-color: #e3e6f0;*/
-    background: #F7971E;
-    background: -webkit-linear-gradient(to right, #FFD200, #F7971E);
-    background: linear-gradient(to right, #FFD200, #F7971E);
+    background-color: #E8E8E8
   }
 
   a:focus {
@@ -9917,7 +9915,6 @@
 }
 
 
-  }
 
   .scroll-to-top {
     position: fixed;
