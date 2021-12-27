@@ -12,19 +12,19 @@ class UserRegisterForm(UserCreationForm):
 
 class ProfileRegisterForm(forms.ModelForm):
     YEAR_CHOICES = (
-        ('1', '1st'),
-        ('2', '2nd'),
-        ('3', '3rd'),
-        ('4', '4th'),
-        ('5', '5th'),
+        ('1st', '1st'),
+        ('2nd', '2nd'),
+        ('3rd', '3rd'),
+        ('4th', '4th'),
+        ('5th', '5th'),
     )
     BRANCH_CHOICES = (
-        ('1', 'CSE'),
-        ('2', 'DSE'),
-        ('3', 'ME'),
-        ('4', 'EE'),
-        ('5', 'CE'),
-        ('6', 'BioE'),
+        ('CSE', 'CSE'),
+        ('DSE', 'DSE'),
+        ('ME', 'ME'),
+        ('EE', 'EE'),
+        ('CE', 'CE'),
+        ('BioE', 'BioE'),
     )
     year = forms.ChoiceField(
         label="Year", choices=YEAR_CHOICES, required=True,
@@ -48,19 +48,19 @@ class UserUpdateForm(forms.ModelForm):
 
 class ProfileUpdateForm(forms.ModelForm):
     YEAR_CHOICES = (
-        ('1', '1st'),
-        ('2', '2nd'),
-        ('3', '3rd'),
-        ('4', '4th'),
-        ('5', '5th'),
+        ('1st', '1st'),
+        ('2nd', '2nd'),
+        ('3rd', '3rd'),
+        ('4th', '4th'),
+        ('5th', '5th'),
     )
     BRANCH_CHOICES = (
-        ('1', 'CSE'),
-        ('2', 'DSE'),
-        ('3', 'ME'),
-        ('4', 'EE'),
-        ('5', 'CE'),
-        ('6', 'BioE'),
+        ('CSE', 'CSE'),
+        ('DSE', 'DSE'),
+        ('ME', 'ME'),
+        ('EE', 'EE'),
+        ('CE', 'CE'),
+        ('BioE', 'BioE'),
     )
     year = forms.ChoiceField(
         label="Year", choices=YEAR_CHOICES, required=True,

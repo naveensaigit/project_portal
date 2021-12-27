@@ -133,10 +133,15 @@ def projectApply(request, project_id):
     project = Project.objects.get(id=project_id)
     current_user = request.user
 
-    project.ApplyRequest.add(current_user)
+    user_branch = f"{current_user.profile.year} Year {current_user.profile.branch}"
+    if(user_branch in project.OpenedFor):
+        project.ApplyRequest.add(current_user)
+        messages.success(request,"Successfully Requested!")
+    else:
+        messages.warning(request,"You are not eligible to opt this project.")
+
     # project.AlreadyApplied.add(current_user)
     # current_user.profile.projects.add(project)
-    messages.success(request,"Successfully Requested!")
     return redirect('home')
 
 
