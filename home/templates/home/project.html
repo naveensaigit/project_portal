@@ -1,6 +1,6 @@
 {% extends 'home/base.html' %}
 {% block content %}
-    {% if messages %} 
+    {% if messages %}
         {% for message in messages %}
             <div class="card-header py-3" >{{message}}</div>
         {% endfor %}
@@ -16,7 +16,77 @@
         <div class="card-header py-3" >
            <h3>Project - {{ project.Title }}</h3>
         </div>
-        <div class="card-body" >
+
+        <style type="text/css">
+        .tg  {border-collapse:collapse;border-color:#ccc;border-spacing:0;border-style:solid;border-width:1px;}
+        .tg td{background-color:#fff;border-color:#ccc;border-style:solid;border-width:0px;color:#333;
+          font-family:Arial, sans-serif;font-size:14px;overflow:hidden;padding:10px 8px;word-break:normal;}
+        .tg th{background-color:#f0f0f0;border-color:#ccc;border-style:solid;border-width:0px;color:#333;
+          font-family:Arial, sans-serif;font-size:14px;font-weight:normal;overflow:hidden;padding:10px 8px;word-break:normal;}
+        .tg .tg-zkl2{border-color:inherit;font-size:20px;font-weight:bold;text-align:left;vertical-align:top}
+        .tg .tg-6o2n{background-color:#f9f9f9;border-color:inherit;font-family:Arial, Helvetica, sans-serif !important;;font-size:20px;
+          text-align:left;vertical-align:top}
+        .tg .tg-oxvj{background-color:#f9f9f9;font-size:20px;text-align:left;vertical-align:top}
+        .tg .tg-rgvp{background-color:#f9f9f9;border-color:inherit;font-size:20px;font-weight:bold;text-align:left;vertical-align:top}
+        .tg .tg-04g7{border-color:inherit;font-size:20px;font-style:italic;font-weight:bold;text-align:left;vertical-align:middle}
+        .tg .tg-eqm3{border-color:inherit;font-size:20px;text-align:left;vertical-align:top}
+        .tg .tg-dc5s{background-color:#f9f9f9;border-color:inherit;font-family:Arial, Helvetica, sans-serif !important;;font-size:20px;
+          font-weight:bold;text-align:left;vertical-align:top}
+        .tg .tg-bufu{background-color:#f9f9f9;border-color:inherit;font-size:20px;text-align:left;vertical-align:top}
+        .tg .tg-oc4g{border-color:inherit;font-family:Arial, Helvetica, sans-serif !important;;font-size:20px;text-align:left;
+          vertical-align:top}
+        .tg .tg-60hs{font-size:20px;text-align:left;vertical-align:top}
+        </style>
+        <table class="tg">
+        <thead>
+          <tr>
+            <th class="tg-zkl2">Description</th>
+            <th class="tg-eqm3">{{ project.Description }}</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="tg-dc5s">Floated By</td>
+            <td class="tg-6o2n">{{ project.FloatedBy }}</td>
+          </tr>
+          <tr>
+            <td class="tg-zkl2">Status</td>
+            <td class="tg-eqm3">{{ project.Status }}</td>
+          </tr>
+          <tr>
+            <td class="tg-rgvp">Difficulty</td>
+            <td class="tg-bufu">{{ project.Difficulty }}</td>
+          </tr>
+          <tr>
+            <td class="tg-zkl2">Date Posted</td>
+            <td class="tg-oc4g">{{ project.DatePosted }}</td>
+          </tr>
+          <tr>
+            <td class="tg-bufu"><span style="font-weight:bold">Duration</span></td>
+            <td class="tg-bufu">{{ project.Duration }}</td>
+          </tr>
+          <tr>
+            <td class="tg-eqm3"><span style="font-weight:bold">Mentors</span></td>
+            <td class="tg-eqm3">{% for users in project.Mentors.all %}<br>            {{ users }}<br>        {% endfor %}<br>        {% if project.Mentors.all.count == 0 %}<br>            No one<br>		{% endif %}</td>
+          </tr>
+          <tr>
+            <td class="tg-bufu"><span style="font-weight:bold">Selection Criteria</span></td>
+            <td class="tg-bufu">{{ project.SelectionCriteria }}</td>
+          </tr>
+          <tr>
+            <td class="tg-eqm3"><span style="font-weight:bold">Opened for</span></td>
+            <td class="tg-eqm3">{{project.OpenedFor}}</td>
+          </tr>
+          <tr>
+            <td class="tg-bufu"><span style="font-weight:bold">Pre requisites</span></td>
+            <td class="tg-bufu">{{ project.PreRequisite }}</td>
+          </tr>
+
+        </tbody>
+        </table>
+
+
+        <!-- <div class="card-body" >
         Description -: {{ project.Description }}
         <br>
         Floated By -: {{ project.FloatedBy }}
@@ -41,10 +111,10 @@
         <br>
         Opened for -: {{project.OpenedFor}}
         <br>
-        Pre requisites -: {{ project.PreRequisite }}
-            {% if project.FloatedBy == user %}
-    <div>
-        Already Applied -:
+        Pre requisites -: {{ project.PreRequisite }} -->
+      {% if project.FloatedBy == user %}
+    <div style="font-size:20px; color:black;">
+        <b>Already Applied-</b>
         {% for users in project.AlreadyApplied.all %}
             {{ users }}
         {% endfor %}
@@ -54,7 +124,7 @@
     </div>
 
         </div>
-</div>
+
 
 
 <div class="card shadow mb-4">
@@ -70,7 +140,7 @@
             </div>
 		{% endfor %}
 		{% if apply_requests.count == 0 %}
-            <div> No requests </div>
+            <div style="color:black; font-size:20px;"> No requests </div>
 		{% endif %}
 
         </div>
