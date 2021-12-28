@@ -1,5 +1,9 @@
 from django import forms
+from django.db.models.query import QuerySet
+from django.forms import widgets
+from django.forms.formsets import all_valid
 from .models import Project
+from users.models import User
 
 
 
@@ -31,8 +35,15 @@ class ProjectRegisterForm(forms.ModelForm):
         ('ON','ON'),
         ('OFF','OFF'),
     )
+    
+    Mentors = forms.ModelMultipleChoiceField(
+        queryset=User.objects.all(),
+        widget = forms.CheckboxSelectMultiple(),
+    )
     OpenedFor = forms.MultipleChoiceField(
-        label="Opened For", choices=CHOICES, required=True)
+        label="Opened For", choices=CHOICES, required=True,
+        widget = forms.CheckboxSelectMultiple(),    
+    )
     class Meta:
         model = Project
         fields = ['Title','Description','Mentors','Status','OpenedFor','Difficulty','PreRequisite','Duration','SelectionCriteria','MailNotification']
@@ -67,8 +78,14 @@ class ProjectUpdateForm(forms.ModelForm):
         ('ON','ON'),
         ('OFF','OFF'),
     )
+    Mentors = forms.ModelMultipleChoiceField(
+        queryset=User.objects.all(),
+        widget = forms.CheckboxSelectMultiple(),
+    )
     OpenedFor = forms.MultipleChoiceField(
-        label="Opened For", choices=CHOICES, required=True)
+        label="Opened For", choices=CHOICES, required=True,
+        widget = forms.CheckboxSelectMultiple(),    
+    )
     class Meta:
         model = Project
         fields = ['Title','Description','Mentors','Status','OpenedFor','Difficulty','PreRequisite','Duration','SelectionCriteria','MailNotification']

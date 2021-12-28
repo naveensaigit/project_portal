@@ -11393,3 +11393,19 @@
   body.sidebar-toggled footer.sticky-footer {
     width: 100%;
   }
+
+  #div_id_Mentors > div{
+    max-height: 100px;
+    overflow-y: scroll;
+  }
+
+  #div_id_OpenedFor > div{
+    max-height: 100px;
+    overflow-y: scroll;
+  }
+  .form-check-label:hover{
+    cursor: pointer;
+  }
+  .form-check-input:hover{
+    cursor: pointer;
+  }
