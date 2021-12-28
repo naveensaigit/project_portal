@@ -143,22 +143,47 @@
 </div>
 
 
-
-{% if projects.has_other_pages %}
-<ul class="pagination">
-    {% if projects.has_previous %}
-    <li><a href="/?page={{ projects.previous_page_number }}">&laquo;</a></li>
+{% with request.get_full_path as querystring %}
+    {% if projects.has_other_pages %}
+        <ul class="pagination">
+            {% if projects.has_previous %}
+                {% if 'Status' in querystring %}
+                    {% if 'page' in querystring %}
+                        <li><a href="{{ querystring|slice:":-1" }}{{ projects.previous_page_number }}">&laquo;</a></li>
+                    {% else %}
+                        <li><a href="{{ querystring }}&page={{ projects.previous_page_number }}">&laquo;</a></li>
+                    {% endif %}
+                {% else %}
+                    <li><a href="/?page={{ projects.previous_page_number }}">&laquo;</a></li>
+                {% endif %}
+            {% endif %}
+            {% for i in projects.paginator.page_range %}
+                {% if projects.number == i %}
+                <li class="active"><span>{{ i }} <span class="sr-only">(current)</span></span></li>
+                {% else %}
+                    {% if 'Status' in querystring %}
+                        {% if 'page' in querystring %}
+                            <li><a href="{{ querystring|slice:":-1" }}{{ i }}">{{i}}</a></li>
+                        {% else %}
+                            <li><a href="{{ querystring }}&page={{ i }}">{{i}}</a></li>
+                        {% endif %}
+                    {% else %}
+                        <li><a href="/?page={{ i }}">{{i}}</a></li>
+                    {% endif %}
+                {% endif %}
+            {% endfor %}
+            {% if projects.has_next %}
+                {% if 'Status' in querystring %}
+                    {% if 'page' in querystring %}
+                        <li><a href="{{ querystring|slice:":-1" }}{{ projects.next_page_number }}">&raquo;</a></li>
+                    {% else %}
+                        <li><a href="{{ querystring }}&page={{ projects.next_page_number }}">&raquo;</a></li>
+                    {% endif %}
+                {% else %}
+                    <li><a href="/?page={{ projects.next_page_number }}">&raquo;</a></li>
+                {% endif %}
+            {% endif %}
+        </ul>
     {% endif %}
-    {% for i in projects.paginator.page_range %}
-    {% if projects.number == i %}
-    <li class="active"><span>{{ i }} <span class="sr-only">(current)</span></span></li>
-    {% else %}
-    <li><a href="/?page={{ i }}">{{ i }}</a></li>
-    {% endif %}
-    {% endfor %}
-    {% if projects.has_next %}
-    <li><a href="/?page={{ projects.next_page_number }}">&raquo;</a></li>
-    {% endif %}
-</ul>
-{% endif %}
+{% endwith %}
 {% endblock content %}
