@@ -1,11 +1,14 @@
 {% extends 'home/base.html' %}
 {% block content %}
 {% block profile %}
-<div>{% if messages %}
-            {% for message in messages %}
-                <div style="margin-left: 20px; color: #022160; font-size: 30px; background-color: white;">{{message}}</div>
-            {% endfor %}
-		{% endif %}</div>
+<div>
+        {% if messages %}
+        {% for message in messages %}
+        <div style="margin-left: 20px; color: #022160; font-size: 30px; background-color: white;">{{message}}</div>
+        {% endfor %}
+        {% endif %}
+
+    </div>
 <div class="container emp-profile" style="border-left: 30px solid #EE7210;">
             <form method="post">
                 <div class="row">
