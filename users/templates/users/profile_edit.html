@@ -2,6 +2,12 @@
 {% load crispy_forms_tags %}
 {% block profile %}
 
+{% if messages %}
+{% for message in messages %}
+<div class="card-header py-3" >{{message}}</div>
+{% endfor %}
+{% endif %}
+
 			<br>
 			<br>
 				<div class="container card shadow-lg py-3" style="width:80%; border-left: 20px solid #EE7210">
