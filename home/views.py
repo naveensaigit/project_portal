@@ -16,6 +16,19 @@ def main(request):
     myFilter = ProjectFilter(request.GET,queryset=all_project_list)
     filtered_projects= myFilter.qs
 
+    if request.method == "POST":
+        value = request.POST['search']
+        if value == "":
+            searched_projects = filtered_projects
+        else:
+            searched_projects_Title = Project.objects.filter(Title__contains = value)
+            searched_projects_Desription = Project.objects.filter(Description__contains = value)
+            searched_projects = searched_projects_Title | searched_projects_Desription
+            searched_projects = searched_projects.order_by('-DatePosted')
+        projects = searched_projects
+    else:
+        projects = filtered_projects
+
     user_projects_id = []
     user_starred_projects_id = []
     user_requested_projects_id = []
@@ -37,17 +50,17 @@ def main(request):
 
     page = request.GET.get('page', 1)
 
-    paginator = Paginator(filtered_projects, 6)
+    paginator = Paginator(projects, 5)
     try:
-        filtered_projects = paginator.page(page)
+        projects = paginator.page(page)
     except PageNotAnInteger:
-        filtered_projects = paginator.page(1)
+        projects = paginator.page(1)
     except EmptyPage:
-        filtered_projects = paginator.page(paginator.num_pages)
+        projects = paginator.page(paginator.num_pages)
 
     context = {
         'title': 'Home',
-        'projects': filtered_projects,
+        'projects': projects,
         'user_projects_id': user_projects_id,
         'user_starred_projects_id' : user_starred_projects_id,
         'user_requested_projects_id' : user_requested_projects_id,
@@ -57,7 +70,6 @@ def main(request):
         'myFilter':myFilter
     }
 
-    # print(type(user_starred_projects_id))
 
     return render(request, 'home/main.html', context)
 
