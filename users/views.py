@@ -39,9 +39,33 @@ def signup(request):
 
 @login_required
 def profile(request):
+    all_project_list = Project.objects.all().order_by('-DatePosted')
+
+    user_projects_id = []
+    user_starred_projects_id = []
+    user_requested_projects_id = []
+
+    user_applied_projects = all_project_list.filter(AlreadyApplied=request.user)
+    user_floated_projects = all_project_list.filter(FloatedBy=request.user)
+    for project in user_applied_projects:
+        user_projects_id.append(project.id)
+    for project in user_floated_projects:
+        user_projects_id.append(project.id)
+
+    user_requested_projects = all_project_list.filter(ApplyRequest=request.user)
+    for project in user_requested_projects:
+        user_requested_projects_id.append(project.id)
+
+    for project in request.user.profile.starred_projects.all():
+        user_starred_projects_id.append(project.id)
+
     context = {
         'title': 'Profile',
+        'num_projects_applied': user_applied_projects.count(),
+        'num_projects_req': len(user_requested_projects_id),
+        'num_projects_floated': user_floated_projects.count(),
     }
+
     return render(request, 'users/profile.html', context)
 
 def profile_edit(request):
