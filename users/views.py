@@ -44,9 +44,9 @@ def profile(request, user_id):
     user_projects_id = []
     user_starred_projects_id = []
     user_requested_projects_id = []
-
-    user_applied_projects = all_project_list.filter(AlreadyApplied=request.user)
-    user_floated_projects = all_project_list.filter(FloatedBy=request.user)
+    user = User.objects.get(id=user_id)
+    user_applied_projects = all_project_list.filter(AlreadyApplied=user)
+    user_floated_projects = all_project_list.filter(FloatedBy=user)
     for project in user_applied_projects:
         user_projects_id.append(project.id)
     for project in user_floated_projects:
