@@ -442,14 +442,10 @@
 
               {% if project.id not in user_starred_projects_id %}
               <a href="{% url 'task-project' project.id projects.number 'Star'%}"><button
-                  class="btn btn-primary btn-user btn-block" style="width:100%;"><svg class="icon-star">
-                    <use xlink:href="#icon-star"></use>
-                  </svg></button></a>
+                  class="btn btn-warning btn-circle"><i class="fas fa-star"></i></button></a>
               {% else %}
               <a href="{% url 'task-project' project.id projects.number 'Unstar'%}"><button
-                  class="btn btn-primary btn-user btn-block" style="width:100%;"><svg class="icon-star">
-                    <use xlink:href="#icon-star"></use>
-                  </svg></button></a>
+                  class="btn btn-warning btn-circle" style="border: 2px solid yellow;"><i class="fas fa-star" style="color:yellow; "></i></button></a>
               {% endif %}
 
             <!-- </div> -->

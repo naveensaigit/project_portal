@@ -301,10 +301,22 @@
 
     <br>
     <hr>
-
+    {% if project.id in user_requested_projects_id %}
+    <a href="#"><button
+            class="btn btn-primary btn-user btn-block" style="width:100%%; ">Withdraw Request</button></a>
+    {% else %}
+    {% if project.id not in user_projects_id %}
+    <a href="#"><button
+            class="btn btn-primary btn-user btn-block" style="width:100%%; ">Apply</button></a>
+    {% else %}
+    <a href="#"><button
+            class="btn btn-primary btn-user btn-block" style="width:100%%; ">Leave</button></a>
+    {% endif %}
+    {% endif %}
 
 
   </div>
+
 
 </div>
 
