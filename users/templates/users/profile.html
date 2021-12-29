@@ -478,13 +478,13 @@
                   </div>
                   <hr>
                   
-                  {% ifequal user.id profile_user.id %}
+                  {% if user.id == profile_user.id %}
                     <div class="row">
                       <div class="col-sm-12">
                         <a class="btn btn-info " href="{% url 'profile-edit' %}">Edit</a>
                       </div>
                     </div>
-                  {% endifequal %}
+                  {% endif %}
                 </div>
               </div>
 
