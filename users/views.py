@@ -38,7 +38,7 @@ def signup(request):
 
 
 @login_required
-def profile(request):
+def profile(request, user_id):
     all_project_list = Project.objects.all().order_by('-DatePosted')
 
     user_projects_id = []
@@ -65,6 +65,7 @@ def profile(request):
         'num_projects_req': len(user_requested_projects_id),
         'num_projects_floated': user_floated_projects.count(),
         'user_starred_projects_id' : user_starred_projects_id,
+        'profile_user': User.objects.get(id = user_id)
     }
 
     return render(request, 'users/profile.html', context)
