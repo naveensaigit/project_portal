@@ -3,7 +3,8 @@ from home.models import Project
 
 def user_is_project_author(function):
     def wrap(request, *args, **kwargs):
-        project = Project.objects.get(pk=kwargs['project_id'])
+        project_id = request.GET.get('project_id')
+        project = Project.objects.get(pk=project_id)
         if project.FloatedBy == request.user:
             return function(request, *args, **kwargs)
         else:

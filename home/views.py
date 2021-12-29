@@ -102,12 +102,37 @@ def projectRegister(request):
     return render(request, 'home/projectsRegister.html', context)
 
 @login_required
-def project(request, project_id):
+def project(request):
+    project_id = request.GET.get('project_id')
     project = Project.objects.get(id=project_id)
     apply_requests = project.ApplyRequest.all()
+
+    all_project_list = Project.objects.all().order_by('-DatePosted')
+    user_projects_id = []
+    user_starred_projects_id = []
+    user_requested_projects_id = []
+
+    user_applied_projects = all_project_list.filter(AlreadyApplied =  request.user)
+    user_floated_projects = all_project_list.filter(FloatedBy =  request.user)
+    for project in user_applied_projects:
+        user_projects_id.append(project.id)
+    for project in user_floated_projects:
+        user_projects_id.append(project.id)
+
+    user_requested_projects = all_project_list.filter(ApplyRequest = request.user)
+    for project in user_requested_projects:
+        user_requested_projects_id.append(project.id)
+
+    for project in request.user.profile.starred_projects.all():
+        user_starred_projects_id.append(project.id)
+
+
     context = {
         'title': 'Project',
         'project': project,
+        'user_projects_id': user_projects_id,
+        'user_starred_projects_id' : user_starred_projects_id,
+        'user_requested_projects_id' : user_requested_projects_id,
         'apply_requests' : apply_requests,
         'notifications': Notification.objects.filter(user = request.user).order_by('-time'),
     }
@@ -116,7 +141,8 @@ def project(request, project_id):
 
 @login_required
 @user_is_project_author
-def projectUpdate(request, project_id):
+def projectUpdate(request):
+    project_id = request.GET.get('project_id')
     project = Project.objects.get(id=project_id)
     if request.method == 'POST':
         project_update_form = ProjectUpdateForm(request.POST, instance=project)
@@ -141,7 +167,9 @@ def projectUpdate(request, project_id):
 
 @login_required
 @user_is_project_author
-def projectDelete(request, project_id):
+def projectDelete(request):
+    project_id = request.GET.get('project_id')
+    print(project_id)
     project = Project.objects.get(id=project_id)
     if request.method == 'POST':
         project.delete()
@@ -158,7 +186,11 @@ def projectDelete(request, project_id):
 
 
 @login_required
-def projectTask(request, project_id, page_number, task):
+def projectTask(request):
+    project_id = request.GET.get('project_id')
+    task = request.GET.get('task')
+    page_number = request.GET.get('page_number')
+
     project = Project.objects.get(id=project_id)
     current_user = request.user
 
@@ -194,22 +226,30 @@ def projectTask(request, project_id, page_number, task):
     if task == "Unstar":
         current_user.profile.starred_projects.remove(project)
 
-    user_projects_id = []
-    url = f'/?page={page_number}'
+    if page_number:
+        url = f'/?page={page_number}'
+    else:
+        url = f'/project/?project_id={project.id}'
     return redirect(url)
 
 
-def projectAccept(request, project_id, request_user_name):
+def projectAccept(request):
+    project_id = request.GET.get('project_id')
+    request_user_name = request.GET.get('request_user_name')
+
     project = Project.objects.get(id=project_id)
     request_user = User.objects.filter(username = request_user_name).first()
     
     project.ApplyRequest.remove(request_user)
     project.AlreadyApplied.add(request_user)
-    return redirect('project', project_id = project.id)
+    return redirect(f'/project/?project_id={project.id}')
 
-def projectReject(request, project_id, request_user_name):
+def projectReject(request):
+    project_id = request.GET.get('project_id')
+    request_user_name = request.GET.get('request_user_name')
+
     project = Project.objects.get(id=project_id)
     request_user = User.objects.filter(username = request_user_name).first()
 
     project.ApplyRequest.remove(request_user)
-    return redirect('project', project_id = project.id)
+    return redirect(f'/project/?project_id={project.id}')

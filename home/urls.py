@@ -5,11 +5,11 @@ from django.urls import path
 urlpatterns = [
     path('',views.main, name = 'home'),
     path('project/new', views.projectRegister, name='new-project'),
-    path('project/<int:project_id>/', views.project, name='project'),
-    path('project/<int:project_id>/update',views.projectUpdate, name='update-project'),
-    path('project/<int:project_id>/delete',views.projectDelete, name='delete-project'),
-    path('project/<int:project_id>/task/<int:page_number>/<str:task>',views.projectTask, name='task-project'),
-    path('project/<int:project_id>/accept/<request_user_name>',views.projectAccept, name='accept-project'),
-    path('project/<int:project_id>/reject/<request_user_name>',views.projectReject, name='reject-project'),
+    path('project/', views.project, name='project'),
+    path('project/update/',views.projectUpdate, name='update-project'),
+    path('project/delete/',views.projectDelete, name='delete-project'),
+    path('project/task/',views.projectTask, name='task-project'),
+    path('project/accept/',views.projectAccept, name='accept-project'),
+    path('project/reject/',views.projectReject, name='reject-project'),
 ]
 

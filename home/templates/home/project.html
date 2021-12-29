@@ -231,13 +231,13 @@
     <div style="display: inline;" align="center;padding-right:10px;" >
           <div style="float: right;">
 
-                  <a href="{% url 'delete-project' project.id %}" class="btn btn-danger btn-circle">
+                  <a href="/project/delete/?project_id={{project.id}}" class="btn btn-danger btn-circle">
                                         <i class="fas fa-trash" style="color:white;"></i>
                                     </a>
 
           </div>
           <div style="float: right; padding-right:10px;">
-                <a href="{% url 'update-project' project.id %}" ><button class="btn btn-primary btn-user btn-block" style="display: inline-block;">UPDATE PROJECT</button></a>
+                <a href="/project/update/?project_id={{project.id}}" ><button class="btn btn-primary btn-user btn-block" style="display: inline-block;">UPDATE PROJECT</button></a>
          </div>
     </div>
     <br>
@@ -262,8 +262,8 @@
     </div>
     <div class="blog-tags">
       <ul>
-        <li><a href="#">{{ project.Status }}</a></li>
-        <li><a href="#">{{ project.Difficulty }}</a></li>
+        <li><a>{{ project.Status }}</a></li>
+        <li><a>{{ project.Difficulty }}</a></li>
 
       </ul>
     </div>
@@ -310,11 +310,11 @@
     <br>
     <hr>
     {% if project.id in user_requested_projects_id %}
-    <a href="#"><button
+    <a href="/project/task/?task=Withdraw&project_id={{project.id}}"><button
             class="btn btn-primary btn-user btn-block" style="width:100%%; ">Withdraw Request</button></a>
     {% else %}
     {% if project.id not in user_projects_id %}
-    <a href="#"><button
+    <a href="/project/task/?task=Apply&project_id={{project.id}}"><button
             class="btn btn-primary btn-user btn-block" style="width:100%%; ">Apply</button></a>
     {% else %}
     <a href="#"><button
@@ -350,8 +350,8 @@
        {% for request_user in apply_requests %}
             <div>
                 {{request_user}} -
-                <a href="{% url 'accept-project' project.id request_user %}"><button class="btn btn-primary btn-user btn-block" style="width: 30%; ">ACCEPT</button></a>
-                <a href="{% url 'reject-project' project.id request_user %}"><button class="btn btn-primary btn-user btn-block" style="width: 30%; ">REJECT</button></a>
+                <a href="/project/accept/?project_id={{project.id}}&request_user={{request_user}}"><button class="btn btn-primary btn-user btn-block" style="width: 30%; ">ACCEPT</button></a>
+                <a href="/project/reject/?project_id={{project.id}}&request_user={{request_user}}"><button class="btn btn-primary btn-user btn-block" style="width: 30%; ">REJECT</button></a>
             </div>
 		{% endfor %}
 		{% if apply_requests.count == 0 %}
