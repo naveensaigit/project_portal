@@ -1,11 +1,10 @@
-from django.http.request import HttpRequest
 from django.shortcuts import redirect, render
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from .models import Project
+from users.models import Notification
 from .forms import ProjectRegisterForm, ProjectUpdateForm
 from home.decorators import user_is_project_author
-from home.models import Project
 from django.contrib.auth.models import User
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from .filters import ProjectFilter
@@ -67,6 +66,7 @@ def main(request):
         'num_projects_applied' : user_applied_projects.count(),
         'num_projects_req':len(user_requested_projects_id),
         'num_projects_floated': user_floated_projects.count(),
+        'notifications': Notification.objects.filter(user = request.user),
         'myFilter':myFilter
     }
 
