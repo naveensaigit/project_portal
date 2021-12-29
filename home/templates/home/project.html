@@ -198,12 +198,8 @@
             <div class="card-header py-3" >{{message}}</div>
         {% endfor %}
     {% endif %}
-    {% if project.FloatedBy == user %}
-    <br>
-    <a href="{% url 'update-project' project.id %}" ><button class="btn btn-primary btn-user btn-block" style="width: 30%; ">UPDATE PROJECT</button></a><br>
-    <a href="{% url 'delete-project' project.id %}" ><button class="btn btn-primary btn-user btn-block" style="width: 30%; ">DELETE PROJECT</button></a>
-    {% endif %}
-<br>
+
+
 <!-- ============================================================================== -->
 <svg display="none" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
 <defs>
@@ -225,7 +221,33 @@
   <br>
 
   <div class="blog-header">
+
+
+
+
     <div class="blog-author--no-cover">
+
+      {% if project.FloatedBy == user %}
+    <div style="display: inline;" align="center;padding-right:10px;" >
+          <div style="float: right;">
+
+                  <a href="{% url 'delete-project' project.id %}" class="btn btn-danger btn-circle">
+                                        <i class="fas fa-trash" style="color:white;"></i>
+                                    </a>
+
+          </div>
+          <div style="float: right; padding-right:10px;">
+                <a href="{% url 'update-project' project.id %}" ><button class="btn btn-primary btn-user btn-block" style="display: inline-block;">UPDATE PROJECT</button></a>
+         </div>
+    </div>
+    <br>
+    <br>
+    <br>
+    {% endif %}
+
+
+
+
         <h3>{{ project.FloatedBy }}</h3>
     </div>
     <br>
@@ -271,8 +293,12 @@
 
       <li class="published-date">{{ project.DatePosted }}</li>
 
-      <li class="shares"><a href="#"><svg class="icon-star"><use xlink:href="#icon-star"></use></svg><span>3</span></a></li>
+
+      <li class="shares"><a href="#" class="btn btn-warning btn-circle">
+                                        <i class="fas fa-star"></i>
+                                    </a></li>
     </ul>
+
     <br>
     <hr>
 
