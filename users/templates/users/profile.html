@@ -477,11 +477,14 @@
                     </div>
                   </div>
                   <hr>
-                  <div class="row">
-                    <div class="col-sm-12">
-                      <a class="btn btn-info " href="{% url 'profile-edit' %}">Edit</a>
+                  
+                  {% ifequal user.id profile_user.id %}
+                    <div class="row">
+                      <div class="col-sm-12">
+                        <a class="btn btn-info " href="{% url 'profile-edit' %}">Edit</a>
+                      </div>
                     </div>
-                  </div>
+                  {% endifequal %}
                 </div>
               </div>
 

@@ -379,7 +379,7 @@
 
         </div>
         <span style="flex: 1 0 45%; ">
-          <h3 style="margin-top: 10px;">{{project.FloatedBy}}</h3>
+          <h3 style="margin-top: 10px;"><a href="{% url 'profile' project.FloatedBy.id %}">{{project.FloatedBy}}</a></h3>
         </span>
       </div>
 
