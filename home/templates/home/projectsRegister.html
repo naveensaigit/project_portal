@@ -1,13 +1,33 @@
-
 {% extends 'home/base.html' %}
 {% load crispy_forms_tags %}
 {% block content %}
-	{% if messages %}
-		{% for message in messages %}
-			<div class="card-header py-3" >{{message}}</div>
-		{% endfor %}
-	{% endif %}
-	<!-- <form method="POST">
+
+<style media="screen">
+	.card {
+	     margin: auto;
+	    display: flex;
+	    flex-direction: column;
+	    min-width: 0;
+	    word-wrap: break-word;
+	    background-color: #fff;
+	    background-clip: border-box;
+	    border: 0 solid transparent;
+	    border-radius: .25rem;
+	    margin-bottom: 1.5rem;
+	    box-shadow: 0 2px 6px 0 rgb(218 218 253 / 65%), 0 2px 6px 0 rgb(206 206 238 / 54%);
+			padding-left: 40px;
+	 padding-right: 40px;
+	 padding-bottom:40px;
+
+	}
+</style>
+
+{% if messages %}
+{% for message in messages %}
+<div class="card-header py-3">{{message}}</div>
+{% endfor %}
+{% endif %}
+<!-- <form method="POST">
 		{% csrf_token %}
 		<fieldset>
 			<legend>New Project</legend>
@@ -17,29 +37,35 @@
 			<button type="submit">Create</button>
 		</div>
 	</form> -->
-<div >
+<div class="card" style="width:75%">
 	<br>
 	<br>
-		<div class="container card shadow-lg py-3" style="width:80%; border-left: 20px solid #EE7210">
+	<div style="width:80%;>
 
-			<div class="card-header py-3" >
-		      <h5 class="m-0 font-weight-bold text-primary text-center">Create New Project</h5>
-		  </div>
-		<div class="card-body">
-			<form method="POST">
+			<div class=" py-3">
+		<h2>Create New Project</h2>
+	</div>
+	<div>
+		<form method="POST">
 			{% csrf_token %}
 			<fieldset>
 
 				{{ project_form|crispy }}
 			</fieldset>
 			<div>
-				<button class="btn btn-primary btn-user btn-block" type="submit">Create</button>
+
+				<button class="btn btn-success btn-icon-split" type="submit">
+					<span class="icon text-white-50">
+						<i class="fas fa-check"></i>
+					</span>
+					<span class="text">Create</span>
+				</button>
 			</div>
 		</form>
-		</div>
-		</div>
-	<br>
-	<br>
+	</div>
+</div>
+<br>
+<br>
 </div>
 
 
