@@ -117,7 +117,7 @@
   }
 
   .blog-container a {
-    color: #4d4dff;
+    color: #999999;
     text-decoration: none;
     transition: 0.25s ease;
   }
@@ -184,7 +184,7 @@
   }
 
   .blog-title h1 a {
-    color: #333;
+    color: #858796;
     font-weight: 100;
   }
 
@@ -381,7 +381,7 @@
 
         </div>
         <span style="flex: 1 0 45%; ">
-          <h3 style="margin-top: 10px;"><a href="{% url 'profile' project.FloatedBy.id %}">{{project.FloatedBy}}</a></h3>
+          <h3 style="margin-top: 10px; color:#858796;"><a href="{% url 'profile' project.FloatedBy.id %}">{{project.FloatedBy}}</a></h3>
         </span>
       </div>
 
@@ -390,7 +390,7 @@
           <h1><a href="{% url 'project' project.id %}">{{ project.Title }}</a></h1>
         </div>
         <div class="blog-summary demo-2">
-          <p>{{project.Description}}</p>
+          <p>{{project.Description}}</p><br>
         </div>
         <div class="blog-tags">
           <ul>
@@ -405,7 +405,7 @@
       <div class="blog-footer">
         <br>
         <ul>
-          <li class="published-date"><a href="{% url 'project' project.id %}">Read More</a></li>
+          <li class="published-date"><a href="{% url 'project' project.id %}">Read More</a></li><br>
           <!-- <li class="shares"><a href="#"><svg class="icon-star">
                 <use xlink:href="#icon-star"></use>
               </svg><span>3</span></a></li> -->
@@ -452,7 +452,7 @@
                   </svg></button></a>
               {% endif %}
 
-              
+
 
             <!-- </div> -->
           </li>
