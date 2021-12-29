@@ -2,13 +2,14 @@
 {% load crispy_forms_tags %}
 {% block profile %}
 <div>
-	<form method="get">
-		{{myFilter.form|crispy}}
-		<button class="btn btn-primary" type="Submit">Filter</button>
-	</form>
+
 	<div class="project_cards">
 
 		<h2>Projects Applied For:</h2>
+		<form method="get">
+			{{myFilter.form}}
+			<button class="btn btn-primary" type="Submit">Filter</button>
+		</form>
 		<br>
 		<div style="display: flex; flex-wrap: wrap;">
 			{% for project in projects %}
