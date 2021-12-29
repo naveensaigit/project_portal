@@ -46,6 +46,6 @@ class Notification(models.Model):
     title = models.CharField(max_length=30)
     message = models.TextField()
     time = models.DateTimeField(default = timezone.now)
-
+    url=models.CharField(max_length=30)
     def __str__(self):
         return f"{self.title}({self.message})"
