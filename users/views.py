@@ -64,6 +64,7 @@ def profile(request):
         'num_projects_applied': user_applied_projects.count(),
         'num_projects_req': len(user_requested_projects_id),
         'num_projects_floated': user_floated_projects.count(),
+        'user_starred_projects_id' : user_starred_projects_id,
     }
 
     return render(request, 'users/profile.html', context)
@@ -107,11 +108,14 @@ def projects_floated(request):
     all_project_list = Project.objects.all().filter(FloatedBy = request.user).order_by('-DatePosted')
     myFilter = ProjectFilter(request.GET,queryset=all_project_list)
     filtered_projects= myFilter.qs
-    
+    user_starred_projects_id = []
+    for project in (filtered_projects and request.user.profile.starred_projects.all()):
+        user_starred_projects_id.append(project.id)
     context = {
         'title': 'Projects Floated',
         'projects': filtered_projects,
         'myFilter': myFilter,
+        'user_starred_projects_id' : user_starred_projects_id,
     }
 
     return render(request, 'users/profile_floated.html', context)
@@ -130,11 +134,14 @@ def projects_applied(request):
     return render(request, 'users/profile_applied.html', context)
 
 def projects_starred(request):
+    user_starred_projects_id = []
     projects_starred = request.user.profile.starred_projects.all()
-    
+    for project in request.user.profile.starred_projects.all():
+        user_starred_projects_id.append(project.id)
     context = {
         'title': 'Projects Starred',
         'projects' : projects_starred,
+        'user_starred_projects_id' : user_starred_projects_id,
     }
 
     return render(request, 'users/profile_starred.html', context)
@@ -143,11 +150,15 @@ def projects_requested(request):
     all_project_list = Project.objects.all().filter(ApplyRequest = request.user).order_by('-DatePosted')
     myFilter = ProjectFilter(request.GET,queryset=all_project_list)
     filtered_projects= myFilter.qs
+    user_starred_projects_id = []
+    for project in (filtered_projects and request.user.profile.starred_projects.all()):
+        user_starred_projects_id.append(project.id)
 
     context = {
         'title': 'Projects Requested',
         'projects': filtered_projects,
         'myFilter': myFilter,
+        'user_starred_projects_id' : user_starred_projects_id,
     }
     return render(request, 'users/profile_requested.html', context)
 
