@@ -65,7 +65,7 @@ def profile(request, user_id):
         'num_projects_req': len(user_requested_projects_id),
         'num_projects_floated': user_floated_projects.count(),
         'user_starred_projects_id' : user_starred_projects_id,
-        'user': User.objects.get(id = user_id)
+        'profile_user': User.objects.get(id = user_id)
     }
 
     return render(request, 'users/profile.html', context)
