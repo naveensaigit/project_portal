@@ -66,7 +66,7 @@ def main(request):
         'num_projects_applied' : user_applied_projects.count(),
         'num_projects_req':len(user_requested_projects_id),
         'num_projects_floated': user_floated_projects.count(),
-        'notifications': Notification.objects.filter(user = request.user),
+        'notifications': Notification.objects.filter(user = request.user).order_by('-time'),
         'myFilter':myFilter
     }
 
@@ -96,6 +96,7 @@ def projectRegister(request):
     context = {
         'title': 'New-Project',
         'project_form': project_form,
+        'notifications': Notification.objects.filter(user = request.user).order_by('-time'),
     }
 
     return render(request, 'home/projectsRegister.html', context)
@@ -108,6 +109,7 @@ def project(request, project_id):
         'title': 'Project',
         'project': project,
         'apply_requests' : apply_requests,
+        'notifications': Notification.objects.filter(user = request.user).order_by('-time'),
     }
     return render(request, 'home/project.html', context)
 
@@ -130,7 +132,8 @@ def projectUpdate(request, project_id):
     context = {
         'title': 'Update-Project',
         'project_title': project.Title,
-        'project_form': project_update_form
+        'project_form': project_update_form,
+        'notifications': Notification.objects.filter(user = request.user).order_by('-time'),
     }
 
     return render(request, 'home/projectUpdate.html', context)
@@ -147,7 +150,8 @@ def projectDelete(request, project_id):
 
     context = {
         'title': 'Update-Project',
-        'project': project
+        'project': project,
+        'notifications': Notification.objects.filter(user = request.user).order_by('-time'),
     }
 
     return render(request, 'home/projectDelete.html', context)
@@ -169,6 +173,11 @@ def projectTask(request, project_id, page_number, task):
             if(user_branch in project.OpenedFor):
                 project.ApplyRequest.add(current_user)
                 messages.success(request,"Successfully Requested!")
+                notification_message=f"{current_user} has requested for {project} Project"
+                project_url = f"project/{project_id}"
+                notification=Notification(user=project.FloatedBy,title= "Apply Request",message=notification_message,url=project_url)
+                print(notification)
+                notification.save()
                 # Project Mail Notification to be implemented
             else:
                 messages.warning(request,"You are not eligible to opt this project.")
