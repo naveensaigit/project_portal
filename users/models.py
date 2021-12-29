@@ -2,6 +2,7 @@ from django.db import models
 from django.contrib.auth.models import User
 from PIL import Image
 from home.models import Project
+from django.utils import timezone
 
 YEAR_CHOICES = (
     ('1st', '1st'),
@@ -39,3 +40,12 @@ class Profile(models.Model):
             dimensions = (300, 300)
             img.thumbnail(dimensions)
             img.save(self.image.path)
+
+class Notification(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    title = models.CharField(max_length=30)
+    message = models.TextField()
+    time = models.DateTimeField(default = timezone.now)
+
+    def __str__(self):
+        return f"{self.title}({self.message})"
