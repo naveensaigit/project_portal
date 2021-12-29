@@ -85,11 +85,6 @@
 {% endif %}
 
 
-<!-- Filter options -->
-<form method="get" class="form-inline justify-content-lg-center h5 mb-0 font-weight-bold text-gray-800 blog-container" style="width: 100%;">
-  {{myFilter.form}}
-  <button class="btn btn-primary" type="Submit">Filter</button>
-</form>
 
 <style>
   .blog-container {
@@ -363,6 +358,13 @@
 
   <h2 style="padding-top: 20px;">Projects :</h2>
   <br>
+    <!-- Filter options -->
+    <form method="get" class="form-inline justify-content-lg-center h5 mb-0 font-weight-bold text-gray-800 "
+          style="width: 100%;">
+        {{ myFilter.form }}
+        <button class="btn btn-primary" type="Submit">Filter</button>
+    </form>
+
 
   <div style="display: flex; flex-wrap: wrap;">
     {% for project in projects %}
