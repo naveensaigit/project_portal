@@ -197,15 +197,15 @@
 
 <div>
 
-	<form method="get">
-		{{myFilter.form|crispy}}
-		<button class="btn btn-primary" type="Submit">Filter</button>
-	</form>
+
 	<div class="project_cards">
 
 		<h2>Projects Requested:</h2>
-		<br>
-
+    <form method="get">
+      {{myFilter.form}}
+      <button class="btn btn-primary" type="Submit">Filter</button>
+    </form>
+    <br>
 
     
 		<div style="display: flex; flex-wrap: wrap;">
