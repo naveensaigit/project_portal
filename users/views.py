@@ -135,14 +135,17 @@ def projects_applied(request):
     return render(request, 'users/profile_applied.html', context)
 
 def projects_starred(request):
-    user_starred_projects_id = []
     projects_starred = request.user.profile.starred_projects.all()
+    myFilter = ProjectFilter(request.GET, queryset=projects_starred)
+    filtered_projects = myFilter.qs
+    user_starred_projects_id = []
     for project in request.user.profile.starred_projects.all():
         user_starred_projects_id.append(project.id)
     context = {
         'title': 'Projects Starred',
-        'projects' : projects_starred,
+        'projects' : filtered_projects,
         'user_starred_projects_id' : user_starred_projects_id,
+        'myFilter': myFilter,
     }
 
     return render(request, 'users/profile_starred.html', context)
