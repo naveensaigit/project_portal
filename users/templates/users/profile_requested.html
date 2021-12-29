@@ -209,39 +209,78 @@
 
     
 		<div style="display: flex; flex-wrap: wrap;">
-		{% for project in projects %}
+			{% for project in projects %}
 
-    
+			<!-- Collapsable Card Example -->
+			<!-- <div class="col-lg-6"> -->
+			<!-- Basic Card Example -->
 
-		<div class="blog-card" style="flex: 1 0 50%;">
-			<div class="meta">
-				<div class="photo"
-					style="background-image: url(https://storage.googleapis.com/chydlx/codepen/blog-cards/image-1.jpg)">
+			<div class="blog-container" style="flex: 1 0 45%; margin: 20px;">
+
+				<div class="blog-header" style="display: flex; flex-wrap: wrap;">
+					<div class="blog-author--no-cover"
+						style="background:url('{{project.FloatedBy.profile.image.url}}');background-size: cover; border-radius: 50%; display: inline-block;height: 32px;margin-right: 0.5rem;position: relative;top: 8px;width: 32px; ">
+
+					</div>
+					<span style="flex: 1 0 45%; ">
+						<h3 style="margin-top: 10px;">{{project.FloatedBy}}</h3>
+					</span>
 				</div>
-				<ul class="details">
-					<li class="author"><a href="#">{{project.FloatedBy}}</a></li>
-					<li class="date">Status: {{project.Status}}</li>
-					<li class="tags">
+
+				<div class="blog-body">
+					<div class="blog-title">
+						<h1><a href="{% url 'project' project.id %}">{{ project.Title }}</a></h1>
+					</div>
+					<div class="blog-summary demo-2">
+						<p>{{project.Description}}</p>
+					</div>
+					<div class="blog-tags">
 						<ul>
+							<li><a href="#">{{project.Status}}</a></li>
+							<li><a href="#">{{project.Difficulty}}</a></li>
+							{% if project.PreRequisite %}
 							<li><a href="#">{{project.PreRequisite}}</a></li>
+							{% endif %}
 						</ul>
-					</li>
-				</ul>
+					</div>
+				</div>
+				<div class="blog-footer">
+					<br>
+					<ul>
+						<li class="published-date"><a href="{% url 'project' project.id %}">Read More</a></li>
+						<!-- <li class="shares"><a href="#"><svg class="icon-star">
+									<use xlink:href="#icon-star"></use>
+								</svg><span>3</span></a></li> -->
+						<!-- <li class="shares icon-star">
+									<label for="id-of-input star" class="custom-checkbox">
+										<input type="checkbox" id="id-of-input" />
+										<i class="glyphicon glyphicon-star-empty" style="font-size: 2rem;"></i>
+										<i class="glyphicon glyphicon-star" style="font-size: 2rem;"></i>
+	
+									  </label>
+								</li> -->
+						<!-- <li>
+							<div class="click">
+								<span class="fa fa-star-o"></span>
+								<div class="ring"></div>
+								<div class="ring2"></div>
+								<!- 	<p class="info">Added to favourites!</p> ->
+							</div>
+						</li> -->
+
+					</ul>
+					<div style="display: flex; flex-direction: row; justify-content: space-evenly; margin: 15px; ">
+
+
+
+					</div>
+				</div>
+
 			</div>
-			<div class="description">
-				<h1><a href="{% url 'project' project.id %}"> {{ project.Title }} </a></h1>
-				<h2>Difficulty level: {{project.Difficulty}}</h2>
-				<p class="demo-2"> {{project.Description}}</p>
-				<p class="read-more">
-					<a href="{% url 'project' project.id %}">Read More</a>
-				</p>
-			</div>
+
+
+			{% endfor %}
 		</div>
-
-
-
-		{% endfor %}
-	</div>
 	</div>
 
 	{% if projects.count == 0 %}

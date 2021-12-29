@@ -3,7 +3,6 @@
 {% block profile %}
 <div>
 
-
 	<svg display="none" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
 		<defs>
 			<symbol id="icon-star" viewBox="0 0 1024 1024">
@@ -31,8 +30,6 @@
 			<!-- <div class="col-lg-6"> -->
 			<!-- Basic Card Example -->
 
-
-
 			<div class="blog-container" style="flex: 1 0 45%; margin: 20px;">
 
 				<div class="blog-header" style="display: flex; flex-wrap: wrap;">
@@ -40,14 +37,14 @@
 						style="background:url('{{project.FloatedBy.profile.image.url}}');background-size: cover; border-radius: 50%; display: inline-block;height: 32px;margin-right: 0.5rem;position: relative;top: 8px;width: 32px; ">
 
 					</div>
-					<span style="flex: 1 0 45%;">
-						<h3>{{project.FloatedBy}}</h3>
+					<span style="flex: 1 0 45%; ">
+						<h3 style="margin-top: 10px;">{{project.FloatedBy}}</h3>
 					</span>
 				</div>
 
 				<div class="blog-body">
 					<div class="blog-title">
-						<h1><a href="#">{{ project.Title }}</a></h1>
+						<h1><a href="{% url 'project' project.id %}">{{ project.Title }}</a></h1>
 					</div>
 					<div class="blog-summary demo-2">
 						<p>{{project.Description}}</p>
@@ -66,14 +63,28 @@
 					<br>
 					<ul>
 						<li class="published-date"><a href="{% url 'project' project.id %}">Read More</a></li>
-						<li class="shares"><a href="#"><svg class="icon-star">
+						<!-- <li class="shares"><a href="#"><svg class="icon-star">
 									<use xlink:href="#icon-star"></use>
-								</svg><span>3</span></a></li>
+								</svg><span>3</span></a></li> -->
+						<!-- <li class="shares icon-star">
+									<label for="id-of-input star" class="custom-checkbox">
+										<input type="checkbox" id="id-of-input" />
+										<i class="glyphicon glyphicon-star-empty" style="font-size: 2rem;"></i>
+										<i class="glyphicon glyphicon-star" style="font-size: 2rem;"></i>
+	
+									  </label>
+								</li> -->
+						<!-- <li>
+							<div class="click">
+								<span class="fa fa-star-o"></span>
+								<div class="ring"></div>
+								<div class="ring2"></div>
+								<!- 	<p class="info">Added to favourites!</p> ->
+							</div>
+						</li> -->
 
 					</ul>
 					<div style="display: flex; flex-direction: row; justify-content: space-evenly; margin: 15px; ">
-
-
 
 
 
@@ -85,8 +96,6 @@
 
 			{% endfor %}
 		</div>
-
-	</div>
 
 	{% if projects.count == 0 %}
 	<div>No projects</div>

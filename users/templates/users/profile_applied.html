@@ -10,45 +10,79 @@
 
 		<h2>Projects Applied For:</h2>
 		<br>
-		{% for project in projects %}
+		<div style="display: flex; flex-wrap: wrap;">
+			{% for project in projects %}
 
-		<!-- Collapsable Card Example -->
-		<!-- <div class="col-lg-6"> -->
-		<!-- Basic Card Example -->
-		<div class="card shadow mb-4">
-			<div class="card-header py-3">
-				<h6 class="m-0 font-weight-bold text-primary"><a href="{% url 'project' project.id %}"> {{ project.Title }} </a></h6>
-			</div>
-			<div class="card-body">
-				{{project.Description}}
-				<br><br>
-				<h6>
-						<strong class="project_info" style="padding-right:40px;">
-							Floated by: {{project.FloatedBy}}
-						</strong>
-					
-					
-						<strong class="project_info" style="padding-right:40px;">
-							Status: {{project.Status}}
-						</strong>
-					
-					
-						<strong class="project_info" style="padding-right:40px;">
-							Difficulty: {{project.Difficulty}}
-						</strong>
-					
-						{% if project.PreRequisite %}
-						<strong class="project_info" style="padding-right:40px;">
-							PreRequisite: {{project.PreRequisite}}
-						</strong>
-						{% endif %}
+			<!-- Collapsable Card Example -->
+			<!-- <div class="col-lg-6"> -->
+			<!-- Basic Card Example -->
 
-				</h6>
+			<div class="blog-container" style="flex: 1 0 45%; margin: 20px;">
+
+				<div class="blog-header" style="display: flex; flex-wrap: wrap;">
+					<div class="blog-author--no-cover"
+						style="background:url('{{project.FloatedBy.profile.image.url}}');background-size: cover; border-radius: 50%; display: inline-block;height: 32px;margin-right: 0.5rem;position: relative;top: 8px;width: 32px; ">
+
+					</div>
+					<span style="flex: 1 0 45%; ">
+						<h3 style="margin-top: 10px;">{{project.FloatedBy}}</h3>
+					</span>
+				</div>
+
+				<div class="blog-body">
+					<div class="blog-title">
+						<h1><a href="{% url 'project' project.id %}">{{ project.Title }}</a></h1>
+					</div>
+					<div class="blog-summary demo-2">
+						<p>{{project.Description}}</p>
+					</div>
+					<div class="blog-tags">
+						<ul>
+							<li><a href="#">{{project.Status}}</a></li>
+							<li><a href="#">{{project.Difficulty}}</a></li>
+							{% if project.PreRequisite %}
+							<li><a href="#">{{project.PreRequisite}}</a></li>
+							{% endif %}
+						</ul>
+					</div>
+				</div>
+				<div class="blog-footer">
+					<br>
+					<ul>
+						<li class="published-date"><a href="{% url 'project' project.id %}">Read More</a></li>
+						<!-- <li class="shares"><a href="#"><svg class="icon-star">
+									<use xlink:href="#icon-star"></use>
+								</svg><span>3</span></a></li> -->
+						<!-- <li class="shares icon-star">
+									<label for="id-of-input star" class="custom-checkbox">
+										<input type="checkbox" id="id-of-input" />
+										<i class="glyphicon glyphicon-star-empty" style="font-size: 2rem;"></i>
+										<i class="glyphicon glyphicon-star" style="font-size: 2rem;"></i>
+	
+									  </label>
+								</li> -->
+						<!-- <li>
+							<div class="click">
+								<span class="fa fa-star-o"></span>
+								<div class="ring"></div>
+								<div class="ring2"></div>
+								<!- 	<p class="info">Added to favourites!</p> ->
+							</div>
+						</li> -->
+
+					</ul>
+					<div style="display: flex; flex-direction: row; justify-content: space-evenly; margin: 15px; ">
+
+
+
+					</div>
+				</div>
+
 			</div>
+
+
+			{% endfor %}
 		</div>
-		<!-- </div> -->
-
-		{% endfor %}
 
 	</div>
 
