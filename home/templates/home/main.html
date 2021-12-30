@@ -9,7 +9,7 @@
         <div class="row no-gutters align-items-center">
           <div class="col mr-2">
             <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
-              <a href="{% url 'projects-applied'%}" style="color:#EE7210">Projects Applied</a>
+              <a href="/projects/applied/" style="color:#EE7210">Projects Applied</a>
             </div>
             <div class="h5 mb-0 font-weight-bold text-gray-800">{{ num_projects_applied }}</div>
           </div>
@@ -27,7 +27,7 @@
         <div class="row no-gutters align-items-center">
           <div class="col mr-2">
             <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
-              <a href="{% url 'projects-floated'%}" style="color:#EE7210">Projects Floated</a>
+              <a href="/projects/floated/" style="color:#EE7210">Projects Floated</a>
             </div>
             <div class="h5 mb-0 font-weight-bold text-gray-800">{{ num_projects_floated }}</div>
           </div>
@@ -46,7 +46,7 @@
         <div class="row no-gutters align-items-center">
           <div class="col mr-2">
             <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
-              <a href="{% url 'projects-requested'%}" style="color:#EE7210">Projects Requested</a>
+              <a href="/projects/requested/" style="color:#EE7210">Projects Requested</a>
             </div>
             <div class="h5 mb-0 font-weight-bold text-gray-800">{{ num_projects_req }}</div>
           </div>
@@ -65,7 +65,7 @@
         <div class="row no-gutters align-items-center">
           <div class="col mr-2">
             <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
-              <a href="{% url 'projects-starred'%}" style="color:#EE7210">Projects Starred</a>
+              <a href="/projects/starred" style="color:#EE7210">Projects Starred</a>
             </div>
             <div class="h5 mb-0 font-weight-bold text-gray-800">{{ user.profile.starred_projects.count }}
             </div>
@@ -394,10 +394,10 @@
         </div>
         <div class="blog-tags">
           <ul>
-            <li><a href="#">{{project.Status}}</a></li>
-            <li><a href="#">{{project.Difficulty}}</a></li>
+            <li><a >{{project.Status}}</a></li>
+            <li><a >{{project.Difficulty}}</a></li>
             {% if project.PreRequisite %}
-            <li><a href="#">{{project.PreRequisite}}</a></li>
+            <li><a>{{project.PreRequisite}}</a></li>
             {% endif %}
           </ul>
         </div>
