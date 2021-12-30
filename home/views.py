@@ -114,17 +114,17 @@ def project(request):
 
     user_applied_projects = all_project_list.filter(AlreadyApplied =  request.user)
     user_floated_projects = all_project_list.filter(FloatedBy =  request.user)
-    for project in user_applied_projects:
-        user_projects_id.append(project.id)
-    for project in user_floated_projects:
-        user_projects_id.append(project.id)
+    for tempproject in user_applied_projects:
+        user_projects_id.append(tempproject.id)
+    for tempproject in user_floated_projects:
+        user_projects_id.append(tempproject.id)
 
     user_requested_projects = all_project_list.filter(ApplyRequest = request.user)
-    for project in user_requested_projects:
-        user_requested_projects_id.append(project.id)
+    for tempproject in user_requested_projects:
+        user_requested_projects_id.append(tempproject.id)
 
-    for project in request.user.profile.starred_projects.all():
-        user_starred_projects_id.append(project.id)
+    for tempproject in request.user.profile.starred_projects.all():
+        user_starred_projects_id.append(tempproject.id)
 
 
     context = {
