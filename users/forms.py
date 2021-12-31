@@ -1,5 +1,6 @@
 from django import forms
 from django.contrib.auth.models import User
+from django.forms.widgets import FileInput
 from .models import Profile
 from django.contrib.auth.forms import UserCreationForm
 
@@ -23,6 +24,9 @@ class UserUpdateForm(forms.ModelForm):
 
 
 class ProfileUpdateForm(forms.ModelForm):
+    image = forms.FileField(
+        widget = FileInput(),
+    )
     class Meta:
         model = Profile
         fields = ['image', 'rollno', 'year', 'branch', 'techskills', 'cv']

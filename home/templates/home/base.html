@@ -185,6 +185,7 @@
                                     <h6 class="dropdown-header">
                                         Notifications
                                     </h6>
+                                    <div style="max-height:300px;overflow-y:scroll;">
                                     {% for notification in notifications %}
                                         <a class="dropdown-item d-flex align-items-center" href="{{notification.url}}">
                                             <div class="mr-3">
@@ -198,7 +199,8 @@
                                             </div>
                                         </a>
                                     {% endfor %}
-                                    <a class="dropdown-item text-center small text-gray-500" href="#">Show All Alerts</a>
+                                    </div>
+                                <a class="dropdown-item text-center small text-gray-500" style="background: #042360;height:15px"></a>
                                 </div>
                             </li>
 
@@ -286,10 +288,10 @@
                                         Profile
                                     </a>
                                     <a class="dropdown-item" href="/project/new"><i class="fas fa-plus-square fa-sm fa-fw mr-2 text-gray-400"></i>Create New Project</a>
-                                    <a class="dropdown-item" href="profile/projects/applied/"><i class="fas fa-address-card fa-sm fa-fw mr-2 text-gray-400"></i>Projects Applied for</a>
-    								<a class="dropdown-item" href="profile/projects/floated/"><i class="fas fa-laptop-code mr-2 fa-sm fa-fw text-gray-400"></i>Projects Floated by me</a>
-    								<a class="dropdown-item" href="profile/projects/requested/"><i class="fas fa-pager fa-fw mr-2 fa-sm fa-fw text-gray-400"></i>Projects Requested for</a>
-    								<a class="dropdown-item" href="profile/projects/starred/"><i class="fas fa-star fa-fw mr-2 fa-sm fa-fw text-gray-400"></i>Starred Projects</a>
+                                    <a class="dropdown-item" href="/profile/projects/applied"><i class="fas fa-address-card fa-sm fa-fw mr-2 text-gray-400"></i>Projects Applied for</a>
+    								<a class="dropdown-item" href="/profile/projects/floated"><i class="fas fa-laptop-code mr-2 fa-sm fa-fw text-gray-400"></i>Projects Floated by me</a>
+    								<a class="dropdown-item" href="/profile/projects/requested"><i class="fas fa-pager fa-fw mr-2 fa-sm fa-fw text-gray-400"></i>Projects Requested for</a>
+    								<a class="dropdown-item" href="/profile/projects/starred"><i class="fas fa-star fa-fw mr-2 fa-sm fa-fw text-gray-400"></i>Starred Projects</a>
 
                                     <div class="dropdown-divider"></div>
                                     <a class="dropdown-item" href="{% url 'logout' %}">

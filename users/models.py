@@ -42,7 +42,9 @@ class Profile(models.Model):
             img.save(self.image.path)
 
 class Notification(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="project_owner")
+    project_requested = models.ForeignKey(Project, on_delete=models.CASCADE, related_name="project_requested")
+    notification_from = models.ForeignKey(User, on_delete=models.CASCADE, related_name="request_creater")
     title = models.CharField(max_length=30)
     message = models.TextField()
     time = models.DateTimeField(default = timezone.now)

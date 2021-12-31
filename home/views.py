@@ -207,13 +207,13 @@ def projectTask(request):
                 messages.success(request,"Successfully Requested!")
                 notification_message=f"{current_user} has requested for {project} Project"
                 project_url = f"project/{project_id}"
-                notification=Notification(user=project.FloatedBy,title= "Apply Request",message=notification_message,url=project_url)
-                print(notification)
+                notification=Notification(user=project.FloatedBy, project_requested = project, notification_from = request.user, title= "Apply Request", message=notification_message,url=project_url)
                 notification.save()
                 # Project Mail Notification to be implemented
             else:
                 messages.warning(request,"You are not eligible to opt this project.")
     if task == "Withdraw":
+        Notification.objects.filter(notification_from = request.user).filter(project_requested = project).delete()
         project.ApplyRequest.remove(current_user)
     if task == "Leave":
         if project.FloatedBy != current_user:

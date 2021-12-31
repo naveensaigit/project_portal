@@ -9,7 +9,7 @@
         <div class="row no-gutters align-items-center">
           <div class="col mr-2">
             <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
-              <a href="profile/projects/applied/" style="color:#EE7210">Projects Applied</a>
+              <a href="profile/projects/applied" style="color:#EE7210">Projects Applied</a>
             </div>
             <div class="h5 mb-0 font-weight-bold text-gray-800">{{ num_projects_applied }}</div>
           </div>
@@ -27,7 +27,7 @@
         <div class="row no-gutters align-items-center">
           <div class="col mr-2">
             <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
-              <a href="/projects/floated/" style="color:#EE7210">Projects Floated</a>
+              <a href="/projects/floated" style="color:#EE7210">Projects Floated</a>
             </div>
             <div class="h5 mb-0 font-weight-bold text-gray-800">{{ num_projects_floated }}</div>
           </div>
@@ -46,7 +46,7 @@
         <div class="row no-gutters align-items-center">
           <div class="col mr-2">
             <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
-              <a href="profile/projects/requested/" style="color:#EE7210">Projects Requested</a>
+              <a href="profile/projects/requested" style="color:#EE7210">Projects Requested</a>
             </div>
             <div class="h5 mb-0 font-weight-bold text-gray-800">{{ num_projects_req }}</div>
           </div>
@@ -492,7 +492,7 @@
     {% else %}
       {% if 'Status' in querystring %}
         {% if 'page' in querystring %}
-          <li><a href="{{ querystring|slice:" :-1" }}{{ i }}">{{i}}</a></li>
+          <li><a href="{{ querystring|slice:":-1" }}{{ i }}">{{i}}</a></li>
         {% else %}
           <li><a href="{{ querystring }}&page={{ i }}">{{i}}</a></li>
         {% endif %}
@@ -504,7 +504,7 @@
   {% if projects.has_next %}
     {% if 'Status' in querystring %}
       {% if 'page' in querystring %}
-        <li><a href="{{ querystring|slice:" :-1" }}{{ projects.next_page_number }}">&raquo;</a></li>
+        <li><a href="{{ querystring|slice:":-1" }}{{ projects.next_page_number }}">&raquo;</a></li>
       {% else %}
       <li><a href="{{ querystring }}&page={{ projects.next_page_number }}">&raquo;</a></li>
       {% endif %}
