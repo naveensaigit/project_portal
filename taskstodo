@@ -1,7 +1,6 @@
 redirect not letting pass context
 clear button in update profile messing things up
-pagination messed up
-show all alerts in navbar
+projects applied page styling bug
 
 # request.POST is actually a dictionary containing all the form fields as key and there form values as values for respective keys
 # request.user -> person creating request i.e. person logged in django-admin
