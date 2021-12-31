@@ -1,0 +1,18 @@
+first in console in dashboard - git clone <repolink having code>
+	virtualenv venv
+	pip install -r <project_name>/requirements.txt
+now in dashboard in web add new web app
+	select manual configuration and python version from virtual env created earlier(python -V)
+	now add virtualenv in web by - /home/lazyghost/venv (make sure it is selected)
+	open wsgi configuration file in code and remove all code except under django heading and remove comments and change path = '/home/lazyghost/project_portal' and os.environ to 'project_portal.settings'
+now in files in settings.py
+	add 'lazyghost.pythonanywhere.com' to allowed hosts
+	add STATIC_ROOT = '/home/lazyghost/project_portal/static'
+now in console 
+	cd project_portal
+	run python manage.py collectstatic
+now in web in static files section
+	enter url - '/static/'
+	enter directory = '/home/lazyghost/project_portal/static'
+DONE!!!!!!!!!!!!!!!!!!!!!
+
