@@ -18,7 +18,7 @@
                             <div class="text-center">
                                 <h1 class="h4 text-gray-900 mb-4">Create an Account!</h1>
                             </div>
-                            <form class="user">
+                            {% comment %} <form class="user"> {% endcomment %}
                                 <div class="form-group row">
 										<div>
 											{% if messages %}
@@ -43,7 +43,7 @@
 									<button type="submit" class="btn btn-primary btn-user btn-block">Sign Up</button>
 								</div>
 
-                            </form>
+                            {% comment %} </form> {% endcomment %}
                             <hr>
                             <div class="text-center">
 								Already have an account? | <a class="small" href="{% url 'login' %}">Log in</a>
