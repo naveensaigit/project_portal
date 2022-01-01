@@ -12,6 +12,9 @@
 		<link
 			href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
 			rel="stylesheet">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Baloo+Bhai+2&family=Playfair+Display&display=swap" rel="stylesheet">
 
 		<!-- Custom styles for this template-->
 		<!-- <link href="css/sb-admin-2.min.css" rel="stylesheet"> -->
@@ -111,7 +114,7 @@
             <div id="content-wrapper" class="d-flex flex-column">
 
                 <!-- Main Content -->
-                <div id="content" style="background: #E8E8E8;">
+                <div id="content" style="background-image: #E8E8E8;">
                     <!-- Topbar -->
                     <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
                     <div class="sidebar-brand-text mx-3" style="color: #022160; font-size: large; font-weight: bold">  UGAC PROJECT PORTAL     </div>
@@ -173,11 +176,13 @@
                                     data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     <i class="fas fa-bell fa-fw"></i>
                                     <!-- Counter - Alerts -->
+                                    {% if notifications.count != 0 %}
                                     <span class="badge badge-danger badge-counter">
-                                        {% if notifications.count != '0' %}
+
                                             {{notifications.count}}+
-                                        {% endif %}
+
                                     </span>
+                                    {% endif %}
                                 </a>
                                 <!-- Dropdown - Alerts -->
                                 <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
@@ -186,6 +191,15 @@
                                         Notifications
                                     </h6>
                                     <div style="max-height:300px;overflow-y:scroll;">
+                                    {% if notifications.count == 0 %}
+                                        <a class="dropdown-item d-flex align-items-center" >
+                                            <div class="mr-3">
+                                            </div>
+                                            <div>
+                                                <span class="font-weight-bold">No notifications yet!</span>
+                                            </div>
+                                        </a>
+                                    {% endif %}
                                     {% for notification in notifications %}
                                         <a class="dropdown-item d-flex align-items-center" href="{{notification.url}}">
                                             <div class="mr-3">
