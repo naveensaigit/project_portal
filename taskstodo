@@ -3,6 +3,7 @@ clear button in update profile messing things up
 oauth gmail id not taking
 sign up page not working
 table of projects applicant
+mailing system
 
 # request.POST is actually a dictionary containing all the form fields as key and there form values as values for respective keys
 # request.user -> person creating request i.e. person logged in django-admin
