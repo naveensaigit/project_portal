@@ -2,11 +2,12 @@ from django.contrib.auth.models import User
 from django.shortcuts import redirect, render
 from .forms import UserRegisterForm, ProfileRegisterForm, ProfileUpdateForm, UserUpdateForm
 from django.contrib import messages
-from .models import Profile
+from .models import Profile,Notification
 from django.contrib.auth.decorators import login_required
 from django.core.files.storage import default_storage
 from home.models import Project
 from home.filters import ProjectFilter
+
 
 def signup(request):
     if request.method == 'POST':
@@ -65,6 +66,7 @@ def profile(request, user_id):
         'num_projects_req': len(user_requested_projects_id),
         'num_projects_floated': user_floated_projects.count(),
         'user_starred_projects_id' : user_starred_projects_id,
+        'notifications': Notification.objects.filter(user=request.user).order_by('-time'),
         'profile_user': User.objects.get(id = user_id)
     }
 
@@ -100,6 +102,7 @@ def profile_edit(request):
     context = {
         'title': 'Profile Edit',
         'user_form': user_update_form,
+        'notifications': Notification.objects.filter(user=request.user).order_by('-time'),
         'profile_form': profile_update_form,
     }
 
@@ -116,6 +119,7 @@ def projects_floated(request):
         'title': 'Projects Floated',
         'projects': filtered_projects,
         'myFilter': myFilter,
+        'notifications': Notification.objects.filter(user=request.user).order_by('-time'),
         'user_starred_projects_id' : user_starred_projects_id,
     }
 
@@ -129,6 +133,7 @@ def projects_applied(request):
     context = {
         'title': 'Projects Applied',
         'projects' : filtered_projects,
+        'notifications': Notification.objects.filter(user=request.user).order_by('-time'),
         'myFilter': myFilter,
     }
 
@@ -145,6 +150,7 @@ def projects_starred(request):
         'title': 'Projects Starred',
         'projects' : filtered_projects,
         'user_starred_projects_id' : user_starred_projects_id,
+        'notifications': Notification.objects.filter(user=request.user).order_by('-time'),
         'myFilter': myFilter,
     }
 
@@ -162,6 +168,7 @@ def projects_requested(request):
         'title': 'Projects Requested',
         'projects': filtered_projects,
         'myFilter': myFilter,
+        'notifications': Notification.objects.filter(user=request.user).order_by('-time'),
         'user_starred_projects_id' : user_starred_projects_id,
     }
     return render(request, 'users/profile_requested.html', context)

@@ -258,7 +258,7 @@
 
 
 
-      <h3>{{ project.FloatedBy }}</h3>
+      <h3><a href="{% url 'profile' project.FloatedBy.id %}">{{project.FloatedBy}}</a></h3>
     </div>
     <br>
   </div>
