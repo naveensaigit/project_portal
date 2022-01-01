@@ -27,7 +27,7 @@ SECRET_KEY = 'django-insecure-2hz8%7u%dbx&8f9vl!rq-!zo^qc(-2g0(w3lqlgvbrd*(8t@20
 DEBUG = True
 
 ALLOWED_HOSTS = ['ugac-project-portal.herokuapp.com']
-CSRF_TRUSTED_ORIGINS = ['ugac-project-portal.herokuapp.com']
+CSRF_TRUSTED_ORIGINS = ['https://ugac-project-portal.herokuapp.com']
 
 # Application definition
 
