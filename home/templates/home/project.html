@@ -1,5 +1,11 @@
-{% extends 'home/base.html' %} {% block content %} 
-
+{% extends 'home/base.html' %}
+{% load static %}
+{% block stylesheets %}
+    <link rel="stylesheet" type="text/css" href="{% static 'home/project.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'home/style.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'home/cards.css' %}">
+{% endblock stylesheets %}
+{% block content %}
 {% block messageBlock %} {% if messages %} {% for message in messages %}
 <div class="card-header py-3">{{message}}</div>
 {% endfor %} {% endif %} {% endblock messageBlock %}
@@ -58,8 +64,6 @@
             <p><b>Selection Criteria: </b>{{ project.SelectionCriteria }}</p>
             <p><b>Opened for: </b>{{project.OpenedFor}}</p>
             <p><b>Pre requisites: </b>{{ project.PreRequisite }}</p>
-            <p><b>Already Applied:</b> {% for users in project.AlreadyApplied.all %} {{ users }} {% endfor %} {% if project.AlreadyApplied.all.count == 0 %} No one {% endif %}
-            </p>
         </div>
         <ul>
             <li class="published-date">{{ project.DatePosted }}</li>
@@ -103,7 +107,18 @@
         {% endif %} {% endif %}
         <br>
     </div>
-</div>
+    </div></div>
+    <h1 style="text-align: center;">Selected!</h1>
+
+<ul class="card-wrapper1">
+ {% for users in project.AlreadyApplied.all %}
+    <li class="card1">
+        <img src="{{users.profile.image.url}}" >
+        <h3>{{users}}</h3>
+    </li>
+{% endfor %}
+</ul>
+{% if project.AlreadyApplied.all.count == 0 %} No selections yet {% endif %}
 
 {% if project.FloatedBy == user %}
 <div class="card shadow mb-4">
