@@ -92,7 +92,7 @@ def profile_edit(request):
             profile_update_form.save()
 
             messages.success(request, "Your profile has been updated!")
-            return redirect('profile')
+            return redirect('/profile/{{user.id}}')
         else:
             messages.error(request, 'Please correct the error below.')
     else:
