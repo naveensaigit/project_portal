@@ -1,520 +1,198 @@
-{% extends 'home/base.html' %}
-{% block content %}
-{% load crispy_forms_tags %}
+{% extends 'home/base.html' %} 
+{% block content %} 
+
+{% load crispy_forms_tags %} 
+{% block cardBlock %}
 <div class="row">
-
-  <div class="col-xl-3 col-md-6 mb-4">
-    <div class="card border-left-warning shadow h-100 py-2">
-      <div class="card-body">
-        <div class="row no-gutters align-items-center">
-          <div class="col mr-2">
-            <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
-              <a href="profile/projects/applied" style="color:#36b9cc">Projects Applied</a>
-            </div>
-            <div class="h5 mb-0 font-weight-bold text-gray-800">{{ num_projects_applied }}</div>
-          </div>
-          <!-- <div class="col-auto">
-                            <i class="fas fa-comments fa-2x text-gray-300"></i>
+    <div class="col-xl-3 col-md-6 mb-4">
+        <div class="card border-left-warning shadow h-100 py-2">
+            <div class="card-body">
+                <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                        <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
+                            <a href="/profile/projects/applied" style="color:#36b9cc">Projects Applied</a>
+                        </div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800">{{ num_projects_applied }}</div>
+                    </div>
+                    <!-- <div class="col-auto">
+            <i class="fas fa-comments fa-2x text-gray-300"></i>
                         </div> -->
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="col-xl-3 col-md-6 mb-4">
-    <div class="card border-left-warning shadow h-100 py-2">
-      <div class="card-body">
-        <div class="row no-gutters align-items-center">
-          <div class="col mr-2">
-            <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
-              <a href="profile/projects/floated" style="color:#36b9cc">Projects Floated</a>
+                </div>
             </div>
-            <div class="h5 mb-0 font-weight-bold text-gray-800">{{ num_projects_floated }}</div>
-          </div>
-          <!-- <div class="col-auto">
-                            <i class="fas fa-comments fa-2x text-gray-300"></i>
+        </div>
+    </div>
+
+    <div class="col-xl-3 col-md-6 mb-4">
+        <div class="card border-left-warning shadow h-100 py-2">
+            <div class="card-body">
+                <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                        <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
+                            <a href="/profile/projects/floated" style="color:#36b9cc">Projects Floated</a>
+                        </div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800">{{ num_projects_floated }}</div>
+                    </div>
+                    <!-- <div class="col-auto">
+            <i class="fas fa-comments fa-2x text-gray-300"></i>
                         </div> -->
-        </div>
-      </div>
-    </div>
-  </div>
-
-
-  <div class="col-xl-3 col-md-6 mb-4">
-    <div class="card border-left-warning shadow h-100 py-2">
-      <div class="card-body">
-        <div class="row no-gutters align-items-center">
-          <div class="col mr-2">
-            <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
-              <a href="profile/projects/requested" style="color:#36b9cc">Projects Requested</a>
+                </div>
             </div>
-            <div class="h5 mb-0 font-weight-bold text-gray-800">{{ num_projects_req }}</div>
-          </div>
-          <!-- <div class="col-auto">
+        </div>
+    </div>
+
+
+    <div class="col-xl-3 col-md-6 mb-4">
+        <div class="card border-left-warning shadow h-100 py-2">
+            <div class="card-body">
+                <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                        <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
+                            <a href="/profile/projects/requested" style="color:#36b9cc">Projects Requested</a>
+                        </div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800">{{ num_projects_req }}</div>
+                    </div>
+                    <!-- <div class="col-auto">
+            <i class="fas fa-comments fa-2x text-gray-300"></i>
+          </div> -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="col-xl-3 col-md-6 mb-4">
+        <div class="card border-left-warning shadow h-100 py-2">
+            <div class="card-body">
+                <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                        <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
+                            <a href="/profile/projects/starred" style="color:#36b9cc">Projects Starred</a>
+                        </div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800">{{ user.profile.starred_projects.count }}
+                        </div>
+                    </div>
+                    <!-- <div class="col-auto">
                             <i class="fas fa-comments fa-2x text-gray-300"></i>
-                        </div> -->
-        </div>
-      </div>
-    </div>
-  </div>
-
-
-  <div class="col-xl-3 col-md-6 mb-4">
-    <div class="card border-left-warning shadow h-100 py-2">
-      <div class="card-body">
-        <div class="row no-gutters align-items-center">
-          <div class="col mr-2">
-            <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
-              <a href="profile/projects/starred" style="color:#36b9cc">Projects Starred</a>
+                          </div> -->
+                </div>
             </div>
-            <div class="h5 mb-0 font-weight-bold text-gray-800">{{ user.profile.starred_projects.count }}
-            </div>
-          </div>
-          <!-- <div class="col-auto">
-                            <i class="fas fa-comments fa-2x text-gray-300"></i>
-                        </div> -->
         </div>
-      </div>
     </div>
-  </div>
 </div>
-{% if messages %}
-{% for message in messages %}
+{% endblock cardBlock %} 
+
+{% block messageBlock %}
+{% if messages %} {% for message in messages %}
 <div class="card-header py-3">{{message}}</div>
-{% endfor %}
-{% endif %}
+{% endfor %} {% endif %}
+{% endblock messageBlock %}
 
-
-
-<style>
-  .blog-container {
-    background: #fff;
-    box-shadow: 3px 6px 10px lightblue;
-    border-radius: 10px;
-    {#border-radius: 5px;#}
-    {#box-shadow: rgba(0, 0, 0, 0.2) 0 4px 2px -2px;#}
-    font-family: "adelle-sans", sans-serif;
-    font-weight: 100;
-    margin: 48px auto;
-    width: 20rem;
-    padding-top: 15px;
-  }
-
-  @media screen and (min-width: 480px) {
-    .blog-container {
-      width: 28rem;
-    }
-  }
-
-  @media screen and (min-width: 767px) {
-    .blog-container {
-      width: 40rem;
-    }
-  }
-
-  @media screen and (min-width: 959px) {
-    .blog-container {
-      width: 50rem;
-    }
-  }
-
-  .blog-container a {
-    color: #4d4dff;
-    text-decoration: none;
-    transition: 0.25s ease;
-  }
-
-  .blog-container a:hover {
-    border-color: #ff4d4d;
-    color: #ff4d4d;
-  }
-
-  .blog-cover {
-    background: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/17779/yosemite-3.jpg");
-    background-size: cover;
-    border-radius: 5px 5px 0 0;
-    height: 15rem;
-    box-shadow: inset rgba(0, 0, 0, 0.2) 0 64px 64px 16px;
-  }
-
-  .blog-author,
-  .blog-author--no-cover {
-    margin: 0 auto;
-    padding-top: 0.125rem;
-    width: 80%;
-  }
-
-  .blog-author h3::before,
-  .blog-author--no-cover h3::before {
-    /* background: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/17779/russ.jpeg"); */
-
-    background-size: cover;
-    border-radius: 50%;
-    content: " ";
-    display: inline-block;
-    height: 32px;
-    margin-right: 0.5rem;
-    position: relative;
-    top: 8px;
-    width: 32px;
-  }
-
-  .blog-author h3 {
-    color: #fff;
-    font-weight: 20;
-    font-size: 1.2rem;
-  }
-
-  .blog-author--no-cover h3 {
-    color: #999999;
-    font-weight: 100;
-  }
-
-  .blog-body {
-    margin: 0 auto;
-    width: 80%;
-  }
-
-  .blog-header {
-    margin: 0 auto;
-    width: 80%;
-  }
-
-  .video-body {
-    height: 100%;
-    width: 100%;
-  }
-
-  .blog-title h1 a {
-    color: black;
-    font-weight: 100;
-  }
-
-  .blog-summary p {
-    color: #4d4d4d;
-  }
-
-  .blog-tags ul {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    list-style: none;
-    padding-left: 0;
-  }
-
-  .blog-tags li+li {
-    margin-left: 0.5rem;
-  }
-
-  .blog-tags a {
-    border: 1px solid #999999;
-    border-radius: 3px;
-    color: #999999;
-    font-size: 0.75rem;
-    height: 1.5rem;
-    line-height: 1.5rem;
-    letter-spacing: 1px;
-    padding: 0 0.5rem;
-    text-align: center;
-    text-transform: uppercase;
-    white-space: nowrap;
-    width: 5rem;
-  }
-
-  .blog-footer {
-    border-top: 1px solid #e6e6e6;
-    margin: 0 auto;
-    padding-bottom: 0.125rem;
-    width: 80%;
-  }
-
-  .blog-footer ul {
-    list-style: none;
-    display: flex;
-    flex: row wrap;
-    justify-content: flex-end;
-    padding-left: 0;
-  }
-
-  .blog-footer li:first-child {
-    margin-right: auto;
-  }
-
-  .blog-footer li+li {
-    margin-left: 0.5rem;
-  }
-
-  .blog-footer li {
-    color: #999999;
-    font-size: 0.75rem;
-    height: 1.5rem;
-    letter-spacing: 1px;
-    line-height: 1.5rem;
-    text-align: center;
-    text-transform: uppercase;
-    position: relative;
-    white-space: nowrap;
-  }
-
-  .blog-footer li a {
-    color: #999999;
-  }
-
-  .comments {
-    margin-right: 1rem;
-  }
-
-  .published-date {
-    border: 1px solid #999999;
-    border-radius: 3px;
-    padding: 0 0.5rem;
-  }
-
-  .numero {
-    position: relative;
-    top: -0.5rem;
-  }
-
-  .icon-star,
-  .icon-bubble {
-    fill: #ffffff;
-    height: 24px;
-    /* margin-right: 0.5rem; */
-    transition: 0.25s ease;
-    width: 24px;
-  }
-
-  .icon-star:hover,
-  .icon-bubble:hover {
-    fill: #ff4d4d;
-  }
-
-  .demo-2 {
-    /* overflow: hidden;
-  white-space: nowrap;
-  text-overflow: ellipsis;
-  max-width: 350ch; */
-    display: -webkit-box;
-    overflow: hidden;
-    -webkit-line-clamp: 3;
-    -webkit-box-orient: vertical;
-  }
-
-  /* =====star icon======= */
-
-
-
-  /* Required Styling */
-
-  /* label input[type="checkbox"] {
-  display: none;
-}
-
-.custom-checkbox {
-  margin-left: 2em;
-  position: relative;
-  cursor: pointer;
-}
-
-.custom-checkbox .glyphicon {
-  color: gold;
-  position: absolute;
-  top: 0.4em;
-  left: -1.25em;
-  font-size: 0.75em;
-}
-
-.custom-checkbox .glyphicon-star-empty {
-  color: gray;
-}
-
-.custom-checkbox .glyphicon-star {
-  opacity: 0;
-  transition: opacity 0.2s ease-in-out;
-}
-
-.custom-checkbox:hover .glyphicon-star {
-  opacity: 0.5;
-}
-
-.custom-checkbox input[type="checkbox"]:checked ~ .glyphicon-star {
-  opacity: 1;
-}
- */
-
-  /* ======================= */
-</style>
-
-<svg display="none" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-  <defs>
-    <symbol id="icon-star" viewBox="0 0 1024 1024">
-      <title>star</title>
-      <path class="path1"
-        d="M1020.192 401.824c-8.864-25.568-31.616-44.288-59.008-48.352l-266.432-39.616-115.808-240.448c-12.192-25.248-38.272-41.408-66.944-41.408s-54.752 16.16-66.944 41.408l-115.808 240.448-266.464 39.616c-27.36 4.064-50.112 22.784-58.944 48.352-8.8 25.632-2.144 53.856 17.184 73.12l195.264 194.944-45.28 270.432c-4.608 27.232 7.2 54.56 30.336 70.496 12.704 8.736 27.648 13.184 42.592 13.184 12.288 0 24.608-3.008 35.776-8.992l232.288-125.056 232.32 125.056c11.168 5.984 23.488 8.992 35.744 8.992 14.944 0 29.888-4.448 42.624-13.184 23.136-15.936 34.88-43.264 30.304-70.496l-45.312-270.432 195.328-194.944c19.296-19.296 25.92-47.52 17.184-73.12zM754.816 619.616c-16.384 16.32-23.808 39.328-20.064 61.888l45.312 270.432-232.32-124.992c-11.136-6.016-23.424-8.992-35.776-8.992-12.288 0-24.608 3.008-35.744 8.992l-232.32 124.992 45.312-270.432c3.776-22.56-3.648-45.568-20.032-61.888l-195.264-194.944 266.432-39.68c24.352-3.616 45.312-18.848 55.776-40.576l115.872-240.384 115.84 240.416c10.496 21.728 31.424 36.928 55.744 40.576l266.496 39.68-195.264 194.912z">
-      </path>
-    </symbol>
-  </defs>
-</svg>
-
+{% block mainContentBlock %}
 <div class="project_cards">
-
+  {% block headingBlock %}
   <h2 style="padding-top: 20px;">Projects :</h2>
+  {% endblock headingBlock %}
+
   <br>
-    <!-- Filter options -->
-    <form method="get" class="form-inline justify-content-lg-center h5 mb-0 font-weight-bold text-gray-800 "
-          style="width: 100%;">
-        {{ myFilter.form }}
-        <button class="btn btn-primary" type="Submit">Filter</button>
-    </form>
 
-
-  <div style="display: flex; flex-wrap: wrap;">
-    {% for project in projects %}
-
-    <!-- Collapsable Card Example -->
-    <!-- <div class="col-lg-6"> -->
-    <!-- Basic Card Example -->
-
-    <div class="blog-container" style="flex: 1 0 45%; margin: 20px;">
-
-      <div class="blog-header" style="display: flex; flex-wrap: wrap;">
-        <div class="blog-author--no-cover"
-          style="background:url('{{project.FloatedBy.profile.image.url}}');background-size: cover; border-radius: 50%; display: inline-block;height: 32px;margin-right: 0.5rem;position: relative;top: 8px;width: 32px; ">
-
-        </div>
-        <span style="flex: 1 0 45%; ">
-          <h3 style="margin-top: 10px; color:#858796;"><a href="{% url 'profile' project.FloatedBy.id %}">{{project.FloatedBy}}</a></h3>
+  {% block filterBlock %}
+  <!-- Filter options -->
+  <form method="get" class="form-inline justify-content-lg-center h5 mb-0 font-weight-bold text-gray-800 " style="width: 100%;">
+    {{ myFilter.form }}
+    <button class="btn btn-primary" type="Submit">Filter</button>
+  </form>
+  {% endblock filterBlock %}
+  
+  
+    {% block allProjectsBlock %}
+    <div style="display: flex; flex-wrap: wrap;">
+        {% for project in projects %}
+        <div class="blog-container" style="flex: 1 0 45%; margin: 20px;">
+            <div class="blog-header" style="display: flex; flex-wrap: wrap;">
+                <div class="blog-author--no-cover" style="background:url('{{project.FloatedBy.profile.image.url}}');background-size: cover; border-radius: 50%; display: inline-block;height: 32px;margin-right: 0.5rem;position: relative;top: 8px;width: 32px; ">
+                </div>
+                <span style="flex: 1 0 45%; ">
+          <h3 style="margin-top: 10px; color:#858796;"><a
+              href="{% url 'profile' project.FloatedBy.id %}">{{project.FloatedBy}}</a></h3>
         </span>
-      </div>
-
-      <div class="blog-body">
-        <div class="blog-title">
-          <h1><a href="/project/?project_id={{project.id}}">{{ project.Title }}</a></h1>
-        </div>
-        <div class="blog-summary demo-2">
-          <p>{{project.Description}}</p><br>
-        </div>
-        <div class="blog-tags">
-          <ul>
-            <li><a >{{project.Status}}</a></li>
-            <li><a >{{project.Difficulty}}</a></li>
-            {% if project.PreRequisite %}
-            <li><a>{{project.PreRequisite}}</a></li>
-            {% endif %}
-          </ul>
-        </div>
-      </div>
-      <div class="blog-footer">
-        <br>
-        <ul>
-          <li class="published-date"><a href="/project/?project_id={{project.id}}">Read More</a></li>
-          <!-- <li class="shares"><a href="#"><svg class="icon-star">
-                <use xlink:href="#icon-star"></use>
-              </svg><span>3</span></a></li> -->
-          <!-- <li class="shares icon-star">
-                <label for="id-of-input star" class="custom-checkbox">
-                  <input type="checkbox" id="id-of-input" />
-                  <i class="glyphicon glyphicon-star-empty" style="font-size: 2rem;"></i>
-                  <i class="glyphicon glyphicon-star" style="font-size: 2rem;"></i>
-
-                  </label>
-              </li> -->
-          <!-- <li>
-            <div class="click">
-              <span class="fa fa-star-o"></span>
-              <div class="ring"></div>
-              <div class="ring2"></div>
-              <!- 	<p class="info">Added to favourites!</p> ->
             </div>
-          </li> -->
-          <li>
-            {% comment %} <!-- <div style="display: flex; flex-direction: row; justify-content: space-evenly; margin: 15px; "> -->
-              <!-- {% if project.id in user_requested_projects_id %}
-              <a href="{% url 'task-project' project.id projects.number 'Withdraw'%}"><button
-                      class="btn btn-primary btn-user btn-block" style="width:100%%; ">Withdraw Request</button></a>
-              {% else %}
-              {% if project.id not in user_projects_id %}
-              <a href="{% url 'task-project' project.id projects.number 'Apply'%}"><button
-                      class="btn btn-primary btn-user btn-block" style="width:100%%; ">Apply</button></a>
-              {% else %}
-              <a href="{% url 'task-project' project.id projects.number 'Leave'%}"><button
-                      class="btn btn-primary btn-user btn-block" style="width:100%%; ">Leave</button></a>
-              {% endif %}
-              {% endif %} --> {% endcomment %}
-
-              {% if project.id not in user_starred_projects_id %}
-              <a href="/project/task/?project_id={{project.id}}&task=Star&page_number={{projects.number}}"><button
-                class="btn btn-primary btn-user btn-block" style="width:100%;"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-star" viewBox="0 0 16 16">
-                  <path d="M2.866 14.85c-.078.444.36.791.746.593l4.39-2.256 4.389 2.256c.386.198.824-.149.746-.592l-.83-4.73 3.522-3.356c.33-.314.16-.888-.282-.95l-4.898-.696L8.465.792a.513.513 0 0 0-.927 0L5.354 5.12l-4.898.696c-.441.062-.612.636-.283.95l3.523 3.356-.83 4.73zm4.905-2.767-3.686 1.894.694-3.957a.565.565 0 0 0-.163-.505L1.71 6.745l4.052-.576a.525.525 0 0 0 .393-.288L8 2.223l1.847 3.658a.525.525 0 0 0 .393.288l4.052.575-2.906 2.77a.565.565 0 0 0-.163.506l.694 3.957-3.686-1.894a.503.503 0 0 0-.461 0z"/>
-                </svg></button></a>
-                {% else %}
-                <a href="/project/task/?project_id={{project.id}}&task=Unstar&page_number={{projects.number}}"><button
-                  class="btn btn-primary btn-user btn-block" style="width:100%;"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-star-fill" viewBox="0 0 16 16">
-                    <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
-                  </svg></button></a>
-              {% endif %}
-
-
-
-            <!-- </div> -->
-          </li>
-
-        </ul>
-        <div style="display: flex; flex-direction: row; justify-content: space-evenly; margin: 15px; ">
-
-
-
+            <div class="blog-body">
+                <div class="blog-title">
+                    <h1><a href="/project/?project_id={{project.id}}">{{ project.Title }}</a></h1>
+                </div>
+                <div class="blog-summary demo-2">
+                    <p>{{project.Description}}</p><br>
+                </div>
+                <div class="blog-tags">
+                    <ul>
+                        <li><a>{{project.Status}}</a></li>
+                        <li><a>{{project.Difficulty}}</a></li>
+                        {% if project.PreRequisite %}
+                        <li><a>{{project.PreRequisite}}</a></li>
+                        {% endif %}
+                    </ul>
+                </div>
+            </div>
+            <div class="blog-footer">
+                <br>
+                <ul>
+                    <li class="published-date"><a href="/project/?project_id={{project.id}}">Read More</a></li>
+                    <li>
+                        {% if project.id not in user_starred_projects_id %}
+                        <a href="/project/task/?project_id={{project.id}}&task=Star&page_number={{projects.number}}"><button
+                class="btn btn-primary btn-user btn-block" style="width:100%;"><svg xmlns="http://www.w3.org/2000/svg"
+                  width="16" height="16" fill="currentColor" class="bi bi-star" viewBox="0 0 16 16">
+                  <path
+                    d="M2.866 14.85c-.078.444.36.791.746.593l4.39-2.256 4.389 2.256c.386.198.824-.149.746-.592l-.83-4.73 3.522-3.356c.33-.314.16-.888-.282-.95l-4.898-.696L8.465.792a.513.513 0 0 0-.927 0L5.354 5.12l-4.898.696c-.441.062-.612.636-.283.95l3.523 3.356-.83 4.73zm4.905-2.767-3.686 1.894.694-3.957a.565.565 0 0 0-.163-.505L1.71 6.745l4.052-.576a.525.525 0 0 0 .393-.288L8 2.223l1.847 3.658a.525.525 0 0 0 .393.288l4.052.575-2.906 2.77a.565.565 0 0 0-.163.506l.694 3.957-3.686-1.894a.503.503 0 0 0-.461 0z" />
+                </svg></button></a> {% else %}
+                        <a href="/project/task/?project_id={{project.id}}&task=Unstar&page_number={{projects.number}}"><button
+                class="btn btn-primary btn-user btn-block" style="width:100%;"><svg xmlns="http://www.w3.org/2000/svg"
+                  width="16" height="16" fill="currentColor" class="bi bi-star-fill" viewBox="0 0 16 16">
+                  <path
+                    d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" />
+                </svg></button></a> {% endif %}
+                    </li>
+                </ul>
+                <div style="display: flex; flex-direction: row; justify-content: space-evenly; margin: 15px; ">
+                </div>
+            </div>
         </div>
-      </div>
-
-    </div>
-
-
-    {% endfor %}
-
-  </div>
-
-{% with request.get_full_path as querystring %}
-{% if projects.has_other_pages %}
-<ul class="pagination">
-  {% if projects.has_previous %}
-    {% if 'Status' in querystring %}
-      {% if 'page' in querystring %}
-        <li><a href="{{ querystring|slice:":-1" }}{{ projects.previous_page_number }}">&laquo;</a></li>
-      {% else %}
-        <li><a href="{{ querystring }}&page={{ projects.previous_page_number }}">&laquo;</a></li>
-      {% endif %}
-    {% else %}
-      <li><a href="/?page={{ projects.previous_page_number }}">&laquo;</a></li>
-    {% endif %}
-  {% endif %}
-  {% for i in projects.paginator.page_range %}
-    {% if projects.number == i %}
-      <li class="active"><span>{{ i }} <span class="sr-only">(current)</span></span></li>
-    {% else %}
-      {% if 'Status' in querystring %}
-        {% if 'page' in querystring %}
-          <li><a href="{{ querystring|slice:":-1" }}{{ i }}">{{i}}</a></li>
-        {% else %}
-          <li><a href="{{ querystring }}&page={{ i }}">{{i}}</a></li>
+        {% endfor %}
+        {% if projects.count == 0 %}
+            <div>No projects</div>
         {% endif %}
-      {% else %}
-      <li><a href="/?page={{ i }}">{{i}}</a></li>
-      {% endif %}
-    {% endif %}
-  {% endfor %}
-  {% if projects.has_next %}
-    {% if 'Status' in querystring %}
-      {% if 'page' in querystring %}
-        <li><a href="{{ querystring|slice:":-1" }}{{ projects.next_page_number }}">&raquo;</a></li>
-      {% else %}
-      <li><a href="{{ querystring }}&page={{ projects.next_page_number }}">&raquo;</a></li>
-      {% endif %}
-    {% else %}
-      <li><a href="/?page={{ projects.next_page_number }}">&raquo;</a></li>
-    {% endif %}
-  {% endif %}
-</ul>
-{% endif %}
-{% endwith %}
+      </div>
+      {% endblock allProjectsBlock %}
+
+    {% block paginationBlock %}
+    {% with request.get_full_path as querystring %} {% if projects.has_other_pages %}
+    <ul class="pagination">
+        {% if projects.has_previous %} {% if 'Status' in querystring %} {% if 'page' in querystring %}
+        <li><a href="{{ querystring|slice:" :-1 " }}{{ projects.previous_page_number }}">&laquo;</a></li>
+        {% else %}
+        <li><a href="{{ querystring }}&page={{ projects.previous_page_number }}">&laquo;</a></li>
+        {% endif %} {% else %}
+        <li><a href="/?page={{ projects.previous_page_number }}">&laquo;</a></li>
+        {% endif %} {% endif %} {% for i in projects.paginator.page_range %} {% if projects.number == i %}
+        <li class="active"><span>{{ i }} <span class="sr-only">(current)</span></span>
+        </li>
+        {% else %} {% if 'Status' in querystring %} {% if 'page' in querystring %}
+        <li><a href="{{ querystring|slice:" :-1 " }}{{ i }}">{{i}}</a></li>
+        {% else %}
+        <li><a href="{{ querystring }}&page={{ i }}">{{i}}</a></li>
+        {% endif %} {% else %}
+        <li><a href="/?page={{ i }}">{{i}}</a></li>
+        {% endif %} {% endif %} {% endfor %} {% if projects.has_next %} {% if 'Status' in querystring %} {% if 'page' in querystring %}
+        <li><a href="{{ querystring|slice:" :-1 " }}{{ projects.next_page_number }}">&raquo;</a></li>
+        {% else %}
+        <li><a href="{{ querystring }}&page={{ projects.next_page_number }}">&raquo;</a></li>
+        {% endif %} {% else %}
+        <li><a href="/?page={{ projects.next_page_number }}">&raquo;</a></li>
+        {% endif %} {% endif %}
+    </ul>
+    {% endif %} {% endwith %} 
+    {% endblock paginationBlock %}
+{% endblock mainContentBlock %}
+{% block extraBlock %}{% endblock extraBlock %}
+    
 {% endblock content %}

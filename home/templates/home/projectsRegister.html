@@ -1,66 +1,39 @@
-{% extends 'home/base.html' %}
-{% load crispy_forms_tags %}
-{% block content %}
+{% extends 'home/base.html' %} {% load static %} {% load crispy_forms_tags %} 
+{% block stylesheets %}
+<link rel="stylesheet" type="text/css" href="{% static 'home/style.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'home/projectsRegister.css' %}"> 
+{% endblock stylesheets %} 
 
-<style media="screen">
-	.card {
-	     margin: auto;
-	    display: flex;
-	    flex-direction: column;
-	    min-width: 0;
-	    word-wrap: break-word;
-	    background-color: #fff;
-	    background-clip: border-box;
-	    border: 0 solid transparent;
-	    {#border-radius: .25rem;#}
-        box-shadow: 3px 5px 10px lightgrey;
-        border-radius: 10px;
-	    margin-bottom: 1.5rem;
-	    {#box-shadow: 0 2px 6px 0 rgb(218 218 253 / 65%), 0 2px 6px 0 rgb(206 206 238 / 54%);#}
-			padding-left: 40px;
-	 padding-right: 40px;
-	 padding-bottom:40px;
+{% block content %} 
 
-	}
-</style>
-
-{% if messages %}
+{% block messageBlock %} 
+{% if messages %} 
 {% for message in messages %}
 <div class="card-header py-3">{{message}}</div>
-{% endfor %}
-{% endif %}
-<!-- <form method="POST">
-		{% csrf_token %}
-		<fieldset>
-			<legend>New Project</legend>
-			{{ project_form|crispy }}
-		</fieldset>
-		<div>
-			<button type="submit">Create</button>
-		</div>
-	</form> -->
-<div class="card" style="width:75%">
-	<br>
-	<br>
-	<div style="width:80%;>
+{% endfor %} 
+{% endif %} 
+{% endblock messageBlock %} 
 
-			<div class=" py-3">
+{% block projectsRegisterPageBlock %}
+<div class="card" style="width:75%">
+    <br>
+    <br>
+    <div style="width:80%;">
+			<div class=" py-3 ">
 		<h2>Create New Project</h2>
 	</div>
 	<div>
-		<form method="POST">
+		<form method="POST ">
 			{% csrf_token %}
 			<fieldset>
-
 				{{ project_form|crispy }}
 			</fieldset>
 			<div>
-
-				<button class="btn btn-success btn-icon-split" type="submit">
-					<span class="icon text-white-50">
-						<i class="fas fa-check"></i>
+				<button class="btn btn-success btn-icon-split " type="submit ">
+					<span class="icon text-white-50 ">
+						<i class="fas fa-check "></i>
 					</span>
-					<span class="text">Create</span>
+					<span class="text ">Create</span>
 				</button>
 			</div>
 		</form>
@@ -70,16 +43,14 @@
 <br>
 </div>
 
-
 <!-- Bootstrap core JavaScript-->
-<script src="vendor/jquery/jquery.min.js"></script>
-<script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-
+<script src="vendor/jquery/jquery.min.js "></script>
+<script src="vendor/bootstrap/js/bootstrap.bundle.min.js "></script>
 <!-- Core plugin JavaScript-->
-<script src="vendor/jquery-easing/jquery.easing.min.js"></script>
-
+<script src="vendor/jquery-easing/jquery.easing.min.js "></script>
 <!-- Custom scripts for all pages-->
-<script src="js/sb-admin-2.min.js"></script>
+<script src="js/sb-admin-2.min.js "></script>
+{% endblock projectsRegisterPageBlock %}
 
 
 {% endblock content %}

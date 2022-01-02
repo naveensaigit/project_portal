@@ -2,17 +2,20 @@
 {% block content %}
 
 
-
+{% block projectDeletePageBlock %}
 <div >
 	<br>
 	<br>
 		<div class="container card shadow-lg py-3" style="width:80%; border-left: 20px solid #EE7210">
 
+			{% block messageBlock %}
 			{% if messages %}
 			{% for message in messages %}
-				<div class="card-header py-3" >{{message}}</div>
+			<div class="card-header py-3" >{{message}}</div>
 			{% endfor %}
-		{% endif %}
+			{% endif %}
+			{% endblock messageBlock %}
+			
 			<br>
 			<div class="card-header py-3" >
 		      <h5 class="m-0 font-weight-bold text-primary text-center">DELETE PROJECT</h5>
@@ -36,5 +39,6 @@
 	<br>
 	<br>
 </div>
+{% endblock projectDeletePageBlock %}
 
 {% endblock content %}

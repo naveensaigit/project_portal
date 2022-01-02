@@ -1,84 +1,57 @@
-{% extends 'users/base.html' %}
-{% load crispy_forms_tags %}
-{% block content %}
+{% extends 'users/base.html' %} {% load crispy_forms_tags %} {% block content %}
 
+{% block loginPageBlock %}
 <body class="bg-gradient-primary">
-
-	<div class="container">
-
-		<!-- Outer Row -->
-		<div class="row justify-content-center">
-
-			<div class="col-xl-10 col-lg-12 col-md-9">
-				<br>
-				<br>
-				<br>
-				<br>
-
-				<div class="card o-hidden border-0 shadow-lg my-5">
-					<div class="card-body p-0">
-						<!-- Nested Row within Card Body -->
-						<div class="row">
-							<div class="col-lg-6 d-none d-lg-block bg-login-image"></div>
-							<div class="col-lg-6">
-								<div class="p-5">
-									<div class="text-center">
-										<h1 class="h4 text-gray-900 mb-4">
-											<!-- {% if messages %}
-											{% for message in messages %}
-											<div>{{message}}</div>
-											{% endfor %}
-											{% endif %} -->
-											<b>LOGIN</b>
-										</h1>
-									</div>
-
-
-									<form method="POST" class="user">
-										{% csrf_token %}
-										<fieldset>
-											<!-- <legend>Log In</legend> -->
-											{{ form|crispy }}
-										</fieldset>
-										<div>
-											<button type="submit"
-												class="btn btn-primary btn-user btn-block">Login</button>
-										</div>
-										<br>
+    <div class="container">
+        <!-- Outer Row -->
+        <div class="row justify-content-center">
+            <div class="col-xl-10 col-lg-12 col-md-9">
+                <br>
+                <br>
+                <br>
+                <br>
+                <div class="card o-hidden border-0 shadow-lg my-5">
+                    <div class="card-body p-0">
+                        <!-- Nested Row within Card Body -->
+                        <div class="row">
+                            <div class="col-lg-6 d-none d-lg-block bg-login-image"></div>
+                            <div class="col-lg-6">
+                                <div class="p-5">
+                                    <div class="text-center">
+                                        <h1 class="h4 text-gray-900 mb-4">
+                                            <b>LOGIN</b>
+                                        </h1>
+                                    </div>
+                                    <form method="POST" class="user">
+                                        {% csrf_token %}
+                                        <fieldset>
+                                            {{ form|crispy }}
+                                        </fieldset>
+                                        <div>
+                                            <button type="submit" class="btn btn-primary btn-user btn-block">Login</button>
+                                        </div>
+                                        <br>
                                         <a href="{% url 'oauth' %}" class="btn btn-google btn-user btn-block">
                                             <i class="fab fa-google fa-fw"></i> Login with Google
                                         </a>
-										<hr>
+                                        <hr>
+                                    </form>
+                                    <div class="text-center">
+                                        <div class="small">
+                                            <div>
+                                                Don't have an account? | <a href="{% url 'signup' %}">Sign Up</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <br>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock loginPageBlock %}
 
-									</form>
-
-
-<!--									<hr>-->
-<!--									<div class="text-center">-->
-<!--										<a href="{% url 'oauth' %}">Google</a>-->
-<!--									</div>-->
-
-									<div class="text-center">
-										<div class="small" >
-											<div>
-												Don't have an account? | <a href="{% url 'signup' %}">Sign Up</a>
-											</div>
-										</div>
-									</div>
-									<br>
-
-
-									
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-
-			</div>
-
-		</div>
-
-	</div>
-
-	{% endblock content %}
+{% endblock content %}

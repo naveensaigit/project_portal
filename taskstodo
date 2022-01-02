@@ -1,7 +1,7 @@
 redirect not letting pass context
-clear button in update profile messing things up
 oauth gmail id not taking
 mailing system
+sign up page all details after login
 
 table of projects applicant
 color of font of author
@@ -21,3 +21,6 @@ color of font of author
 	# tempvar = Profile(user = User.objects.all().first(),rollno = 'B20123'...)
 	# tempvar.rollno -> accessing fields
 	# tempvar.save()
+
+# https://ugac-project-portal.herokuapp.com
+# http://ugac-project-portal.herokuapp.com/accounts/google/login/callback/

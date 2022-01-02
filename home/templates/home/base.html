@@ -1,366 +1,193 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<title>Project Portal{% if title %} | {{ title }} {% endif %}</title>
 
-		<!-- Custom fonts for this template-->
-<!--		<link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">-->
-		<link
-			href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
-			rel="stylesheet">
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Baloo+Bhai+2&family=Playfair+Display&display=swap" rel="stylesheet">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Project Portal{% if title %} | {{ title }} {% endif %}</title>
 
-		<!-- Custom styles for this template-->
-		<!-- <link href="css/sb-admin-2.min.css" rel="stylesheet"> -->
-		<link rel="stylesheet" type="text/css" href="{% static 'home/style.css' %}">
-		<link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
-		<link rel="preconnect" href="https://fonts.googleapis.com">
-		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-		<link href="https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap" rel="stylesheet">
-	</head>
-	<body>
-		<div>
-			{% comment %} {% if user.is_authenticated %}
-<!--				<a href="{% url 'home' %}">HOME</a>-->
-<!--				<a href="{% url 'new-project' %}">CREATE NEW PROJECT</a>-->
-<!--				<a href="{% url 'profile' user.id %}">PROFILE</a>-->
-<!--				<a href="{% url 'logout' %}">LOGOUT</a>-->
-			{% else %}
-<!--				<a href="{% url 'login' %}">LOGIN</a>-->
-<!--				<a href="{% url 'signup' %}">SIGN UP</a>-->
-			{% endif %}
-		</div> {% endcomment %}
+    <!-- Custom fonts for this template-->
+    <!--		<link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">-->
+    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Baloo+Bhai+2&family=Playfair+Display&display=swap" rel="stylesheet">
 
-    <!-- ------------------------------NAVBAR--------------------------------------- -->
+    <!-- Custom styles for this template-->
+    <!-- <link href="css/sb-admin-2.min.css" rel="stylesheet"> -->
+    {% block stylesheets %}
+    <link rel="stylesheet" type="text/css" href="{% static 'home/style.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'home/cards.css' %}"> 
+    {% endblock stylesheets %}
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap" rel="stylesheet">
 
-    <body id="page-top">
+</head>
 
-        <!-- Page Wrapper -->
-        <div id="wrapper">
-
-<!--            &lt;!&ndash; Sidebar &ndash;&gt;-->
-<!--            <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">-->
-
-<!--                &lt;!&ndash; Sidebar - Brand &ndash;&gt;-->
-<!--                <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/">-->
-<!--                    <div class="sidebar-brand-icon">-->
-<!--                        <img src="https://wiki.iitmandi.co.in/images/thumb/8/87/AcademicCouncillogo.png/300px-AcademicCouncillogo.png" alt="" style = "height:60px">-->
-<!--                    </div>-->
-<!--&lt;!&ndash;                    <div class="sidebar-brand-text mx-3">Project Portal</div>&ndash;&gt;-->
-<!--                </a>-->
-
-<!--                &lt;!&ndash; Divider &ndash;&gt;-->
-<!--                <hr class="sidebar-divider my-0">-->
-
-<!--                &lt;!&ndash; Nav Item - Dashboard &ndash;&gt;-->
-<!--                <li class="nav-item">-->
-<!--                    <a class="nav-link"  href="{% url 'home' %}"">-->
-<!--                        <i class="fas fa-home"></i>-->
-<!--                        <span>Home</span></a>-->
-<!--                </li>-->
-
-<!--                &lt;!&ndash; Divider &ndash;&gt;-->
-<!--                <hr class="sidebar-divider">-->
-
-<!--                &lt;!&ndash; Heading &ndash;&gt;-->
-<!--                <div class="sidebar-heading">-->
-<!--                    Interface-->
-<!--                </div>-->
-
-<!--                &lt;!&ndash; Nav Item - Pages Collapse Menu &ndash;&gt;-->
-<!--                <li class="nav-item">-->
-<!--                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"-->
-<!--                        aria-expanded="true" aria-controls="collapseTwo">-->
-<!--                        <i class="fas fa-tasks"></i>-->
-<!--                        <span>Projects</span>-->
-<!--                    </a>-->
-<!--                    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">-->
-<!--                        <div class="bg-white py-2 collapse-inner rounded">-->
-<!--                            <h6 class="collapse-header">Custom Components:</h6>-->
-<!--                            <a class="collapse-item" href="{% url 'new-project' %}">Create New Project</a>-->
-<!--                            <a class="collapse-item" href="{% url 'projects-applied' %}">Projects Applied</a>-->
-<!--    												  <a class="collapse-item" href="{% url 'projects-floated' %}">Projects Floated</a>-->
-<!--    													<a class="collapse-item" href="{% url 'projects-requested' %}">Projects Requested</a>-->
-<!--    													<a class="collapse-item" href="{% url 'projects-starred' %}">Starred Projects</a>-->
-<!--                        </div>-->
-<!--                    </div>-->
-<!--                </li>-->
-
-
-<!--                &lt;!&ndash; Divider &ndash;&gt;-->
-<!--                <hr class="sidebar-divider">-->
-
-<!--    						{% comment %} <li class="nav-item">-->
-<!--    								<a class="nav-link"  href="{% url 'logout' %}">-->
-<!--    										<i class="fas fa-sign-out-alt"></i>-->
-<!--    										<span>Logout</span></a>-->
-<!--    						</li> {% endcomment %}-->
-
-
-<!--                &lt;!&ndash; Nav Item - Pages Collapse Menu &ndash;&gt;-->
-
-
-
-<!--            </ul>-->
-            <!-- End of Sidebar -->
-
-            <!-- Content Wrapper -->
-            <div id="content-wrapper" class="d-flex flex-column">
-
-                <!-- Main Content -->
-                <div id="content" style="background-image: #E8E8E8;">
-                    <!-- Topbar -->
-                    <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
-                    <div class="sidebar-brand-text mx-3" style="color: #022160; font-size: large; font-weight: bold">  UGAC PROJECT PORTAL     </div>
-                        <!-- Sidebar Toggle (Topbar) -->
-                        <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
-                            <i class="fa fa-bars"></i>
-                        </button>
-
-                        <!-- Topbar Search -->
-                        <form method = "POST" action = "{{request.get_full_path}}"
-                            class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
-                            {% csrf_token %}
-                            <div class="input-group">
-                                <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..."
-                                    aria-label="Search" aria-describedby="basic-addon2" name="search" >
-                                <div class="input-group-append">
-                                    <button class="btn btn-primary" type="submit">
-                                        <i class="fas fa-search fa-sm"></i>
-                                    </button>
+<body>
+    <div>
+        <body id="page-top">
+            <!-- Page Wrapper -->
+            <div id="wrapper">
+                <!-- Content Wrapper -->
+                <div id="content-wrapper" class="d-flex flex-column">
+                    <!-- Main Content -->
+                    <div id="content" style="background-image: #E8E8E8;">
+                        <!-- Topbar -->
+                        <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+                            <div class="sidebar-brand-text mx-3" style="color: #022160; font-size: large; font-weight: bold"> UGAC PROJECT PORTAL </div>
+                            <!-- Sidebar Toggle (Topbar) -->
+                            <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
+                                <i class="fa fa-bars"></i>
+                            </button>
+                            <!-- Topbar Search -->
+                            <form method="POST" action="{{request.get_full_path}}" class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
+                                {% csrf_token %}
+                                <div class="input-group">
+                                    <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2" name="search">
+                                    <div class="input-group-append">
+                                        <button class="btn btn-primary" type="submit">
+                                            <i class="fas fa-search fa-sm"></i>
+                                        </button>
+                                    </div>
                                 </div>
-                            </div>
-                        </form>
-
-                        <!-- Topbar Navbar -->
-                        <ul class="navbar-nav ml-auto">
-
-                            <!-- Nav Item - Search Dropdown (Visible Only XS) -->
-                            <li class="nav-item dropdown no-arrow d-sm-none">
-                                <a class="nav-link dropdown-toggle" id="searchDropdown" role="button"
-                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    <i class="fas fa-search fa-fw"></i>
-                                </a>
-                                <!-- Dropdown - Messages -->
-                                <div class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in"
-                                    aria-labelledby="searchDropdown">
-                                    <form class="form-inline mr-auto w-100 navbar-search">
-                                        <div class="input-group">
-                                            <input type="text" class="form-control bg-light border-0 small"
-                                                placeholder="Search for..." aria-label="Search"
-                                                aria-describedby="basic-addon2">
-                                            <div class="input-group-append">
-                                                <button class="btn btn-primary" type="button">
-                                                    <i class="fas fa-search fa-sm"></i>
-                                                </button>
-                                            </div>
-                                        </div>
-                                    </form>
-                                </div>
-                            </li>
-
-                            <!-- Nav Item - Alerts -->
-
-                            <a class="nav-link" href="{% url 'home' %}" role="button" style="margin-top: 13px;">
-                                    <i class="fas fa-home fa-fw fa-sm mr-2 text-gray-400"></i>
-                                    <!-- Counter - Alerts -->
-                            </a>
-                            <li class="nav-item dropdown no-arrow mx-1">
-                                <a class="nav-link dropdown-toggle" id="alertsDropdown" role="button"
-                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    <i class="fas fa-bell fa-fw"></i>
-                                    <!-- Counter - Alerts -->
-                                    {% if notifications.count != 0 %}
-                                    <span class="badge badge-danger badge-counter">
-
-                                            {{notifications.count}}+
-
-                                    </span>
-                                    {% endif %}
-                                </a>
-                                <!-- Dropdown - Alerts -->
-                                <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
-                                    aria-labelledby="alertsDropdown">
-                                    <h6 class="dropdown-header">
-                                        Notifications
-                                    </h6>
-                                    <div style="max-height:300px;overflow-y:scroll;">
-                                    {% if notifications.count == 0 %}
-                                        <a class="dropdown-item d-flex align-items-center" >
-                                            <div class="mr-3">
-                                            </div>
-                                            <div>
-                                                <span class="font-weight-bold">No notifications yet!</span>
-                                            </div>
-                                        </a>
-                                    {% endif %}
-                                    {% for notification in notifications %}
-                                        <a class="dropdown-item d-flex align-items-center" href="{{notification.url}}">
-                                            <div class="mr-3">
-                                                <div class="icon-circle bg-primary">
-                                                    <i class="fas fa-file-alt text-white"></i>
+                            </form>
+                            <!-- Topbar Navbar -->
+                            <ul class="navbar-nav ml-auto">
+                                <!-- Nav Item - Search Dropdown (Visible Only XS) -->
+                                <li class="nav-item dropdown no-arrow d-sm-none">
+                                    <a class="nav-link dropdown-toggle" id="searchDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <i class="fas fa-search fa-fw"></i>
+                                    </a>
+                                    <!-- Dropdown - Messages -->
+                                    <div class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in" aria-labelledby="searchDropdown">
+                                        <form class="form-inline mr-auto w-100 navbar-search">
+                                            <div class="input-group">
+                                                <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
+                                                <div class="input-group-append">
+                                                    <button class="btn btn-primary" type="button">
+                                                        <i class="fas fa-search fa-sm"></i>
+                                                    </button>
                                                 </div>
                                             </div>
-                                            <div>
-                                                <span class="font-weight-bold">{{notification.message}} at</span>
-                                                <span class="font-weight-bold">{{notification.time}}</span>
-                                            </div>
-                                        </a>
-                                    {% endfor %}
+                                        </form>
                                     </div>
-                                <a class="dropdown-item text-center small text-gray-500" style="background: #042360;height:15px"></a>
-                                </div>
-                            </li>
-
-                            <!-- Nav Item - Messages -->
-<!--                            <li class="nav-item dropdown no-arrow mx-1">-->
-<!--                                <a class="nav-link dropdown-toggle" href="#" id="messagesDropdown" role="button"-->
-<!--                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">-->
-<!--                                    <i class="fas fa-envelope fa-fw"></i>-->
-<!--                                    &lt;!&ndash; Counter - Messages &ndash;&gt;-->
-<!--                                    <span class="badge badge-danger badge-counter">7</span>-->
-<!--                                </a>-->
-<!--                                &lt;!&ndash; Dropdown - Messages &ndash;&gt;-->
-<!--                                <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated&#45;&#45;grow-in"-->
-<!--                                    aria-labelledby="messagesDropdown">-->
-<!--                                    <h6 class="dropdown-header">-->
-<!--                                        Message Center-->
-<!--                                    </h6>-->
-<!--                                    <a class="dropdown-item d-flex align-items-center" href="#">-->
-<!--                                        <div class="dropdown-list-image mr-3">-->
-<!--                                            <img class="rounded-circle" src="img/undraw_profile_1.svg"-->
-<!--                                                alt="...">-->
-<!--                                            <div class="status-indicator bg-success"></div>-->
-<!--                                        </div>-->
-<!--                                        <div class="font-weight-bold">-->
-<!--                                            <div class="text-truncate">Hi there! I am wondering if you can help me with a-->
-<!--                                                problem I've been having.</div>-->
-<!--                                            <div class="small text-gray-500">Emily Fowler · 58m</div>-->
-<!--                                        </div>-->
-<!--                                    </a>-->
-<!--                                    <a class="dropdown-item d-flex align-items-center" href="#">-->
-<!--                                        <div class="dropdown-list-image mr-3">-->
-<!--                                            <img class="rounded-circle" src="img/undraw_profile_2.svg"-->
-<!--                                                alt="...">-->
-<!--                                            <div class="status-indicator"></div>-->
-<!--                                        </div>-->
-<!--                                        <div>-->
-<!--                                            <div class="text-truncate">I have the photos that you ordered last month, how-->
-<!--                                                would you like them sent to you?</div>-->
-<!--                                            <div class="small text-gray-500">Jae Chun · 1d</div>-->
-<!--                                        </div>-->
-<!--                                    </a>-->
-<!--                                    <a class="dropdown-item d-flex align-items-center" href="#">-->
-<!--                                        <div class="dropdown-list-image mr-3">-->
-<!--                                            <img class="rounded-circle" src="img/undraw_profile_3.svg"-->
-<!--                                                alt="...">-->
-<!--                                            <div class="status-indicator bg-warning"></div>-->
-<!--                                        </div>-->
-<!--                                        <div>-->
-<!--                                            <div class="text-truncate">Last month's report looks great, I am very happy with-->
-<!--                                                the progress so far, keep up the good work!</div>-->
-<!--                                            <div class="small text-gray-500">Morgan Alvarez · 2d</div>-->
-<!--                                        </div>-->
-<!--                                    </a>-->
-<!--                                    <a class="dropdown-item d-flex align-items-center" href="#">-->
-<!--                                        <div class="dropdown-list-image mr-3">-->
-<!--                                            <img class="rounded-circle" src="https://source.unsplash.com/Mv9hjnEUHR4/60x60"-->
-<!--                                                alt="...">-->
-<!--                                            <div class="status-indicator bg-success"></div>-->
-<!--                                        </div>-->
-<!--                                        <div>-->
-<!--                                            <div class="text-truncate">Am I a good boy? The reason I ask is because someone-->
-<!--                                                told me that people say this to all dogs, even if they aren't good...</div>-->
-<!--                                            <div class="small text-gray-500">Chicken the Dog · 2w</div>-->
-<!--                                        </div>-->
-<!--                                    </a>-->
-<!--                                    <a class="dropdown-item text-center small text-gray-500" href="#">Read More Messages</a>-->
-<!--                                </div>-->
-<!--                            </li>-->
-
-                            <div class="topbar-divider d-none d-sm-block"></div>
-
-                            <!-- Nav Item - User Information -->
-                            <li class="nav-item dropdown no-arrow">
-                                <a class="nav-link dropdown-toggle"  id="userDropdown" role="button"
-                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    <span class="mr-2 d-none d-lg-inline text-gray-600 small">{{user.username}}</span>
-                                    <img class="img-profile rounded-circle"
-                                        src="{{user.profile.image.url}}">
+                                </li>
+                                <!-- Nav Item - Alerts -->
+                                <a class="nav-link" href="{% url 'home' %}" role="button" style="margin-top: 13px;">
+                                    <i class="fas fa-home fa-fw fa-sm mr-2 text-gray-400"></i>
+                                    <!-- Counter - Alerts -->
                                 </a>
-                                <!-- Dropdown - User Information -->
-                                <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
-                                    aria-labelledby="userDropdown">
-                                    <a class="dropdown-item" href="{% url 'profile' user.id %}">
-                                        <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
-                                        Profile
+                                <li class="nav-item dropdown no-arrow mx-1">
+                                    <a class="nav-link dropdown-toggle" id="alertsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <i class="fas fa-bell fa-fw"></i>
+                                        <!-- Counter - Alerts -->
+                                        {% if notifications.count != 0 %}
+                                        <span class="badge badge-danger badge-counter">
+                                            {{notifications.count}}+
+                                        </span> {% endif %}
                                     </a>
-                                    <a class="dropdown-item" href="/project/new"><i class="fas fa-plus-square fa-sm fa-fw mr-2 text-gray-400"></i>Create New Project</a>
-                                    <a class="dropdown-item" href="/profile/projects/applied"><i class="fas fa-address-card fa-sm fa-fw mr-2 text-gray-400"></i>Projects Applied for</a>
-    								<a class="dropdown-item" href="/profile/projects/floated"><i class="fas fa-laptop-code mr-2 fa-sm fa-fw text-gray-400"></i>Projects Floated by me</a>
-    								<a class="dropdown-item" href="/profile/projects/requested"><i class="fas fa-pager fa-fw mr-2 fa-sm fa-fw text-gray-400"></i>Projects Requested for</a>
-    								<a class="dropdown-item" href="/profile/projects/starred"><i class="fas fa-star fa-fw mr-2 fa-sm fa-fw text-gray-400"></i>Starred Projects</a>
-
-                                    <div class="dropdown-divider"></div>
-                                    <a class="dropdown-item" href="{% url 'logout' %}">
-                                        <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-                                        Logout
+                                    <!-- Dropdown - Alerts -->
+                                    <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="alertsDropdown">
+                                        <h6 class="dropdown-header">
+                                            Notifications
+                                        </h6>
+                                        <div style="max-height:300px;overflow-y:scroll;">
+                                            {% if notifications.count == 0 %}
+                                            <a class="dropdown-item d-flex align-items-center">
+                                                <div class="mr-3">
+                                                </div>
+                                                <div>
+                                                    <span class="font-weight-bold">No notifications yet!</span>
+                                                </div>
+                                            </a>
+                                            {% endif %} {% for notification in notifications %}
+                                            <a class="dropdown-item d-flex align-items-center" href="{{notification.url}}">
+                                                <div class="mr-3">
+                                                    <div class="icon-circle bg-primary">
+                                                        <i class="fas fa-file-alt text-white"></i>
+                                                    </div>
+                                                </div>
+                                                <div>
+                                                    <span class="font-weight-bold">{{notification.message}} at</span>
+                                                    <span class="font-weight-bold">{{notification.time}}</span>
+                                                </div>
+                                            </a>
+                                            {% endfor %}
+                                        </div>
+                                        <a class="dropdown-item text-center small text-gray-500" style="background: #042360;height:15px"></a>
+                                    </div>
+                                </li>
+                                <div class="topbar-divider d-none d-sm-block"></div>
+                                <!-- Nav Item - User Information -->
+                                <li class="nav-item dropdown no-arrow">
+                                    <a class="nav-link dropdown-toggle" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <span class="mr-2 d-none d-lg-inline text-gray-600 small">{{user.username}}</span>
+                                        <img class="img-profile rounded-circle" src="{{user.profile.image.url}}">
                                     </a>
-                                </div>
-                            </li>
-
-                        </ul>
-
-                    </nav>
-                    <!-- End of Topbar -->
-
-                    <!-- Begin Page Content -->
-                    <div class="container-fluid">
-
-
-		{% block content %}{% endblock content %}
-
-	</div>
-	<!-- /.container-fluid -->
-
-</div>
-<!-- End of Main Content -->
-
-
-</div>
-<!-- End of Content Wrapper -->
-
-</div>
-<!-- End of Page Wrapper -->
-
-<!-- Scroll to Top Button-->
-<a class="scroll-to-top rounded" href="#page-top">
-<i class="fas fa-angle-up"></i>
-</a>
-
-
-<!-- ----------------------------------END OF NAVBAR---------------------------------------------- -->
-
-		<!-- Bootstrap core JavaScript-->
-	    <!-- <script src="vendor/jquery/jquery.min.js"></script> -->
-			<script src="{% static 'vendor/jquery/jquery.min.js' %}"></script>
-	    <!-- <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script> -->
-	<script src="{% static 'vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
-
-	    <!-- Core plugin JavaScript-->
-	    <!-- <script src="vendor/jquery-easing/jquery.easing.min.js"></script> -->
-				<script src="{% static 'vendor/jquery-easing/jquery.easing.min.js' %}"></script>
-
-	    <!-- Custom scripts for all pages-->
-	    <!-- <script src="js/sb-admin-2.min.js"></script> -->
-			<script src="{% static 'js/sb-admin-2.min.js' %}"></script>
+                                    <!-- Dropdown - User Information -->
+                                    <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
+                                        <a class="dropdown-item" href="{% url 'profile' user.id %}">
+                                            <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i> Profile
+                                        </a>
+                                        <a class="dropdown-item" href="/project/new"><i
+                                                class="fas fa-plus-square fa-sm fa-fw mr-2 text-gray-400"></i>Create New
+                                            Project</a>
+                                        <a class="dropdown-item" href="/profile/projects/applied"><i
+                                                class="fas fa-address-card fa-sm fa-fw mr-2 text-gray-400"></i>Projects
+                                            Applied for</a>
+                                        <a class="dropdown-item" href="/profile/projects/floated"><i
+                                                class="fas fa-laptop-code mr-2 fa-sm fa-fw text-gray-400"></i>Projects
+                                            Floated by me</a>
+                                        <a class="dropdown-item" href="/profile/projects/requested"><i
+                                                class="fas fa-pager fa-fw mr-2 fa-sm fa-fw text-gray-400"></i>Projects
+                                            Requested for</a>
+                                        <a class="dropdown-item" href="/profile/projects/starred"><i
+                                                class="fas fa-star fa-fw mr-2 fa-sm fa-fw text-gray-400"></i>Starred
+                                            Projects</a>
+                                        <div class="dropdown-divider"></div>
+                                        <a class="dropdown-item" href="{% url 'logout' %}">
+                                            <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i> Logout
+                                        </a>
+                                    </div>
+                                </li>
+                            </ul>
+                        </nav>
+                        <!-- End of Topbar -->
+                        <!-- Begin Page Content -->
+                        <div class="container-fluid">
+                            {% block content %}{% endblock content %}
+                        </div>
+                        <!-- /.container-fluid -->
+                    </div>
+                    <!-- End of Main Content -->
+                </div>
+                <!-- End of Content Wrapper -->
+            </div>
+            <!-- End of Page Wrapper -->
+            <!-- Scroll to Top Button-->
+            <a class="scroll-to-top rounded" href="#page-top">
+                <i class="fas fa-angle-up"></i>
+            </a>
 
 
-	</body>
+            <!-- ----------------------------------END OF NAVBAR---------------------------------------------- -->
+
+            <!-- Bootstrap core JavaScript-->
+            <!-- <script src="vendor/jquery/jquery.min.js"></script> -->
+            <script src="{% static 'vendor/jquery/jquery.min.js' %}"></script>
+            <!-- <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script> -->
+            <script src="{% static 'vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+            <!-- Core plugin JavaScript-->
+            <!-- <script src="vendor/jquery-easing/jquery.easing.min.js"></script> -->
+            <script src="{% static 'vendor/jquery-easing/jquery.easing.min.js' %}"></script>
+            <!-- Custom scripts for all pages-->
+            <!-- <script src="js/sb-admin-2.min.js"></script> -->
+            <script src="{% static 'js/sb-admin-2.min.js' %}"></script>
+        </body>
+
 </html>

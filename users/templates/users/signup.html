@@ -1,63 +1,47 @@
-{% extends 'users/base.html' %}
-{% load crispy_forms_tags %}
+{% extends 'users/base.html' %} {% load crispy_forms_tags %} 
 {% block content %}
+
+{% block signupBlockPage %}
 <body class="bg-gradient-primary">
-
     <div class="container">
-
         <div class="card o-hidden border-0 shadow-lg my-5">
             <div class="card-body p-0">
-                <!-- Nested Row within Card Body -->
                 <div class="row">
                     <div class="col-lg-5 d-none d-lg-block bg-register-image"></div>
                     <div class="col-lg-7">
                         <div class="p-5" style="margin-left: 20%">
-                            <img src="https://wiki.iitmandi.co.in/images/thumb/8/87/AcademicCouncillogo.png/450px-AcademicCouncillogo.png" width="90%" height="90%" >
+                            <img src="https://wiki.iitmandi.co.in/images/thumb/8/87/AcademicCouncillogo.png/450px-AcademicCouncillogo.png" width="90%" height="90%">
                             <br>
                             <br>
                             <div class="text-center">
                                 <h1 class="h4 text-gray-900 mb-4">Create an Account!</h1>
                             </div>
-                            {% comment %} <form class="user"> {% endcomment %}
                                 <div class="form-group row">
-										<div>
-											{% if messages %}
-												{% for message in messages %}
-													<div>{{message}}</div>
-												{% endfor %}
-											{% endif %}
-											<form method="POST" enctype="multipart/form-data">
-												{% csrf_token %}
-												<fieldset>
-													<legend>Sign Up</legend>
-													{{ user_form|crispy }}
-													{{ profile_form|crispy }}
-												</fieldset>
-
-										</div>
-
-
-
+                                    <div>
+                                        {% if messages %} {% for message in messages %}
+                                        <div>{{message}}</div>
+                                        {% endfor %} {% endif %}
+                                        <form method="POST" enctype="multipart/form-data">
+                                            {% csrf_token %}
+                                            <fieldset>
+                                                <legend>Sign Up</legend>
+                                                {{ user_form|crispy }} {{ profile_form|crispy }}
+                                            </fieldset>
+                                    </div>
                                 </div>
-								<div>
-									<button type="submit" class="btn btn-primary btn-user btn-block">Sign Up</button>
-								</div>
-
-                            {% comment %} </form> {% endcomment %}
-                            <hr>
-                            <div class="text-center">
-								Already have an account? | <a class="small" href="{% url 'login' %}">Log in</a>
-                            </div>
+                                <div>
+                                    <button type="submit" class="btn btn-primary btn-user btn-block">Sign Up</button>
+                                </div>
+                                <hr>
+                                <div class="text-center">
+                                    Already have an account? | <a class="small" href="{% url 'login' %}">Log in</a>
+                                </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-
     </div>
-
-
-
-
-
+</body>
+{% endblock signupBlockPage %}
 {% endblock content %}
