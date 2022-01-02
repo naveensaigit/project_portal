@@ -158,6 +158,10 @@ SOCIALACCOUNT_PROVIDERS = {
         # For each OAuth based provider, either add a ``SocialApp``
         # (``socialaccount`` app) containing the required client
         # credentials, or list them here:
+        'SCOPE': [
+            'profile',
+            'email',
+        ],
         'APP': {
             'client_id': '287293174124-sa09nhc6qophhhlhoa0mlca71gjpba1u.apps.googleusercontent.com',
             'secret': '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',
