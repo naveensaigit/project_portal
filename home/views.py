@@ -1,12 +1,14 @@
 from django.shortcuts import redirect, render
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
-from .models import Project
-from users.models import Notification
-from .forms import ProjectRegisterForm, ProjectUpdateForm
-from home.decorators import user_is_project_author
 from django.contrib.auth.models import User
+from django.core.mail import send_mail
+from django.conf import settings
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+from home.decorators import user_is_project_author
+from users.models import Notification
+from .models import Project
+from .forms import ProjectRegisterForm, ProjectUpdateForm
 from .filters import ProjectFilter
 
 @login_required
@@ -210,6 +212,12 @@ def projectTask(request):
                 notification=Notification(user=project.FloatedBy, project_requested = project, notification_from = request.user, title= "Apply Request", message=notification_message,url=project_url)
                 notification.save()
                 # Project Mail Notification to be implemented
+
+                subject = 'Project Apllication'
+                message = notification_message
+                email_from = settings.EMAIL_HOST_USER
+                recipient_list = [project.FloatedBy.email,]
+                send_mail( subject, message, email_from, recipient_list )
             else:
                 messages.warning(request,"You are not eligible to opt this project.")
     if task == "Withdraw":
