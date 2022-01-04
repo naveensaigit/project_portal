@@ -151,7 +151,7 @@ def projectUpdate(request):
         if project_update_form.is_valid():
             project_update_form.save()
             messages.success(request, "Project details has been updated!")
-            return redirect('project', project_id = project.id)
+            return redirect(f"/project/?project_id={project_id}")
         else:
             messages.error(request, 'Please correct the error below.')
     else:
@@ -208,11 +208,11 @@ def projectTask(request):
                 project.ApplyRequest.add(current_user)
                 messages.success(request,"Successfully Requested!")
                 notification_message=f"{current_user} has requested for {project} Project"
-                project_url = f"project/{project_id}"
+                project_url = f"/project/?project_id={project_id}"
                 notification=Notification(user=project.FloatedBy, project_requested = project, notification_from = request.user, title= "Apply Request", message=notification_message,url=project_url)
                 notification.save()
-                # Project Mail Notification to be implemented
 
+                # Mailing Work
                 subject = 'Project Apllication'
                 message = notification_message
                 email_from = settings.EMAIL_HOST_USER
@@ -240,21 +240,24 @@ def projectTask(request):
         url = f'/project/?project_id={project.id}'
     return redirect(url)
 
-
+@login_required
+@user_is_project_author
 def projectAccept(request):
     project_id = request.GET.get('project_id')
-    request_user_name = request.GET.get('request_user_name')
+    request_user_name = request.GET.get('request_user')
 
     project = Project.objects.get(id=project_id)
     request_user = User.objects.filter(username = request_user_name).first()
-    
+
     project.ApplyRequest.remove(request_user)
     project.AlreadyApplied.add(request_user)
     return redirect(f'/project/?project_id={project.id}')
 
+@login_required
+@user_is_project_author
 def projectReject(request):
     project_id = request.GET.get('project_id')
-    request_user_name = request.GET.get('request_user_name')
+    request_user_name = request.GET.get('request_user')
 
     project = Project.objects.get(id=project_id)
     request_user = User.objects.filter(username = request_user_name).first()

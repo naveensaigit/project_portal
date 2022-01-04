@@ -114,7 +114,7 @@
  {% for users in project.AlreadyApplied.all %}
     <li class="card1">
         <img src="{{users.profile.image.url}}" >
-        <h3>{{users}}</h3>
+        <a href="{% url 'profile' users.profile.id %}">{{users}}</a>
     </li>
 {% endfor %}
 </ul>
