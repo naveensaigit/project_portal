@@ -6,6 +6,15 @@
     overflow: hidden;
     width: 90%;
 }
+.avatar img {
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    left: -5px;
+    z-index: 1;
+}
+
+
 img {
     border-radius: 0.5rem 0.5rem 0 0;
     width: 100%;
