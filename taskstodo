@@ -1,10 +1,21 @@
-redirect not letting pass context
-oauth gmail id not taking
-mailing system
+---------- BACKEND ------------------
+oauth signup page correction
+mailing system completion
 sign up page all details after login
+-------------------------------------
 
+
+---------- FRONTENT ----------
 table of projects applicant
 color of font of author
+------------------------------
+
+
+
+
+
+
+
 
 # request.POST is actually a dictionary containing all the form fields as key and there form values as values for respective keys
 # request.user -> person creating request i.e. person logged in django-admin
@@ -13,14 +24,3 @@ color of font of author
 # we could manually also save the data
 # newuserprofile = Profile(user = newuser, rollno = request.Post.rollno ............)
 # newuserprofile.save()
-
-# Database queries
-	# Profile.objects.all() -> it gives queryset
-	# Profile.objects.all().first() -> first element of queryset
-	# Profile.objects.filter(<anyfilter like username = 'rajat'>)
-	# tempvar = Profile(user = User.objects.all().first(),rollno = 'B20123'...)
-	# tempvar.rollno -> accessing fields
-	# tempvar.save()
-
-# https://ugac-project-portal.herokuapp.com
-# http://ugac-project-portal.herokuapp.com/accounts/google/login/callback/
