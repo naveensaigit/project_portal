@@ -17,6 +17,22 @@ color of font of author
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 # request.POST is actually a dictionary containing all the form fields as key and there form values as values for respective keys
 # request.user -> person creating request i.e. person logged in django-admin
 

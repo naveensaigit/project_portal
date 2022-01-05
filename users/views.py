@@ -72,6 +72,7 @@ def profile(request, user_id):
 
     return render(request, 'users/profile.html', context)
 
+@login_required
 def profile_edit(request):
     if request.method == 'POST':
         user_update_form = UserUpdateForm(request.POST, instance = request.user)
@@ -108,6 +109,7 @@ def profile_edit(request):
 
     return render(request, 'users/profile_edit.html', context)
 
+@login_required
 def projects_floated(request):
     all_project_list = Project.objects.all().filter(FloatedBy = request.user).order_by('-DatePosted')
     myFilter = ProjectFilter(request.GET,queryset=all_project_list)
@@ -125,6 +127,7 @@ def projects_floated(request):
 
     return render(request, 'users/profile_floated.html', context)
 
+@login_required
 def projects_applied(request):
     all_project_list = Project.objects.all().filter(AlreadyApplied = request.user).order_by('-DatePosted')
     myFilter = ProjectFilter(request.GET,queryset=all_project_list)
@@ -139,6 +142,7 @@ def projects_applied(request):
 
     return render(request, 'users/profile_applied.html', context)
 
+@login_required
 def projects_starred(request):
     projects_starred = request.user.profile.starred_projects.all()
     myFilter = ProjectFilter(request.GET, queryset=projects_starred)
@@ -156,6 +160,7 @@ def projects_starred(request):
 
     return render(request, 'users/profile_starred.html', context)
 
+@login_required
 def projects_requested(request):
     all_project_list = Project.objects.all().filter(ApplyRequest = request.user).order_by('-DatePosted')
     myFilter = ProjectFilter(request.GET,queryset=all_project_list)
