@@ -1,14 +1,8 @@
 .blog-container {
     background: #fff;
-    border: 1px solid rgba(0, 0, 0, 0.25);
-    box-sizing: border-box;
+    box-shadow: 3px 6px 10px lightblue;
     border-radius: 10px;
-    font-family: Public Sans;
-    font-style: normal;
-    font-weight: 500;
-    font-size: 20px;
-    line-height: 23px;
-    color: #404040;
+    font-family: "adelle-sans", sans-serif;
     font-weight: 100;
     margin: 48px auto;
     width: 20rem;
@@ -19,10 +13,9 @@
     position: relative;
     display: flex;
     flex-direction: column;
-    width: 280px;
-    height: 110px;
+    min-width: 0;
     word-wrap: break-word;
-    background-color: #EBEBEB;
+    background-color: #fff;
     background-clip: border-box;
     /* border-left: 5px solid #EE7210; */
     border-radius: 0.35rem;
@@ -47,13 +40,9 @@
 }
 
 .blog-container a {
-    color: #404040;
+    color: #4d4dff;
     text-decoration: none;
     transition: 0.25s ease;
-    width: 429px;
-    height: 33px;
-    left: 31px;
-    top: 77px;
 }
 
 .blog-container a:hover {
@@ -117,21 +106,12 @@
 }
 
 .blog-title h1 a {
-    font-family: Public Sans;
-    font-style: normal;
-    font-weight: bold;
-    font-size: 28px;
-    line-height: 33px;
-    color: #404040;
+    color: black;
+    font-weight: 100;
 }
 
 .blog-summary p {
-    font-family: Public Sans;
-    font-style: normal;
-    font-weight: 300;
-    font-size: 16px;
-    line-height: 19px;
-    color: #404040;
+    color: #4d4d4d;
 }
 
 .blog-tags ul {
@@ -142,44 +122,30 @@
     padding-left: 0;
 }
 
-.blog-tags li:nth-child(1) a {
-  background: #BEFFE0;
-}
-
-.blog-tags li:nth-child(2) a {
-  background: #C9D8FF;
-}
-
-.blog-tags li:nth-child(3) a {
-  background: #FFD493;
-}
-
 .blog-tags li+li {
     margin-left: 0.5rem;
 }
 
 .blog-tags a {
-    border: 1px solid rgba(0, 0, 0, 0.25);
-    box-sizing: border-box;
-    height: 35px;
-    top: 224px;
-    border-radius: 15px;
+    border: 1px solid #999999;
+    border-radius: 3px;
+    color: #999999;
+    font-size: 0.75rem;
+    height: 1.5rem;
+    line-height: 1.5rem;
+    letter-spacing: 1px;
     padding: 0 0.5rem;
     text-align: center;
     text-transform: uppercase;
     white-space: nowrap;
-    width: 82px;
-    font-family: Public Sans;
-    font-style: normal;
-    font-weight: 300;
-    font-size: 12px;
-    line-height: 14px;
+    width: 5rem;
 }
 
 .blog-footer {
-    /*border-top: 1px solid rgba(0, 0, 0, 0.25);*/
-    /*width: 300px;*/
-    /*top: 289px;*/
+    border-top: 1px solid #e6e6e6;
+    margin: 0 auto;
+    padding-bottom: 0.125rem;
+    width: 80%;
 }
 
 .blog-footer ul {
