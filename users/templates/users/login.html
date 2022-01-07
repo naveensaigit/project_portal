@@ -1,4 +1,9 @@
-{% extends 'users/base.html' %} {% load crispy_forms_tags %} {% block content %}
+{% extends 'users/base.html' %} {% load crispy_forms_tags %}
+{% block stylesheets %}
+{#<link rel="stylesheet" type="text/css" href="{% static 'home/style.css' %}">#}
+{#<link rel="stylesheet" type="text/css" href="{% static 'home/cards.css' %}">#}
+{% endblock stylesheets %}
+{% block content %}
 
 {% block loginPageBlock %}
 <div class="bg-gradient-primary">
