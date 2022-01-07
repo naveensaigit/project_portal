@@ -3,16 +3,33 @@
 
 {% load crispy_forms_tags %} 
 {% block cardBlock %}
+
+<style>
+    .vertical-line{
+    width:10px;
+    height:100px;
+    background-color:#19258c;
+    margin-left:20px;
+    margin-right:30px;
+}
+</style>
+
 <div class="row">
+<<<<<<< HEAD
     <div class="col-xl-3 col-md-6 mb-4">
         <div class="card vertical shadow h-100 py-2">
+=======
+    <div class="col-xl-3 col-md-6 mb-4" style="padding: 0rem 1.25rem;" >
+        <div class="card shadow">
+>>>>>>> 1aa714b (top cards css added)
             <div class="card-body">
                 <div class="row no-gutters align-items-center">
-                    <div class="col mr-2">
-                        <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
-                            <a href="/profile/projects/applied" style="color:#36b9cc">Projects Applied</a>
+                    <div class = "vertical-line"></div>
+                    <div class="col mr-2" >
+                        <div class="text-xs font-weight-bold text-warning text-uppercase mb-3">
+                            <a href="/profile/projects/applied">Projects Applied</a>
                         </div>
-                        <div class="h5 mb-0 font-weight-bold text-gray-800">{{ num_projects_applied }}</div>
+                        <div class="h3  font-weight-bold text-gray-800">{{ num_projects_applied }}</div>
                     </div>
                     <!-- <div class="col-auto">
             <i class="fas fa-comments fa-2x text-gray-300"></i>
@@ -22,15 +39,21 @@
         </div>
     </div>
 
+<<<<<<< HEAD
     <div class="col-xl-3 col-md-6 mb-4">
         <div class="card vertical shadow h-100 py-2">
+=======
+    <div class="col-xl-3 col-md-6 mb-4" style="padding: 0rem 1.25rem;">
+        <div class="card  shadow">
+>>>>>>> 1aa714b (top cards css added)
             <div class="card-body">
                 <div class="row no-gutters align-items-center">
+                    <div class = "vertical-line"></div>
                     <div class="col mr-2">
-                        <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
-                            <a href="/profile/projects/floated" style="color:#36b9cc">Projects Floated</a>
+                        <div class="text-xs font-weight-bold text-warning text-uppercase mb-3">
+                            <a href="/profile/projects/floated">Projects Floated</a>
                         </div>
-                        <div class="h5 mb-0 font-weight-bold text-gray-800">{{ num_projects_floated }}</div>
+                        <div class="h3  font-weight-bold text-gray-800">{{ num_projects_floated }}</div>
                     </div>
                     <!-- <div class="col-auto">
             <i class="fas fa-comments fa-2x text-gray-300"></i>
@@ -41,15 +64,21 @@
     </div>
 
 
+<<<<<<< HEAD
     <div class="col-xl-3 col-md-6 mb-4">
         <div class="card vertical shadow h-100 py-2">
+=======
+    <div class="col-xl-3 col-md-6 mb-4" style="padding: 0rem 1.25rem;">
+        <div class="card  shadow">
+>>>>>>> 1aa714b (top cards css added)
             <div class="card-body">
                 <div class="row no-gutters align-items-center">
+                    <div class = "vertical-line"></div>
                     <div class="col mr-2">
-                        <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
-                            <a href="/profile/projects/requested" style="color:#36b9cc">Projects Requested</a>
+                        <div class="text-xs font-weight-bold text-warning text-uppercase mb-3">
+                            <a href="/profile/projects/requested">Projects Requested</a>
                         </div>
-                        <div class="h5 mb-0 font-weight-bold text-gray-800">{{ num_projects_req }}</div>
+                        <div class="h3  font-weight-bold text-gray-800">{{ num_projects_req }}</div>
                     </div>
                     <!-- <div class="col-auto">
             <i class="fas fa-comments fa-2x text-gray-300"></i>
@@ -60,15 +89,21 @@
     </div>
 
 
+<<<<<<< HEAD
     <div class="col-xl-3 col-md-6 mb-4">
         <div class="card vertical shadow h-100 py-2">
+=======
+    <div class="col-xl-3 col-md-6 mb-4" style="padding: 0rem 1.25rem;">
+        <div class="card  shadow">
+>>>>>>> 1aa714b (top cards css added)
             <div class="card-body">
                 <div class="row no-gutters align-items-center">
+                    <div class = "vertical-line"></div>
                     <div class="col mr-2">
-                        <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
-                            <a href="/profile/projects/starred" style="color:#36b9cc">Projects Starred</a>
+                        <div class="text-xs font-weight-bold text-warning text-uppercase mb-3">
+                            <a href="/profile/projects/starred">Projects Starred</a>
                         </div>
-                        <div class="h5 mb-0 font-weight-bold text-gray-800">{{ user.profile.starred_projects.count }}
+                        <div class="h3  font-weight-bold text-gray-800">{{ user.profile.starred_projects.count }}
                         </div>
                     </div>
                     <!-- <div class="col-auto">
