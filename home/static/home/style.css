@@ -2800,7 +2800,7 @@ textarea.form-control.is-invalid {
 }
 
 .btn {
-    display: inline-block; */
+    display: inline-block; 
     -moz-user-select: none;
     -ms-user-select: none;
     border: 1px solid transparent;
