@@ -391,7 +391,7 @@
 }
 
 html {
-    font-family: 'Montserrat', sans-serif;
+    font-family: 'Public Sans', sans-serif;
     line-height: 1.15;
     background-color: #f8f9fc;
     -webkit-text-size-adjust: 100%;
@@ -422,7 +422,7 @@ body {
     background-color: #858796;
     text-align: left;
     background-color: #fff;
-    font-family: 'Montserrat', sans-serif;
+    font-family: 'Public Sans', sans-serif;
 }
 
 [tabindex="-1"]:focus:not(:focus-visible) {
