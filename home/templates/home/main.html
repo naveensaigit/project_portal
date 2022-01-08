@@ -1,7 +1,7 @@
-{% extends 'home/base.html' %} 
-{% block content %} 
+{% extends 'home/base.html' %}
+{% block content %}
 
-{% load crispy_forms_tags %} 
+{% load crispy_forms_tags %}
 {% block cardBlock %}
 <div class="row">
     <div class="col-xl-3 col-md-6 mb-4">
@@ -79,7 +79,7 @@
         </div>
     </div>
 </div>
-{% endblock cardBlock %} 
+{% endblock cardBlock %}
 
 {% block messageBlock %}
 {% if messages %} {% for message in messages %}
@@ -95,6 +95,99 @@
 
   <br>
 
+  <form method="get" class="form-inline justify-content-lg-center h5 mb-0 font-weight-bold text-gray-800 " style="width: 100%;">
+<div class="" style="padding-right:23px;width: 263px;">
+
+
+    <label for="id_Status" style= "font-size: 16px; font-weight: 300;float: left; ">Status</label>
+
+
+      <select name="Status" id="id_Status" style="background-color:#EBEBEB; border: 1px solid rgba(0, 0, 0, 0.25); border-radius: 5px;width:242px; height:44px;">
+  <option value="" selected=""></option>
+
+  <option value="Open">Open</option>
+
+  <option value="Ongoing">Ongoing</option>
+
+  <option value="Completed">Completed</option>
+
+</select>
+</div>
+
+
+<div class="" style="padding-right:23px; width: 263px;">
+
+
+    <label for="id_Difficulty" style= "font-size: 16px; font-weight: 300;float: left; ">Difficulty</label>
+
+
+      <select name="Difficulty" id="id_Difficulty" style="background-color:#EBEBEB; border: 1px solid rgba(0, 0, 0, 0.25); border-radius: 5px;width:242px; height:44px;">
+  <option value="" selected=""></option>
+
+  <option value="Beginner">Beginner</option>
+
+  <option value="Intermediate">Intermediate</option>
+
+  <option value="Hard">Hard</option>
+
+</select>
+
+
+
+</div>
+<div class="" style="padding-right:23px;width: 263px;">
+
+
+    <label for="id_Duration" style= "font-size: 16px; font-weight: 300; float: left;">Duration</label>
+
+
+      <input type="text" name="Duration" id="id_Duration" style="background-color:#EBEBEB; border: 1px solid rgba(0, 0, 0, 0.25); border-radius: 5px;width:242px; height:44px;">
+
+
+
+
+
+</div>
+<div class="" style="padding-right:23px;width: 263px;">
+    <label for="id_FloatedBy" style= "font-size: 16px; font-weight: 300;float: left; ">FloatedBy</label>
+
+
+      <select name="FloatedBy" id="id_FloatedBy" style="background-color:#EBEBEB; border: 1px solid rgba(0, 0, 0, 0.25); border-radius: 5px; width:242px; height:44px;">
+  <option value="" selected=""></option>
+
+  <option value="1">lazyghost</option>
+
+  <option value="2">tempuser1</option>
+
+  <option value="3">tempuser2</option>
+
+  <option value="4">tempuser3</option>
+
+  <option value="5">rajat</option>
+
+  <option value="6">test</option>
+
+  <option value="7">b20286</option>
+
+  <option value="8">tempuser123</option>
+
+
+</select>
+</div>
+
+
+<div class="" style="padding-top: 25px;">
+
+
+
+
+    <button class="btn btn-primary" type="Submit" style= "width: 95px; height: 33px; margin-left:0px; background: #19258C;
+border-radius: 5px;">Filter</button>
+</div>
+  </form>
+
+
+
   {% block filterBlock %}
   <!-- Filter options -->
   <form method="get" class="form-inline justify-content-lg-center h5 mb-0 font-weight-bold text-gray-800 " style="width: 100%;">
@@ -102,8 +195,8 @@
     <button class="btn btn-primary" type="Submit">Filter</button>
   </form>
   {% endblock filterBlock %}
-  
-  
+
+
     {% block allProjectsBlock %}
     <div style="display: flex; flex-wrap: wrap;">
         {% for project in projects %}
@@ -191,9 +284,9 @@
         <li><a href="/?page={{ projects.next_page_number }}">&raquo;</a></li>
         {% endif %} {% endif %}
     </ul>
-    {% endif %} {% endwith %} 
+    {% endif %} {% endwith %}
     {% endblock paginationBlock %}
 {% endblock mainContentBlock %}
 {% block extraBlock %}{% endblock extraBlock %}
-    
+
 {% endblock content %}
