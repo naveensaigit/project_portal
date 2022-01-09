@@ -23,7 +23,7 @@ border-top: 1px solid rgba(0, 0, 0, 0.25);
 }
 </style>
 
-<div class="row">
+<div class="row justify-content-center">
     <div class="col-xl-3 col-md-6 mb-4" style="padding: 0rem 1.25rem;" >
         <div class="card shadow">
             <div class="card-body">
@@ -178,8 +178,8 @@ border-top: 1px solid rgba(0, 0, 0, 0.25);
     <label for="id_FloatedBy" style= "font-size: 16px; font-weight: 300;float: left; ">FloatedBy</label>
 
 
-      <select name="FloatedBy" id="id_FloatedBy" style="background-color:#EBEBEB; border: 1px solid rgba(0, 0, 0, 0.25); border-radius: 5px; width:242px; height:44px;">
-  <option value="" selected=""></option>
+      <select name="FloatedBy" id="id_FloatedBy" class="js-example-basic-multiple" multiple="multiple" style="background-color:#EBEBEB; border: 1px solid rgba(0, 0, 0, 0.25); border-radius: 5px;width:242px; height:44px;">
+        <option value='' selected='true'> </option>
 
   {% for mentor in mentors %}
      <option value='{{mentor.id}}'>{{ mentor }}</option>
@@ -213,7 +213,7 @@ border-radius: 5px;">Filter</button>
 
 
     {% block allProjectsBlock %}
-    <div style="display: flex; flex-wrap: wrap;">
+    <div class="justify-content-center" style="display: flex; flex-wrap: wrap;">
         {% for project in projects %}
         <div class="blog-container" style="flex: 1 0 45%; margin: 30px; width: 600px; height: 289px; max-width: 600px;">
             <div class="blog-header" style="display: flex; flex-wrap: wrap;">
@@ -312,7 +312,8 @@ border-radius: 5px;">Filter</button>
         {% endif %} {% endif %}
     </ul>
     {% endif %} {% endwith %}
-    {% endblock paginationBlock %}
+    {% endblock paginationBlock %}.
+
 {% endblock mainContentBlock %}
 {% block extraBlock %}{% endblock extraBlock %}
 
