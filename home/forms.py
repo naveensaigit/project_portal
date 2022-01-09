@@ -36,10 +36,10 @@ class ProjectRegisterForm(forms.ModelForm):
         ('OFF','OFF'),
     )
     
-    Mentors = forms.ModelMultipleChoiceField(
-        queryset=User.objects.all(),
-        widget = forms.CheckboxSelectMultiple(),
-    )
+    # Mentors = forms.ModelMultipleChoiceField(
+    #     queryset=User.objects.all(),
+    #     widget = forms.CheckboxSelectMultiple(),
+    # )
     OpenedFor = forms.MultipleChoiceField(
         label="Opened For", choices=CHOICES, required=True,
         widget = forms.CheckboxSelectMultiple(),    
@@ -78,10 +78,10 @@ class ProjectUpdateForm(forms.ModelForm):
         ('ON','ON'),
         ('OFF','OFF'),
     )
-    Mentors = forms.ModelMultipleChoiceField(
-        queryset=User.objects.all(),
-        widget = forms.CheckboxSelectMultiple(),
-    )
+    # Mentors = forms.ModelMultipleChoiceField(
+    #     queryset=User.objects.all(),
+    #     widget = forms.CheckboxSelectMultiple(),
+    # )
     OpenedFor = forms.MultipleChoiceField(
         label="Opened For", choices=CHOICES, required=True,
         widget = forms.CheckboxSelectMultiple(),    

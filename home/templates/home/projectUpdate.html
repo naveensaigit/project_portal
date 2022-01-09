@@ -42,6 +42,15 @@
 	<br>
 	<br>
 </div>
-
+<script>
+	var mentor = document.getElementById("id_Mentors");  // Get the <a> element with id="mymentor"
+	var att = document.createAttribute("multiple");        // Create a "href" attribute
+	att.value = "multiple";            // Set the value of the href attribute
+	mentor.setAttributeNode(att);  
+	console.log(mentor);
+    $(document).ready(function(){
+        $("#id_Mentors").select2();
+    });
+</script>
 {% endblock projectUpdatePageBlock %}
 {% endblock content %}
