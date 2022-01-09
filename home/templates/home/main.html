@@ -178,7 +178,7 @@ border-top: 1px solid rgba(0, 0, 0, 0.25);
     <label for="id_FloatedBy" style= "font-size: 16px; font-weight: 300;float: left; ">FloatedBy</label>
 
 
-      <select name="FloatedBy" id="id_FloatedBy" class="js-example-basic-multiple" multiple="multiple" style="background-color:#EBEBEB; border: 1px solid rgba(0, 0, 0, 0.25); border-radius: 5px;width:242px; height:44px;">
+      <select name="FloatedBy" id="id_FloatedBy" class="searchable-select" style="background-color:#EBEBEB; border: 1px solid rgba(0, 0, 0, 0.25); border-radius: 5px;width:242px; height:44px;">
         <option value='' selected='true'> </option>
 
   {% for mentor in mentors %}
@@ -189,6 +189,11 @@ border-top: 1px solid rgba(0, 0, 0, 0.25);
 
 </select>
 </div>
+<script>
+    $(document).ready(function(){
+        $(".searchable-select").select2();
+    });//document ready
+</script>
 
 
 <div class="" style="padding-top: 25px;">
