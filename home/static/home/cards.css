@@ -253,3 +253,14 @@
     -webkit-line-clamp: 3;
     -webkit-box-orient: vertical;
 }
+
+.demo-a {
+    /* overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  max-width: 350ch; */
+    display: -webkit-box;
+    overflow: hidden;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+}

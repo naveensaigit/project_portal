@@ -51,7 +51,7 @@ def main(request):
 
     page = request.GET.get('page', 1)
 
-    paginator = Paginator(projects, 5)
+    paginator = Paginator(projects, 6)
     try:
         projects = paginator.page(page)
     except PageNotAnInteger:
