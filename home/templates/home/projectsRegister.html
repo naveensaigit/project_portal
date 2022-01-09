@@ -23,7 +23,7 @@
 		<h2>Create New Project</h2>
 	</div>
 	<div>
-		<form method="POST ">
+		<form method="POST">
 			{% csrf_token %}
 			<fieldset>
 				{{ project_form|crispy }}
