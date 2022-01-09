@@ -61,6 +61,7 @@ def main(request):
 
     context = {
         'title': 'Home',
+        'mentors':User.objects.all(),
         'projects': projects,
         'user_projects_id': user_projects_id,
         'user_starred_projects_id' : user_starred_projects_id,

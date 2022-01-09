@@ -14,7 +14,7 @@
 }
 
 .cards-hr{
-    
+
 height: 0px;
 left: 87px;
 top: 280px;
@@ -105,7 +105,7 @@ border: 1px solid rgba(0, 0, 0, 0.25);
 </div>
 
 <hr class="cards-hr">
-{% endblock cardBlock %} 
+{% endblock cardBlock %}
 
 {% block messageBlock %}
 {% if messages %} {% for message in messages %}
@@ -181,21 +181,10 @@ border: 1px solid rgba(0, 0, 0, 0.25);
       <select name="FloatedBy" id="id_FloatedBy" style="background-color:#EBEBEB; border: 1px solid rgba(0, 0, 0, 0.25); border-radius: 5px; width:242px; height:44px;">
   <option value="" selected=""></option>
 
-  <option value="1">lazyghost</option>
+  {% for mentor in mentors %}
+     <option value='{{mentor.id}}'>{{ mentor }}</option>
+ {% endfor %}
 
-  <option value="2">tempuser1</option>
-
-  <option value="3">tempuser2</option>
-
-  <option value="4">tempuser3</option>
-
-  <option value="5">rajat</option>
-
-  <option value="6">test</option>
-
-  <option value="7">b20286</option>
-
-  <option value="8">tempuser123</option>
 
 
 </select>
@@ -214,13 +203,13 @@ border-radius: 5px;">Filter</button>
 
 
 
-  {% block filterBlock %}
-  <!-- Filter options -->
+  <!-- {% block filterBlock %}
+
   <form method="get" class="form-inline justify-content-lg-center h5 mb-0 font-weight-bold text-gray-800 " style="width: 100%;">
     {{ myFilter.form }}
     <button class="btn btn-primary" type="Submit">Filter</button>
   </form>
-  {% endblock filterBlock %}
+  {% endblock filterBlock %} -->
 
 
     {% block allProjectsBlock %}
