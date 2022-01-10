@@ -3,10 +3,11 @@
 {% load static %}
 
 {% block stylesheets %}
-<link rel="stylesheet" type="text/css" href="{% static 'users/cards.css' %}">
 <link rel="stylesheet" type="text/css" href="{% static 'home/style.css' %}">
 {% endblock stylesheets %}
-
+{% block customStylesheets %}
+<link rel="stylesheet" type="text/css" href="{% static 'users/cards.css' %}">
+{% endblock customStylesheets %}
 
 {% block cardBlock %}{% endblock cardBlock %}
 {% block mainContentBlock %}

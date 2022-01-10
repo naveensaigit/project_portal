@@ -1,16 +1,5 @@
 {% extends 'home/main.html' %} {% load static %} 
 
-{% block stylesheets %}
-<link rel="stylesheet" type="text/css" href="{% static 'home/style.css' %}">
-<link rel="stylesheet" type="text/css" href="{% static 'home/cards.css' %}">
-{% endblock stylesheets %} 
-
-{% comment %} 
-{% if user.id != profile_user.id %} 
-{% block cardBlock %}{% endblock cardBlock %} 
-{% endif %} 
-{% endcomment %} 
-
 {% block mainContentBlock %}
 <div class="container">
     <div class="main-body">

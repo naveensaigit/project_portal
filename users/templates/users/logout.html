@@ -1,10 +1,8 @@
 {% extends 'users/base.html' %}
 {% block stylesheets %}
-{#<link rel="stylesheet" type="text/css" href="{% static 'home/style.css' %}">#}
-{#<link rel="stylesheet" type="text/css" href="{% static 'home/cards.css' %}">#}
 {% endblock stylesheets %}
 {% block content %}
-{% block logoutPageBlock %}
+
 <body class="bg-gradient-primary">
     <div class="container">
         <!-- Outer Row -->
@@ -40,7 +38,7 @@
                                     <br>
                                     <br>
                                     <a class="btn btn-primary btn-user btn-block" href="{% url 'login' %}">Log In
-										Again</a>
+                                        Again</a>
                                     <a class="btn btn-primary btn-user btn-block" href="{% url 'signup' %}">Sign Up</a>
                                     <div class="text-center">
                                         <div class="small">
@@ -55,5 +53,4 @@
             </div>
         </div>
     </div>
-{% endblock logoutPageBlock %}
-{% endblock content %}
+    {% endblock content %}
