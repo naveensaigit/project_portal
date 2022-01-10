@@ -50,7 +50,6 @@ def main(request):
 
 
     page = request.GET.get('page', 1)
-
     paginator = Paginator(projects, 6)
     try:
         projects = paginator.page(page)
@@ -59,9 +58,13 @@ def main(request):
     except EmptyPage:
         projects = paginator.page(paginator.num_pages)
 
+    for project in projects:
+        prereqs = str(project.PreRequisite).split('\r\n')
+        project.PreRequisite = prereqs
+
     context = {
         'title': 'Home',
-        'mentors':User.objects.all(),
+        'allusers':User.objects.all(),
         'projects': projects,
         'user_projects_id': user_projects_id,
         'user_starred_projects_id' : user_starred_projects_id,
@@ -214,11 +217,12 @@ def projectTask(request):
                 notification.save()
 
                 # Mailing Work
-                subject = 'Project Apllication'
-                message = notification_message
-                email_from = settings.EMAIL_HOST_USER
-                recipient_list = [project.FloatedBy.email,]
-                send_mail( subject, message, email_from, recipient_list )
+                if project.MailNotification == "On":
+                    subject = 'Project Application'
+                    message = notification_message
+                    email_from = settings.EMAIL_HOST_USER
+                    recipient_list = [project.FloatedBy.email,]
+                    send_mail( subject, message, email_from, recipient_list )
             else:
                 messages.warning(request,"You are not eligible to opt this project.")
     if task == "Withdraw":

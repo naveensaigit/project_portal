@@ -1,9 +1,7 @@
 ---------- BACKEND ------------------
 oauth signup page correction
-mailing system completion
 sign up page all details after login
 Clear filter
-Seperating prerequisites as tags
 Like button
 -------------------------------------
 
@@ -11,7 +9,6 @@ Like button
 ---------- FRONTEND ----------
 table of projects applicant
 Button for more tags (once the prequisite seperation work is completed)
-
 ------------------------------
 
 

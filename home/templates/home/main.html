@@ -136,8 +136,8 @@
             <label for="id_FloatedBy" style="font-size: 16px; font-weight: 300;float: left; ">FloatedBy</label>
             <select name="FloatedBy" id="id_FloatedBy" class="searchable-select" style="background-color:#EBEBEB; border: 1px solid rgba(0, 0, 0, 0.25); border-radius: 5px;width:242px; height:44px;">
                 <option value='' selected='true'> </option>
-                {% for mentor in mentors %}
-                <option value='{{mentor.id}}'>{{ mentor }}</option>
+                {% for USER in allusers %}
+                <option value='{{USER.id}}'>{{ USER }}</option>
                 {% endfor %}
             </select>
         </div>
@@ -172,9 +172,11 @@
                     <ul>
                         <li><a>{{project.Status}}</a></li>
                         <li><a>{{project.Difficulty}}</a></li>
-                        {% if project.PreRequisite %}
-                        <li><a>{{project.PreRequisite}}</a></li>
-                        {% endif %}
+                        {% for pre_req in project.PreRequisite %}
+                            {% if pre_req %}
+                                <li><a>{{pre_req}}</a></li>
+                            {% endif %}
+                        {% endfor %}
                     </ul>
                 </div>
             </div>
