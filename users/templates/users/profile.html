@@ -1,8 +1,8 @@
-{% extends 'home/main.html' %} {% load static %} 
+{% extends 'home/base.html' %} {% load static %}
 
-{% block mainContentBlock %}
-<div class="container">
-    <div class="main-body">
+{% block content %}
+<div class="container" style="margin-left: 0px;">
+    <div class="main-body" >
 
       {% block messageBlock %}
       {% if messages %} {% for message in messages %}
@@ -10,110 +10,57 @@
       {% endfor %} {% endif %}
       {% endblock messageBlock %}
 
-        <div class="row gutters-sm">
-            <div class="col-md-4 mb-3">
-                <div class="card">
-                    <div class="card-body" style="box-shadow: 3px 6px 10px lightgrey; border-radius: 10px;">
+        <div class="row gutters-sm" >
+            <div class="col-md-4 mb-3" >
+                <div class="card" style="width: 400px; height: 900px; margin-top: 90px;">
+                    <div class="card-body" style="box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.25); background: #F7F4F4; border-radius: 10px;">
                         <div class="d-flex flex-column align-items-center text-center">
-                            <img src="{{ profile_user.profile.image.url }}" alt="" style="height:100px;height:200px; border-radius: 100%;">
-                            <div class="mt-3">
-                                <h4>{{ profile_user.first_name }} {{ profile_user.last_name }}</h4>
-                                <p class="text-secondary mb-1">{{ profile_user.profile.year }} Year</p>
-                                <p class="text-muted font-size-sm">{{ profile_user.profile.branch }}</p>
-                            </div>
+                            <img src="{{ profile_user.profile.image.url }}" alt="" style="margin-top: 24px; height:200px;height:200px; border-radius: 100%;">
                         </div>
-                    </div>
-                </div>
-                <div class="card mt-3" style="box-shadow: 3px 6px 10px lightgrey; border-radius: 10px;">
-                    <ul class="list-group list-group-flush">
-                        <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
-                            <h6 class="mb-0"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-globe mr-2 icon-inline">
-                  <circle cx="12" cy="12" r="10"></circle>
-                  <line x1="2" y1="12" x2="22" y2="12"></line>
-                  <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z">
-                  </path>
-                </svg>Website</h6>
-                            <span class="text-secondary">https://bootdey.com</span>
-                        </li>
-                        <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
-                            <h6 class="mb-0"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-github mr-2 icon-inline">
-                  <path
-                    d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22">
-                  </path>
-                </svg>Github</h6>
-                            <span class="text-secondary">bootdey</span>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-            <div class="col-md-8">
-                <div class="card mb-3">
-                    <div class="card-body" style="box-shadow: 3px 6px 10px lightgrey; border-radius: 10px;">
-                        <div class="row">
-                            <div class="col-sm-3">
-                                <h6 class="mb-0">Full Name</h6>
-                            </div>
-                            <div class="col-sm-9 text-secondary">
+                        <p style="color: #404040; margin-left: 26px; font-family: Public Sans; font-style: normal; font-weight: bold; font-size: 20px;">Profile</p>
+                        <div style="border: 1px solid rgba(0, 0, 0, 0.25); box-sizing: border-box; border-radius: 10px; margin-left: 25px; margin-right: 25px; height: 125px; ">
+                            <p style="font-family: Public Sans;font-style: normal;font-weight: normal;font-size: 16px;line-height: 19px;color: #404040; margin-left: 10px; margin-top: 20px;">
                                 {{ profile_user.first_name }} {{ profile_user.last_name }}
-                            </div>
-                        </div>
-                        <hr>
-                        <div class="row">
-                            <div class="col-sm-3">
-                                <h6 class="mb-0">Email</h6>
-                            </div>
-                            <div class="col-sm-9 text-secondary">
+                                <br>{{ profile_user.profile.year }} Year - {{ profile_user.profile.branch }}<br>
                                 {{ profile_user.email }}
+                            </p>
+                            <div style="background: #19258C; margin-left:260px; margin-right: 10px; box-sizing: border-box; border-radius: 5px; color: white; width: 65px;">
+                            <a style="color: white; margin-left: 5px;" href="/profile/edit"> Edit <i class="fas fa-pen" style="margin-left: 2px;"></i> </a>
                             </div>
                         </div>
-                        <hr>
-                        <div class="row">
-                            <div class="col-sm-3">
-                                <h6 class="mb-0">Roll Number</h6>
-                            </div>
-                            <div class="col-sm-9 text-secondary">
-                                {{ profile_user.profile.rollno }}
-                            </div>
-                        </div>
-                        <hr>
-                        <div class="row">
-                            <div class="col-sm-3">
-                                <h6 class="mb-0">Branch</h6>
-                            </div>
-                            <div class="col-sm-9 text-secondary">
-                                {{ profile_user.profile.branch }}
+                        <br>
+
+                        <p style="color: #404040; margin-left: 26px; font-family: Public Sans; font-style: normal; font-weight: bold; font-size: 20px;">Skills</p>
+                        <div style="border: 1px solid rgba(0, 0, 0, 0.25); box-sizing: border-box; border-radius: 10px; margin-left: 25px; margin-right: 25px; height: 125px; ">
+                            <p style="font-family: Public Sans;font-style: normal;font-weight: normal;font-size: 16px;line-height: 19px;color: #404040; margin-left: 10px; margin-top: 20px;">
+                                {{ profile_user.profile.techskills }}
+                            </p>
+                            <div style="background: #19258C; margin-left:260px; margin-right: 10px; box-sizing: border-box; border-radius: 5px; color: white; width: 65px;">
+                            <a style="color: white; margin-left: 5px;" href="/profile/edit"> Edit <i class="fas fa-pen" style="margin-left: 2px;"></i> </a>
                             </div>
                         </div>
-                        <hr>
-                        <div class="row">
-                            <div class="col-sm-3">
-                                <h6 class="mb-0">Year</h6>
-                            </div>
-                            <div class="col-sm-9 text-secondary">
-                                {{ profile_user.profile.year }}
+                        <br>
+
+                        <p style="color: #404040; margin-left: 26px; font-family: Public Sans; font-style: normal; font-weight: bold; font-size: 20px;">Links</p>
+                        <div style="border: 1px solid rgba(0, 0, 0, 0.25); box-sizing: border-box; border-radius: 10px; margin-left: 25px; margin-right: 25px; height: 145px; ">
+                            <p style="font-family: Public Sans;font-style: normal;font-weight: normal;font-size: 16px;line-height: 19px;color: #404040; margin-left: 10px; margin-top: 20px;">
+                                <i class="fab fa-linkedin" style="margin-right: 5px;"></i>Linkedin : <br>
+                                <i class="fas fa-globe" style="margin-right: 5px;"></i>Website :  <br>
+                                <i class="fab fa-github" style="margin-right: 5px;"></i>Github :  <br>
+                                <i class="far fa-file" style="margin-right: 5px;"></i>Resume :  <br>
+                            </p>
+                            <div style="background: #19258C; margin-left:260px; margin-right: 10px; box-sizing: border-box; border-radius: 5px; color: white; width: 65px;">
+                            <a style="color: white; margin-left: 5px;" href="/profile/edit"> Edit <i class="fas fa-pen" style="margin-left: 2px;"></i> </a>
                             </div>
                         </div>
-                        <hr> {% if user.id == profile_user.id %}
-                        <div class="row">
-                            <div class="col-sm-12">
-                                <a class="btn btn-info " href="/profile/edit">Edit</a>
-                            </div>
-                        </div>
-                        {% endif %}
+
                     </div>
                 </div>
-                <div class="row gutters-sm">
-                    <div class="col-sm-12 mb-3">
-                        <div class="card h-100">
-                            <div class="card-body" style="box-shadow: 3px 6px 10px lightgrey; border-radius: 10px;">
-                                <h6 class="d-flex align-items-center mb-3"><i class="material-icons text-info mr-2">Skills</i></h6>
-                                <small>{{ profile_user.profile.techskills }}</small>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+
             </div>
+
         </div>
     </div>
+<br><br><br><br><br><br><br><br><br>
     <div>
-{% endblock mainContentBlock %}
+{% endblock content %}
