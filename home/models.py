@@ -32,6 +32,7 @@ class Project(models.Model):
     MailNotification = models.CharField(max_length=5, choices=NOTIFICATION_CHOICES,default='On')
     ApplyRequest = models.ManyToManyField(User, related_name='ApplyRequest', blank = True)
     AlreadyApplied = models.ManyToManyField(User, related_name='AlreadyApplied', blank = True)
+    Likes = models.IntegerField(default=0)
 
     def __str__(self):
         return f"{self.Title}"

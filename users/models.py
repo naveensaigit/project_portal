@@ -28,6 +28,7 @@ class Profile(models.Model):
     branch = models.CharField(max_length=30, choices = BRANCH_CHOICES)
     techskills = models.TextField()
     starred_projects = models.ManyToManyField(Project, related_name='starred_projects', blank = True)
+    liked_projects = models.ManyToManyField(Project, related_name='liked_projects', blank = True)
     cv = models.FileField(blank = True, upload_to='resumes')
 
     def __str__(self):

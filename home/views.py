@@ -33,21 +33,24 @@ def main(request):
     user_projects_id = []
     user_starred_projects_id = []
     user_requested_projects_id = []
+    user_liked_projects_id = []
 
     user_applied_projects = all_project_list.filter(AlreadyApplied =  request.user)
     user_floated_projects = all_project_list.filter(FloatedBy =  request.user)
+    user_requested_projects = all_project_list.filter(ApplyRequest = request.user)
+    user_starred_projects = request.user.profile.starred_projects.all()
+    user_liked_projects = request.user.profile.liked_projects.all()
+
     for project in user_applied_projects:
         user_projects_id.append(project.id)
     for project in user_floated_projects:
         user_projects_id.append(project.id)
-
-    user_requested_projects = all_project_list.filter(ApplyRequest = request.user)
     for project in user_requested_projects:
         user_requested_projects_id.append(project.id)
-
-    for project in request.user.profile.starred_projects.all():
+    for project in user_starred_projects:
         user_starred_projects_id.append(project.id)
-
+    for project in user_liked_projects:
+        user_liked_projects_id.append(project.id)
 
     page = request.GET.get('page', 1)
     paginator = Paginator(projects, 6)
@@ -67,6 +70,7 @@ def main(request):
         'allusers':User.objects.all(),
         'projects': projects,
         'user_projects_id': user_projects_id,
+        'user_liked_projects_id':user_liked_projects_id,
         'user_starred_projects_id' : user_starred_projects_id,
         'user_requested_projects_id' : user_requested_projects_id,
         'num_projects_applied' : user_applied_projects.count(),
@@ -238,6 +242,15 @@ def projectTask(request):
         current_user.profile.starred_projects.add(project)
     if task == "Unstar":
         current_user.profile.starred_projects.remove(project)
+
+    if task == "Like":
+        current_user.profile.liked_projects.add(project)
+        project.Likes += 1
+        project.save()
+    if task == "Unlike":
+        current_user.profile.liked_projects.remove(project)
+        project.Likes -= 1
+        project.save()
 
     if page_number:
         url = f'/?page={page_number}'
