@@ -1,15 +1,30 @@
-{% extends 'home/base.html' %} {% load static %}
+{% extends 'home/main.html' %} {% load static %}
+
+{% block stylesheets %}
+<link rel="stylesheet" type="text/css" href="{% static 'home/style.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'home/cards.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'home/profile.css' %}">
+
+
+{% endblock stylesheets %}
+
+{% comment %}
+{% if user.id != profile_user.id %}
+<!-- {% block cardBlock %}{% endblock cardBlock %} -->
+{% endif %}
+{% endcomment %}
 
 {% block content %}
 <div class="container" style="margin-left: 0px;">
     <div class="main-body" >
 
-      {% block messageBlock %}
-      {% if messages %} {% for message in messages %}
+        {% block messageBlock %}
+        {% if messages %} {% for message in messages %}
         <div style="margin-left: 20px; color: #022160; font-size: 30px; background-color: white;">{{message}}</div>
-      {% endfor %} {% endif %}
-      {% endblock messageBlock %}
+        {% endfor %} {% endif %}
+        {% endblock messageBlock %}
 
+        
         <div class="row gutters-sm" >
             <div class="col-md-4 mb-3" >
                 <div class="card" style="width: 400px; height: 900px; margin-top: 90px;">
