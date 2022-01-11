@@ -45,19 +45,19 @@ def profile(request, user_id):
     user_projects_id = []
     user_starred_projects_id = []
     user_requested_projects_id = []
+
     user = User.objects.get(id=user_id)
     user_applied_projects = all_project_list.filter(AlreadyApplied=user)
     user_floated_projects = all_project_list.filter(FloatedBy=user)
+    user_requested_projects = all_project_list.filter(ApplyRequest=request.user)
+    user_starred_projects = request.user.profile.starred_projects.all()
     for project in user_applied_projects:
         user_projects_id.append(project.id)
     for project in user_floated_projects:
         user_projects_id.append(project.id)
-
-    user_requested_projects = all_project_list.filter(ApplyRequest=request.user)
     for project in user_requested_projects:
         user_requested_projects_id.append(project.id)
-
-    for project in request.user.profile.starred_projects.all():
+    for project in user_starred_projects:
         user_starred_projects_id.append(project.id)
 
     context = {
@@ -66,6 +66,10 @@ def profile(request, user_id):
         'num_projects_req': len(user_requested_projects_id),
         'num_projects_floated': user_floated_projects.count(),
         'user_starred_projects_id' : user_starred_projects_id,
+        'projects_applied': user_applied_projects[0:5],
+        'projects_floated': user_floated_projects[0:5],
+        'projects_requested': user_requested_projects[0:5],
+        'projects_starred': user_starred_projects[0:5],
         'notifications': Notification.objects.filter(user=request.user).order_by('-time'),
         'profile_user': User.objects.get(id = user_id)
     }

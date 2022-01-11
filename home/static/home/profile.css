@@ -1,0 +1,113 @@
+.projects{
+    float: right;
+    width: 840px;
+height: 958px;
+left: 526px;
+top: 149px;
+border: 1px solid rgba(0, 0, 0, 0.25);
+box-sizing: border-box;
+border-radius: 10px;
+margin-bottom: 100px;
+}
+
+
+form {
+    margin-top: 15px;
+}
+/* #step1, #step2, #step3 {
+    background: #e8e8e8;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    margin-top: 10px;
+    padding: 15px;
+} */
+/* h1 {
+    display: block;
+    margin: 0 auto;
+    text-align: center;
+} */
+
+.card-box{
+    
+width: 816px;
+height: 120px;
+left: 538px;
+margin-top: 50px;
+padding: 30px;
+
+border: 1px solid #E5E5E5;
+box-sizing: border-box;
+border-radius: 10px;
+}
+
+.card-title{
+    font-family: 'Public Sans', sans-serif;
+font-style: normal;
+font-weight: bold;
+font-size: 20px;
+line-height: 23px;
+
+color: #404040;
+}
+
+.card-desc{
+    font-family: 'Public Sans', sans-serif;
+font-style: normal;
+font-weight: 300;
+font-size: 16px;
+line-height: 19px;
+
+color: #404040;
+}
+
+.demo-2 {
+    /* overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  max-width: 350ch; */
+    display: -webkit-box;
+    overflow: hidden;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+}
+
+.demo-a {
+    /* overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  max-width: 350ch; */
+    display: -webkit-box;
+    overflow: hidden;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+}
+
+
+.hide {
+    display: none;
+  }
+  .map-container {
+    text-align: center;
+  }
+
+  .main_div
+  {
+  text-align:center;
+  background: #00C492;
+  padding:20px; width: 400px;
+  }
+.inner_div
+  {
+  background: #fff;
+  margin-top:20px;
+  height: 100px;
+  }
+.buttons a
+  {
+  font-size: 16px;
+  }
+.buttons a:hover
+  {
+  cursor:pointer;
+  font-size: 16px;
+  }
