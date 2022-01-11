@@ -66,10 +66,10 @@ def profile(request, user_id):
         'num_projects_req': len(user_requested_projects_id),
         'num_projects_floated': user_floated_projects.count(),
         'user_starred_projects_id' : user_starred_projects_id,
-        'projects_applied': user_applied_projects,
-        'projects_floated': user_floated_projects,
-        'projects_requested': user_requested_projects,
-        'projects_starred': user_starred_projects,
+        'projects_applied': user_applied_projects[0:5],
+        'projects_floated': user_floated_projects[0:5],
+        'projects_requested': user_requested_projects[0:5],
+        'projects_starred': user_starred_projects[0:5],
         'notifications': Notification.objects.filter(user=request.user).order_by('-time'),
         'profile_user': User.objects.get(id = user_id)
     }
