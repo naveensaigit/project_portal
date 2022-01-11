@@ -16,7 +16,7 @@
 
 {% block content %}
 <div class="container" style="margin-left: 0px;">
-    <div class="main-body" >
+    <div class="main-body">
 
         {% block messageBlock %}
         {% if messages %} {% for message in messages %}
@@ -24,58 +24,189 @@
         {% endfor %} {% endif %}
         {% endblock messageBlock %}
 
-        
-        <div class="row gutters-sm" >
-            <div class="col-md-4 mb-3" >
+
+        <div class="row gutters-sm">
+            <div class="col-md-4 mb-3">
                 <div class="card" style="width: 400px; height: 900px; margin-top: 90px;">
-                    <div class="card-body" style="box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.25); background: #F7F4F4; border-radius: 10px;">
+                    <div class="card-body"
+                        style="box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.25); background: #F7F4F4; border-radius: 10px;">
                         <div class="d-flex flex-column align-items-center text-center">
-                            <img src="{{ profile_user.profile.image.url }}" alt="" style="margin-top: 24px; height:200px;height:200px; border-radius: 100%;">
+                            <img src="{{ profile_user.profile.image.url }}" alt=""
+                                style="margin-top: 24px; height:200px;height:200px; border-radius: 100%;">
                         </div>
-                        <p style="color: #404040; margin-left: 26px; font-family: Public Sans; font-style: normal; font-weight: bold; font-size: 20px;">Profile</p>
-                        <div style="border: 1px solid rgba(0, 0, 0, 0.25); box-sizing: border-box; border-radius: 10px; margin-left: 25px; margin-right: 25px; height: 125px; ">
-                            <p style="font-family: Public Sans;font-style: normal;font-weight: normal;font-size: 16px;line-height: 19px;color: #404040; margin-left: 10px; margin-top: 20px;">
+                        <p
+                            style="color: #404040; margin-left: 26px; font-family: Public Sans; font-style: normal; font-weight: bold; font-size: 20px;">
+                            Profile</p>
+                        <div
+                            style="border: 1px solid rgba(0, 0, 0, 0.25); box-sizing: border-box; border-radius: 10px; margin-left: 25px; margin-right: 25px; height: 125px; ">
+                            <p
+                                style="font-family: Public Sans;font-style: normal;font-weight: normal;font-size: 16px;line-height: 19px;color: #404040; margin-left: 10px; margin-top: 20px;">
                                 {{ profile_user.first_name }} {{ profile_user.last_name }}
                                 <br>{{ profile_user.profile.year }} Year - {{ profile_user.profile.branch }}<br>
                                 {{ profile_user.email }}
                             </p>
-                            <div style="background: #19258C; margin-left:260px; margin-right: 10px; box-sizing: border-box; border-radius: 5px; color: white; width: 65px;">
-                            <a style="color: white; margin-left: 5px;" href="/profile/edit"> Edit <i class="fas fa-pen" style="margin-left: 2px;"></i> </a>
+                            <div
+                                style="background: #19258C; margin-left:260px; margin-right: 10px; box-sizing: border-box; border-radius: 5px; color: white; width: 65px;">
+                                <a style="color: white; margin-left: 5px;" href="/profile/edit"> Edit <i
+                                        class="fas fa-pen" style="margin-left: 2px;"></i> </a>
                             </div>
                         </div>
                         <br>
 
-                        <p style="color: #404040; margin-left: 26px; font-family: Public Sans; font-style: normal; font-weight: bold; font-size: 20px;">Skills</p>
-                        <div style="border: 1px solid rgba(0, 0, 0, 0.25); box-sizing: border-box; border-radius: 10px; margin-left: 25px; margin-right: 25px; height: 125px; ">
-                            <p style="font-family: Public Sans;font-style: normal;font-weight: normal;font-size: 16px;line-height: 19px;color: #404040; margin-left: 10px; margin-top: 20px;">
+                        <p
+                            style="color: #404040; margin-left: 26px; font-family: Public Sans; font-style: normal; font-weight: bold; font-size: 20px;">
+                            Skills</p>
+                        <div
+                            style="border: 1px solid rgba(0, 0, 0, 0.25); box-sizing: border-box; border-radius: 10px; margin-left: 25px; margin-right: 25px; height: 125px; ">
+                            <p
+                                style="font-family: Public Sans;font-style: normal;font-weight: normal;font-size: 16px;line-height: 19px;color: #404040; margin-left: 10px; margin-top: 20px;">
                                 {{ profile_user.profile.techskills }}
                             </p>
-                            <div style="background: #19258C; margin-left:260px; margin-right: 10px; box-sizing: border-box; border-radius: 5px; color: white; width: 65px;">
-                            <a style="color: white; margin-left: 5px;" href="/profile/edit"> Edit <i class="fas fa-pen" style="margin-left: 2px;"></i> </a>
+                            <div
+                                style="background: #19258C; margin-left:260px; margin-right: 10px; box-sizing: border-box; border-radius: 5px; color: white; width: 65px;">
+                                <a style="color: white; margin-left: 5px;" href="/profile/edit"> Edit <i
+                                        class="fas fa-pen" style="margin-left: 2px;"></i> </a>
                             </div>
                         </div>
                         <br>
 
-                        <p style="color: #404040; margin-left: 26px; font-family: Public Sans; font-style: normal; font-weight: bold; font-size: 20px;">Links</p>
-                        <div style="border: 1px solid rgba(0, 0, 0, 0.25); box-sizing: border-box; border-radius: 10px; margin-left: 25px; margin-right: 25px; height: 145px; ">
-                            <p style="font-family: Public Sans;font-style: normal;font-weight: normal;font-size: 16px;line-height: 19px;color: #404040; margin-left: 10px; margin-top: 20px;">
+                        <p
+                            style="color: #404040; margin-left: 26px; font-family: Public Sans; font-style: normal; font-weight: bold; font-size: 20px;">
+                            Links</p>
+                        <div
+                            style="border: 1px solid rgba(0, 0, 0, 0.25); box-sizing: border-box; border-radius: 10px; margin-left: 25px; margin-right: 25px; height: 145px; ">
+                            <p
+                                style="font-family: Public Sans;font-style: normal;font-weight: normal;font-size: 16px;line-height: 19px;color: #404040; margin-left: 10px; margin-top: 20px;">
                                 <i class="fab fa-linkedin" style="margin-right: 5px;"></i>Linkedin : <br>
-                                <i class="fas fa-globe" style="margin-right: 5px;"></i>Website :  <br>
-                                <i class="fab fa-github" style="margin-right: 5px;"></i>Github :  <br>
-                                <i class="far fa-file" style="margin-right: 5px;"></i>Resume :  <br>
+                                <i class="fas fa-globe" style="margin-right: 5px;"></i>Website : <br>
+                                <i class="fab fa-github" style="margin-right: 5px;"></i>Github : <br>
+                                <i class="far fa-file" style="margin-right: 5px;"></i>Resume : <br>
                             </p>
-                            <div style="background: #19258C; margin-left:260px; margin-right: 10px; box-sizing: border-box; border-radius: 5px; color: white; width: 65px;">
-                            <a style="color: white; margin-left: 5px;" href="/profile/edit"> Edit <i class="fas fa-pen" style="margin-left: 2px;"></i> </a>
+                            <div
+                                style="background: #19258C; margin-left:260px; margin-right: 10px; box-sizing: border-box; border-radius: 5px; color: white; width: 65px;">
+                                <a style="color: white; margin-left: 5px;" href="/profile/edit"> Edit <i
+                                        class="fas fa-pen" style="margin-left: 2px;"></i> </a>
                             </div>
+
+
+                            <div class="projects">
+
+                                <div class="buttons">
+                                    <a href="#" onclick="toggleVisibility('projects_applied');">PROJECTS APPLIED:</a>
+                                    <a href="#" onclick="toggleVisibility('projects_floated');">PROJECTS FLOATED:</a>
+                                    <a href="#" onclick="toggleVisibility('projects_requested');">PROJECTS
+                                        REQUESTED:</a>
+                                    <a href="#" onclick="toggleVisibility('projects_starred');">PROJECTS STARRED:</a>
+                                </div>
+
+                                <div id="projects_applied">
+                                    {% for project in projects_applied %}
+                                    <div class="card-box">
+                                        <div class="blog-body">
+                                            <div class="blog-title demo-a">
+                                                <h1><a href="/project/?project_id={{project.id}}">{{ project.Title}}</a></h1>
+                                            </div>
+                                            <div class="blog-summary demo-2">
+                                                <p>{{project.Description}}</p>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    {% endfor %}
+                                    {% if projects_applied.count == 0 %}
+                                    <div>No projects</div>
+                                    {% endif %}
+                                </div>
+                                <div id="projects_floated" style="display: none;">
+                                    {% for project in projects_floated %}
+                                    <div class="card-box">
+                                        <div class="blog-body">
+                                            <div class="blog-title demo-a">
+                                                <h1><a href="/project/?project_id={{project.id}}">{{ project.Title}}</a></h1>
+                                            </div>
+                                            <div class="blog-summary demo-2">
+                                                <p>{{project.Description}}</p>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    {% endfor %}
+                                    {% if projects_floated.count == 0 %}
+                                    <div>No projects</div>
+                                    {% endif %}
+                                </div>
+                                <div id="projects_requested" style="display: none;">
+                                    {% for project in projects_requested %}
+                                    <div class="card-box">
+                                        <div class="blog-body">
+                                            <div class="blog-title demo-a">
+                                                <h1><a href="/project/?project_id={{project.id}}">{{ project.Title}}</a></h1>
+                                            </div>
+                                            <div class="blog-summary demo-2">
+                                                <p>{{project.Description}}</p>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    {% endfor %}
+                                    {% if projects_floated.count == 0 %}
+                                    <div>No projects</div>
+                                    {% endif %}
+                                </div>
+                                <div id="projects_starred" style="display: none;">
+                                    {% for project in projects_starred %}
+                                    <div class="card-box">
+                                        <div class="blog-body">
+                                            <div class="blog-title demo-a">
+                                                <h1><a href="/project/?project_id={{project.id}}">{{ project.Title}}</a></h1>
+                                            </div>
+                                            <div class="blog-summary demo-2">
+                                                <p>{{project.Description}}</p>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                    {% endfor %}
+                                    {% if projects_floated.count == 0 %}
+                                    <div>No projects</div>
+                                    {% endif %}
+
+                                </div>
+
+                            </div>
+                        </div>
+                        <br><br><br><br><br><br><br><br><br>
+                        <div>
+                           
                         </div>
 
                     </div>
-                </div>
+                    <div>
 
-            </div>
+                        <script>
+                            var divs = ["projects_applied", "projects_floated", "projects_requested", "projects_starred"];
+                            var visibleDivId = null;
+                            function toggleVisibility(divId) {
+                                if (visibleDivId === divId) {
+                                    //visibleDivId = null;
+                                } else {
+                                    visibleDivId = divId;
+                                }
+                                hideNonVisibleDivs();
+                            }
+                            function hideNonVisibleDivs() {
+                                var i, divId, div;
+                                for (i = 0; i < divs.length; i++) {
+                                    divId = divs[i];
+                                    div = document.getElementById(divId);
+                                    if (visibleDivId === divId) {
+                                        div.style.display = "block";
+                                    } else {
+                                        div.style.display = "none";
+                                    }
+                                }
+                            }
+                        </script>
 
-        </div>
-    </div>
-<br><br><br><br><br><br><br><br><br>
-    <div>
-{% endblock content %}
+                        <!-- <script src="{% static 'home/profile.js' %}"></script> -->
+                        {% endblock content %}

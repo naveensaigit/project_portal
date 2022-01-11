@@ -1,23 +1,23 @@
-alert("hello hello")
-
-// $(function () {
-
-//     $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
-//         $('a[data-toggle="tab"]').removeClass('btn-primary');
-//         $('a[data-toggle="tab"]').addClass('btn-default');
-//         $(this).removeClass('btn-default');
-//         $(this).addClass('btn-primary');
-//     });
-
-//     $('.next').click(function () {
-//         var nextId = $(this).parents('.tab-pane').next().attr("id");
-//         $('[href=#' + nextId + ']').tab('show');
-//     });
-
-//     $('.prev').click(function () {
-//         var prevId = $(this).parents('.tab-pane').prev().attr("id");
-//         $('[href=#' + prevId + ']').tab('show');
-//     });
-
-// });
+var divs = ["projects_applied", "projects_floated", "projects_requested", "projects_starred"];
+var visibleDivId = null;
+function toggleVisibility(divId) {
+    if (visibleDivId === divId) {
+        //visibleDivId = null;
+    } else {
+        visibleDivId = divId;
+    }
+    hideNonVisibleDivs();
+}
+function hideNonVisibleDivs() {
+    var i, divId, div;
+    for (i = 0; i < divs.length; i++) {
+        divId = divs[i];
+        div = document.getElementById(divId);
+        if (visibleDivId === divId) {
+            div.style.display = "block";
+        } else {
+            div.style.display = "none";
+        }
+    }
+}
 
