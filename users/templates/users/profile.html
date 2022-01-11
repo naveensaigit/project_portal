@@ -87,126 +87,133 @@
                                 <a style="color: white; margin-left: 5px;" href="/profile/edit"> Edit <i
                                         class="fas fa-pen" style="margin-left: 2px;"></i> </a>
                             </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
+            <div class="projects">
 
-                            <div class="projects">
+                <div class="buttons">
+                    <a href="#" onclick="toggleVisibility('projects_applied');">PROJECTS APPLIED:</a>
+                    <a href="#" onclick="toggleVisibility('projects_floated');">PROJECTS FLOATED:</a>
+                    <a href="#" onclick="toggleVisibility('projects_requested');">PROJECTS
+                        REQUESTED:</a>
+                    <a href="#" onclick="toggleVisibility('projects_starred');">PROJECTS STARRED:</a>
+                </div>
 
-                                <div class="buttons">
-                                    <a href="#" onclick="toggleVisibility('projects_applied');">PROJECTS APPLIED:</a>
-                                    <a href="#" onclick="toggleVisibility('projects_floated');">PROJECTS FLOATED:</a>
-                                    <a href="#" onclick="toggleVisibility('projects_requested');">PROJECTS
-                                        REQUESTED:</a>
-                                    <a href="#" onclick="toggleVisibility('projects_starred');">PROJECTS STARRED:</a>
-                                </div>
-
-                                <div id="projects_applied">
-                                    {% for project in projects_applied %}
-                                    <div class="card-box">
-                                        <div class="blog-body">
-                                            <div class="blog-title demo-a">
-                                                <h1><a href="/project/?project_id={{project.id}}">{{ project.Title}}</a></h1>
-                                            </div>
-                                            <div class="blog-summary demo-2">
-                                                <p>{{project.Description}}</p>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    {% endfor %}
-                                    {% if projects_applied.count == 0 %}
-                                    <div>No projects</div>
-                                    {% endif %}
-                                </div>
-                                <div id="projects_floated" style="display: none;">
-                                    {% for project in projects_floated %}
-                                    <div class="card-box">
-                                        <div class="blog-body">
-                                            <div class="blog-title demo-a">
-                                                <h1><a href="/project/?project_id={{project.id}}">{{ project.Title}}</a></h1>
-                                            </div>
-                                            <div class="blog-summary demo-2">
-                                                <p>{{project.Description}}</p>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    {% endfor %}
-                                    {% if projects_floated.count == 0 %}
-                                    <div>No projects</div>
-                                    {% endif %}
-                                </div>
-                                <div id="projects_requested" style="display: none;">
-                                    {% for project in projects_requested %}
-                                    <div class="card-box">
-                                        <div class="blog-body">
-                                            <div class="blog-title demo-a">
-                                                <h1><a href="/project/?project_id={{project.id}}">{{ project.Title}}</a></h1>
-                                            </div>
-                                            <div class="blog-summary demo-2">
-                                                <p>{{project.Description}}</p>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    {% endfor %}
-                                    {% if projects_floated.count == 0 %}
-                                    <div>No projects</div>
-                                    {% endif %}
-                                </div>
-                                <div id="projects_starred" style="display: none;">
-                                    {% for project in projects_starred %}
-                                    <div class="card-box">
-                                        <div class="blog-body">
-                                            <div class="blog-title demo-a">
-                                                <h1><a href="/project/?project_id={{project.id}}">{{ project.Title}}</a></h1>
-                                            </div>
-                                            <div class="blog-summary demo-2">
-                                                <p>{{project.Description}}</p>
-                                            </div>
-
-                                        </div>
-                                    </div>
-                                    {% endfor %}
-                                    {% if projects_floated.count == 0 %}
-                                    <div>No projects</div>
-                                    {% endif %}
-
-                                </div>
-
+                <div id="projects_applied">
+                    {% for project in projects_applied %}
+                    <div class="card-box">
+                        <div class="blog-body">
+                            <div class="blog-title demo-a">
+                                <h1><a href="/project/?project_id={{project.id}}">{{ project.Title}}</a>
+                                </h1>
+                            </div>
+                            <div class="blog-summary demo-2">
+                                <p>{{project.Description}}</p>
                             </div>
                         </div>
-                        <br><br><br><br><br><br><br><br><br>
-                        <div>
-                           
-                        </div>
-
                     </div>
-                    <div>
 
-                        <script>
-                            var divs = ["projects_applied", "projects_floated", "projects_requested", "projects_starred"];
-                            var visibleDivId = null;
-                            function toggleVisibility(divId) {
-                                if (visibleDivId === divId) {
-                                    //visibleDivId = null;
-                                } else {
-                                    visibleDivId = divId;
-                                }
-                                hideNonVisibleDivs();
-                            }
-                            function hideNonVisibleDivs() {
-                                var i, divId, div;
-                                for (i = 0; i < divs.length; i++) {
-                                    divId = divs[i];
-                                    div = document.getElementById(divId);
-                                    if (visibleDivId === divId) {
-                                        div.style.display = "block";
-                                    } else {
-                                        div.style.display = "none";
-                                    }
-                                }
-                            }
-                        </script>
+                    {% endfor %}
+                    {% if projects_applied.count == 0 %}
+                    <div>No projects</div>
+                    {% endif %}
+                </div>
+                <div id="projects_floated" style="display: none;">
+                    {% for project in projects_floated %}
+                    <div class="card-box">
+                        <div class="blog-body">
+                            <div class="blog-title demo-a">
+                                <h1><a href="/project/?project_id={{project.id}}">{{ project.Title}}</a>
+                                </h1>
+                            </div>
+                            <div class="blog-summary demo-2">
+                                <p>{{project.Description}}</p>
+                            </div>
+                        </div>
+                    </div>
 
-                        <!-- <script src="{% static 'home/profile.js' %}"></script> -->
-                        {% endblock content %}
+                    {% endfor %}
+                    {% if projects_floated.count == 0 %}
+                    <div>No projects</div>
+                    {% endif %}
+                </div>
+                <div id="projects_requested" style="display: none;">
+                    {% for project in projects_requested %}
+                    <div class="card-box">
+                        <div class="blog-body">
+                            <div class="blog-title demo-a">
+                                <h1><a href="/project/?project_id={{project.id}}">{{ project.Title}}</a>
+                                </h1>
+                            </div>
+                            <div class="blog-summary demo-2">
+                                <p>{{project.Description}}</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    {% endfor %}
+                    {% if projects_floated.count == 0 %}
+                    <div>No projects</div>
+                    {% endif %}
+                </div>
+                <div id="projects_starred" style="display: none;">
+                    {% for project in projects_starred %}
+                    <div class="card-box">
+                        <div class="blog-body">
+                            <div class="blog-title demo-a">
+                                <h1><a href="/project/?project_id={{project.id}}">{{ project.Title}}</a>
+                                </h1>
+                            </div>
+                            <div class="blog-summary demo-2">
+                                <p>{{project.Description}}</p>
+                            </div>
+
+                        </div>
+                    </div>
+                    {% endfor %}
+                    {% if projects_floated.count == 0 %}
+                    <div>No projects</div>
+                    {% endif %}
+
+                </div>
+
+            </div>
+        </div>
+        <br><br><br><br><br><br><br><br><br>
+        <div>
+
+        </div>
+
+    </div>
+
+
+    <script>
+        var divs = ["projects_applied", "projects_floated", "projects_requested", "projects_starred"];
+        var visibleDivId = null;
+        function toggleVisibility(divId) {
+            if (visibleDivId === divId) {
+                //visibleDivId = null;
+            } else {
+                visibleDivId = divId;
+            }
+            hideNonVisibleDivs();
+        }
+        function hideNonVisibleDivs() {
+            var i, divId, div;
+            for (i = 0; i < divs.length; i++) {
+                divId = divs[i];
+                div = document.getElementById(divId);
+                if (visibleDivId === divId) {
+                    div.style.display = "block";
+                } else {
+                    div.style.display = "none";
+                }
+            }
+        }
+    </script>
+
+    <!-- <script src="{% static 'home/profile.js' %}"></script> -->
+    {% endblock content %}
