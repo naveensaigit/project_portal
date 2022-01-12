@@ -159,6 +159,18 @@
   background: #FFD493;
 }
 
+.blog-tags li:nth-child(4) a {
+  background: #BEFFE0;
+}
+
+.blog-tags li:nth-child(5) a {
+  background: #C9D8FF;
+}
+
+.blog-tags li:nth-child(6) a {
+  background: #FFD493;
+}
+
 .blog-tags li+li {
     margin-left: 0.5rem;
 }
