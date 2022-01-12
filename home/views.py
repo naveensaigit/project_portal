@@ -62,8 +62,15 @@ def main(request):
         projects = paginator.page(paginator.num_pages)
 
     for project in projects:
+        Flag=False
         prereqs = str(project.PreRequisite).split('\r\n')
-        project.PreRequisite = prereqs
+        if(len(prereqs)>2):
+            Flag=True
+        prereqs= prereqs[0:2]
+        if(Flag==True):
+            prereqs.append("More Tags...")
+        project.PreRequisite = prereqs[0:3]
+
 
     context = {
         'title': 'Home',
@@ -77,7 +84,7 @@ def main(request):
         'num_projects_req':len(user_requested_projects_id),
         'num_projects_floated': user_floated_projects.count(),
         'notifications': Notification.objects.filter(user = request.user).order_by('-time'),
-        'myFilter':myFilter
+        'myFilter':myFilter,
     }
 
 
