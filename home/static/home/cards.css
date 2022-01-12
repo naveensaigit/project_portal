@@ -102,13 +102,18 @@
 }
 
 .blog-body {
-    margin: 0 auto;
-    width: 80%;
+    margin-left: 30px;
+    margin-top: 5px;
+    width: 90%;
+    margin-right: 20px;
+    height: 133px;
 }
 
 .blog-header {
-    margin: 0 auto;
+    margin-left: 30px;
+    margin-top: 15px;
     width: 80%;
+    height: 40px;
 }
 
 .video-body {
@@ -201,7 +206,7 @@
 .blog-footer li {
     color: #999999;
     font-size: 0.75rem;
-    height: 1.5rem;
+    height: 40px;
     letter-spacing: 1px;
     line-height: 1.5rem;
     text-align: center;
@@ -252,6 +257,7 @@
     overflow: hidden;
     -webkit-line-clamp: 3;
     -webkit-box-orient: vertical;
+    height: 55px;
 }
 
 .demo-a {
