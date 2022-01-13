@@ -1,7 +1,9 @@
 ---------- BACKEND ------------------
 oauth signup page correction
-sign up page all details after login
-Clear filter
+Sign up page all details after login
+Add option to clear filter
+Add tags in field - HELL DIFFICULTY
+users/views.py -> functions usage
 -------------------------------------
 
 
