@@ -2,6 +2,7 @@
 {% load static %}
 {% load crispy_forms_tags %}
 {% block customStylesheets %}
+<link rel="stylesheet" type="text/css" href="{% static 'home/main.css' %}">
 <style>
     .vertical-line {
         width: 10px;
@@ -237,7 +238,7 @@
                         {% endif %}
                         {% for i in projects.paginator.page_range %}
                             {% if projects.number == i %}
-                                <li class="active"><span>{{ i }} <span class="sr-only">(current)</span></span></li>
+                                <li class = "selected">{{ i }}</li>
                             {% else %}
                                 {% if 'Status' in querystring %}
                                     {% if 'page' in querystring %}

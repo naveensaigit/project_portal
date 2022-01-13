@@ -1,6 +1,5 @@
 $(document).ready(function () {
     $(".searchable-select").select2();
-
 });
 $(document).on('click', '.task', function() {
     var project_id = $(this).attr('project_id');
