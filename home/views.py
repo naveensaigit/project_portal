@@ -1,3 +1,4 @@
+from django.http.response import HttpResponse, JsonResponse
 from django.shortcuts import redirect, render
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
@@ -254,6 +255,16 @@ def projectTask(request):
         current_user.profile.liked_projects.add(project)
         project.Likes += 1
         project.save()
+        return HttpResponse("Liked!")
+        # user_liked_projects = request.user.profile.liked_projects.all()
+        # user_liked_projects_id=[]
+        # for project in user_liked_projects:
+        #     user_liked_projects_id.append(project.id)
+
+        # context = {
+        #     'user_liked_projects_id':user_liked_projects_id
+        # }
+        # return JsonResponse(context)
     if task == "Unlike":
         current_user.profile.liked_projects.remove(project)
         project.Likes -= 1
