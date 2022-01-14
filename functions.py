@@ -1,4 +1,4 @@
-from home.models import Project
+from home.models import Project, Tag
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from users.models import Notification
 from django.core.mail import send_mail
@@ -8,10 +8,18 @@ from django.contrib import messages
 from home.filters import ProjectFilter
 from django.contrib.auth.models import User
 
-def get_filtered_projects(request, projects):
-    myFilter = ProjectFilter(request.GET,queryset=projects)
+def get_filtered_projects(request):
+    all_projects = Project.objects.all().order_by('-DatePosted')
+    myFilter = ProjectFilter(request.GET,queryset=all_projects)
     filtered_projects= myFilter.qs
     return filtered_projects
+
+def get_tagged_projects(request):
+    all_projects = Project.objects.all().order_by('-DatePosted')
+    tagTitle = request.GET.get('tag')
+    tag = Tag.objects.all().filter(Title = tagTitle)
+    return all_projects.filter(Tags__in = tag)
+
 
 def get_projects_id(request):
     user_floated_projects_id = []
@@ -62,23 +70,13 @@ def apply_delimeter_seperation(projects):
             prereqs.append("More Tags...")
         project.PreRequisite = prereqs[0:3]
 
-def get_searched_projects(request, projects):
-    """
-    return projects if nothing is searched 
-    else returns searched projects
-    """
-    if request.method != "POST":
-        return projects
-    else:
-        value = request.POST['search']
-        if value == "":
-            return projects
-        else:
-            searched_projects_Title = Project.objects.filter(Title__contains = value)
-            searched_projects_Desription = Project.objects.filter(Description__contains = value)
-            searched_projects = searched_projects_Title | searched_projects_Desription
-            searched_projects = searched_projects.order_by('-DatePosted')
-            return searched_projects
+def get_searched_projects(request):
+    value = request.POST['search']
+    searched_projects_Title = Project.objects.filter(Title__contains = value)
+    searched_projects_Desription = Project.objects.filter(Description__contains = value)
+    searched_projects = searched_projects_Title | searched_projects_Desription
+    searched_projects = searched_projects.order_by('-DatePosted')
+    return searched_projects
 
 def send_notification(request, project):
     project_id = request.GET.get('project_id')

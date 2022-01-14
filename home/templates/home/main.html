@@ -158,17 +158,17 @@
                             <ul>
                                 <li><a>{{project.Status}}</a></li>
                                 <li><a>{{project.Difficulty}}</a></li>
-                                {% for pre_req in project.PreRequisite %}
-                                    {% if pre_req %}
-                                        {% if pre_req == "More Tags..." %}
+                                {% for tag in project.Tags.all %}
+                                    {% if tag %}
+                                        {% comment %} {% if tag == "More Tags..." %}
                                             <li>
-                                                <a href="/project/?project_id={{project.id}}">{{ pre_req }}</a>
+                                                <a href="/project/?project_id={{project.id}}">{{ tag }}</a>
                                             </li>
-                                        {% else %}
+                                        {% else %} {% endcomment %}
                                             <li>
-                                                <a>{{pre_req}}</a>
+                                                <a href="/?tag={{tag}}">{{ tag }}</a>
                                             </li>
-                                        {% endif %}
+                                        {% comment %} {% endif %} {% endcomment %}
                                     {% endif %}
                                 {% endfor %}
                             </ul>

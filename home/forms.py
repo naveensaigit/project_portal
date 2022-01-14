@@ -1,9 +1,5 @@
 from django import forms
-from django.db.models.query import QuerySet
-from django.forms import widgets
-from django.forms.formsets import all_valid
 from .models import Project
-from users.models import User
 
 OPENED_FOR_CHOICES = (
     ('All','All'),
@@ -44,7 +40,7 @@ class ProjectRegisterForm(forms.ModelForm):
     )
     class Meta:
         model = Project
-        fields = ['Title','Description','Mentors','Status','OpenedFor','Difficulty','PreRequisite','Duration','SelectionCriteria','MailNotification']
+        fields = ['Title','Description','Mentors','Status','OpenedFor','Difficulty','PreRequisite','Tags','Duration','SelectionCriteria','MailNotification']
 
 
 
@@ -55,4 +51,4 @@ class ProjectUpdateForm(forms.ModelForm):
     )
     class Meta:
         model = Project
-        fields = ['Title','Description','Mentors','Status','OpenedFor','Difficulty','PreRequisite','Duration','SelectionCriteria','MailNotification']
+        fields = ['Title','Description','Mentors','Status','OpenedFor','Difficulty','PreRequisite','Tags','Duration','SelectionCriteria','MailNotification']

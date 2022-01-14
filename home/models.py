@@ -17,6 +17,13 @@ NOTIFICATION_CHOICES = (
     ('Off','Off'),
 )
 # Create your models here.
+
+class Tag(models.Model):
+    Title = models.CharField(max_length=20)
+
+    def __str__(self):
+        return f"{self.Title}"
+
 class Project(models.Model):
     Title = models.CharField(max_length=30)
     Description = models.TextField()
@@ -26,6 +33,7 @@ class Project(models.Model):
     OpenedFor = models.CharField(max_length=300)
     Difficulty = models.CharField(max_length=15, choices=DIFFICULTY_CHOICES, default='Beginner')
     PreRequisite = models.TextField()
+    Tags = models.ManyToManyField(Tag, related_name='Tags')
     Duration = models.CharField(max_length=30)
     DatePosted = models.DateTimeField(default = timezone.now)
     SelectionCriteria = models.TextField()

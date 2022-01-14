@@ -9,14 +9,17 @@ from functions import *
 
 @login_required
 def main(request):
-    all_projects = Project.objects.all().order_by('-DatePosted')
-    projects = get_filtered_projects(request, all_projects)
-    projects = get_searched_projects(request, projects)
+    projects = get_filtered_projects(request)
+
+    if request.method == "POST" and request.POST['search']!="":
+        projects = get_searched_projects(request)
+
+    if request.GET.get('tag')!=None:
+        projects = get_tagged_projects(request)
+
     projects = get_paginated_projects(request, projects)
     projects_id = get_projects_id(request)
-
-    apply_delimeter_seperation(projects)
-
+    
     context = {
         'title': 'Home',
         'allusers':User.objects.all(),
