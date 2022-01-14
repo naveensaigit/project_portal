@@ -4,6 +4,7 @@ Sign up page all details after login
 Add option to clear filter
 Add tags in field - HELL DIFFICULTY
 users/views.py -> functions usage
+top cards numbers not changing due to jquery when clicked on like and star
 -------------------------------------
 
 
