@@ -68,7 +68,7 @@
       <br>
       <ul>
         <li class="published-date">{{ project.DatePosted }}</li>
-        <li class="shares"> {% if project.id not in user_starred_projects_id %}
+        <li class="shares"> {% if project.id not in projects_id.4 %}
           <a href="/project/task/?task=Star&project_id={{project.id}}">
             <button class="btn btn-primary btn-user btn-block"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-star" viewBox="0 0 16 16">
                 <path d="M2.866 14.85c-.078.444.36.791.746.593l4.39-2.256 4.389 2.256c.386.198.824-.149.746-.592l-.83-4.73 3.522-3.356c.33-.314.16-.888-.282-.95l-4.898-.696L8.465.792a.513.513 0 0 0-.927 0L5.354 5.12l-4.898.696c-.441.062-.612.636-.283.95l3.523 3.356-.83 4.73zm4.905-2.767-3.686 1.894.694-3.957a.565.565 0 0 0-.163-.505L1.71 6.745l4.052-.576a.525.525 0 0 0 .393-.288L8 2.223l1.847 3.658a.525.525 0 0 0 .393.288l4.052.575-2.906 2.77a.565.565 0 0 0-.163.506l.694 3.957-3.686-1.894a.503.503 0 0 0-.461 0z" />
@@ -82,13 +82,13 @@
         </li>
       </ul>
       <br>
-      <hr> {% if project.id in user_requested_projects_id %}
+      <hr> {% if project.id in projects_id.3 %}
       <a href="/project/task/?task=Withdraw&project_id={{project.id}}" class="btn btn-light btn-icon-split">
         <span class="icon text-gray-600">
           <i class="fas fa-times"></i>
         </span>
         <span class="text" style="color:black;">Withdraw Request</span>
-      </a> <br> {% else %} {% if project.id not in user_projects_id %}
+      </a> <br> {% else %} {% if project.id not in projects_id.0 and project.id not in projects_id.2 %}
       <a href="/project/task/?task=Apply&project_id={{project.id}}" class="btn btn-warning btn-icon-split">
         <span class="icon text-white-50">
           <i class="fas fa-check"></i>
@@ -114,13 +114,13 @@
     <h3>Project Apply Requests:</h3>
   </div>
   <div class="card-body">
-    {% for request_user in apply_requests %}
+    {% for request_user in project.ApplyRequest.all %}
     <div>
       {{request_user}} -
       <a href="/project/accept/?project_id={{project.id}}&request_user={{request_user}}"><button class="btn btn-primary btn-user btn-block" style="width: 30%; ">ACCEPT</button></a>
       <a href="/project/reject/?project_id={{project.id}}&request_user={{request_user}}"><button class="btn btn-primary btn-user btn-block" style="width: 30%; ">REJECT</button></a>
     </div>
-    {% endfor %} {% if apply_requests.count == 0 %}
+    {% endfor %} {% if project.ApplyRequest.all.count == 0 %}
     <div style="color:black; font-size:20px;"> No requests </div>
     {% endif %}
   </div>

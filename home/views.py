@@ -5,38 +5,26 @@ from django.contrib.auth.models import User
 from home.decorators import user_is_project_author
 from .models import Project
 from .forms import ProjectRegisterForm, ProjectUpdateForm
-from .filters import ProjectFilter
 from functions import *
 
 @login_required
 def main(request):
-    all_project_list = Project.objects.all().order_by('-DatePosted')
-    myFilter = ProjectFilter(request.GET,queryset=all_project_list)
-    filtered_projects= myFilter.qs
-
-    projects = search(request, filtered_projects)
+    all_projects = Project.objects.all().order_by('-DatePosted')
+    projects = get_filtered_projects(request, all_projects)
+    projects = get_searched_projects(request, projects)
     projects = get_paginated_projects(request, projects)
-    apply_delimeter_seperation(projects)
-
     projects_id = get_projects_id(request)
-    user_applied_projects = all_project_list.filter(AlreadyApplied =  request.user)
-    user_floated_projects = all_project_list.filter(FloatedBy =  request.user)
+
+    apply_delimeter_seperation(projects)
 
     context = {
         'title': 'Home',
         'allusers':User.objects.all(),
         'projects': projects,
-        'user_projects_id': projects_id[0],
-        'user_starred_projects_id' : projects_id[1],
-        'user_requested_projects_id' : projects_id[2],
-        'user_liked_projects_id':projects_id[3],
-        'num_projects_applied' : user_applied_projects.count(),
-        'num_projects_req':len(projects_id[2]),
-        'num_projects_floated': user_floated_projects.count(),
+        'projects_id': projects_id,
         'notifications': Notification.objects.filter(user = request.user).order_by('-time'),
-        'myFilter':myFilter,
+        # 'myFilter':myFilter,
     }
-
 
     return render(request, 'home/main.html', context)
 
@@ -72,17 +60,13 @@ def projectRegister(request):
 def project(request):
     project_id = request.GET.get('project_id')
     project = Project.objects.get(id=project_id)
-    apply_requests = project.ApplyRequest.all()
 
     projects_id = get_projects_id(request)
 
     context = {
         'title': 'Project',
         'project': project,
-        'user_projects_id': projects_id[0],
-        'user_starred_projects_id' : projects_id[1],
-        'user_requested_projects_id' : projects_id[2],
-        'apply_requests' : apply_requests,
+        'projects_id': projects_id,
         'notifications': Notification.objects.filter(user = request.user).order_by('-time'),
     }
     return render(request, 'home/project.html', context)
@@ -139,7 +123,7 @@ def projectTask(request):
     task = request.GET.get('task')
     page_number = request.GET.get('page_number')
 
-    do_simple_task(request, task)
+    do_task(request, task)
 
     if page_number:
         url = f'/?page={page_number}'
@@ -152,23 +136,12 @@ def projectTask(request):
 @user_is_project_author
 def projectAccept(request):
     project_id = request.GET.get('project_id')
-    request_user_name = request.GET.get('request_user')
-
-    project = Project.objects.get(id=project_id)
-    request_user = User.objects.filter(username = request_user_name).first()
-
-    project.ApplyRequest.remove(request_user)
-    project.AlreadyApplied.add(request_user)
-    return redirect(f'/project/?project_id={project.id}')
+    do_task(request, "Accept")
+    return redirect(f'/project/?project_id={project_id}')
 
 @login_required
 @user_is_project_author
 def projectReject(request):
     project_id = request.GET.get('project_id')
-    request_user_name = request.GET.get('request_user')
-
-    project = Project.objects.get(id=project_id)
-    request_user = User.objects.filter(username = request_user_name).first()
-
-    project.ApplyRequest.remove(request_user)
-    return redirect(f'/project/?project_id={project.id}')
+    do_task(request, "Reject")
+    return redirect(f'/project/?project_id={project_id}')

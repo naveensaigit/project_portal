@@ -5,32 +5,40 @@ from django.core.mail import send_mail
 from django.conf import settings
 from django.shortcuts import redirect
 from django.contrib import messages
+from home.filters import ProjectFilter
+from django.contrib.auth.models import User
+
+def get_filtered_projects(request, projects):
+    myFilter = ProjectFilter(request.GET,queryset=projects)
+    filtered_projects= myFilter.qs
+    return filtered_projects
 
 def get_projects_id(request):
-    user_projects_id = []
-    user_starred_projects_id = []
-    user_requested_projects_id = []
+    user_floated_projects_id = []
     user_liked_projects_id = []
+    user_applied_projects_id = []
+    user_requested_projects_id = []
+    user_starred_projects_id = []
 
     all_project_list = Project.objects.all().order_by('-DatePosted')
-    user_applied_projects = all_project_list.filter(AlreadyApplied =  request.user)
     user_floated_projects = all_project_list.filter(FloatedBy =  request.user)
+    user_liked_projects = request.user.profile.liked_projects.all()
+    user_applied_projects = all_project_list.filter(AlreadyApplied =  request.user)
     user_requested_projects = all_project_list.filter(ApplyRequest = request.user)
     user_starred_projects = request.user.profile.starred_projects.all()
-    user_liked_projects = request.user.profile.liked_projects.all()
 
-    for project in user_applied_projects:
-        user_projects_id.append(project.id)
     for project in user_floated_projects:
-        user_projects_id.append(project.id)
+        user_floated_projects_id.append(project.id)
+    for project in user_liked_projects:
+        user_liked_projects_id.append(project.id)
+    for project in user_applied_projects:
+        user_applied_projects_id.append(project.id)
     for project in user_requested_projects:
         user_requested_projects_id.append(project.id)
     for project in user_starred_projects:
         user_starred_projects_id.append(project.id)
-    for project in user_liked_projects:
-        user_liked_projects_id.append(project.id)
-    
-    return [user_projects_id, user_starred_projects_id, user_requested_projects_id, user_liked_projects_id]
+
+    return [user_floated_projects_id, user_liked_projects_id, user_applied_projects_id, user_requested_projects_id, user_starred_projects_id]
 
 def get_paginated_projects(request, projects):
     page = request.GET.get('page', 1)
@@ -41,7 +49,6 @@ def get_paginated_projects(request, projects):
         paginated_projects = paginator.page(1)
     except EmptyPage:
         paginated_projects = paginator.page(paginator.num_pages)
-
     return paginated_projects
 
 def apply_delimeter_seperation(projects):
@@ -55,13 +62,17 @@ def apply_delimeter_seperation(projects):
             prereqs.append("More Tags...")
         project.PreRequisite = prereqs[0:3]
 
-def search(request, filtered_projects):
+def get_searched_projects(request, projects):
+    """
+    return projects if nothing is searched 
+    else returns searched projects
+    """
     if request.method != "POST":
-        return filtered_projects
+        return projects
     else:
         value = request.POST['search']
         if value == "":
-            return filtered_projects
+            return projects
         else:
             searched_projects_Title = Project.objects.filter(Title__contains = value)
             searched_projects_Desription = Project.objects.filter(Description__contains = value)
@@ -117,9 +128,8 @@ def leave_project(request, project):
     else:
         messages.error(request, 'You cannot leave this project because it is floated by you.')
 
-def do_simple_task(request, task):
+def do_task(request, task):
     project_id = request.GET.get('project_id')
-    task = request.GET.get('task')
 
     project = Project.objects.get(id=project_id)
     current_user = request.user
@@ -142,3 +152,10 @@ def do_simple_task(request, task):
         current_user.profile.liked_projects.remove(project)
         project.Likes -= 1
         project.save()
+    elif task == "Accept" or task == "Reject":
+        request_user_name = request.GET.get('request_user')
+        request_user = User.objects.filter(username = request_user_name).first()
+
+        project.ApplyRequest.remove(request_user)
+        if task == "Apply":
+            project.AlreadyApplied.add(request_user)
