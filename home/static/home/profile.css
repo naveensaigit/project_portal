@@ -111,3 +111,45 @@ color: #404040;
   cursor:pointer;
   font-size: 16px;
   }
+
+.project-title{
+  font-family:'Public Sans', sans-serif;
+  font-style: normal;
+  font-weight: 300;
+  font-size: 12px;
+  line-height: 14px;
+  color: #404040;
+}
+
+.project-count{
+  font-family:'Public Sans', sans-serif;
+font-style: normal;
+font-weight: 500;
+font-size: 28px;
+line-height: 33px;
+
+color: #404040;
+}
+
+.profile-project-title h1 a{
+  font-family:'Public Sans', sans-serif;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 20px;
+  line-height: 23px;
+  
+  color: #404040;
+  
+}
+
+.profile-project-desc p{
+font-family:'Public Sans', sans-serif;
+font-style: normal;
+font-weight: 300;
+font-size: 16px;
+line-height: 19px;
+
+color: #404040;
+}
+
+font-family:'Public Sans', sans-serif;font-style: normal;font-weight: bold;font-size: 20px;line-height: 23px;color: #404040;
