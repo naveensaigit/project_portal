@@ -21,8 +21,8 @@ justify-content: center;
 }
 
 .pagination > .selected:hover{
-    background-color: grey;
+    background-color: #C9D8FF;
 }
 .pagination > li:hover{
-    background-color:lightgrey;
+    background-color:#C9D8FF;
 }
