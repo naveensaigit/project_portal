@@ -6,6 +6,7 @@ from home.decorators import user_is_project_author
 from .models import Project
 from .forms import ProjectRegisterForm, ProjectUpdateForm
 from functions import *
+from django.core.serializers import serialize
 
 @login_required
 def main(request):
@@ -19,10 +20,11 @@ def main(request):
 
     projects = get_paginated_projects(request, projects)
     projects_id = get_projects_id(request)
-    
+
     context = {
         'title': 'Home',
-        'allusers':User.objects.all(),
+        'users':User.objects.all(),
+        'users_html':serialize("json", User.objects.all()),
         'projects': projects,
         'projects_id': projects_id,
         'notifications': Notification.objects.filter(user = request.user).order_by('-time'),
