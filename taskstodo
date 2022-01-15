@@ -5,6 +5,7 @@ Add option to clear filter
 Add tags in field - HELL DIFFICULTY
 users/views.py -> functions usage
 top cards numbers not changing due to jquery when clicked on like and star
+More tags feature commented for time being- Apply it back after applying filters from tags
 -------------------------------------
 
 
