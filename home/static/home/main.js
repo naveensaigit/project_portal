@@ -1,5 +1,6 @@
 $(document).ready(function () {
     $(".searchable-select").select2();
+    applyFilters();
 });
 $(document).on('click', '.task', function() {
     var project_id = $(this).attr('project_id');
@@ -19,3 +20,39 @@ $(document).on('click', '.task', function() {
         },
     });
 });
+
+function applyFilters(){
+    var url = new URL(window.location.href);
+
+    selectOption("id_Status", "Status");
+    selectOption("id_Difficulty", "Difficulty");
+    selectOption("id_FloatedBy", "FloatedBy");
+    selectOption("id_Duration", "Duration");
+}
+
+function selectOption(id, fieldName){
+    var url = new URL(window.location.href);
+    var field = document.getElementById(id);
+    var filterValue = url.searchParams.get(fieldName);
+    
+    if(fieldName == "Duration"){
+        field.setAttribute('value', filterValue);
+        return;
+    }
+    else if(fieldName == "FloatedBy"){
+        var index = users.findIndex(obj => obj.pk == filterValue);
+        filterValue = users[index].fields.username;
+    
+        var floatedByField = document.getElementById("select2-id_FloatedBy-container");
+        floatedByField.setAttribute('title', filterValue);
+        floatedByField.innerHTML = filterValue;
+    }
+
+    for(let i = 0;i<field.children.length;i++){
+        var fieldOption = field.children[i];
+        if(fieldOption.innerHTML == filterValue){
+            var selected = document.createAttribute("selected");
+            fieldOption.setAttributeNode(selected);
+        }
+    }
+}
