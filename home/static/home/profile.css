@@ -104,12 +104,12 @@ color: #404040;
   }
 .buttons a
   {
-  font-size: 16px;
+  font-size: 20px;
   }
 .buttons a:hover
   {
   cursor:pointer;
-  font-size: 16px;
+  font-size: 20px;
   }
 
 .project-title{
@@ -137,9 +137,9 @@ color: #404040;
   font-weight: bold;
   font-size: 20px;
   line-height: 23px;
-  
+
   color: #404040;
-  
+
 }
 
 .profile-project-desc p{
