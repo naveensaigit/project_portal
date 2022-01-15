@@ -3,18 +3,19 @@ display: flex;
 justify-content: center;
 }
 .pagination > li{
-    border: 2px solid rgb(218, 218, 218);
+    border: 2px solid #19258C;
     border-radius: 0.5rem;
     margin: 1px;
     font-size: 1.1rem;
     padding-top: 6.5px;
+    color: #19258C;
 }
 .pagination > .selected{
-    background-color: grey;
+    background-color: #C9D8FF;
     padding: 7px 15px;
 }
 .pagination > li > a{
-    color: black;
+    color: #19258C;
     text-decoration: none;
     padding: 7px 15px;
 }
