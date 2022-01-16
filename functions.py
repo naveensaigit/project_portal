@@ -33,8 +33,8 @@ def get_filtered_projects(request):
 
 def get_tagged_projects(request):
     all_projects = Project.objects.all().order_by('-DatePosted')
-    tagTitle = request.GET.get('tag')
-    tag = Tag.objects.all().filter(Title = tagTitle)
+    tagid = request.GET.get('Tags')
+    tag = Tag.objects.all().filter(id = tagid)
     return all_projects.filter(Tags__in = tag)
 
 def get_most_common_tags(size):

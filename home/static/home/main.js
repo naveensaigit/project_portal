@@ -28,20 +28,27 @@ $(document).on('click', '.task', function () {
 
 function applyFilters() {
     var url = new URL(window.location.href);
-    if (url.searchParams.get("Status") != "")
+    var status = url.searchParams.get("Status");
+    var difficulty = url.searchParams.get("Difficulty");
+    var floatedBy = url.searchParams.get("FloatedBy");
+    var duration = url.searchParams.get("Duration");
+    var tags = url.searchParams.get("Tags");
+
+    if ( status != null && status !="")
         selectOption("id_Status", "Status");
-    if (url.searchParams.get("Difficulty") != "")
+    if ( difficulty != null && difficulty !="")
         selectOption("id_Difficulty", "Difficulty");
-    if (url.searchParams.get("FloatedBy") != "")
+    if ( floatedBy != null && floatedBy !="")
         selectOption("id_FloatedBy", "FloatedBy");
-    if (url.searchParams.get("Duration") != "")
+    if ( duration != null && duration !="")
         selectOption("id_Duration", "Duration");
-    if (url.searchParams.get("Tags") != "")
+    if ( tags != null && tags !="")
         selectTags();
 }
 
 function selectTags() {
-    var params = window.location.href.split("&");
+    var params = window.location.href.split("?");
+    params = params[1].split("&");
     var tag_ids = [];
     for (var i = 0; i < params.length; i++) {
         var param = params[i];
