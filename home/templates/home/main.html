@@ -22,71 +22,71 @@
 {% endblock customStylesheets %}
 {% block content %}
 {% block cardBlock %}
-<div class="row justify-content-center">
-    <div class="col-xl-3 col-md-6 mb-4" style="padding: 0rem 1.25rem;">
-        <div class="card shadow">
-            <div class="card-body">
-                <div class="row no-gutters align-items-center">
-                    <div class="vertical-line"></div>
-                    <div class="col mr-2">
-                        <div class="text-xs font-weight-bold text-warning text-uppercase mb-3">
-                            <a href="/profile/projects/applied">Projects Applied</a>
-                        </div>
-                        <div class="h3  font-weight-bold text-gray-800">{{ projects_id.2|length }}</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="col-xl-3 col-md-6 mb-4" style="padding: 0rem 1.25rem;">
-        <div class="card  shadow">
-            <div class="card-body">
-                <div class="row no-gutters align-items-center">
-                    <div class="vertical-line"></div>
-                    <div class="col mr-2">
-                        <div class="text-xs font-weight-bold text-warning text-uppercase mb-3">
-                            <a href="/profile/projects/floated">Projects Floated</a>
-                        </div>
-                        <div class="h3  font-weight-bold text-gray-800">{{ projects_id.0|length }}</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="col-xl-3 col-md-6 mb-4" style="padding: 0rem 1.25rem;">
-        <div class="card  shadow">
-            <div class="card-body">
-                <div class="row no-gutters align-items-center">
-                    <div class="vertical-line"></div>
-                    <div class="col mr-2">
-                        <div class="text-xs font-weight-bold text-warning text-uppercase mb-3">
-                            <a href="/profile/projects/requested">Projects Requested</a>
-                        </div>
-                        <div class="h3  font-weight-bold text-gray-800">{{ projects_id.3|length }}</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="col-xl-3 col-md-6 mb-4" style="padding: 0rem 1.25rem;">
-        <div class="card  shadow">
-            <div class="card-body">
-                <div class="row no-gutters align-items-center">
-                    <div class="vertical-line"></div>
-                    <div class="col mr-2" id="starred_projects">
-                        <div id="project-container">
-                            <div class="text-xs font-weight-bold text-warning text-uppercase mb-3">
-                                <a href="/profile/projects/starred">Projects Starred</a>
-                            </div>
-                            <div class="h3  font-weight-bold text-gray-800">{{ projects_id.4|length }}</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-<hr class="cards-hr">
+{#<div class="row justify-content-center">#}
+{#    <div class="col-xl-3 col-md-6 mb-4" style="padding: 0rem 1.25rem;">#}
+{#        <div class="card shadow">#}
+{#            <div class="card-body">#}
+{#                <div class="row no-gutters align-items-center">#}
+{#                    <div class="vertical-line"></div>#}
+{#                    <div class="col mr-2">#}
+{#                        <div class="text-xs font-weight-bold text-warning text-uppercase mb-3">#}
+{#                            <a href="/profile/projects/applied">Projects Applied</a>#}
+{#                        </div>#}
+{#                        <div class="h3  font-weight-bold text-gray-800">{{ projects_id.2|length }}</div>#}
+{#                    </div>#}
+{#                </div>#}
+{#            </div>#}
+{#        </div>#}
+{#    </div>#}
+{#    <div class="col-xl-3 col-md-6 mb-4" style="padding: 0rem 1.25rem;">#}
+{#        <div class="card  shadow">#}
+{#            <div class="card-body">#}
+{#                <div class="row no-gutters align-items-center">#}
+{#                    <div class="vertical-line"></div>#}
+{#                    <div class="col mr-2">#}
+{#                        <div class="text-xs font-weight-bold text-warning text-uppercase mb-3">#}
+{#                            <a href="/profile/projects/floated">Projects Floated</a>#}
+{#                        </div>#}
+{#                        <div class="h3  font-weight-bold text-gray-800">{{ projects_id.0|length }}</div>#}
+{#                    </div>#}
+{#                </div>#}
+{#            </div>#}
+{#        </div>#}
+{#    </div>#}
+{#    <div class="col-xl-3 col-md-6 mb-4" style="padding: 0rem 1.25rem;">#}
+{#        <div class="card  shadow">#}
+{#            <div class="card-body">#}
+{#                <div class="row no-gutters align-items-center">#}
+{#                    <div class="vertical-line"></div>#}
+{#                    <div class="col mr-2">#}
+{#                        <div class="text-xs font-weight-bold text-warning text-uppercase mb-3">#}
+{#                            <a href="/profile/projects/requested">Projects Requested</a>#}
+{#                        </div>#}
+{#                        <div class="h3  font-weight-bold text-gray-800">{{ projects_id.3|length }}</div>#}
+{#                    </div>#}
+{#                </div>#}
+{#            </div>#}
+{#        </div>#}
+{#    </div>#}
+{#    <div class="col-xl-3 col-md-6 mb-4" style="padding: 0rem 1.25rem;">#}
+{#        <div class="card  shadow">#}
+{#            <div class="card-body">#}
+{#                <div class="row no-gutters align-items-center">#}
+{#                    <div class="vertical-line"></div>#}
+{#                    <div class="col mr-2" id="starred_projects">#}
+{#                        <div id="project-container">#}
+{#                            <div class="text-xs font-weight-bold text-warning text-uppercase mb-3">#}
+{#                                <a href="/profile/projects/starred">Projects Starred</a>#}
+{#                            </div>#}
+{#                            <div class="h3  font-weight-bold text-gray-800">{{ projects_id.4|length }}</div>#}
+{#                        </div>#}
+{#                    </div>#}
+{#                </div>#}
+{#            </div>#}
+{#        </div>#}
+{#    </div>#}
+{#</div>#}
+{#<hr class="cards-hr">#}
 {% endblock cardBlock %}
 {% block messageBlock %}
 {% if messages %} {% for message in messages %}
@@ -96,7 +96,7 @@
 {% block mainContentBlock %}
 <div class="project_cards">
     {% block headingBlock %}
-    <h2 style="padding-top: 20px;">Projects :</h2>
+{#    <h2 style="padding-top: 20px;">Projects :</h2>#}
     {% endblock headingBlock %}
     <br>
     {% block filterBlock %}
@@ -119,10 +119,10 @@
                 <option value="Hard">Hard</option>
             </select>
         </div>
-        <div class="" style="padding-right:23px;width: 263px;">
-            <label for="id_Duration" style="font-size: 16px; font-weight: 300; float: left;">Duration</label>
-            <input type="text" name="Duration" id="id_Duration" style="background-color:#EBEBEB; border: 1px solid rgba(0, 0, 0, 0.25); border-radius: 5px;width:242px; height:44px;" placeholder="None">
-        </div>
+{#        <div class="" style="padding-right:23px;width: 263px;">#}
+{#            <label for="id_Duration" style="font-size: 16px; font-weight: 300; float: left;">Duration</label>#}
+{#            <input type="text" name="Duration" id="id_Duration" style="background-color:#EBEBEB; border: 1px solid rgba(0, 0, 0, 0.25); border-radius: 5px;width:242px; height:44px;" placeholder="None">#}
+{#        </div>#}
         <div class="" style="padding-right:23px;width: 263px;">
             <label for="id_FloatedBy" style="font-size: 16px; font-weight: 300;float: left; ">FloatedBy</label>
             <select name="FloatedBy" id="id_FloatedBy" class="searchable-select" style="background-color:#EBEBEB; border: 1px solid rgba(0, 0, 0, 0.25); border-radius: 5px;width:242px; height:44px;">
@@ -145,6 +145,7 @@
             <button class="btn btn-primary" type="Submit" style="width: 95px; height: 33px; margin-left:0px; background: #19258C; color: white; border-radius: 5px;">Filter</button>
         </div>
     </form>
+        <br>
     {% endblock filterBlock %}
     {% block tagsBlock %}
         <div>
