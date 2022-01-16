@@ -27,6 +27,7 @@ def main(request):
     context = {
         'title': 'Home',
         'users':User.objects.all(),
+        'tags': Tag.objects.all(),
         'users_html':serialize("json", User.objects.all()),
         'projects': projects,
         'projects_id': projects_id,

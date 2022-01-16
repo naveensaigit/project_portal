@@ -8,5 +8,6 @@ class ProjectFilter(django_filters.FilterSet):
             'Status',
             'Difficulty',
             'Duration',
-            'FloatedBy'
+            'FloatedBy',
+            'Tags'
         ]

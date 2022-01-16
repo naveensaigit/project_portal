@@ -132,6 +132,15 @@
                 {% endfor %}
             </select>
         </div>
+        <div class="" style="padding-right:23px;width: 263px;">
+            <label for="id_Tags" style="font-size: 16px; font-weight: 300;float: left; ">Tags</label>
+            <select name="Tags" id="id_Tags" class="searchable-select" multiple="multiple" style="background-color:#EBEBEB; border: 1px solid rgba(0, 0, 0, 0.25); border-radius: 5px;width:242px; height:44px;">
+                <option value="">None</option>
+                {% for TAG in tags %}
+                <option value='{{TAG.id}}'>{{ TAG }}</option>
+                {% endfor %}
+            </select>
+        </div>
         <div class="" style="padding-top: 25px;">
             <button class="btn btn-primary" type="Submit" style="width: 95px; height: 33px; margin-left:0px; background: #19258C; color: white; border-radius: 5px;">Filter</button>
         </div>
@@ -139,6 +148,7 @@
     {% endblock filterBlock %}
     {% block tagsBlock %}
         <div>
+            <b> COMMON TAGS: </b>
             {% for tag in common_tags %}
                 <a href="/?tag={{tag}}">{{ tag }}</a>
             {% endfor %}
