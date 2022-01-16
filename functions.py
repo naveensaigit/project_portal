@@ -10,6 +10,19 @@ from django.contrib.auth.models import User
 from collections import Counter
 
 def shellScript():
+    # from home.models import Project, Tag
+    # projects = Project.objects.all()
+    # tags = Tag.objects.all()
+
+    # i = 7
+    # for project in projects:
+    #     tag = tags.get(id = i)
+    #     print("Adding tag", tag, "to project", project)
+    #     project.Tags.add(tag)
+    #     if i==21:
+    #         i = 7
+    #     else:
+    #         i += 1
     pass
 
 def get_filtered_projects(request):

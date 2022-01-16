@@ -11,6 +11,7 @@ from django.core.serializers import serialize
 @login_required
 def main(request):
     projects = get_filtered_projects(request)
+    # shellScript()
 
     if request.method == "POST" and request.POST['search']!="":
         projects = get_searched_projects(request)
