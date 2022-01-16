@@ -14,6 +14,11 @@ $(document).on('click', '.task', function() {
         url: `/project/task/?project_id=${project_id}&task=${task}&page_number=${page_number}`,
         success: function (response) {
             $("#projectNumber" + project_id).load(location.href + " #projectNumber" + project_id + " >.blog-container");
+            console.log(task);
+            if(task === "Star" || task === "Unstar")
+            {
+                $("#starred_projects").load(location.href+" #starred_projects"+">#project-container")
+            }
         },
         error: function (rs, e) {
             console.log(rs.responseText);

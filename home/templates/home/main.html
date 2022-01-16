@@ -73,11 +73,13 @@
             <div class="card-body">
                 <div class="row no-gutters align-items-center">
                     <div class="vertical-line"></div>
-                    <div class="col mr-2">
-                        <div class="text-xs font-weight-bold text-warning text-uppercase mb-3">
-                            <a href="/profile/projects/starred">Projects Starred</a>
+                    <div class="col mr-2" id="starred_projects">
+                        <div id="project-container">
+                            <div class="text-xs font-weight-bold text-warning text-uppercase mb-3">
+                                <a href="/profile/projects/starred">Projects Starred</a>
+                            </div>
+                            <div class="h3  font-weight-bold text-gray-800">{{ projects_id.4|length }}</div>
                         </div>
-                        <div class="h3  font-weight-bold text-gray-800">{{ projects_id.4|length }}</div>
                     </div>
                 </div>
             </div>
