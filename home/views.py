@@ -21,6 +21,8 @@ def main(request):
     projects = get_paginated_projects(request, projects)
     projects_id = get_projects_id(request)
 
+    common_tags = get_most_common_tags(5)
+
     context = {
         'title': 'Home',
         'users':User.objects.all(),
@@ -28,7 +30,7 @@ def main(request):
         'projects': projects,
         'projects_id': projects_id,
         'notifications': Notification.objects.filter(user = request.user).order_by('-time'),
-        # 'myFilter':myFilter,
+        'common_tags':common_tags
     }
 
     return render(request, 'home/main.html', context)

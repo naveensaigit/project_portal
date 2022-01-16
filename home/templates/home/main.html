@@ -137,6 +137,13 @@
         </div>
     </form>
     {% endblock filterBlock %}
+    {% block tagsBlock %}
+        <div>
+            {% for tag in common_tags %}
+                <a href="/?tag={{tag}}">{{ tag }}</a>
+            {% endfor %}
+        </div>
+    {% endblock tagsBlock %}
     {% block allProjectsBlock %}
     <div class="justify-content-center" style="display: flex; flex-wrap: wrap;" id="all-projects">
         {% for project in projects %}

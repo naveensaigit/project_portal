@@ -7,6 +7,10 @@ from django.shortcuts import redirect
 from django.contrib import messages
 from home.filters import ProjectFilter
 from django.contrib.auth.models import User
+from collections import Counter
+
+def shellScript():
+    pass
 
 def get_filtered_projects(request):
     all_projects = Project.objects.all().order_by('-DatePosted')
@@ -20,6 +24,14 @@ def get_tagged_projects(request):
     tag = Tag.objects.all().filter(Title = tagTitle)
     return all_projects.filter(Tags__in = tag)
 
+def get_most_common_tags(size):
+    projects = Project.objects.all()
+    tags = []
+    for project in projects:
+        project_tags = project.Tags.all()
+        for project_tag in project_tags:
+            tags.append(project_tag)
+    return [x for x in Counter(tags)][:size]
 
 def get_projects_id(request):
     user_floated_projects_id = []
