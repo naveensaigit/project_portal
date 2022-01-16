@@ -1,22 +1,11 @@
------------------------------------------ BACKEND ----------------------------------------------
-oauth signup page correction
-Sign up page all details after login
-Add option to clear filter
-users/views.py -> functions usage
-pagination buggy somewhere- forgot where :')
-after filtering from tags , filtered tags don't get displayed
-Create new tags on entering tag not in db
-More tags feature commented for time being- Apply it back after applying filters from tags
--------------------------------------------------------------------------------------------------
-
-
---------------------------------- FRONTEND -----------------------------------
+FRONTEND-:
 on adding lots of tags in filter styling gets messed up
 correct filters and common tags styling on dashboard
 table of projects applicant
 Button for more tags (once the prequisite seperation work is completed)
 star and like button on projects overlapping
--------------------------------------------------------------------------------
+
+
 
 
 
