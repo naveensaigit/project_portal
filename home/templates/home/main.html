@@ -291,6 +291,7 @@
     {% block customScripts %}
         <script>
             var users = {{ users_html|safe }};
+            var tags = {{ tags_html|safe }};
         </script>
         <script src="{% static 'home/main.js' %}"></script>
     {% endblock customScripts %}

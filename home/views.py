@@ -29,6 +29,7 @@ def main(request):
         'users':User.objects.all(),
         'tags': Tag.objects.all(),
         'users_html':serialize("json", User.objects.all()),
+        'tags_html':serialize("json", Tag.objects.all()),
         'projects': projects,
         'projects_id': projects_id,
         'notifications': Notification.objects.filter(user = request.user).order_by('-time'),
