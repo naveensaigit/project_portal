@@ -151,7 +151,7 @@
         <div>
             <b> COMMON TAGS: </b>
             {% for tag in common_tags %}
-                <a href="/?tag={{tag}}">{{ tag }}</a>
+                <a href="/?Tags={{tag.id}}" onclick = "applyFilters()">{{ tag }}</a>
             {% endfor %}
         </div>
     {% endblock tagsBlock %}
@@ -186,7 +186,7 @@
                                             </li>
                                         {% else %} {% endcomment %}
                                             <li>
-                                                <a href="/?tag={{tag}}">{{ tag }}</a>
+                                                <a href="/?Tags={{tag.id}}" onclick = "applyFilters()">{{ tag }}</a>
                                             </li>
                                         {% comment %} {% endif %} {% endcomment %}
                                     {% endif %}
