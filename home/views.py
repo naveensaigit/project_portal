@@ -16,7 +16,9 @@ def main(request):
     if request.method == "POST" and request.POST['search']!="":
         projects = get_searched_projects(request)
 
-    if request.GET.get('Tags')!=None:
+    tags = request.GET.get('Tags')
+    status = request.GET.get('Status')
+    if tags!=None and tags!='' and status == None:
         projects = get_tagged_projects(request)
 
     projects = get_paginated_projects(request, projects)
