@@ -10,6 +10,33 @@ border-radius: 10px;
 margin-bottom: 100px;
 }
 
+.profButton {
+	background-color:#f7f4f4;
+	display:inline-block;
+	cursor:pointer;
+	color:#00000b;
+	font-family:Arial;
+	font-size:17px;
+	padding-top: 13px;
+  padding-right: 0px;
+  padding-left: 0px;
+	text-decoration:none;
+  width:192px;
+  height:75px;
+  text-align: center;
+  text-decoration: none;
+}
+
+.profButton:hover {
+	background-color:#f6f4f4;
+  text-decoration: none;
+}
+.profButton:active {
+	position:relative;
+	top:1px;
+  text-decoration: none;
+
+}
 
 form {
     margin-top: 15px;

@@ -5,6 +5,7 @@
 <link rel="stylesheet" type="text/css" href="{% static 'home/cards.css' %}">
 <link rel="stylesheet" type="text/css" href="{% static 'home/profile.css' %}">
 
+
 <style media="screen">
   .vertical-line-profile {
     width: 6px;
@@ -149,85 +150,22 @@
       <div class="buttons">
         <div class="row justify-content-center">
           <div class="col-xl-3 col-md-6 mb-4" style="margin-top: 5px; margin-bottom: 5px;">
-            <div class="card" style="width:210px; height: 85px;">
-              <div class="card-body" style="box-shadow: 0px 0px 0px rgb(0 0 0 / 0%); border-radius: 0px;">
-                <div class="row no-gutters align-items-center" style="text-align: center;">
-                  <div class="vertical-line-profile-2" style="    padding-left: 10px;"></div>
-                  <div class="col mr-2" style="padding-top: 0.7rem;">
-                    <div class="text-xs font-weight-bold  text-uppercase" style="margin-bottom: 0.5rem;">
-                      <a class="project-title" onclick="toggleVisibility('projects_applied');" style="font-size: 12px;">PROJECTS APPLIED:</a>
-                    </div>
-                    <div class="h3  font-weight-bold text-gray-800 project-count">{{ num_projects_applied }}</div>
-                  </div>
-                  <!-- <div class="col-auto">
-                              <i class="fas fa-comments fa-2x text-gray-300"></i>
-                                          </div> -->
-                </div>
-              </div>
-            </div>
+            <a class="profButton" onclick="toggleVisibility('projects_applied')"><p style="font-weight: 300; font-size: 12px;margin-bottom: 0px;">PROJECTS APPLIED:<br><h3 style="font-weight: 500;font-size: 28px;">{{ num_projects_applied }}</h3></p></a>
+
           </div>
 
           <div class="col-xl-3 col-md-6 mb-4" style="margin-top: 5px; margin-bottom: 5px;">
-            <div class="card" style="width:210px; height: 85px;">
-              <div class="card-body" style="box-shadow: 0px 0px 0px rgb(0 0 0 / 0%); border-radius: 0px;">
-                <div class="row no-gutters align-items-center" style="text-align: center;">
-                  <div class="vertical-line-profile"></div>
-                  <div class="col mr-2" style="padding-top: 0.7rem;">
-                    <div class="text-xs font-weight-bold  text-uppercase" style="margin-bottom: 0.5rem;">
-                      <a class="project-title" onclick="toggleVisibility('projects_floated');" style="font-size: 12px;">PROJECTS
-                        FLOATED:</a>
-                    </div>
-                    <div class="h3  font-weight-bold text-gray-800 project-count">{{ num_projects_floated }}</div>
-                  </div>
-                  <!-- <div class="col-auto">
-                              <i class="fas fa-comments fa-2x text-gray-300"></i>
-                            </div> -->
-                </div>
-              </div>
-            </div>
+            <a class="profButton" onclick="toggleVisibility('projects_floated')"><p style="font-weight: 300; font-size: 12px;margin-bottom: 0px;">PROJECTS FLOATED:<br><h3 style="font-weight: 500;font-size: 28px;">{{ num_projects_floated }}</h3></p></a>
+
           </div>
           <div class="col-xl-3 col-md-6 mb-4" style="margin-top: 5px; margin-bottom: 5px;">
-            <div class="card" style="width:210px; height: 85px;">
-              <div class="card-body" style="box-shadow: 0px 0px 0px rgb(0 0 0 / 0%); border-radius: 0px;">
-                <div class="row no-gutters align-items-center" style="text-align: center;">
-                  <div class="vertical-line-profile"></div>
-                  <div class="col mr-2" style="padding-top: 0.7rem;">
-                    <div class="text-xs font-weight-bold text-uppercase" style="margin-bottom: 0.5rem;">
-                      <a class="project-title" onclick="toggleVisibility('projects_requested');" style="font-size: 12px;">PROJECTS
-                        REQUESTED:</a>
-                    </div>
-                    <div class="h3  font-weight-bold text-gray-800 project-count">{{ num_projects_req }}
-                    </div>
-                  </div>
-                  <!-- <div class="col-auto">
-                                              <i class="fas fa-comments fa-2x text-gray-300"></i>
-                                            </div> -->
-                </div>
-              </div>
-            </div>
+            <a class="profButton" onclick="toggleVisibility('projects_requested')"><p style="font-weight: 300; font-size: 12px;margin-bottom: 0px;">PROJECTS REQUESTED:<br><h3 style="font-weight: 500;font-size: 28px;">{{ num_projects_req }}</h3></p></a>
+
           </div>
 
           <div class="col-xl-3 col-md-6 mb-4" style="margin-top: 5px; margin-bottom: 5px;">
-            <div class="card" style="width:210px; height:85px; ">
-              <div class="card-body" style="box-shadow: 0px 0px 0px rgb(0 0 0 / 0%); border-radius: 0px;">
-                <div class="row no-gutters align-items-center" style="text-align: center;">
-                  <div class="vertical-line-profile"></div>
-                  <div class="col mr-2" style="padding-top: 0.7rem;">
-                    <div class="text-xs font-weight-bold text-uppercase" style="margin-bottom: 0.5rem;">
-                      <a class="project-title" onclick="toggleVisibility('projects_starred');" style="font-size: 12px;">PROJECTS STARRED:</a>
-                    </div>
-                    <div class="h3  font-weight-bold text-gray-800 project-count">{{ user.profile.starred_projects.count }}
-                    </div>
-                  </div>
+            <a class="profButton" onclick="toggleVisibility('projects_starred')"><p style="font-weight: 300; font-size: 12px;margin-bottom: 0px;">PROJECTS STARRED:<br><h3 style="font-weight: 500;font-size: 28px;">{{ user.profile.starred_projects.count }}</h3></p></a>
 
-                  <!-- <div class="col-auto">
-                                              <i class="fas fa-comments fa-2x text-gray-300"></i>
-                                            </div> -->
-                  <div class="vertical-line-profile-3" style="margin-left:2px;"></div>
-                </div>
-
-              </div>
-            </div>
           </div>
 
 
