@@ -6,7 +6,6 @@ from .models import Profile,Notification
 from django.contrib.auth.decorators import login_required
 from django.core.files.storage import default_storage
 from home.models import Project
-from home.filters import ProjectFilter
 from functions import *
 from django.core.serializers import serialize
 
@@ -41,38 +40,16 @@ def signup(request):
 
 @login_required
 def profile(request, user_id):
-    all_project_list = Project.objects.all().order_by('-DatePosted')
-
-    user_projects_id = []
-    user_starred_projects_id = []
-    user_requested_projects_id = []
-
     user = User.objects.get(id=user_id)
-    user_applied_projects = all_project_list.filter(AlreadyApplied=user)
-    user_floated_projects = all_project_list.filter(FloatedBy=user)
-    user_requested_projects = all_project_list.filter(ApplyRequest=request.user)
-    user_starred_projects = request.user.profile.starred_projects.all()
-    for project in user_applied_projects:
-        user_projects_id.append(project.id)
-    for project in user_floated_projects:
-        user_projects_id.append(project.id)
-    for project in user_requested_projects:
-        user_requested_projects_id.append(project.id)
-    for project in user_starred_projects:
-        user_starred_projects_id.append(project.id)
+    projects = get_user_projects(user)
+    projects_id = get_user_projects_id(user)
 
     context = {
         'title': 'Profile',
-        'num_projects_applied': user_applied_projects.count(),
-        'num_projects_req': len(user_requested_projects_id),
-        'num_projects_floated': user_floated_projects.count(),
-        'user_starred_projects_id' : user_starred_projects_id,
-        'projects_applied': user_applied_projects[0:5],
-        'projects_floated': user_floated_projects[0:5],
-        'projects_requested': user_requested_projects[0:5],
-        'projects_starred': user_starred_projects[0:5],
+        'projects': projects,
+        'projects_id': projects_id,
         'notifications': Notification.objects.filter(user=request.user).order_by('-time'),
-        'profile_user': User.objects.get(id = user_id)
+        'profile_user': user
     }
 
     return render(request, 'users/profile.html', context)
@@ -120,7 +97,7 @@ def projects_view(request):
     req_projects, title, heading = get_projects_view_details(request)
     projects = get_filtered_projects(request, req_projects)
     projects = get_paginated_projects(request, projects)
-    projects_id = get_projects_id(request)
+    projects_id = get_user_projects_id(request.user)
     common_tags = get_most_common_tags(5)
 
     context = {

@@ -18,7 +18,7 @@ def main(request):
         projects = get_searched_projects(request)
 
     projects = get_paginated_projects(request, projects)
-    projects_id = get_projects_id(request)
+    projects_id = get_user_projects_id(request.user)
 
     common_tags = get_most_common_tags(5)
 
@@ -69,7 +69,7 @@ def project(request):
     project_id = request.GET.get('project_id')
     project = Project.objects.get(id=project_id)
 
-    projects_id = get_projects_id(request)
+    projects_id = get_user_projects_id(request.user)
 
     context = {
         'title': 'Project',

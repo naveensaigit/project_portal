@@ -1,9 +1,12 @@
-var divs = ["projects_applied", "projects_floated", "projects_requested", "projects_starred"];
+$(document).ready(function () {
+    var div = document.getElementById("projects0");
+    div.removeAttribute("style");
+});
+
+var divs = ["projects0", "projects1", "projects2", "projects3"];
 var visibleDivId = null;
 function toggleVisibility(divId) {
-    if (visibleDivId === divId) {
-        //visibleDivId = null;
-    } else {
+    if (visibleDivId != divId) {
         visibleDivId = divId;
     }
     hideNonVisibleDivs();

@@ -39,32 +39,40 @@ def get_most_common_tags(size):
             tags.append(project_tag)
     return [x for x in Counter(tags)][:size]
 
-def get_projects_id(request):
-    user_floated_projects_id = []
-    user_liked_projects_id = []
-    user_applied_projects_id = []
-    user_requested_projects_id = []
-    user_starred_projects_id = []
+def get_user_projects(user):
+    all_project_list = Project.objects.all().order_by('-DatePosted')
+    applied = all_project_list.filter(AlreadyApplied=user)
+    floated = all_project_list.filter(FloatedBy=user)
+    requested = all_project_list.filter(ApplyRequest=user)
+    starred = user.profile.starred_projects.all()
+    return [floated, applied, requested, starred]
+
+def get_user_projects_id(user):
+    floated_id = []
+    liked_id = []
+    applied_id = []
+    requested_id = []
+    starred_id = []
 
     all_project_list = Project.objects.all().order_by('-DatePosted')
-    user_floated_projects = all_project_list.filter(FloatedBy =  request.user)
-    user_liked_projects = request.user.profile.liked_projects.all()
-    user_applied_projects = all_project_list.filter(AlreadyApplied =  request.user)
-    user_requested_projects = all_project_list.filter(ApplyRequest = request.user)
-    user_starred_projects = request.user.profile.starred_projects.all()
+    floated = all_project_list.filter(FloatedBy =  user)
+    liked = user.profile.liked_projects.all()
+    applied = all_project_list.filter(AlreadyApplied =  user)
+    requested = all_project_list.filter(ApplyRequest = user)
+    starred = user.profile.starred_projects.all()
 
-    for project in user_floated_projects:
-        user_floated_projects_id.append(project.id)
-    for project in user_liked_projects:
-        user_liked_projects_id.append(project.id)
-    for project in user_applied_projects:
-        user_applied_projects_id.append(project.id)
-    for project in user_requested_projects:
-        user_requested_projects_id.append(project.id)
-    for project in user_starred_projects:
-        user_starred_projects_id.append(project.id)
+    for project in floated:
+        floated_id.append(project.id)
+    for project in liked:
+        liked_id.append(project.id)
+    for project in applied:
+        applied_id.append(project.id)
+    for project in requested:
+        requested_id.append(project.id)
+    for project in starred:
+        starred_id.append(project.id)
 
-    return [user_floated_projects_id, user_liked_projects_id, user_applied_projects_id, user_requested_projects_id, user_starred_projects_id]
+    return [floated_id, liked_id, applied_id, requested_id, starred_id]
 
 def get_paginated_projects(request, projects):
     page = request.GET.get('page', 1)
