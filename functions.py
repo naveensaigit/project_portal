@@ -175,3 +175,25 @@ def do_task(request, task):
         project.ApplyRequest.remove(request_user)
         if task == "Apply":
             project.AlreadyApplied.add(request_user)
+
+def get_projects_view_details(request):
+    view = request.GET.get('view')
+    all_projects = Project.objects.all()
+    if view == "applied":
+        req_projects = all_projects.filter(AlreadyApplied = request.user)
+        title = 'Projects Applied'
+        heading = "Projects Applied For:"
+    elif view == "requested":
+        req_projects = all_projects.filter(ApplyRequest = request.user)
+        title = 'Projects Requested'
+        heading = "Projects Requested:"
+    elif view == "floated":
+        req_projects = all_projects.filter(FloatedBy = request.user)
+        title = 'Projects Floated'
+        heading = "Projects Floated:"
+    else:
+        req_projects = request.user.profile.starred_projects.all()
+        title = 'Projects Starred'
+        heading = "Projects Starred:"
+    req_projects = req_projects.order_by('-DatePosted')
+    return req_projects, title, heading

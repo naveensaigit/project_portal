@@ -117,26 +117,7 @@ def profile_edit(request):
 
 @login_required
 def projects_view(request):
-    view = request.GET.get('view')
-    all_projects = Project.objects.all()
-    if view == "applied":
-        req_projects = all_projects.filter(AlreadyApplied = request.user)
-        title = 'Projects Applied'
-        heading = "Projects Applied For:"
-    elif view == "requested":
-        req_projects = all_projects.filter(ApplyRequest = request.user)
-        title = 'Projects Requested'
-        heading = "Projects Requested:"
-    elif view == "floated":
-        req_projects = all_projects.filter(FloatedBy = request.user)
-        title = 'Projects Floated'
-        heading = "Projects Floated:"
-    else:
-        req_projects = request.user.profile.starred_projects.all()
-        title = 'Projects Starred'
-        heading = "Projects Starred:"
-    req_projects = req_projects.order_by('-DatePosted')
-
+    req_projects, title, heading = get_projects_view_details(request)
     projects = get_filtered_projects(request, req_projects)
     projects = get_paginated_projects(request, projects)
     projects_id = get_projects_id(request)
