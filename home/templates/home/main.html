@@ -179,16 +179,14 @@
                                 <li><a href="/?Status={{project.Status}}">{{project.Status}}</a></li>
                                 <li><a href="/?Difficulty={{project.Difficulty}}">{{project.Difficulty}}</a></li>
                                 {% for tag in project.Tags.all %}
-                                    {% if tag %}
-                                        {% comment %} {% if tag == "More Tags..." %}
-                                            <li>
-                                                <a href="/project/?project_id={{project.id}}">{{ tag }}</a>
-                                            </li>
-                                        {% else %} {% endcomment %}
-                                            <li>
-                                                <a href="/?Tags={{tag.id}}" onclick = "applyFilters()">{{ tag }}</a>
-                                            </li>
-                                        {% comment %} {% endif %} {% endcomment %}
+                                    {% if forloop.counter <= 3 %}
+                                        <li>
+                                            <a href="/?Tags={{tag.id}}">{{ tag }}</a>
+                                        </li>
+                                    {% else %}
+                                        <li>
+                                            <a href="/project/?project_id={{project.id}}">More Tags...</a>
+                                        </li>
                                     {% endif %}
                                 {% endfor %}
                             </ul>
