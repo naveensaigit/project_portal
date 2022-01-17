@@ -179,11 +179,12 @@
                                 <li><a href="/?Status={{project.Status}}">{{project.Status}}</a></li>
                                 <li><a href="/?Difficulty={{project.Difficulty}}">{{project.Difficulty}}</a></li>
                                 {% for tag in project.Tags.all %}
-                                    {% if forloop.counter <= 3 %}
+                                    {% if forloop.counter <= 4 %}
                                         <li>
                                             <a href="/?Tags={{tag.id}}">{{ tag }}</a>
                                         </li>
-                                    {% else %}
+                                    {% endif %}
+                                    {% if forloop.counter == 5 %}
                                         <li>
                                             <a href="/project/?project_id={{project.id}}">More Tags...</a>
                                         </li>
