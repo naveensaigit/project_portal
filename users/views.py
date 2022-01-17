@@ -7,7 +7,8 @@ from django.contrib.auth.decorators import login_required
 from django.core.files.storage import default_storage
 from home.models import Project
 from home.filters import ProjectFilter
-
+from functions import *
+from django.core.serializers import serialize
 
 def signup(request):
     if request.method == 'POST':
@@ -113,74 +114,48 @@ def profile_edit(request):
 
     return render(request, 'users/profile_edit.html', context)
 
-@login_required
-def projects_floated(request):
-    all_project_list = Project.objects.all().filter(FloatedBy = request.user).order_by('-DatePosted')
-    myFilter = ProjectFilter(request.GET,queryset=all_project_list)
-    filtered_projects= myFilter.qs
-    user_starred_projects_id = []
-    for project in (filtered_projects and request.user.profile.starred_projects.all()):
-        user_starred_projects_id.append(project.id)
-    context = {
-        'title': 'Projects Floated',
-        'projects': filtered_projects,
-        'myFilter': myFilter,
-        'notifications': Notification.objects.filter(user=request.user).order_by('-time'),
-        'user_starred_projects_id' : user_starred_projects_id,
-    }
-
-    return render(request, 'users/profile_floated.html', context)
 
 @login_required
-def projects_applied(request):
-    all_project_list = Project.objects.all().filter(AlreadyApplied = request.user).order_by('-DatePosted')
-    myFilter = ProjectFilter(request.GET,queryset=all_project_list)
-    filtered_projects= myFilter.qs
-    
-    context = {
-        'title': 'Projects Applied',
-        'projects' : filtered_projects,
-        'notifications': Notification.objects.filter(user=request.user).order_by('-time'),
-        'myFilter': myFilter,
-    }
+def projects_view(request):
+    view = request.GET.get('view')
+    all_projects = Project.objects.all()
+    if view == "applied":
+        req_projects = all_projects.filter(AlreadyApplied = request.user)
+        title = 'Projects Applied'
+        heading = "Projects Applied For:"
+    elif view == "requested":
+        req_projects = all_projects.filter(ApplyRequest = request.user)
+        title = 'Projects Requested'
+        heading = "Projects Requested:"
+    elif view == "floated":
+        req_projects = all_projects.filter(FloatedBy = request.user)
+        title = 'Projects Floated'
+        heading = "Projects Floated:"
+    else:
+        req_projects = request.user.profile.starred_projects.all()
+        title = 'Projects Starred'
+        heading = "Projects Starred:"
+    req_projects = req_projects.order_by('-DatePosted')
 
-    return render(request, 'users/profile_applied.html', context)
-
-@login_required
-def projects_starred(request):
-    projects_starred = request.user.profile.starred_projects.all()
-    myFilter = ProjectFilter(request.GET, queryset=projects_starred)
-    filtered_projects = myFilter.qs
-    user_starred_projects_id = []
-    for project in request.user.profile.starred_projects.all():
-        user_starred_projects_id.append(project.id)
-    context = {
-        'title': 'Projects Starred',
-        'projects' : filtered_projects,
-        'user_starred_projects_id' : user_starred_projects_id,
-        'notifications': Notification.objects.filter(user=request.user).order_by('-time'),
-        'myFilter': myFilter,
-    }
-
-    return render(request, 'users/profile_starred.html', context)
-
-@login_required
-def projects_requested(request):
-    all_project_list = Project.objects.all().filter(ApplyRequest = request.user).order_by('-DatePosted')
-    myFilter = ProjectFilter(request.GET,queryset=all_project_list)
-    filtered_projects= myFilter.qs
-    user_starred_projects_id = []
-    for project in (filtered_projects and request.user.profile.starred_projects.all()):
-        user_starred_projects_id.append(project.id)
+    projects = get_filtered_projects(request, req_projects)
+    projects = get_paginated_projects(request, projects)
+    projects_id = get_projects_id(request)
+    common_tags = get_most_common_tags(5)
 
     context = {
-        'title': 'Projects Requested',
-        'projects': filtered_projects,
-        'myFilter': myFilter,
-        'notifications': Notification.objects.filter(user=request.user).order_by('-time'),
-        'user_starred_projects_id' : user_starred_projects_id,
+        'title': title,
+        'users':User.objects.all(),
+        'tags': Tag.objects.all(),
+        'users_html':serialize("json", User.objects.all()),
+        'tags_html':serialize("json", Tag.objects.all()),
+        'projects': projects,
+        'projects_id': projects_id,
+        'notifications': Notification.objects.filter(user = request.user).order_by('-time'),
+        'common_tags':common_tags,
+        'heading': heading
     }
-    return render(request, 'users/profile_requested.html', context)
+
+    return render(request, 'users/projects_view.html', context)
 
 def oauth(request):
     url = '/accounts/google/login/?process=login/'

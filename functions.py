@@ -25,8 +25,7 @@ def shellScript():
     #         i += 1
     pass
 
-def get_filtered_projects(request):
-    all_projects = Project.objects.all().order_by('-DatePosted')
+def get_filtered_projects(request, all_projects):
     myFilter = ProjectFilter(request.GET,queryset=all_projects)
     filtered_projects= myFilter.qs
     return filtered_projects
