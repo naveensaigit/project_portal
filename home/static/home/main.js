@@ -26,6 +26,16 @@ $(document).on('click', '.task', function () {
     });
 });
 
+function clearFilters(){
+    var url = new URL(window.location.href);
+    var newUrlString = window.location.href.split('?')[0];
+    var page = url.searchParams.get("page");
+    if(page != null){
+        newUrlString += `?page=${page}`;
+    }
+    window.location.href = new URL(newUrlString);
+}
+
 function applyFilters() {
     var url = new URL(window.location.href);
     var status = url.searchParams.get("Status");
