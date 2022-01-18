@@ -134,10 +134,9 @@
         </div>
         <div class="" style="padding-right:23px;width: 263px;">
             <label for="id_Tags" style="font-size: 16px; font-weight: 300;float: left; ">Tags</label>
-            <select name="Tags" id="id_Tags" class="searchable-select" multiple="multiple" style="background-color:#EBEBEB; border: 1px solid rgba(0, 0, 0, 0.25); border-radius: 5px;width:242px; height:44px;">
-                <option value="">None</option>
+            <select name="Tags" id="id_Tags" class="tags-select" multiple="multiple" style="background-color:#EBEBEB; border: 1px solid rgba(0, 0, 0, 0.25); border-radius: 5px;width:242px; height:44px;">
                 {% for TAG in tags %}
-                <option value='{{TAG.id}}'>{{ TAG }}</option>
+                <option value='{{TAG.id}}' id = '{{TAG.id}}'>{{ TAG }}</option>
                 {% endfor %}
             </select>
         </div>

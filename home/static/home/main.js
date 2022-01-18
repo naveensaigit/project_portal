@@ -1,5 +1,16 @@
 $(document).ready(function () {
     $(".searchable-select").select2();
+    $(".tags-select").select2({
+        allowClear: 'true',
+        "language": {
+            "noResults": function () {
+                return "No Results Found <br> <a href='#'>Create New Tag</a>";
+            }
+        },
+        escapeMarkup: function (markup) {
+            return markup;
+        }
+    });
     applyFilters();
 });
 
@@ -15,7 +26,6 @@ $(document).on('click', '.task', function () {
         url: `/project/task/?project_id=${project_id}&task=${task}&page_number=${page_number}`,
         success: function (response) {
             $("#projectNumber" + project_id).load(location.href + " #projectNumber" + project_id + " >.blog-container");
-            console.log(task);
             if (task === "Star" || task === "Unstar") {
                 $("#starred_projects").load(location.href + " #starred_projects" + ">#project-container")
             }
@@ -26,11 +36,11 @@ $(document).on('click', '.task', function () {
     });
 });
 
-function clearFilters(){
+function clearFilters() {
     var url = new URL(window.location.href);
     var newUrlString = window.location.href.split('?')[0];
     var page = url.searchParams.get("page");
-    if(page != null){
+    if (page != null) {
         newUrlString += `?page=${page}`;
     }
     window.location.href = new URL(newUrlString);
@@ -44,15 +54,15 @@ function applyFilters() {
     var duration = url.searchParams.get("Duration");
     var tags = url.searchParams.get("Tags");
 
-    if ( status != null && status !="")
+    if (status != null && status != "")
         selectOption("id_Status", "Status");
-    if ( difficulty != null && difficulty !="")
+    if (difficulty != null && difficulty != "")
         selectOption("id_Difficulty", "Difficulty");
-    if ( floatedBy != null && floatedBy !="")
+    if (floatedBy != null && floatedBy != "")
         selectOption("id_FloatedBy", "FloatedBy");
-    if ( duration != null && duration !="")
+    if (duration != null && duration != "")
         selectOption("id_Duration", "Duration");
-    if ( tags != null && tags !="")
+    if (tags != null && tags != "")
         selectTags();
 
     var spanElement = document.getElementsByClassName('select2-container--default')[1];
