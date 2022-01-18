@@ -54,6 +54,9 @@ function applyFilters() {
         selectOption("id_Duration", "Duration");
     if ( tags != null && tags !="")
         selectTags();
+
+    var spanElement = document.getElementsByClassName('select2-container--default')[1];
+    spanElement.classList.add("select2-container--below");
 }
 
 function selectTags() {
@@ -92,7 +95,7 @@ function selectTags() {
         var cutElement = document.createElement("span");
         cutElement.setAttribute("class", "select2-selection__choice__remove");
         cutElement.setAttribute("role", "presentation");
-        cutElement.innerHTML = "x";
+        cutElement.innerHTML = "×";
         liElement.appendChild(cutElement);
 
         var liContent = document.createTextNode(tagName);

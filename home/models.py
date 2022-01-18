@@ -25,7 +25,7 @@ class Tag(models.Model):
         return f"{self.Title}"
 
 class Project(models.Model):
-    Title = models.CharField(max_length=30)
+    Title = models.CharField(max_length=100)
     Description = models.TextField()
     FloatedBy = models.ForeignKey(User, on_delete=models.CASCADE,related_name="FloatedBy")
     Mentors = models.ManyToManyField(User,related_name='Mentors')
