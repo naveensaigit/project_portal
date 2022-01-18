@@ -14,7 +14,7 @@ class UserRegisterForm(UserCreationForm):
 class ProfileRegisterForm(forms.ModelForm):
     class Meta:
         model = Profile
-        fields = ['image', 'rollno', 'year', 'branch', 'techskills', 'cv']
+        fields = ['image', 'rollno', 'year', 'branch', 'techskills', 'cv','linked_in_link','portfolio_link','github_link']
 
 
 class UserUpdateForm(forms.ModelForm):
@@ -29,4 +29,4 @@ class ProfileUpdateForm(forms.ModelForm):
     )
     class Meta:
         model = Profile
-        fields = ['image', 'rollno', 'year', 'branch', 'techskills', 'cv']
+        fields = ['image', 'rollno', 'year', 'branch', 'techskills', 'cv','linked_in_link','portfolio_link','github_link']

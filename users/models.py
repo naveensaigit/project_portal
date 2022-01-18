@@ -3,6 +3,7 @@ from django.contrib.auth.models import User
 from PIL import Image
 from home.models import Project
 from django.utils import timezone
+from django.core.validators import FileExtensionValidator
 
 YEAR_CHOICES = (
     ('1st', '1st'),
@@ -29,7 +30,10 @@ class Profile(models.Model):
     techskills = models.TextField()
     starred_projects = models.ManyToManyField(Project, related_name='starred_projects', blank = True)
     liked_projects = models.ManyToManyField(Project, related_name='liked_projects', blank = True)
-    cv = models.FileField(blank = True, upload_to='resumes')
+    cv = models.FileField(blank = True, upload_to='resumes',validators=[FileExtensionValidator(allowed_extensions=['pdf'])])
+    linked_in_link = models.TextField(blank=True)
+    portfolio_link = models.TextField(blank=True)
+    github_link = models.TextField(blank=True)
 
     def __str__(self):
         return f"{self.user}({self.rollno})"
