@@ -1,8 +1,6 @@
 {% extends 'home/main.html' %} {% load static %}
-{% block stylesheets %}
-<link rel="stylesheet" type="text/css" href="{% static 'home/style.css' %}">
-<link rel="stylesheet" type="text/css" href="{% static 'home/cards.css' %}">
-<link rel="stylesheet" type="text/css" href="{% static 'home/profile.css' %}">
+{% block customStylesheets %}
+<link rel="stylesheet" type="text/css" href="{% static 'users/profile.css' %}">
 <style media="screen">
   .vertical-line-profile {
     width: 6px;
@@ -49,7 +47,8 @@
     border-radius: 10px;
   }
 </style>
-{% endblock stylesheets %}
+{% endblock customStylesheets %}
+{% block ajaxBlock %}{% endblock ajaxBlock %}
 {% block content %}
 {% block messageBlock %}
 {% if messages %} {% for message in messages %}
@@ -134,28 +133,28 @@
       <div class="buttons">
         <div class="row justify-content-center">
           <div class="col-xl-3 col-md-6 mb-4" style="margin-top: 5px; margin-bottom: 5px;">
-            <a class="profButton" onclick="toggleVisibility('projects1')">
-              <p style="font-weight: 300; font-size: 12px;margin-bottom: 0px;">PROJECTS APPLIED:<br>
-                <h3 style="font-weight: 500;font-size: 28px;">{{ projects_id.2|length }}</h3>
-              </p>
-            </a>
-          </div>
-          <div class="col-xl-3 col-md-6 mb-4" style="margin-top: 5px; margin-bottom: 5px;">
-            <a class="profButton" onclick="toggleVisibility('projects0')">
+            <a class="profButton" onclick="toggleVisibility('projects0')" id='projects0button'>
               <p style="font-weight: 300; font-size: 12px;margin-bottom: 0px;">PROJECTS FLOATED:<br>
                 <h3 style="font-weight: 500;font-size: 28px;">{{ projects_id.0|length  }}</h3>
               </p>
             </a>
           </div>
           <div class="col-xl-3 col-md-6 mb-4" style="margin-top: 5px; margin-bottom: 5px;">
-            <a class="profButton" onclick="toggleVisibility('projects2')">
+            <a class="profButton" onclick="toggleVisibility('projects1')" id='projects1button'>
+              <p style="font-weight: 300; font-size: 12px;margin-bottom: 0px;">PROJECTS APPLIED:<br>
+                <h3 style="font-weight: 500;font-size: 28px;">{{ projects_id.2|length }}</h3>
+              </p>
+            </a>
+          </div>
+          <div class="col-xl-3 col-md-6 mb-4" style="margin-top: 5px; margin-bottom: 5px;">
+            <a class="profButton" onclick="toggleVisibility('projects2')" id='projects2button'>
               <p style="font-weight: 300; font-size: 12px;margin-bottom: 0px;">PROJECTS REQUESTED:<br>
                 <h3 style="font-weight: 500;font-size: 28px;">{{ projects_id.3|length  }}</h3>
               </p>
             </a>
           </div>
           <div class="col-xl-3 col-md-6 mb-4" style="margin-top: 5px; margin-bottom: 5px;">
-            <a class="profButton" onclick="toggleVisibility('projects3')">
+            <a class="profButton" onclick="toggleVisibility('projects3')" id='projects3button'>
               <p style="font-weight: 300; font-size: 12px;margin-bottom: 0px;">PROJECTS STARRED:<br>
                 <h3 style="font-weight: 500;font-size: 28px;">{{ projects_id.4|length  }}</h3>
               </p>
@@ -192,5 +191,5 @@
   </div>
   {% endblock content %}
   {% block customScripts %}
-  <script src="{% static 'home/profile.js' %}"></script>
+  <script src="{% static 'users/profile.js' %}"></script>
   {% endblock customScripts %}

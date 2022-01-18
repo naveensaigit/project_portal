@@ -1,5 +1,10 @@
+const selected = "#c9d8ff";
+const unselected = "#f7f4f4";
+
 $(document).ready(function () {
     var div = document.getElementById("projects0");
+    var divbutton = document.getElementById("projects0button");
+    divbutton.style.background = selected;
     div.removeAttribute("style");
 });
 
@@ -16,10 +21,13 @@ function hideNonVisibleDivs() {
     for (i = 0; i < divs.length; i++) {
         divId = divs[i];
         div = document.getElementById(divId);
+        divbutton = document.getElementById(divId + 'button');
         if (visibleDivId === divId) {
             div.style.display = "block";
+            divbutton.style.background = selected;
         } else {
             div.style.display = "none";
+            divbutton.style.background = unselected;
         }
     }
 }
