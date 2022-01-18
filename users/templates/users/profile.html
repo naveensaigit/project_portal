@@ -1,6 +1,10 @@
 {% extends 'home/main.html' %} {% load static %}
 {% block customStylesheets %}
 <link rel="stylesheet" type="text/css" href="{% static 'users/profile.css' %}">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
 <style media="screen">
   .vertical-line-profile {
     width: 6px;
@@ -90,35 +94,35 @@
           Links</p>
         <div style="border: 1px solid rgba(0, 0, 0, 0.25); box-sizing: border-box; border-radius: 10px; margin-left: 25px; margin-right: 25px; height: 145px; ">
           <p style="font-family: 'Public Sans', sans-serif;font-style: normal;font-weight: normal;font-size: 16px;line-height: 19px;color: #404040; margin-left: 10px; margin-top: 20px;">
-            <i class="fab fa-linkedin" style="margin-right: 5px;"></i>Linkedin : 
-              {% if profile_user.profile.linked_in_link|length > 0%}
-                <a href={{profile_user.profile.linked_in_link}} target="_blank">{{profile_user.profile.linked_in_link}}</a>
-              {% else %}
-                NA
-              {% endif %}
-              <br>
-            <i class="fas fa-globe" style="margin-right: 5px;"></i>Portfolio : 
-              {% if profile_user.profile.portfolio_link|length > 0%}
-                <a href={{profile_user.profile.portfolio_link}} target="_blank">{{profile_user.profile.portfolio_link}}</a>
-              {% else %}
-                NA
-              {% endif %}
+            <i class="fab fa-linkedin" style="margin-right: 5px;"></i>Linkedin :
+            {% if profile_user.profile.linked_in_link|length > 0%}
+            <a href={{profile_user.profile.linked_in_link}} target="_blank">{{profile_user.profile.linked_in_link}}</a>
+            {% else %}
+            NA
+            {% endif %}
             <br>
-            <i class="fab fa-github" style="margin-right: 5px;"></i>Github : 
-              {% if profile_user.profile.github_link|length > 0%}
-                <a href={{profile_user.profile.github_link}} target="_blank">{{profile_user.profile.github_link}}</a>
-              {% else %}
-                NA
-              {% endif %}
+            <i class="fas fa-globe" style="margin-right: 5px;"></i>Portfolio :
+            {% if profile_user.profile.portfolio_link|length > 0%}
+            <a href={{profile_user.profile.portfolio_link}} target="_blank">{{profile_user.profile.portfolio_link}}</a>
+            {% else %}
+            NA
+            {% endif %}
             <br>
-            <i class="far fa-file" style="margin-right: 5px;"></i>Resume : 
-              {% if profile_user.profile.cv|length > 0%}
-              <a href="{{profile_user.profile.cv.url}}" target="_blank">
-                  Click Here
-                </a>
-              {% else %}
-                NA
-              {% endif %}
+            <i class="fab fa-github" style="margin-right: 5px;"></i>Github :
+            {% if profile_user.profile.github_link|length > 0%}
+            <a href={{profile_user.profile.github_link}} target="_blank">{{profile_user.profile.github_link}}</a>
+            {% else %}
+            NA
+            {% endif %}
+            <br>
+            <i class="far fa-file" style="margin-right: 5px;"></i>Resume :
+            {% if profile_user.profile.cv|length > 0%}
+            <a href="{{profile_user.profile.cv.url}}" target="_blank">
+              Click Here
+            </a>
+            {% else %}
+            NA
+            {% endif %}
             <br>
           </p>
           <div style="background: #19258C; margin-left:260px; margin-right: 10px; box-sizing: border-box; border-radius: 5px; color: white; width: 65px;">
@@ -129,7 +133,8 @@
     </div>
   </div>
   <div class="col-md">
-    <div class="projects" style="margin-top: 83px; overflow: hidden;">
+    <div class="card" style="margin-top: 83px; overflow: hidden; width: 52.5rem; height: 59.875rem;">
+      <div class="card-body" style="background-color:white;box-shadow: none;">
       <div class="buttons">
         <div class="row justify-content-center">
           <div class="col-xl-3 col-md-6 mb-4" style="margin-top: 5px; margin-bottom: 5px;">
@@ -160,32 +165,53 @@
               </p>
             </a>
           </div>
+          <!-- ============================= -->
           {% for projects_category in projects %}
-            {% with index=forloop.counter0 %}
-              <div id="projects{{index}}" style="display:none;">
-                {% for project in projects_category %}
-                <div class="card-box" style="padding-top: 0px;padding-bottom: 0px; margin-top: 15px; margin-bottom: 30px;">
-                  <div class="blog-body">
-                    <div class="demo-a profile-project-title">
-                      <h1 style="font-size: 1.8rem;"><a href="/project/?project_id={{project.id}}">{{ project.Title}}</a>
-                      </h1>
-                    </div>
-                    <div class="demo-2 profile-project-desc">
-                      <p>{{project.Description}}</p>
-                    </div>
-                  </div>
-                </div>
-                {% endfor %}
-                {% if projects_category.count == 0 %}
-                <div>No projects</div>
-                {% endif %}
-              </div>
-            {% endwith %}
+          {% with index=forloop.counter0 %}
+          <div id="projects{{index}}" style="display:none;">
+            {% for project in projects_category %}
+          <div class="card" style="width: 51rem; height: 7.5rem; margin-bottom: 29px;">
+            <div class="card-body" style="background-color:white;box-shadow: none;">
+              <h4 class="card-title"><a href="/project/?project_id={{project.id}}">{{ project.Title}}</a></h4>
+              <p class="card-text demo-2 profile-project-desc">{{project.Description}}</p>
+
+            </div>
+          </div>
+            {% endfor %}
+            {% if projects_category.count == 0 %}
+            <div>No projects</div>
+            {% endif %}
+          </div>
+          {% endwith %}
           {% endfor %}
+          <!-- ==================================== -->
+          <!-- {% for projects_category in projects %}
+          {% with index=forloop.counter0 %}
+          <div id="projects{{index}}" style="display:none;">
+            {% for project in projects_category %}
+            <div class="card-box" style="padding-top: 0px;padding-bottom: 0px; margin-top: 15px; margin-bottom: 30px;">
+              <div class="blog-body">
+                <div class="demo-a profile-project-title">
+                  <h1 style="font-size: 1.8rem;"><a href="/project/?project_id={{project.id}}">{{ project.Title}}</a>
+                  </h1>
+                </div>
+                <div class="demo-2 profile-project-desc">
+                  <p>{{project.Description}}</p>
+                </div>
+              </div>
+            </div>
+            {% endfor %}
+            {% if projects_category.count == 0 %}
+            <div>No projects</div>
+            {% endif %}
+          </div>
+          {% endwith %}
+          {% endfor %} -->
         </div>
       </div>
       <br><br><br><br><br><br><br><br><br>
-      <div>
+      </div>
+      </div>
       </div>
     </div>
   </div>
