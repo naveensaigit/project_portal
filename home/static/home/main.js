@@ -1,15 +1,7 @@
 $(document).ready(function () {
     $(".searchable-select").select2();
-    $(".tags-select").select2({
-        allowClear: 'true',
-        "language": {
-            "noResults": function () {
-                return "No Results Found <br> <a href='#'>Create New Tag</a>";
-            }
-        },
-        escapeMarkup: function (markup) {
-            return markup;
-        }
+    $(".searchable-select-clearable").select2({
+        allowClear: 'true'
     });
     applyFilters();
 });
