@@ -8,6 +8,8 @@ from django.core.files.storage import default_storage
 from home.models import Project
 from functions import *
 from django.core.serializers import serialize
+from django.http import FileResponse
+import os
 
 def signup(request):
     if request.method == 'POST':
@@ -118,3 +120,12 @@ def projects_view(request):
 def oauth(request):
     url = '/accounts/google/login/?process=login/'
     return redirect(url)
+
+@login_required
+def profile_cv_view(request,user_id):
+    user = User.objects.get(id=user_id)
+    CV_Path=str(user.profile.cv)
+    dir = os.path.dirname(os.path.realpath(__file__))
+    dir = dir.replace('users', 'media')
+    CV_Path= str(dir)+"/"+ CV_Path
+    return FileResponse(open(CV_Path, 'rb'), as_attachment=False, content_type='application/pdf')
