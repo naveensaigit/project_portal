@@ -8,14 +8,11 @@
 <style media="screen">
   .vertical-line-profile {
     width: 6px;
-    height: 85px;
+    height: 75px;
     background-color: #19258c;
-    margin-left: -5px;
-    margin-right: 10px;
+    /* margin-left: -5px;
+    margin-right: 10px; */
   }
-
-
-
 
 
   .cards-hr {
@@ -44,9 +41,9 @@
 <div style="margin-left: 20px; color: #022160; font-size: 30px; background-color: white;">{{message}}</div>
 {% endfor %} {% endif %}
 {% endblock messageBlock %}
-<div class="row" style="padding-bottom:100px;">
+<div class="row" style="padding-bottom:100px; margin-left: 5%;">
   <div class="col-sm-4">
-    <div class="card" style="width: 415px; height: 958px; margin-top: 83px; margin-left: 85px;">
+    <div class="card" style="width: 415px; height: 958px; margin-top: 83px;">
       <div class="card-body" style="box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.25); background: #F7F4F4; border-radius: 10px;">
         <div class="d-flex flex-column align-items-center text-center">
           <img src="{{ profile_user.profile.image.url }}" alt="" style="margin-top: 24px; height:200px;height:200px; border-radius: 100%;">
@@ -118,47 +115,52 @@
     </div>
   </div>
   <div class="col-md">
-    <div class="card" style="margin-top: 83px; overflow: hidden; width: 52.5rem; height: 59.875rem; margin-left: 46px;">
-      <div class="card-body" style="background-color:white;box-shadow: none;">
+    <div class="card" style="margin-top: 83px; overflow: hidden; width: 52.5rem; height: 59.875rem;">
+      <div class="card-body" style="background-color:white;box-shadow: none; padding: 0px;">
       <div class="buttons">
         <div class="row justify-content-center">
-          <div class="col-xl-3 col-md-6 mb-4" style="margin-top: 5px; margin-bottom: 5px;">
-            <a class="profButton" onclick="toggleVisibility('projects0')" id='projects0button'>
+          <div class="vertical-line-profile"></div>
+          <div class="col-xl-3 col-md-6 mb-4" style=" margin-bottom: 5px; padding:0px; max-width: 23%;">
+            <a class="profButton" onclick="toggleVisibility('projects0')" id='projects0button' style="margin-left: 4px;">
               <p style="font-weight: 300; font-size: 12px;margin-bottom: 0px;">PROJECTS FLOATED:<br>
                 <h3 style="font-weight: 500;font-size: 28px;">{{ projects_id.0|length  }}</h3>
               </p>
             </a>
           </div>
-          <div class="col-xl-3 col-md-6 mb-4" style="margin-top: 5px; margin-bottom: 5px;">
-            <a class="profButton" onclick="toggleVisibility('projects1')" id='projects1button'>
+          <div class="vertical-line-profile"></div>
+          <div class="col-xl-3 col-md-6 mb-4" style=" margin-bottom: 5px; padding:0px;  max-width: 23%">
+            <a class="profButton" onclick="toggleVisibility('projects1')" id='projects1button' style="margin-left: 4px;">
               <p style="font-weight: 300; font-size: 12px;margin-bottom: 0px;">PROJECTS APPLIED:<br>
                 <h3 style="font-weight: 500;font-size: 28px;">{{ projects_id.2|length }}</h3>
               </p>
             </a>
           </div>
-          <div class="col-xl-3 col-md-6 mb-4" style="margin-top: 5px; margin-bottom: 5px;">
-            <a class="profButton" onclick="toggleVisibility('projects2')" id='projects2button'>
+          <div class="vertical-line-profile"></div>
+          <div class="col-xl-3 col-md-6 mb-4" style=" margin-bottom: 5px; padding:0px;  max-width: 23%; ">
+            <a class="profButton" onclick="toggleVisibility('projects2')" id='projects2button' style="margin-left: 4px;">
               <p style="font-weight: 300; font-size: 12px;margin-bottom: 0px;">PROJECTS REQUESTED:<br>
                 <h3 style="font-weight: 500;font-size: 28px;">{{ projects_id.3|length  }}</h3>
               </p>
             </a>
           </div>
-          <div class="col-xl-3 col-md-6 mb-4" style="margin-top: 5px; margin-bottom: 5px;">
-            <a class="profButton" onclick="toggleVisibility('projects3')" id='projects3button'>
+          <div class="vertical-line-profile"></div>
+          <div class="col-xl-3 col-md-6 mb-4" style=" margin-bottom: 5px; padding:0px; max-width: 23%">
+            <a class="profButton" onclick="toggleVisibility('projects3')" id='projects3button' style="margin-left: 4px;">
               <p style="font-weight: 300; font-size: 12px;margin-bottom: 0px;">PROJECTS STARRED:<br>
                 <h3 style="font-weight: 500;font-size: 28px;">{{ projects_id.4|length  }}</h3>
               </p>
             </a>
           </div>
+          <div class="vertical-line-profile"></div>
           <!-- ============================= -->
           {% for projects_category in projects %}
           {% with index=forloop.counter0 %}
           <div id="projects{{index}}" style="display:none;">
             {% for project in projects_category %}
-          <div class="card" style="width: 51rem; height: 7.5rem; margin-bottom: 29px;">
-            <div class="card-body" style="background-color:white;box-shadow: none;">
-              <h4 class="card-title" ><a href="/project/?project_id={{project.id}}" style="color:black;">{{ project.Title}}</a></h4>
-              <p class="card-text demo-2 profile-project-desc">{{project.Description}}</p>
+          <div class="card" style="width: 51rem; height: 7.5rem; margin-bottom: 29px;border: 1px solid #E5E5E5; box-sizing: border-box;border-radius: 10px;">  
+            <div class="card-body" style="background-color: #fff; box-shadow: none;border-radius: 10px; padding: 1rem;">
+              <h4 class="card-title"><a class="card-title" href="/project/?project_id={{project.id}}">{{ project.Title}}</a></h4>
+              <p class="card-text demo-2 card-desc">{{project.Description}}</p>
 
             </div>
           </div>
@@ -204,3 +206,4 @@
   {% block customScripts %}
   <script src="{% static 'users/profile.js' %}"></script>
   {% endblock customScripts %}
+
