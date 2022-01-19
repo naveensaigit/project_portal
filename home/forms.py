@@ -1,5 +1,6 @@
 from django import forms
 from .models import Project
+from django_select2 import forms as s2forms
 
 OPENED_FOR_CHOICES = (
     ('All','All'),
@@ -33,6 +34,15 @@ OPENED_FOR_CHOICES = (
     ),
 )
 
+class MentorsWidget(s2forms.ModelSelect2MultipleWidget):
+    search_fields = [
+        "username__icontains",
+    ]
+class TagsWidget(s2forms.ModelSelect2MultipleWidget):
+    search_fields = [
+        "Title__icontains",
+    ]
+
 class ProjectRegisterForm(forms.ModelForm):
     OpenedFor = forms.MultipleChoiceField(
         label="Opened For", choices=OPENED_FOR_CHOICES, required=True,
@@ -41,7 +51,10 @@ class ProjectRegisterForm(forms.ModelForm):
     class Meta:
         model = Project
         fields = ['Title','Description','Mentors','Status','OpenedFor','Difficulty','PreRequisite','Tags','Duration','SelectionCriteria','MailNotification']
-
+        widgets = {
+            "Mentors": MentorsWidget,
+            "Tags": TagsWidget,
+        }
 
 
 class ProjectUpdateForm(forms.ModelForm):
@@ -52,3 +65,7 @@ class ProjectUpdateForm(forms.ModelForm):
     class Meta:
         model = Project
         fields = ['Title','Description','Mentors','Status','OpenedFor','Difficulty','PreRequisite','Tags','Duration','SelectionCriteria','MailNotification']
+        widgets = {
+            "Mentors": MentorsWidget,
+            "Tags": TagsWidget,
+        }

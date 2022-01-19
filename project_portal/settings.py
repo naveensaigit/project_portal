@@ -52,7 +52,23 @@ INSTALLED_APPS = [
     # 'allauth.socialaccount.providers.linkedin',
     # 'allauth.socialaccount.providers.facebook',
     'django_filters',
+    'django_select2'
 ]
+
+CACHES = {
+    "default": {
+        "BACKEND": "django.core.cache.backends.locmem.LocMemCache",
+        "LOCATION": "unique-snowflake",
+    },
+    "select2": {
+        "BACKEND": "django_redis.cache.RedisCache",
+        "LOCATION": "redis://127.0.0.1:6379/2",
+        "OPTIONS": {
+            "CLIENT_CLASS": "django_redis.client.DefaultClient",
+        }
+    }
+}
+SELECT2_CACHE_BACKEND = "select2"
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',

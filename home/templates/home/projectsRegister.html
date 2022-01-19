@@ -1,11 +1,12 @@
 {% extends 'home/base.html' %} {% load static %} {% load crispy_forms_tags %}
 
 {% block stylesheets %}
-<link rel="stylesheet" type="text/css" href="{% static 'home/style.css' %}">
+	<link rel="stylesheet" type="text/css" href="{% static 'home/style.css' %}">
 {% endblock stylesheets %}
 
 {% block customStylesheets %}
-<link rel="stylesheet" type="text/css" href="{% static 'home/projectsRegister.css' %}">
+	{{ project_form.media.css }}
+	<link rel="stylesheet" type="text/css" href="{% static 'home/projectsRegister.css' %}">
 {% endblock customStylesheets %}
 
 {% block content %}
@@ -44,5 +45,7 @@
 {% endblock content %}
 
 {% block customScripts %}
-	<script src="{% static 'home/projects.js' %}"></script>
+	{% comment %} <script src="{% static 'home/projects.js' %}"></script> {% endcomment %}
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    {{ project_form.media.js }}
 {% endblock customScripts %}
