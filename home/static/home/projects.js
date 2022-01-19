@@ -42,6 +42,7 @@ $(document).on('click', '.newTag', function () {
         type: "GET",
         url: `/tag/new/?newTagTitle=${newTagTitle}`,
         success: function (response) {
+            $("#page-top > span").remove();
             $("#div_id_Tags > div").load(location.href + " #id_Tags", function (responseTxt, statusTxt, xhr) {
                 if (statusTxt == "success") {
                     $("#id_Tags").select2({
