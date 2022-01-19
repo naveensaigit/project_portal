@@ -66,15 +66,16 @@ def projectRegister(request):
     return render(request, 'home/projectsRegister.html', context)
 
 def createNewTag(request):
-    newTagTitle = request.GET.get('newTagTitle')
+    newTagTitle = request.GET.get('newTagTitle').capitalize()
     wordValidator = enchant.Dict("en_US")
+    tag = Tag.objects.all().filter(Title = newTagTitle)
     if wordValidator.check(newTagTitle):
-        tag = Tag.objects.create(Title = newTagTitle.capitalize())
-        tag.save()
-        print("Created new tag-:",tag)
+        if len(tag)==0:
+            tag = Tag.objects.create(Title = newTagTitle)
+            tag.save()
     else:
         message = 'Please use one of the below given word-:\n'
-        suggestions = wordValidator.suggest(newTagTitle.capitalize())
+        suggestions = wordValidator.suggest(newTagTitle)
         for suggestion in suggestions:
             message+=suggestion+" "
         messages.error(request, message)

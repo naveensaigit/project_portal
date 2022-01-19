@@ -28,7 +28,7 @@ $(document).ready(function () {
 
     let targetSelector = "#div_id_Tags > div > span > span.selection > span > ul > li.select2-search.select2-search--inline > input";
     target = document.querySelector(targetSelector);
-    target.addEventListener("keyup", function(){
+    target.addEventListener("keyup", function () {
         inputValue = target.value;
     });
 });
@@ -42,20 +42,25 @@ $(document).on('click', '.newTag', function () {
         type: "GET",
         url: `/tag/new/?newTagTitle=${newTagTitle}`,
         success: function (response) {
-            $(location.href + " #id_Tags").select2({
-                "allowClear": 'true',
-                "language": {
-                    "noResults": function () {
-                        return "No Results Found <br> <a class='newTag'>Create New Tag</a>";
-                    }
-                },
-                escapeMarkup: function (markup) {
-                    return markup;
+            $("#div_id_Tags > div").load(location.href + " #id_Tags", function (responseTxt, statusTxt, xhr) {
+                if (statusTxt == "success") {
+                    $("#id_Tags").select2({
+                        "allowClear": 'true',
+                        "language": {
+                            "noResults": function () {
+                                return "No Results Found <br> <a class='newTag'>Create New Tag</a>";
+                            }
+                        },
+                        escapeMarkup: function (markup) {
+                            return markup;
+                        }
+                    });
                 }
-            });
-            $("#div_id_Tags > div").load(location.href + " #id_Tags");
-        },
-        error: function (rs, e) {
+                if (statusTxt == "error")
+                    alert("Error: " + xhr.status + ": " + xhr.statusText);
+                });
+            },
+            error: function (rs, e) {
             console.log(rs.responseText);
         },
     });
