@@ -69,12 +69,12 @@ def createNewTag(request):
     newTagTitle = request.GET.get('newTagTitle')
     wordValidator = enchant.Dict("en_US")
     if wordValidator.check(newTagTitle):
-        tag = Tag.objects.create(Title = newTagTitle)
+        tag = Tag.objects.create(Title = newTagTitle.capitalize())
         tag.save()
         print("Created new tag-:",tag)
     else:
         message = 'Please use one of the below given word-:\n'
-        suggestions = wordValidator.suggest(newTagTitle)
+        suggestions = wordValidator.suggest(newTagTitle.capitalize())
         for suggestion in suggestions:
             message+=suggestion+" "
         messages.error(request, message)

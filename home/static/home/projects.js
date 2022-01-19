@@ -9,13 +9,13 @@ $(document).ready(function () {
         allowClear: 'true'
     });
 
-    
     tag = document.getElementById("id_Tags");
     att = document.createAttribute("multiple");
     att.value = "multiple";
     tag.setAttributeNode(att);
 
     $("#id_Tags").select2({
+        "allowClear": 'true',
         "language": {
             "noResults": function () {
                 return "No Results Found <br> <a class='newTag'>Create New Tag</a>";
@@ -42,6 +42,17 @@ $(document).on('click', '.newTag', function () {
         type: "GET",
         url: `/tag/new/?newTagTitle=${newTagTitle}`,
         success: function (response) {
+            $(location.href + " #id_Tags").select2({
+                "allowClear": 'true',
+                "language": {
+                    "noResults": function () {
+                        return "No Results Found <br> <a class='newTag'>Create New Tag</a>";
+                    }
+                },
+                escapeMarkup: function (markup) {
+                    return markup;
+                }
+            });
             $("#div_id_Tags > div").load(location.href + " #id_Tags");
         },
         error: function (rs, e) {
