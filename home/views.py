@@ -7,6 +7,7 @@ from .models import Project
 from .forms import ProjectRegisterForm, ProjectUpdateForm
 from functions import *
 from django.core.serializers import serialize
+import enchant
 
 @login_required
 def main(request):
@@ -62,6 +63,29 @@ def projectRegister(request):
         'notifications': Notification.objects.filter(user = request.user).order_by('-time'),
     }
 
+    return render(request, 'home/projectsRegister.html', context)
+
+def createNewTag(request):
+    newTagTitle = request.GET.get('newTagTitle')
+    wordValidator = enchant.Dict("en_US")
+    if wordValidator.check(newTagTitle):
+        tag = Tag.objects.create(Title = newTagTitle)
+        tag.save()
+        print("Created new tag-:",tag)
+    else:
+        message = 'Please use one of the below given word-:\n'
+        suggestions = wordValidator.suggest(newTagTitle)
+        for suggestion in suggestions:
+            message+=suggestion+" "
+        messages.error(request, message)
+        print("Sent message-:", message)
+    
+    project_form = ProjectRegisterForm()
+    context = {
+        'title': 'New-Project',
+        'project_form': project_form,
+        'notifications': Notification.objects.filter(user = request.user).order_by('-time'),
+    }
     return render(request, 'home/projectsRegister.html', context)
 
 @login_required

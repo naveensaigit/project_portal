@@ -9,6 +9,11 @@
 {% endblock customStylesheets %}
 
 {% block content %}
+{% block messageBlock %}
+{% if messages %} {% for message in messages %}
+<div class="card-header py-3" id="message">{{message}}</div>
+{% endfor %} {% endif %}
+{% endblock messageBlock %}
 <div class="card" style="width:75%">
 	<br>
 	<br>

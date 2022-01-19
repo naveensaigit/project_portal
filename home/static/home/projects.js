@@ -1,4 +1,4 @@
-let mentor, tag, att, target, value;
+let mentor, tag, att, target, inputValue;
 $(document).ready(function () {
     mentor = document.getElementById("id_Mentors");
     att = document.createAttribute("multiple");
@@ -18,7 +18,7 @@ $(document).ready(function () {
     $("#id_Tags").select2({
         "language": {
             "noResults": function () {
-                return "No Results Found <br> <a href=tag/?value="+value+">Create New Tag</a>";
+                return "No Results Found <br> <a class='newTag'>Create New Tag</a>";
             }
         },
         escapeMarkup: function (markup) {
@@ -29,6 +29,23 @@ $(document).ready(function () {
     let targetSelector = "#div_id_Tags > div > span > span.selection > span > ul > li.select2-search.select2-search--inline > input";
     target = document.querySelector(targetSelector);
     target.addEventListener("keyup", function(){
-        value = target.value;
+        inputValue = target.value;
+    });
+});
+
+$(document).on('click', '.newTag', function () {
+    var newTagTitle = inputValue;
+    $.ajaxSetup({
+        cache: false
+    });
+    $.ajax({
+        type: "GET",
+        url: `/tag/new/?newTagTitle=${newTagTitle}`,
+        success: function (response) {
+            $("#div_id_Tags > div").load(location.href + " #id_Tags");
+        },
+        error: function (rs, e) {
+            console.log(rs.responseText);
+        },
     });
 });
