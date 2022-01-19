@@ -5,11 +5,8 @@ from django.contrib import messages
 from .models import Profile,Notification
 from django.contrib.auth.decorators import login_required
 from django.core.files.storage import default_storage
-from home.models import Project
 from functions import *
 from django.core.serializers import serialize
-from django.http import FileResponse
-import os
 
 def signup(request):
     if request.method == 'POST':

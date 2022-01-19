@@ -7,7 +7,6 @@ from .models import Project
 from .forms import ProjectRegisterForm, ProjectUpdateForm
 from functions import *
 from django.core.serializers import serialize
-import enchant
 
 @login_required
 def main(request):
@@ -67,20 +66,15 @@ def projectRegister(request):
 
 def createNewTag(request):
     newTagTitle = request.GET.get('newTagTitle').capitalize()
-    wordValidator = enchant.Dict("en_US")
     tag = Tag.objects.all().filter(Title = newTagTitle)
-    if wordValidator.check(newTagTitle):
-        if len(tag)==0:
-            tag = Tag.objects.create(Title = newTagTitle)
-            tag.save()
+    if len(tag)==0:
+        tag = Tag.objects.create(Title = newTagTitle)
+        tag.save()
     else:
-        message = 'Please use one of the below given word-:\n'
-        suggestions = wordValidator.suggest(newTagTitle)
-        for suggestion in suggestions:
-            message+=suggestion+" "
+        message = 'Tag already exists'
         messages.error(request, message)
         print("Sent message-:", message)
-    
+
     project_form = ProjectRegisterForm()
     context = {
         'title': 'New-Project',
