@@ -3,26 +3,26 @@ display: flex;
 justify-content: center;
 }
 .pagination > li{
-    border: 2px solid #19258C;
+    border: 1px solid rgba(0, 0, 0, 0.25);
     border-radius: 0.5rem;
     margin: 1px;
     font-size: 1.1rem;
     padding-top: 6.5px;
-    color: #19258C;
+    color: black;
 }
 .pagination > .selected{
-    background-color: #C9D8FF;
+    background-color: #EBEBEB;
     padding: 7px 15px;
 }
 .pagination > li > a{
-    color: #19258C;
+    color: black;
     text-decoration: none;
     padding: 7px 15px;
 }
 
 .pagination > .selected:hover{
-    background-color: #C9D8FF;
+    background-color: #EBEBEB;
 }
 .pagination > li:hover{
-    background-color:#C9D8FF;
+    background-color:#EBEBEB;
 }

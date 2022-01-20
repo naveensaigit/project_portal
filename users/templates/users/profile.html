@@ -156,7 +156,7 @@
           {% for projects_category in projects %}
           {% with index=forloop.counter0 %}
           <div id="projects{{index}}" style="display:none;">
-            {% for project in projects_category %}
+            {% for project in projects_category|slice:":5" %}
           <div class="card" style="width: 51rem; height: 7.5rem; margin-bottom: 29px;border: 1px solid #E5E5E5; box-sizing: border-box;border-radius: 10px;">  
             <div class="card-body" style="background-color: #fff; box-shadow: none;border-radius: 10px; padding: 1rem;">
               <h4 class="card-title"><a class="card-title" href="/project/?project_id={{project.id}}">{{ project.Title}}</a></h4>
@@ -168,6 +168,20 @@
             {% if projects_category.count == 0 %}
             <div>No projects</div>
             {% endif %}
+          {% if projects_category.count > 5 %}
+                  {% if index == 0 %}
+                    <a href="/profile/projects/view/?view=floated">
+                  {% elif index == 1 %}
+                    <a href="/profile/projects/view/?view=applied">
+                  {% elif index == 2 %}
+                    <a href="/profile/projects/view/?view=requested">
+                  {% else %}
+                      <a href="/profile/projects/view/?view=starred">
+                  {% endif %}
+
+                  Read more..
+                  </a>
+                {% endif %}
           </div>
           {% endwith %}
           {% endfor %}
@@ -191,9 +205,22 @@
             {% if projects_category.count == 0 %}
             <div>No projects</div>
             {% endif %}
+            {% if projects_category.count > 5 %}
+                  {% if index == 0 %}
+                    <a href="/profile/projects/view/?view=floated">
+                  {% elif index == 1 %}
+                    <a href="/profile/projects/view/?view=applied">
+                  {% elif index == 2 %}
+                    <a href="/profile/projects/view/?view=requested">
+                  {% else %}
+                      <a href="/profile/projects/view/?view=starred">
+                  {% endif %}
+                  Read more..
+                  </a>
+            {% endif %}
           </div>
           {% endwith %}
-          {% endfor %} -->
+          {% endfor %}
         </div>
       </div>
       <br><br><br><br><br><br><br><br><br>
