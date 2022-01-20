@@ -17,7 +17,7 @@ $(document).ready(function () {
             type:"GET",
             url:`/tag/new/?newTagTitle=${newTagTitle}`,
             success: function (response) {
-                var newOption = new Option(data.text, data.id, false, false);
+                var newOption = new Option(response.tag_title, response.tag_id, false, false);
                 console.log(newOption);
                 $('#id_Tags').append(newOption);
 

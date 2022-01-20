@@ -1,3 +1,4 @@
+from django.http import JsonResponse
 from django.shortcuts import redirect, render
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
@@ -65,23 +66,16 @@ def projectRegister(request):
     return render(request, 'home/projectsRegister.html', context)
 
 def createNewTag(request):
-    newTagTitle = request.GET.get('newTagTitle').capitalize()
+    newTagTitle = request.GET.get('newTagTitle').upper()
     tag = Tag.objects.all().filter(Title = newTagTitle)
-    if len(tag)==0:
-        tag = Tag.objects.create(Title = newTagTitle)
-        tag.save()
-    else:
+    if len(tag)!=0:
         message = 'Tag already exists'
         messages.error(request, message)
         print("Sent message-:", message)
-
-    project_form = ProjectRegisterForm()
-    context = {
-        'title': 'New-Project',
-        'project_form': project_form,
-        'notifications': Notification.objects.filter(user = request.user).order_by('-time'),
-    }
-    return render(request, 'home/projectsRegister.html', context)
+        return JsonResponse({}, status = 404)
+    tag = Tag.objects.create(Title = newTagTitle)
+    tag.save()
+    return JsonResponse({"tag_id":tag.id, "tag_title":tag.Title}, status = 200)
 
 @login_required
 def project(request):
