@@ -40,25 +40,28 @@ function clearFilters() {
 
 function applyFilters() {
     var url = new URL(window.location.href);
-    var status = url.searchParams.get("Status");
-    var difficulty = url.searchParams.get("Difficulty");
-    var floatedBy = url.searchParams.get("FloatedBy");
-    var duration = url.searchParams.get("Duration");
-    var tags = url.searchParams.get("Tags");
 
+    var status = url.searchParams.get("Status");
     if (status != null && status != "")
-        selectOption("id_Status", "Status");
+        $("#id_Status").val(status);
+
+    var difficulty = url.searchParams.get("Difficulty");
     if (difficulty != null && difficulty != "")
-        selectOption("id_Difficulty", "Difficulty");
-    if (floatedBy != null && floatedBy != "")
-        selectOption("id_FloatedBy", "FloatedBy");
-    if (duration != null && duration != "")
-        selectOption("id_Duration", "Duration");
+        $("#id_Difficulty").val(difficulty);
+
+    var floatedBy = url.searchParams.get("FloatedBy");
+    if (floatedBy != null && floatedBy != ""){
+        $('#id_FloatedBy').val(floatedBy); // Select the option with a value of '1'
+        $('#id_FloatedBy').trigger('change'); // Notify any JS components that the value changed
+    }
+
+    // var duration = url.searchParams.get("Duration");
+    // if (duration != null && duration != "")
+    //     selectOption("id_Duration", "Duration");
+
+    var tags = url.searchParams.get("Tags");
     if (tags != null && tags != "")
         selectTags();
-
-    var spanElement = document.getElementsByClassName('select2-container--default')[1];
-    spanElement.classList.add("select2-container--below");
 }
 
 function selectTags() {
@@ -74,63 +77,6 @@ function selectTags() {
             }
         }
     }
-    var field = document.getElementById("id_Tags");
-    for (let i = 0; i < field.children.length; i++) {
-        var fieldOption = field.children[i];
-        if (tag_ids.includes(fieldOption.value)) {
-            var selected = document.createAttribute("selected");
-            fieldOption.setAttributeNode(selected);
-        }
-    }
-
-    var ulElement = document.getElementsByClassName('select2-selection__rendered')[1];
-
-    for (var i = 0; i < tag_ids.length; i++) {
-        var tag_id = tag_ids[i];
-        var index = tags.findIndex(obj => obj.pk == tag_id);
-        var tagName = tags[index].fields.Title;
-
-        var liElement = document.createElement("li");
-        liElement.setAttribute("class", "select2-selection__choice");
-        liElement.setAttribute("title", tagName);
-
-        var cutElement = document.createElement("span");
-        cutElement.setAttribute("class", "select2-selection__choice__remove");
-        cutElement.setAttribute("role", "presentation");
-        cutElement.innerHTML = "×";
-        liElement.appendChild(cutElement);
-
-        var liContent = document.createTextNode(tagName);
-        liElement.appendChild(liContent);
-
-        var lastLiElement = ulElement.lastElementChild
-        ulElement.insertBefore(liElement, lastLiElement);
-    }
-}
-
-function selectOption(id, fieldName) {
-    var url = new URL(window.location.href);
-    var field = document.getElementById(id);
-    var filterValue = url.searchParams.get(fieldName);
-
-    if (fieldName == "Duration") {
-        field.setAttribute('value', filterValue);
-        return;
-    }
-    else if (fieldName == "FloatedBy") {
-        var index = users.findIndex(obj => obj.pk == filterValue);
-        filterValue = users[index].fields.username;
-
-        var floatedByField = document.getElementById("select2-id_FloatedBy-container");
-        floatedByField.setAttribute('title', filterValue);
-        floatedByField.innerHTML = filterValue;
-    }
-
-    for (let i = 0; i < field.children.length; i++) {
-        var fieldOption = field.children[i];
-        if (fieldOption.innerHTML == filterValue) {
-            var selected = document.createAttribute("selected");
-            fieldOption.setAttributeNode(selected);
-        }
-    }
+    $('#id_Tags').val(tag_ids);
+    $('#id_Tags').trigger('change');
 }

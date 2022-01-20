@@ -1,47 +1,41 @@
-let mentor, tag, att, target, inputValue;
 $(document).ready(function () {
-    mentor = document.getElementById("id_Mentors");
-    att = document.createAttribute("multiple");
-    att.value = "multiple";
-    mentor.setAttributeNode(att);
-
     $("#id_Mentors").select2({
-        allowClear: 'true'
+        multiple: true,
+        allowClear: true
     });
-
-    tag = document.getElementById("id_Tags");
-    att = document.createAttribute("multiple");
-    att.value = "multiple";
-    tag.setAttributeNode(att);
 
     $("#id_Tags").select2({
+        multiple: true,
+        allowClear: true,
         tags: true,
         tokenSeparators: [','],
-    });
-});
+    }).on('select2:select', function (e) {
+        var newTagTitle = e.params.data.text;
+        var data = e.params.data;
+        var select2Element = $(this);
+        $.ajax({
+            type:"GET",
+            url:`/tag/new/?newTagTitle=${newTagTitle}`,
+            success: function (response) {
+                var newOption = new Option(data.text, data.id, false, false);
+                console.log(newOption);
+                $('#id_Tags').append(newOption);
 
-$('#id_Tags').on('select2:select', function (e) {
-    var data = e.params.data;
-    console.log(data);
-    $.ajax({
-        type:"GET",
-        url:`/tag/new/?newTagTitle=${data.text}`,
-        success: function (response) {
-            console.log("GM");
-            $("#div_id_Tags > div").load(location.href + " #id_Tags", function (responseTxt, statusTxt, xhr) {
-                console.log(statusTxt);
-                if (statusTxt == "success"){
-                    $('#id_Tags').select2({
-                        tags: true,
-                        tokenSeparators: [','],
-                    });
-                }
-                console.log(document.getElementById("id_Tags"));
-                if (statusTxt == "error")
-                    alert("Error: " + xhr.status + ": " + xhr.statusText);
-            });
-        }
-    })
+            //     $("#div_id_Tags > div").load(location.href + " #id_Tags", function (responseTxt, statusTxt, xhr) {
+            //         if (statusTxt == "success"){
+            //             $('#id_Tags').select2({
+            //                 tags: true,
+            //                 tokenSeparators: [','],
+            //             });
+            //             // $('#id_Tags').val(tag_ids);
+            //             // $('#id_Tags').trigger('change');
+            //         }
+            //         if (statusTxt == "error")
+            //         alert("Error: " + xhr.status + ": " + xhr.statusText);
+            //     });
+            }
+        })
+    });
 });
 
 // function createNewTag() {
