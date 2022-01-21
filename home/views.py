@@ -66,13 +66,11 @@ def projectRegister(request):
     return render(request, 'home/projectsRegister.html', context)
 
 def createNewTag(request):
-    newTagTitle = request.GET.get('newTagTitle').upper()
-    tag = Tag.objects.all().filter(Title = newTagTitle)
-    if len(tag)!=0:
-        message = 'Tag already exists'
-        messages.error(request, message)
-        print("Sent message-:", message)
+    state = check_if_valid(request)
+    if state == -1 or state == 0:
         return JsonResponse({}, status = 404)
+
+    newTagTitle = request.GET.get('newTagTitle').upper()
     tag = Tag.objects.create(Title = newTagTitle)
     tag.save()
     return JsonResponse({"tag_id":tag.id, "tag_title":tag.Title}, status = 200)

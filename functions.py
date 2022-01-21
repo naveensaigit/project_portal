@@ -8,6 +8,10 @@ from django.contrib import messages
 from home.filters import ProjectFilter
 from django.contrib.auth.models import User
 from collections import Counter
+import os
+import nltk
+nltk.download('words', download_dir=os.getcwd())
+from nltk.corpus import words
 
 def shellScript():
     # from home.models import Project, Tag
@@ -24,6 +28,23 @@ def shellScript():
     #     else:
     #         i += 1
     pass
+
+def check_if_valid(request):
+    tagname = request.GET.get('newTagTitle').upper()
+    if tagname.lower() not in words.words():
+        message = 'Invalid word'
+        messages.error(request, message)
+        print("Sent message-:", message)
+        return -1
+
+    tag = Tag.objects.all().filter(Title = tagname)
+    if len(tag)!=0:
+        message = 'Tag already exists'
+        messages.error(request, message)
+        print("Sent message-:", message)
+        return 0
+
+    return 1
 
 def get_filtered_projects(request, all_projects):
     myFilter = ProjectFilter(request.GET,queryset=all_projects)
@@ -85,16 +106,16 @@ def get_paginated_projects(request, projects):
         paginated_projects = paginator.page(paginator.num_pages)
     return paginated_projects
 
-def apply_delimeter_seperation(projects):
-    for project in projects:
-        Flag=False
-        prereqs = str(project.PreRequisite).split('\r\n')
-        if(len(prereqs)>2):
-            Flag=True
-        prereqs= prereqs[0:2]
-        if(Flag==True):
-            prereqs.append("More Tags...")
-        project.PreRequisite = prereqs[0:3]
+# def apply_delimeter_seperation(projects):
+#     for project in projects:
+#         Flag=False
+#         prereqs = str(project.PreRequisite).split('\r\n')
+#         if(len(prereqs)>2):
+#             Flag=True
+#         prereqs= prereqs[0:2]
+#         if(Flag==True):
+#             prereqs.append("More Tags...")
+#         project.PreRequisite = prereqs[0:3]
 
 def get_searched_projects(request):
     value = request.POST['search']
