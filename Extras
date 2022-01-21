@@ -1,0 +1,12 @@
+let targetSelector = "#content > div > div > form > div:nth-child(4) > span > span.selection > span > ul > li > input";
+let target = document.querySelector(targetSelector);
+target.addEventListener("keyup", newtag);
+
+
+request.POST is actually a dictionary containing all the form fields as key and there form values as values for respective keys
+request.user -> person creating request i.e. person logged in django-admin
+
+instance tells to which profile should we save the data
+we could manually also save the data
+newuserprofile = Profile(user = newuser, rollno = request.Post.rollno ............)
+newuserprofile.save()
