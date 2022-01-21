@@ -9,65 +9,47 @@ $(document).ready(function () {
         allowClear: true,
         tags: true,
         tokenSeparators: [','],
+        createTag: function (params) {
+            var term = $.trim(params.term);
+            if (term === '') {
+                return null;
+            }
+            return {
+                id: term,
+                text: term.toUpperCase(),
+                newTag: true // add additional parameters
+            }
+        },
+        insertTag: function (data, tag) {
+            // Insert the tag at the end of the results
+            data.push(tag);
+        },
+        templateResult: function (data) {
+            var $result = $("<span></span>");
+            $result.text(data.text);
+            if (data.newTag) {
+                $result.append(" <em>(create new tag)</em>");
+            }
+            return $result;
+        },
+
     }).on('select2:select', function (e) {
         var newTagTitle = e.params.data.text;
-        var data = e.params.data;
-        var select2Element = $(this);
         $.ajax({
-            type:"GET",
-            url:`/tag/new/?newTagTitle=${newTagTitle}`,
+            type: "GET",
+            url: `/tag/new/?newTagTitle=${newTagTitle}`,
             success: function (response) {
                 var newOption = new Option(response.tag_title, response.tag_id, false, false);
-                console.log(newOption);
                 $('#id_Tags').append(newOption);
 
-            //     $("#div_id_Tags > div").load(location.href + " #id_Tags", function (responseTxt, statusTxt, xhr) {
-            //         if (statusTxt == "success"){
-            //             $('#id_Tags').select2({
-            //                 tags: true,
-            //                 tokenSeparators: [','],
-            //             });
-            //             // $('#id_Tags').val(tag_ids);
-            //             // $('#id_Tags').trigger('change');
-            //         }
-            //         if (statusTxt == "error")
-            //         alert("Error: " + xhr.status + ": " + xhr.statusText);
-            //     });
+                data = $('#id_Tags').val();
+                data.pop();
+                data.push(newOption.value);
+
+                $('#id_Tags').val(null).trigger('change');
+                $('#id_Tags').val(data).trigger('change');
+
             }
         })
     });
 });
-
-// function createNewTag() {
-//     var newTagTitle = inputValue;
-    // $.ajaxSetup({
-    //     cache: false
-    // });
-    // $.ajax({
-    //     type: "GET",
-    //     url: `/tag/new/?newTagTitle=${newTagTitle}`,
-    //     success: function (response) {
-    //         $("#page-top > span").remove();
-    //         $("#div_id_Tags > div").load(location.href + " #id_Tags", function (responseTxt, statusTxt, xhr) {
-    //             if (statusTxt == "success") {
-    //                 $("#id_Tags").select2({
-    //                     "allowClear": 'true',
-    //                     "language": {
-    //                         "noResults": function () {
-    //                             return "No Results Found <br> <a class='newTag'>Create New Tag</a>";
-    //                         }
-    //                     },
-    //                     escapeMarkup: function (markup) {
-    //                         return markup;
-    //                     }
-    //                 });
-    //             }
-    //             if (statusTxt == "error")
-    //                 alert("Error: " + xhr.status + ": " + xhr.statusText);
-    //             });
-    //         },
-    //         error: function (rs, e) {
-    //         console.log(rs.responseText);
-    //     },
-    // });
-// }
