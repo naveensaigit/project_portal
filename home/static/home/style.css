@@ -11,7 +11,12 @@
  * Copyright 2011-2021 Twitter, Inc.
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
  */
-
+ @media screen and (max-width:600px){
+   .container-fluid{
+     padding-left:20px;
+     padding-right:20px;
+   }
+ }
 
 /* ==========CARDS STYLING==================== */
 
@@ -22,7 +27,7 @@
 } */
 
 
-/* 
+/*
 .blog-container {
   background: #fff;
   border-radius: 5px;
@@ -80,8 +85,8 @@
 
 .blog-author h3::before,
 .blog-author--no-cover h3::before {
-  /* background: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/17779/russ.jpeg"); 
-  
+  /* background: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/17779/russ.jpeg");
+
   background-size: cover;
   border-radius: 50%;
   content: " ";
@@ -226,7 +231,7 @@
   /* overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
-  max-width: 350ch; 
+  max-width: 350ch;
   display: -webkit-box;
   overflow: hidden;
   -webkit-line-clamp: 3;
@@ -2800,7 +2805,7 @@ textarea.form-control.is-invalid {
 }
 
 .btn {
-    display: inline-block; 
+    display: inline-block;
     -moz-user-select: none;
     -ms-user-select: none;
     border: 1px solid transparent;
