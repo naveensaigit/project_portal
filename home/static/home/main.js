@@ -4,7 +4,34 @@ $(document).ready(function () {
         allowClear: 'true'
     });
     applyFilters();
+    addFilteredTags();
 });
+
+
+function addFilteredTags() {
+    var div = document.querySelector('#content > div > div > div.blog-container > div');
+    var tag_ids = $('#id_Tags').val();
+    if (tag_ids == null) {
+        var aElement = document.createElement("a");
+        aElement.setAttribute("href", ``);
+        aElement.innerHTML = "None";
+
+        div.appendChild(aElement);
+    }
+    else {
+        for (var i = 0; i < tag_ids.length; i++) {
+            var tag_id = tag_ids[i];
+
+            var Title = tags[tags.findIndex(obj => obj.pk == tag_id)].fields.Title;
+
+            var aElement = document.createElement("a");
+            aElement.setAttribute("href", `/?Tags=${tag_id}`);
+            aElement.innerHTML = Title;
+
+            div.appendChild(aElement);
+        }
+    }
+}
 
 $(document).on('click', '.task', function () {
     var project_id = $(this).attr('project_id');
@@ -50,7 +77,7 @@ function applyFilters() {
         $("#id_Difficulty").val(difficulty);
 
     var floatedBy = url.searchParams.get("FloatedBy");
-    if (floatedBy != null && floatedBy != ""){
+    if (floatedBy != null && floatedBy != "") {
         $('#id_FloatedBy').val(floatedBy); // Select the option with a value of '1'
         $('#id_FloatedBy').trigger('change'); // Notify any JS components that the value changed
     }

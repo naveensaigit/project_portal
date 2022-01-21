@@ -8,10 +8,10 @@ from django.contrib import messages
 from home.filters import ProjectFilter
 from django.contrib.auth.models import User
 from collections import Counter
-import os
-import nltk
-nltk.download('words', download_dir=os.getcwd())
-from nltk.corpus import words
+# import os
+# import nltk
+# nltk.download('words', download_dir=os.getcwd())
+# from nltk.corpus import words
 
 def shellScript():
     # from home.models import Project, Tag
@@ -31,11 +31,11 @@ def shellScript():
 
 def check_if_valid(request):
     tagname = request.GET.get('newTagTitle').upper()
-    if tagname.lower() not in words.words():
-        message = 'Invalid word'
-        messages.error(request, message)
-        print("Sent message-:", message)
-        return -1
+    # if tagname.lower() not in words.words():
+    #     message = 'Invalid word'
+    #     messages.error(request, message)
+    #     print("Sent message-:", message)
+    #     return -1
 
     tag = Tag.objects.all().filter(Title = tagname)
     if len(tag)!=0:
