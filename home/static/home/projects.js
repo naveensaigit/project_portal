@@ -39,12 +39,17 @@ $(document).ready(function () {
             type: "GET",
             url: `/tag/new/?newTagTitle=${newTagTitle}`,
             success: function (response) {
-                var newOption = new Option(response.tag_title, response.tag_id, false, false);
-                $('#id_Tags').append(newOption);
-
                 data = $('#id_Tags').val();
                 data.pop();
-                data.push(newOption.value);
+
+                if (response.status == "ok") {
+                    var newOption = new Option(response.tag_title, response.tag_id, false, false);
+                    $('#id_Tags').append(newOption);
+                    data.push(newOption.value);
+                }
+                else if (response.status == "tag already exists") {
+                    data.push(response.tag_id);
+                }
 
                 $('#id_Tags').val(null).trigger('change');
                 $('#id_Tags').val(data).trigger('change');

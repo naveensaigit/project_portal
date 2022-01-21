@@ -67,13 +67,18 @@ def projectRegister(request):
 
 def createNewTag(request):
     state = check_if_valid(request)
-    if state == -1 or state == 0:
-        return JsonResponse({}, status = 404)
+    if state == -1:
+        return JsonResponse({"status":"invalid word"}, status = 200)
 
     newTagTitle = request.GET.get('newTagTitle').upper()
-    tag = Tag.objects.create(Title = newTagTitle)
-    tag.save()
-    return JsonResponse({"tag_id":tag.id, "tag_title":tag.Title}, status = 200)
+    if state == 0:
+        tag = Tag.objects.all().filter(Title = newTagTitle).first()
+        status = "tag already exists"
+    else:
+        tag = Tag.objects.create(Title = newTagTitle)
+        tag.save()
+        status = "ok"
+    return JsonResponse({"status":status, "tag_id":tag.id, "tag_title":tag.Title}, status = 200)
 
 @login_required
 def project(request):
