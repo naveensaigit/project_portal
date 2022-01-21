@@ -167,7 +167,7 @@
     <div class="justify-content-center" style="display: flex; flex-wrap: wrap;" id="all-projects">
         {% for project in projects %}
             <div id="projectNumber{{ project.id }}">
-                <div class = "blog-container" style="flex: 1 0 45%; margin: 30px; width: 600px; height: 289px; max-width: 600px;">
+                <div class = "blog-container">
                     <div class="blog-header" style="display: flex; flex-wrap: wrap;">
                         <div class="blog-author--no-cover" style="background:url('{{project.FloatedBy.profile.image.url}}');background-size: cover; border-radius: 50%; display: inline-block;height: 40px;margin-right: 0.5rem;background-position: center;top: 8px;width: 40px; top: 27px; left: 28px; margin-top: 5px; ">
                         </div>
@@ -201,7 +201,7 @@
                             </ul>
                         </div>
                     </div>
-                    <hr style="width: 300px; border-top: 1px solid rgba(0, 0, 0, 0.25); margin-left: 0px; margin-bottom: 0px;">
+                    <hr class="main-page-hr" >
                     <div class="blog-footer">
                         <ul>
                             <li>
@@ -237,8 +237,7 @@
                                 {% endif %}
                             </li>
                         </ul>
-                        <div style="display: flex; flex-direction: row; justify-content: space-evenly; margin: 15px; ">
-                        </div>
+                        
                     </div>
                 </div>
             </div>
