@@ -149,14 +149,22 @@
         <br>
     {% endblock filterBlock %}
     {% block tagsBlock %}
-        <div class = "blog-container" style="flex: 1 0 45%; margin: 30px; width: 1200px; height: 100px; max-width: 1200px; margin-left: 80px; ">
-        <div class="blog-tags">
+        <div class = "blog-container" style="flex: 1 0 45%; margin: 30px; width: 1200px; height: 120px; max-width: 1200px; margin-left: 80px; ">
+        <div class="blog-tags" style="margin-left: 20px;">
+        <ul>
             COMMON TAGS:
             {% for tag in common_tags %}
-                <a href="/?Tags={{tag.id}}">{{ tag }}</a>
+                <li style="margin-left: 2px;"><a href="/?Tags={{tag.id}}">{{ tag }}</a></li>
             {% endfor %}
+        </ul>
+        </div>
         <hr style="width: 300px; border-top: 1px solid rgba(0, 0, 0, 0.25); margin-left: 0px; margin-bottom: 0px;">
-            FILTERED TAGS: 
+        <div class="blog-tags" style="margin-left: 20px;">
+            <br>
+            <ul>
+            FILTERED BY:
+            </ul>
+            <br>
         </div>
         </div>
     {% endblock tagsBlock %}

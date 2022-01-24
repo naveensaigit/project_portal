@@ -9,14 +9,16 @@ $(document).ready(function () {
 
 
 function addFilteredTags() {
-    var div = document.querySelector('#content > div > div > div.blog-container > div');
+    var div = document.querySelector('#content > div > div > div.blog-container > div:nth-child(3) > ul');
     var tag_ids = $('#id_Tags').val();
     if (tag_ids == null) {
+        var liElement = document.createElement("li");
         var aElement = document.createElement("a");
         aElement.setAttribute("href", ``);
         aElement.innerHTML = "None";
+        liElement.appendChild(aElement);
 
-        div.appendChild(aElement);
+        div.appendChild(liElement);
     }
     else {
         for (var i = 0; i < tag_ids.length; i++) {
@@ -24,11 +26,13 @@ function addFilteredTags() {
 
             var Title = tags[tags.findIndex(obj => obj.pk == tag_id)].fields.Title;
 
+            var liElement = document.createElement("li");
             var aElement = document.createElement("a");
             aElement.setAttribute("href", `/?Tags=${tag_id}`);
             aElement.innerHTML = Title;
+            liElement.appendChild(aElement);
 
-            div.appendChild(aElement);
+            div.appendChild(liElement);
         }
     }
 }
