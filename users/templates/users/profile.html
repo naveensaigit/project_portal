@@ -42,23 +42,39 @@
     font-size: 20px;
     }
   .card-desc{font-size:16px;}
+  .toggle-p{font-size: 12px;}
+  .toggle-h{font-size: 28px;}
   @media only screen and (max-width:600px){
     .profile-card{
       width:300px;
       height:1050px;
+
     }
     .profile-content-card{
       width:270px;
       height:150px;
     }
-    .profile-row{
-      margin-left:0;
+    .justify-content-center{
+      margin-left: auto;
+      margin-right:auto;
+
     }
+    .vertical-line-profile {
+      display: none;
+      }
+
     .buttons a
       {
       font-size: 15px;
+      width: 70px;
       }
-      .card-desc{font-size:12px;}
+    .card-desc{font-size:12px;}
+    .toggle-options{
+      width:70px;
+
+    .prof-button{width:70px;}
+    .buttons p{font-size: 7px;}
+    .toggle-h{font-size: 7px;}
 
   }
 
@@ -74,7 +90,11 @@
 <div style="margin-left: 20px; color: #022160; font-size: 30px; background-color: white;">{{message}}</div>
 {% endfor %} {% endif %}
 {% endblock messageBlock %}
+
+
+
 <div class="row profile-row" style="padding-bottom:100px; ">
+  <div class="justify-content-center">
   <div class="col-sm-4">
     <div class="card" style="width: 415px; height: 958px; margin-top: 83px;">
       <div class="card-body" style="box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.25); background: #F7F4F4; border-radius: 10px;">
@@ -147,21 +167,25 @@
       </div>
     </div>
   </div>
+
+
+    </div>
+    <div class="justify-content-center">
   <div class="col-md">
     <div class="profile-card card" style="margin-top: 83px; overflow: hidden;">
       <div class="card-body" style="background-color:white;box-shadow: none; padding: 0px;">
       <div class="buttons">
         <div class="row justify-content-center">
           <div class="vertical-line-profile"></div>
-          <div class="col-xl-3 col-md-6 mb-4" style=" margin-bottom: 5px; padding:0px; max-width: 23%;">
+          <div class="toggle-options col-xl-3 col-md-6 mb-4" style=" margin-bottom: 5px; padding:0px; max-width: 23%;">
             <a class="profButton" onclick="toggleVisibility('projects0')" id='projects0button' style="margin-left: 4px; padding-top: 13px;">
-              <p style="font-weight: 300; font-size: 12px;margin-bottom: 0px;">PROJECTS FLOATED:<br>
-                <h3 style="font-weight: 500;font-size: 28px;">{{ projects_id.0|length  }}</h3>
+              <p class="toggle-p" style="font-weight: 300;margin-bottom: 0px;">PROJECTS FLOATED:<br>
+                <h3 class="toggle-h" style="font-weight: 500;">{{ projects_id.0|length  }}</h3>
               </p>
             </a>
           </div>
           <div class="vertical-line-profile"></div>
-          <div class="col-xl-3 col-md-6 mb-4" style=" margin-bottom: 5px; padding:0px;  max-width: 23%">
+          <div class="toggle-options col-xl-3 col-md-6 mb-4" style=" margin-bottom: 5px; padding:0px;  max-width: 23%">
             <a class="profButton" onclick="toggleVisibility('projects1')" id='projects1button' style="margin-left: 4px; padding-top: 13px;">
               <p style="font-weight: 300; font-size: 12px;margin-bottom: 0px;">PROJECTS APPLIED:<br>
                 <h3 style="font-weight: 500;font-size: 28px;">{{ projects_id.2|length }}</h3>
@@ -169,7 +193,7 @@
             </a>
           </div>
           <div class="vertical-line-profile"></div>
-          <div class="col-xl-3 col-md-6 mb-4" style=" margin-bottom: 5px; padding:0px;  max-width: 23%; ">
+          <div class="toggle-options col-xl-3 col-md-6 mb-4" style=" margin-bottom: 5px; padding:0px;  max-width: 23%; ">
             <a class="profButton" onclick="toggleVisibility('projects2')" id='projects2button' style="margin-left: 4px; padding-top: 13px;">
               <p style="font-weight: 300; font-size: 12px;margin-bottom: 0px;">PROJECTS REQUESTED:<br>
                 <h3 style="font-weight: 500;font-size: 28px;">{{ projects_id.3|length  }}</h3>
@@ -177,7 +201,7 @@
             </a>
           </div>
           <div class="vertical-line-profile"></div>
-          <div class="col-xl-3 col-md-6 mb-4" style=" margin-bottom: 5px; padding:0px; max-width: 23%">
+          <div class="toggle-options col-xl-3 col-md-6 mb-4" style=" margin-bottom: 5px; padding:0px; max-width: 23%">
             <a class="profButton" onclick="toggleVisibility('projects3')" id='projects3button' style="margin-left: 4px; padding-top: 13px;">
               <p style="font-weight: 300; font-size: 12px;margin-bottom: 0px;">PROJECTS STARRED:<br>
                 <h3 style="font-weight: 500;font-size: 28px;">{{ projects_id.4|length  }}</h3>
@@ -252,6 +276,8 @@
                   </a>
             {% endif %}
           </div>
+          </div>
+
           {% endwith %}
           {% endfor %}
         </div>
@@ -262,6 +288,7 @@
       </div>
     </div>
   </div>
+
   {% endblock content %}
   {% block customScripts %}
   <script src="{% static 'users/profile.js' %}"></script>

@@ -100,6 +100,9 @@
     {% endblock headingBlock %}
     <br>
     {% block filterBlock %}
+    <div class="justify-content-center">
+
+
     <form method="get" class="form-inline justify-content-lg-center h5 mb-0 font-weight-bold text-gray-800 " style="width: 100%;">
         <div class="" style="padding-right:23px;width: 263px;">
             <label for="id_Status" style="font-size: 16px; font-weight: 300;float: left; ">Status</label>
@@ -147,6 +150,7 @@
         </div>
     </form>
         <br>
+
     {% endblock filterBlock %}
     {% block tagsBlock %}
         <div class = "blog-container" style="flex: 1 0 45%; margin: 30px; width: 1200px; height: 120px; max-width: 1200px; margin-left: 80px; ">
@@ -167,6 +171,7 @@
             <br>
         </div>
         </div>
+          </div>
     {% endblock tagsBlock %}
     {% block allProjectsBlock %}
     <div class="justify-content-center" style="display: flex; flex-wrap: wrap;" id="all-projects">
@@ -242,7 +247,7 @@
                                 {% endif %}
                             </li>
                         </ul>
-                        
+
                     </div>
                 </div>
             </div>
