@@ -18,6 +18,22 @@
         top: 280px;
         border-top: 1px solid rgba(0, 0, 0, 0.25);
     }
+
+    .select2-container--default .select2-selection--single .select2-selection__rendered {
+    color: #444;
+    line-height: 28px;
+        {#background-color: black;#}
+    }
+
+    .select2-container .select2-selection--single .select2-selection__rendered {
+    display: block;
+    padding-left: 8px;
+    padding-right: 20px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
 </style>
 {% endblock customStylesheets %}
 {% block content %}
@@ -100,7 +116,7 @@
     {% endblock headingBlock %}
     <br>
     {% block filterBlock %}
-    <div class="justify-content-center">
+
 
 
     <form method="get" class="form-inline justify-content-lg-center h5 mb-0 font-weight-bold text-gray-800 " style="width: 100%;">
@@ -153,25 +169,25 @@
 
     {% endblock filterBlock %}
     {% block tagsBlock %}
-        <div class = "blog-container" style="flex: 1 0 45%; margin: 30px; width: 1200px; height: 120px; max-width: 1200px; margin-left: 80px; ">
+        <div class = "blog-container" style="flex: 1 0 45%; margin: 30px; width: 1260px; height: 60px; max-width: 1260px; margin-left: 50px; ">
         <div class="blog-tags" style="margin-left: 20px;">
         <ul>
             COMMON TAGS:
             {% for tag in common_tags %}
-                <li style="margin-left: 2px;"><a href="/?Tags={{tag.id}}">{{ tag }}</a></li>
+                <li style="margin-left: 10px;"><a href="/?Tags={{tag.id}}">{{ tag }}</a></li>
             {% endfor %}
         </ul>
         </div>
-        <hr style="width: 300px; border-top: 1px solid rgba(0, 0, 0, 0.25); margin-left: 0px; margin-bottom: 0px;">
-        <div class="blog-tags" style="margin-left: 20px;">
-            <br>
-            <ul>
-            FILTERED BY:
-            </ul>
-            <br>
+{#        <hr style="width: 300px; border-top: 1px solid rgba(0, 0, 0, 0.25); margin-left: 0px; margin-bottom: 0px;">#}
+{#        <div class="blog-tags" style="margin-left: 20px;">#}
+{#            <br>#}
+{#            <ul>#}
+{#            FILTERED BY:#}
+{#            </ul>#}
+{#            <br>#}
+{#        </div>#}
         </div>
-        </div>
-          </div>
+
     {% endblock tagsBlock %}
     {% block allProjectsBlock %}
     <div class="justify-content-center" style="display: flex; flex-wrap: wrap;" id="all-projects">
@@ -192,7 +208,9 @@
                         <div class="blog-summary demo-2">
                             <p>{{project.Description}}</p>
                         </div>
+
                         <div class="blog-tags">
+                        <br>
                             <ul>
                                 <li><a href="/?Status={{project.Status}}">{{project.Status}}</a></li>
                                 <li><a href="/?Difficulty={{project.Difficulty}}">{{project.Difficulty}}</a></li>
