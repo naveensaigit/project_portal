@@ -21,7 +21,7 @@ def main(request):
     projects = get_paginated_projects(request, projects)
     projects_id = get_user_projects_id(request.user)
 
-    common_tags = get_most_common_tags(5)
+    common_tags = get_most_common_tags(10)
 
     context = {
         'title': 'Home',

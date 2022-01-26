@@ -1,7 +1,8 @@
 $(document).ready(function () {
     $(".searchable-select").select2();
     $(".searchable-select-clearable").select2({
-        allowClear: 'true'
+        allowClear: 'true',
+        placeholder: 'None',
     });
     applyFilters();
     addFilteredTags();
