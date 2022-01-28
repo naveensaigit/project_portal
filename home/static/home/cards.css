@@ -364,7 +364,7 @@
     box-sizing: border-box;
     height: 35px;
     top: 224px;
-    /* border-radius: 15px; */
+    border-radius: 9px;
     padding: 0.5rem 0.5rem;
     text-align: center;
     text-transform: uppercase;
@@ -373,7 +373,7 @@
     font-family: 'Public Sans', sans-serif;
     font-style: normal;
     font-weight: 300;
-    font-size: 17px;
+    font-size: 16px;
     line-height: 14px;
 }
 
