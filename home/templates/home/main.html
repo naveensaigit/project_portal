@@ -19,11 +19,21 @@
         border-top: 1px solid rgba(0, 0, 0, 0.25);
     }
 
+    .select2-container--default .select2-selection--single {
+    background-color: #fff;
+    /* border: 1px solid #aaa; */
+    border-radius: 4px;
+}
+
     .select2-container--default .select2-selection--single .select2-selection__rendered {
-    color: #444;
+    color: black;
     line-height: 28px;
-        {#background-color: black;#}
-    }
+    background-color: #EBEBEB;
+    border: 1px solid rgba(0, 0, 0, 0.25);
+    border-radius: 5px;
+    width: 242px;
+    height: 44px;
+}
 
     .select2-container .select2-selection--single .select2-selection__rendered {
     display: block;
@@ -32,6 +42,30 @@
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
+}
+
+    .select2-container--default .select2-selection--single .select2-selection__rendered {
+    color: black;
+    line-height: 28px;
+}
+    .select2-container--default .select2-selection--multiple {
+    {#background-color: white;#}
+    {#border: 1px solid #aaa;#}
+    {#border-radius: 4px;#}
+    cursor: text;
+    background-color: #EBEBEB;
+    border: 1px solid rgba(0, 0, 0, 0.25);
+    border-radius: 5px;
+    width: 242px;
+    height: 44px;
+}
+    .select2-container .select2-selection--multiple {
+    box-sizing: border-box;
+    cursor: pointer;
+    display: block;
+    min-height: 32px;
+    user-select: none;
+    -webkit-user-select: none;
 }
 
 </style>
@@ -119,7 +153,7 @@
 
 
 
-    <form method="get" class="form-inline justify-content-lg-center h5 mb-0 font-weight-bold text-gray-800 " style="width: 100%;">
+    <form method="get" class="form-inline justify-content-lg-center h5 mb-0 text-gray-800 " style="width: 100%;">
         <div class="" style="padding-right:23px;width: 263px;">
             <label for="id_Status" style="font-size: 16px; font-weight: 300;float: left; ">Status</label>
             <select name="Status" id="id_Status" style="background-color:#EBEBEB; border: 1px solid rgba(0, 0, 0, 0.25); border-radius: 5px;width:242px; height:44px;">
@@ -142,27 +176,27 @@
 {#            <label for="id_Duration" style="font-size: 16px; font-weight: 300; float: left;">Duration</label>#}
 {#            <input type="text" name="Duration" id="id_Duration" style="background-color:#EBEBEB; border: 1px solid rgba(0, 0, 0, 0.25); border-radius: 5px;width:242px; height:44px;" placeholder="None">#}
 {#        </div>#}
-        <div class="" style="padding-right:23px;width: 263px;">
+        <div class="select2-selection select2-selection--single" style="padding-right:23px;width: 263px; margin-bottom: 17px;">
             <label for="id_FloatedBy" style="font-size: 16px; font-weight: 300;float: left; ">FloatedBy</label>
-            <select name="FloatedBy" id="id_FloatedBy" class="searchable-select" style="background-color:#EBEBEB; border: 1px solid rgba(0, 0, 0, 0.25); border-radius: 5px;width:242px; height:44px;">
+            <select name="FloatedBy" id="id_FloatedBy" class="searchable-select select2-selection__rendered" style="background-color:#EBEBEB; border: 1px solid rgba(0, 0, 0, 0.25); border-radius: 5px;width:242px; height:44px;">
                 <option value="">None</option>
                 {% for USER in users %}
                 <option value='{{USER.id}}'>{{ USER }}</option>
                 {% endfor %}
             </select>
         </div>
-        <div class="" style="padding-right:23px;width: 263px;">
+        <div class="" style="padding-right:23px;width: 263px; margin-bottom: 5px;">
             <label for="id_Tags" style="font-size: 16px; font-weight: 300;float: left; ">Tags</label>
-            <select name="Tags" id="id_Tags" class="searchable-select-clearable" multiple="multiple" style="background-color:#EBEBEB; border: 1px solid rgba(0, 0, 0, 0.25); border-radius: 5px;width:242px; height:44px;">
+            <select name="Tags" id="id_Tags" class="searchable-select-clearable select2-selection select2-selection--multiple" multiple="multiple" style="background-color:#EBEBEB; border: 1px solid rgba(0, 0, 0, 0.25); border-radius: 5px;width:242px; height:44px;">
                 {% for TAG in tags %}
                 <option value='{{TAG.id}}'>{{ TAG }}</option>
                 {% endfor %}
             </select>
         </div>
 {#        <button type="button" onclick="clearFilters()">Clear</button>#}
-        <div class="" style="padding-top: 25px;">
-            <button type="button" onclick="clearFilters()" style="width: 95px; height: 33px; margin-left:0px; background: #19258C; color: white; border-radius: 5px; padding-top: 6px; border: 1px; padding-left: 12px; padding-right: 12px;">Clear</button>
-            <button class="btn btn-primary" type="Submit" style="width: 95px; height: 33px; margin-left:0px; background: #19258C; color: white; border-radius: 5px;">Filter</button>
+        <div class="" style="padding-top: 20px;">
+            <button type="button" onclick="clearFilters()" style="width: 95px; height: 44px; margin-left:0px; background: #19258C; color: white; border-radius: 5px; padding-top: 6px; border: 1px; padding-left: 12px; padding-right: 12px;">Clear</button>
+            <button class="btn btn-primary" type="Submit" style="width: 95px; height: 44px; margin-left:0px; background: #19258C; color: white; border-radius: 5px; padding-top: 6px; padding-bottom: 1px;">Filter</button>
         </div>
     </form>
         <br>
@@ -170,7 +204,7 @@
     {% endblock filterBlock %}
     {% block tagsBlock %}
         <div class = "blog-container" style="flex: 1 0 45%; margin: 30px; width: 1260px; height: 60px; max-width: 1260px; margin-left: 45px; ">
-        <div class="blog-tags-a" style="margin-left: 65px;">
+        <div class="blog-tags-a" style="margin-left: 75px;">
         <ul>
             POPULAR TAGS:
             {% for tag in common_tags %}
