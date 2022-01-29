@@ -153,7 +153,7 @@ def apply_on_project(request, project):
         return redirect('/profile/edit')
     else:
         user_branch = f"{year} Year {branch}"
-        if(user_branch in project.OpenedFor):
+        if("All" in project.OpenedFor or user_branch in project.OpenedFor):
             project.ApplyRequest.add(current_user)
             messages.success(request,"Successfully Requested!")
             send_notification(request, project)
