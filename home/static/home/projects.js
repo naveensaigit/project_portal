@@ -40,11 +40,11 @@ $(document).ready(function () {
             url: `/tag/new/?newTagTitle=${newTagTitle}`,
             success: function (response) {
                 data = $('#id_Tags').val();
-                data.pop();
-
+                
                 if (response.status == "ok") {
                     var newOption = new Option(response.tag_title, response.tag_id, false, false);
                     $('#id_Tags').append(newOption);
+                    data.pop();
                     data.push(newOption.value);
                 }
                 else if (response.status == "tag already exists") {
