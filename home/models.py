@@ -12,6 +12,22 @@ DIFFICULTY_CHOICES = (
     ('Intermediate','Intermediate'),
     ('Hard','Hard')
 )
+
+DURATION_CHOICES = (
+    ('Less Than',(
+        ('1', '< 1 months'),
+        ('2', '< 2 months'),
+        ('4', '< 4 months'),
+        ('<6', '< 6 months'),
+        )
+    ),
+    ('More Than',(
+        ('>6', '> 6 months'),
+        ('12', '> 12 months'),
+        )
+    )
+)
+
 NOTIFICATION_CHOICES = (
     ('On','On'),
     ('Off','Off'),
@@ -34,7 +50,7 @@ class Project(models.Model):
     Difficulty = models.CharField(max_length=15, choices=DIFFICULTY_CHOICES, default='Beginner')
     PreRequisite = models.TextField()
     Tags = models.ManyToManyField(Tag, related_name='Tags')
-    Duration = models.CharField(max_length=30)
+    Duration = models.CharField(max_length=30, choices=DURATION_CHOICES)
     DatePosted = models.DateTimeField(default = timezone.now)
     SelectionCriteria = models.TextField()
     MailNotification = models.CharField(max_length=5, choices=NOTIFICATION_CHOICES,default='On')
