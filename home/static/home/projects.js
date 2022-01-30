@@ -58,3 +58,25 @@ $(document).ready(function () {
         })
     });
 });
+
+$('#id_OpenedFor_0').on('click', function(){
+    var pre = "id_OpenedFor_";
+    var mid = ['1_','2_','3_','4_'];
+    var end = ['0','1','2','3'];
+    if(this.checked){
+        for(var i = 0;i<mid.length;i++){
+            for(var j = 0;j<end.length;j++){
+                var div = document.getElementById(pre+mid[i]+end[j]);
+                div.checked = true;
+            }
+        }
+    }
+    else{
+        for(var i = 0;i<mid.length;i++){
+            for(var j = 0;j<end.length;j++){
+                var div = document.getElementById(pre+mid[i]+end[j]);
+                div.checked = false;
+            }
+        }
+    }
+});
