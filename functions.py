@@ -39,9 +39,9 @@ def check_if_valid(request):
 
     tag = Tag.objects.all().filter(Title = tagname)
     if len(tag)!=0:
-        message = 'Tag already exists'
-        messages.error(request, message)
-        print("Sent message-:", message)
+        # message = 'Tag already exists'
+        # messages.error(request, message)
+        # print("Sent message-:", message)
         return 0
 
     return 1

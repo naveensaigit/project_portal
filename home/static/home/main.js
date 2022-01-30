@@ -5,38 +5,38 @@ $(document).ready(function () {
         placeholder: 'None',
     });
     applyFilters();
-    addFilteredTags();
+    // addFilteredTags();
 });
 
 
-function addFilteredTags() {
-    var div = document.querySelector('#content > div > div > div.blog-container > div:nth-child(3) > ul');
-    var tag_ids = $('#id_Tags').val();
-    if (tag_ids == null) {
-        var liElement = document.createElement("li");
-        var aElement = document.createElement("a");
-        aElement.setAttribute("href", ``);
-        aElement.innerHTML = "None";
-        liElement.appendChild(aElement);
+// function addFilteredTags() {
+//     var div = document.querySelector('#content > div > div > div.blog-container > div:nth-child(3) > ul');
+//     var tag_ids = $('#id_Tags').val();
+//     if (tag_ids == null) {
+//         var liElement = document.createElement("li");
+//         var aElement = document.createElement("a");
+//         aElement.setAttribute("href", ``);
+//         aElement.innerHTML = "None";
+//         liElement.appendChild(aElement);
 
-        div.appendChild(liElement);
-    }
-    else {
-        for (var i = 0; i < tag_ids.length; i++) {
-            var tag_id = tag_ids[i];
+//         div.appendChild(liElement);
+//     }
+//     else {
+//         for (var i = 0; i < tag_ids.length; i++) {
+//             var tag_id = tag_ids[i];
 
-            var Title = tags[tags.findIndex(obj => obj.pk == tag_id)].fields.Title;
+//             var Title = tags[tags.findIndex(obj => obj.pk == tag_id)].fields.Title;
 
-            var liElement = document.createElement("li");
-            var aElement = document.createElement("a");
-            aElement.setAttribute("href", `/?Tags=${tag_id}`);
-            aElement.innerHTML = Title;
-            liElement.appendChild(aElement);
+//             var liElement = document.createElement("li");
+//             var aElement = document.createElement("a");
+//             aElement.setAttribute("href", `/?Tags=${tag_id}`);
+//             aElement.innerHTML = Title;
+//             liElement.appendChild(aElement);
 
-            div.appendChild(liElement);
-        }
-    }
-}
+//             div.appendChild(liElement);
+//         }
+//     }
+// }
 
 $(document).on('click', '.task', function () {
     var project_id = $(this).attr('project_id');
@@ -94,6 +94,10 @@ function applyFilters() {
     var tags = url.searchParams.get("Tags");
     if (tags != null && tags != "")
         selectTags();
+
+    var FilterBy = url.searchParams.get("FilterBy");
+    if (FilterBy != null)
+        $("#id_FilterBy").val(FilterBy);
 }
 
 function selectTags() {

@@ -10,3 +10,42 @@ instance tells to which profile should we save the data
 we could manually also save the data
 newuserprofile = Profile(user = newuser, rollno = request.Post.rollno ............)
 newuserprofile.save()
+
+
+
+home base -:
+	stylesheets(some stylesheets)
+	customStylesheets(empty)
+	ajaxBlock(some scripts)
+	mainBlock
+	(search and navbar and then container-fluid for main content)
+		content(empty)
+	extraBlock(empty)
+	customScripts(empty)
+     main -:
+     	stylesheets(some stylesheets)
+	customStylesheets(some styling)
+	ajaxBlock(some scripts)
+	mainBlock
+	(search and navbar and then container-fluid for main content)
+		content
+			cardBlock
+			messageBlock
+			mainContentBlock
+				headinBlock
+				filterBlock
+				tagsBlock
+				allProjectsBlock
+				paginationBlock
+	extraBlock(empty)
+	customScripts(some scripts)
+	
+user base -:
+	stylesheets(some stylesheets)
+	customStylesheets(empty)
+	ajaxBlock(empty)
+	mainBlock
+	(empty)
+		content(empty)
+	extraBlock(empty)
+	customScripts(empty)

@@ -193,7 +193,13 @@
                 {% endfor %}
             </select>
         </div>
-{#        <button type="button" onclick="clearFilters()">Clear</button>#}
+        <div class="" style="padding-right:23px; width: 263px;">
+            <label for="id_FilterBy" style="font-size: 16px; font-weight: 300;float: left; ">Filter Tags By</label>
+            <select name="FilterBy" id="id_FilterBy">
+                <option value="Or" selected>Or</option>
+                <option value="And">And</option>
+            </select>
+        </div>
         <div class="" style="padding-top: 20px;">
             <button type="button" onclick="clearFilters()" style="width: 95px; height: 44px; margin-left:0px; background: #19258C; color: white; border-radius: 5px; padding-top: 6px; border: 1px; padding-left: 12px; padding-right: 12px;">Clear</button>
             <button class="btn btn-primary" type="Submit" style="width: 95px; height: 44px; margin-left:0px; background: #19258C; color: white; border-radius: 5px; padding-top: 6px; padding-bottom: 1px;">Filter</button>
