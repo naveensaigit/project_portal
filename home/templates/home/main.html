@@ -19,54 +19,47 @@
         border-top: 1px solid rgba(0, 0, 0, 0.25);
     }
 
-    .select2-container--default .select2-selection--single {
-    background-color: #fff;
-    /* border: 1px solid #aaa; */
-    border-radius: 4px;
-}
+    {% comment %} Floated By styling {% endcomment %}
+    #content > div > div > form > div.select2-selection.select2-selection--single > span > span.selection > span{
+        background-color: #EBEBEB;
+        border: 1px solid rgba(0, 0, 0, 0.25);
+        border-radius: 5px;
+        width: 242px;
+        height: 44px;
+        position: relative;
+    }
+    #select2-id_FloatedBy-container,
+    #content > div > div > form > div.select2-selection.select2-selection--single > span > span.selection > span > span.select2-selection__arrow{
+        color: black;
+        margin: 0;
+        position: absolute;
+        top: 50%;
+        -ms-transform: translateY(-50%);
+        transform: translateY(-50%);
+    }
 
-    .select2-container--default .select2-selection--single .select2-selection__rendered {
-    color: black;
-    line-height: 28px;
-    background-color: #EBEBEB;
-    border: 1px solid rgba(0, 0, 0, 0.25);
-    border-radius: 5px;
-    width: 242px;
-    height: 44px;
-}
-
-    .select2-container .select2-selection--single .select2-selection__rendered {
-    display: block;
-    padding-left: 8px;
-    padding-right: 20px;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-}
-
-    .select2-container--default .select2-selection--single .select2-selection__rendered {
-    color: black;
-    line-height: 28px;
-}
-    .select2-container--default .select2-selection--multiple {
-    {#background-color: white;#}
-    {#border: 1px solid #aaa;#}
-    {#border-radius: 4px;#}
-    cursor: text;
-    background-color: #EBEBEB;
-    border: 1px solid rgba(0, 0, 0, 0.25);
-    border-radius: 5px;
-    width: 242px;
-    height: 44px;
-}
-    .select2-container .select2-selection--multiple {
-    box-sizing: border-box;
-    cursor: pointer;
-    display: block;
-    min-height: 32px;
-    user-select: none;
-    -webkit-user-select: none;
-}
+    {% comment %} Tags styling {% endcomment %}
+    #content > div > div > form > div:nth-child(4) > span > span.selection > span{
+        background-color: #EBEBEB;
+        min-height: 44px;
+        max-height: 60px;
+        overflow-y: scroll;
+    }
+    ::placeholder{
+        color: black;
+    }
+    #content > div > div > form > div:nth-child(4) > span > span.selection > span::-webkit-scrollbar {
+        display: none;
+    }
+    #content > div > div > form > div:nth-child(4) > span > span.selection > span > ul > *{
+        color:black;
+    }
+    #content > div > div > form > div:nth-child(4) > span > span.selection > span > ul > li{
+        background-color: white;
+    }
+    #content > div > div > form > div:nth-child(4) > span > span.selection > span > ul > li.select2-search.select2-search--inline{
+        background-color: #EBEBEB;
+    }
 
 </style>
 {% endblock customStylesheets %}
