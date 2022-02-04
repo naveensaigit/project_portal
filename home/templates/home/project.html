@@ -7,112 +7,123 @@
 {% block messageBlock %} {% if messages %} {% for message in messages %}
 <div class="card-header py-3">{{message}}</div>
 {% endfor %} {% endif %} {% endblock messageBlock %}
-<div class="blog-container">
-  <br>
-  <div class="blog-header">
-    <div class="blog-author--no-cover">
-      {% if project.FloatedBy == user %}
-      <div style="display: inline;" align="center;">
-        <div style="float: right;">
-          <a href="/project/delete/?project_id={{project.id}}" class="btn btn-danger btn-circle">
-            <i class="fas fa-trash" style="color:white;"></i>
-          </a>
-        </div>
-        <div style="float: right; padding-right:10px;">
-          <a href="/project/update/?project_id={{project.id}}"><button class="btn btn-primary btn-user btn-block" style="display: inline-block;">UPDATE PROJECT</button></a>
-        </div>
-      </div>
-      {% endif %}
-      <div class="blog-header" style="display: flex; flex-wrap: wrap;">
-        <div class="blog-author--no-cover" style="background:url('{{project.FloatedBy.profile.image.url}}');background-size: cover; border-radius: 50%; display: inline-block;height: 32px;margin-right: 0.5rem;position: relative;top: 15px;width: 32px; left: 0px; ">
-        </div>
-        <span style="flex: 1 0 45%;">
-          <h3 style="margin-top: 10px; color:#858796; margin-left:0px;"><a href="{% url 'profile' project.FloatedBy.id %}">{{project.FloatedBy}}</a></h3>
-        </span>
-      </div>
-      <br>
-    </div>
-    <div class="blog-body">
-      <div class="blog-title">
-        <h1>{{ project.Title }}</h1>
-      </div>
-      <div class="blog-summary">
-        <p>{{ project.Description }}</p>
-      </div>
-      <div class="blog-tags">
-        <ul>
-          <li><a>{{ project.Status }}</a></li>
-          <li><a>{{ project.Difficulty }}</a></li>
-        </ul>
-      </div>
-    </div>
-    <div class="blog-footer">
-      <br>
-      <div class="blog-summary">
-        <p><b>Duration: </b>{{ project.Duration }}</p>
-        <p><b>Mentors: </b>{% for users in project.Mentors.all %} {{ users }} {% endfor %} {% if project.Mentors.all.count == 0 %} No one {% endif %}</p>
-        <p><b>Selection Criteria: </b>{{ project.SelectionCriteria }}</p>
-        <p><b>Opened for: </b>{{project.OpenedFor}}</p>
-        <p><b>Pre requisites: </b>{{ project.PreRequisite }}</p>
-        <span class="avatar">
-          <b>Already Selected:</b>
-          {% for users in project.AlreadyApplied.all %}
-          <a href="{% url 'profile' users.profile.id %}"><img src="{{users.profile.image.url}}" title="{{users}}"></a>
-          {% endfor %}
-          {% if project.AlreadyApplied.all.count == 0 %} No selections yet {% endif %}
-        </span>
-        <br>
-      </div>
-      <br>
-      <br>
-      <ul>
-        <li class="published-date">{{ project.DatePosted }}</li>
-        <li class="shares"> {% if project.id not in projects_id.4 %}
-          <a href="/project/task/?task=Star&project_id={{project.id}}">
-            <button class="btn btn-primary btn-user btn-block"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-star" viewBox="0 0 16 16">
-                <path d="M2.866 14.85c-.078.444.36.791.746.593l4.39-2.256 4.389 2.256c.386.198.824-.149.746-.592l-.83-4.73 3.522-3.356c.33-.314.16-.888-.282-.95l-4.898-.696L8.465.792a.513.513 0 0 0-.927 0L5.354 5.12l-4.898.696c-.441.062-.612.636-.283.95l3.523 3.356-.83 4.73zm4.905-2.767-3.686 1.894.694-3.957a.565.565 0 0 0-.163-.505L1.71 6.745l4.052-.576a.525.525 0 0 0 .393-.288L8 2.223l1.847 3.658a.525.525 0 0 0 .393.288l4.052.575-2.906 2.77a.565.565 0 0 0-.163.506l.694 3.957-3.686-1.894a.503.503 0 0 0-.461 0z" />
-              </svg></button></a>
-          {% else %}
-          <a href="/project/task/?task=Unstar&project_id={{project.id}}">
-            <button class="btn btn-primary btn-user btn-block"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-star-fill" viewBox="0 0 16 16">
-                <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" />
-              </svg></button></a>
-          {% endif %}
-        </li>
-      </ul>
-      <br>
-      <hr> {% if project.id in projects_id.3 %}
-      <a href="/project/task/?task=Withdraw&project_id={{project.id}}" class="btn btn-light btn-icon-split">
-        <span class="icon text-gray-600">
-          <i class="fas fa-times"></i>
-        </span>
-        <span class="text" style="color:black;">Withdraw Request</span>
-      </a> <br> {% else %} {% if project.id not in projects_id.0 and project.id not in projects_id.2 %}
-      <a href="/project/task/?task=Apply&project_id={{project.id}}" class="btn btn-warning btn-icon-split">
-        <span class="icon text-white-50">
-          <i class="fas fa-check"></i>
-        </span>
-        <span class="text" style="color:white;">Apply</span>
-      </a><br> {% else %}
-      <a href="/project/task/?task=Leave&project_id={{project.id}}" class="btn btn-danger btn-icon-split">
-        <span class="icon text-white-50">
-          <i class="fas fa-trash"></i>
-        </span>
-        <span class="text">Leave</span>
+
+<br>
+
+
+  {% if project.FloatedBy == user %}
+
+
+      <a href="/project/delete/?project_id={{project.id}}" class="btn btn-danger btn-circle">
+        <i class="fas fa-trash" style="color:white;"></i>
       </a>
+
+
+      <a href="/project/update/?project_id={{project.id}}"><button class="btn btn-primary btn-user btn-block" style="display: inline-block;">UPDATE PROJECT</button></a>
+
+
+  {% endif %}
+
+
+
+
+
+      <!-- <h3 style="margin-top: 10px; color:#858796; margin-left:0px;"><a href="{% url 'profile' project.FloatedBy.id %}">{{project.FloatedBy}}</a></h3> -->
+
+
+
+
+
+    <h1 class="project-title">{{ project.Title }}</h1>
+    <div class="project-description" style=" margin-bottom: 20px;">
+      <p class="desc-title">Description:</p>
+      <p>{{ project.Description }}</p>
       <br>
-      {% endif %} {% endif %}
-      <br>
+
     </div>
-  </div>
-</div>
+    <div class="">
+
+      <p><b>Floated By :</b>{{project.FloatedBy}}<a href="{% url 'profile' project.FloatedBy.id %}"><i class="fa fa-external-link"></i></a></p>
+      <p><b>Mentors: </b>{% for users in project.Mentors.all %} {{ users }} {% endfor %} {% if project.Mentors.all.count == 0 %} No one {% endif %}</p>
+      <p><b>Status: </b>{{ project.SelectionCriteria }}</p>
+      <p><b>Tags: </b><div class="blog-tags">
+
+      <ul>
+        <li><a>{{ project.Status }}</a></li>
+        <li><a>{{ project.Difficulty }}</a></li>
+      </ul></div></p>
+      <span class="avatar">
+        <b>Already Selected:</b>
+        {% for users in project.AlreadyApplied.all %}
+        <a href="{% url 'profile' users.profile.id %}"><img src="{{users.profile.image.url}}" title="{{users}}"></a>
+        {% endfor %}
+        {% if project.AlreadyApplied.all.count == 0 %} No selections yet {% endif %}
+      </span>
+    </div>
+
+  
+
+
+  <br>
+
+    <p><b>Duration: </b>{{ project.Duration }}</p>
+
+    <p><b>Selection Criteria: </b>{{ project.SelectionCriteria }}</p>
+    <p><b>Opened for: </b>{{project.OpenedFor}}</p>
+    <p><b>Pre requisites: </b>{{ project.PreRequisite }}</p>
+
+    <br>
+
+  <br>
+  <br>
+  <ul>
+    <li>{{ project.DatePosted }}</li>
+    <li> {% if project.id not in projects_id.4 %}
+      <a href="/project/task/?task=Star&project_id={{project.id}}">
+        <button><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-star" viewBox="0 0 16 16">
+            <path
+              d="M2.866 14.85c-.078.444.36.791.746.593l4.39-2.256 4.389 2.256c.386.198.824-.149.746-.592l-.83-4.73 3.522-3.356c.33-.314.16-.888-.282-.95l-4.898-.696L8.465.792a.513.513 0 0 0-.927 0L5.354 5.12l-4.898.696c-.441.062-.612.636-.283.95l3.523 3.356-.83 4.73zm4.905-2.767-3.686 1.894.694-3.957a.565.565 0 0 0-.163-.505L1.71 6.745l4.052-.576a.525.525 0 0 0 .393-.288L8 2.223l1.847 3.658a.525.525 0 0 0 .393.288l4.052.575-2.906 2.77a.565.565 0 0 0-.163.506l.694 3.957-3.686-1.894a.503.503 0 0 0-.461 0z" />
+          </svg></button></a>
+      {% else %}
+      <a href="/project/task/?task=Unstar&project_id={{project.id}}">
+        <button class="btn btn-primary btn-user btn-block"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-star-fill" viewBox="0 0 16 16">
+            <path
+              d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" />
+          </svg></button></a>
+      {% endif %}
+    </li>
+  </ul>
+  <br>
+  <hr> {% if project.id in projects_id.3 %}
+  <a href="/project/task/?task=Withdraw&project_id={{project.id}}" class="btn btn-light btn-icon-split">
+    <span class="icon text-gray-600">
+      <i class="fas fa-times"></i>
+    </span>
+    <span class="text" style="color:black;">Withdraw Request</span>
+  </a> <br> {% else %} {% if project.id not in projects_id.0 and project.id not in projects_id.2 %}
+  <a href="/project/task/?task=Apply&project_id={{project.id}}" class="btn btn-warning btn-icon-split">
+    <span class="icon text-white-50">
+      <i class="fas fa-check"></i>
+    </span>
+    <span class="text" style="color:white;">Apply</span>
+  </a><br> {% else %}
+  <a href="/project/task/?task=Leave&project_id={{project.id}}" class="btn btn-danger btn-icon-split">
+    <span class="icon text-white-50">
+      <i class="fas fa-trash"></i>
+    </span>
+    <span class="text">Leave</span>
+  </a>
+  <br>
+  {% endif %} {% endif %}
+  <br>
+
+
 
 {% if project.FloatedBy == user %}
-<div class="card shadow mb-4">
-  <div class="card-header py-3">
+
     <h3>Project Apply Requests:</h3>
-  </div>
-  <div class="card-body">
+
+
     {% for request_user in project.ApplyRequest.all %}
     <div>
       {{request_user}} -
@@ -122,8 +133,7 @@
     {% endfor %} {% if project.ApplyRequest.all.count == 0 %}
     <div style="color:black; font-size:20px;"> No requests </div>
     {% endif %}
-  </div>
-</div>
+
 {% endif %}
 {% endblock content %}
 {% block customScripts %}
