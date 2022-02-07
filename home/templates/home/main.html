@@ -24,7 +24,7 @@
         background-color: #EBEBEB;
         border: 1px solid rgba(0, 0, 0, 0.25);
         border-radius: 5px;
-        width: 242px;
+        width: 210px;
         height: 44px;
         position: relative;
     }
@@ -151,18 +151,18 @@
 
 
     <form method="get" class="form-inline justify-content-lg-center h5 mb-0 text-gray-800 " style="width: 100%;">
-        <div class="" style="padding-right:23px;width: 263px;">
+        <div class="" style="padding-right:23px;width: 220px;">
             <label for="id_Status" style="font-size: 16px; font-weight: 300;float: left; ">Status</label>
-            <select name="Status" id="id_Status" style="background-color:#EBEBEB; border: 1px solid rgba(0, 0, 0, 0.25); border-radius: 5px;width:242px; height:44px;">
+            <select name="Status" id="id_Status" style="background-color:#EBEBEB; border: 1px solid rgba(0, 0, 0, 0.25); border-radius: 5px;width:210px; height:44px;">
                 <option value="">None</option>
                 <option value="Open">Open</option>
                 <option value="Ongoing">Ongoing</option>
                 <option value="Completed">Completed</option>
             </select>
         </div>
-        <div class="" style="padding-right:23px; width: 263px;">
+        <div class="" style="padding-right:23px; width: 220px;">
             <label for="id_Difficulty" style="font-size: 16px; font-weight: 300;float: left; ">Difficulty</label>
-            <select name="Difficulty" id="id_Difficulty" style="background-color:#EBEBEB; border: 1px solid rgba(0, 0, 0, 0.25); border-radius: 5px;width:242px; height:44px;">
+            <select name="Difficulty" id="id_Difficulty" style="background-color:#EBEBEB; border: 1px solid rgba(0, 0, 0, 0.25); border-radius: 5px;width:210px; height:44px;">
                 <option value="">None</option>
                 <option value="Beginner">Beginner</option>
                 <option value="Intermediate">Intermediate</option>
@@ -173,26 +173,26 @@
 {#            <label for="id_Duration" style="font-size: 16px; font-weight: 300; float: left;">Duration</label>#}
 {#            <input type="text" name="Duration" id="id_Duration" style="background-color:#EBEBEB; border: 1px solid rgba(0, 0, 0, 0.25); border-radius: 5px;width:242px; height:44px;" placeholder="None">#}
 {#        </div>#}
-        <div class="select2-selection select2-selection--single" style="padding-right:23px;width: 263px; margin-bottom: 2px;">
+        <div class="select2-selection select2-selection--single" style="padding-right:23px;width: 220px; margin-bottom: 2px;">
             <label for="id_FloatedBy" style="font-size: 16px; font-weight: 300;float: left; ">FloatedBy</label>
-            <select name="FloatedBy" id="id_FloatedBy" class="searchable-select select2-selection__rendered" style="background-color:#EBEBEB; border: 1px solid rgba(0, 0, 0, 0.25); border-radius: 5px;width:242px; height:44px;">
+            <select name="FloatedBy" id="id_FloatedBy" class="searchable-select select2-selection__rendered" style="background-color:#EBEBEB; border: 1px solid rgba(0, 0, 0, 0.25); border-radius: 5px;width:210px; height:44px;">
                 <option value="">None</option>
                 {% for USER in users %}
                 <option value='{{USER.id}}'>{{ USER }}</option>
                 {% endfor %}
             </select>
         </div>
-        <div class="" style="padding-right:23px;width: 263px; margin-bottom: 5px;">
+        <div class="" style="padding-right:23px;width: 220px; margin-bottom: 5px;">
             <label for="id_Tags" style="font-size: 16px; font-weight: 300;float: left; ">Tags</label>
-            <select name="Tags" id="id_Tags" class="searchable-select-clearable select2-selection select2-selection--multiple" multiple="multiple" style="background-color:#EBEBEB; border: 1px solid rgba(0, 0, 0, 0.25); border-radius: 5px;width:242px; height:44px;">
+            <select name="Tags" id="id_Tags" class="searchable-select-clearable select2-selection select2-selection--multiple" multiple="multiple" style="background-color:#EBEBEB; border: 1px solid rgba(0, 0, 0, 0.25); border-radius: 5px;width:210px; height:44px;">
                 {% for TAG in tags %}
                 <option value='{{TAG.id}}'>{{ TAG }}</option>
                 {% endfor %}
             </select>
         </div>
-        <div class="" style="padding-right:23px; width: 263px; margin-bottom: 5px;">
+        <div class="" style="padding-right:23px; width: 220px; margin-bottom: 5px;">
             <label for="id_FilterBy" style="font-size: 16px; font-weight: 300;float: left; ">Filter Tags By</label>
-            <select name="FilterBy" id="id_FilterBy" style="background-color:#EBEBEB; border: 1px solid rgba(0, 0, 0, 0.25); border-radius: 5px;width:242px; height:44px;">
+            <select name="FilterBy" id="id_FilterBy" style="background-color:#EBEBEB; border: 1px solid rgba(0, 0, 0, 0.25); border-radius: 5px;width:210px; height:44px;">
                 <option value="Or" selected>Or</option>
                 <option value="And">And</option>
             </select>
@@ -206,8 +206,9 @@
 
     {% endblock filterBlock %}
     {% block tagsBlock %}
-        <div class = "blog-container" style="flex: 1 0 45%; margin: 30px; width: 1260px; height: 60px; max-width: 1260px; margin-left: 45px; ">
+        <div class = "blog-container" style="flex: 1 0 45%; margin: 30px; width: 1260px; height: 75px; max-width: 1260px; margin-left: 45px; alignment: center; align-self: center; ">
         <div class="blog-tags-a" style="margin-left: 75px;">
+        <br>
         <ul>
             POPULAR TAGS:
             {% for tag in common_tags %}
