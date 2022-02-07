@@ -90,7 +90,7 @@
 
 
 }
-@media only screen and (min-width: 920px) {.blog-container{
+@media only screen and (min-width: 930px) {.blog-container{
   margin:20px;
   width:330px;
   height:240px;
@@ -121,7 +121,7 @@
 .main-br{
   display:none;
 }}
-@media only screen and (min-width: 1160px) {.blog-container{
+@media only screen and (min-width: 1260px) {.blog-container{
   margin:20px;
   width:420px;
   height:240px;
@@ -153,6 +153,13 @@
   display:none;
 }
 }
+@media only screen and (min-width: 1300px) and (max-width: 1570px) {.blog-container{
+  /* margin:20px; */
+  width:510px;
+  /* height:240px; */
+  /* padding-top:0px; */
+
+}}
 /* Small devices (portrait tablets and large phones, 600px and up) */
 /*@media only screen and (min-width: 600px) {*/
 /*  .blog-container{*/
