@@ -80,3 +80,39 @@ $('#id_OpenedFor_0').on('click', function(){
         }
     }
 });
+
+colors = Array("#BEFFE0", "#FFD493", "#C9D8FF");
+
+var tags = document.getElementById("tagsContainer").children;
+for(var i = 1;i<tags.length;i++){
+    var tag = tags[i];
+    var ind = Math.floor(Math.random()*3);
+    tag.style.backgroundColor = colors[ind];
+}
+$(".buttonContent").on("click",function(){
+    unselect();
+    var elem = $(this).context;
+    if(elem.children[0].innerText == "Pre-requisite"){
+        document.getElementById("proprereq").classList.remove("invisible");
+    };
+    if(elem.children[0].innerText == "Description"){
+        document.getElementById("prodes").classList.remove("invisible");
+    };
+    if(elem.children[0].innerText == "Selection Criteria"){
+        document.getElementById("proselcrit").classList.remove("invisible");
+    };
+    elem.className += " buttonSelected";
+});
+function unselect(){
+    var buttons = document.getElementsByClassName('buttonContent');
+    for(var i = 0;i<buttons.length;i++){
+        var button = buttons[i];
+        button.classList.remove("buttonSelected");
+    }
+    var buttonTriggers = document.getElementById('projectDescription').children;
+    for(var i = 0;i<buttonTriggers.length;i++){
+        var x = buttonTriggers[i];
+        if(x.class != "invisible")
+            x.classList.add("invisible");
+    }
+}
