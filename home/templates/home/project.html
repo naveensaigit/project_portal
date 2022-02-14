@@ -15,121 +15,137 @@
 {% endif %} {% endcomment %}
 <!-- <h3 style="margin-top: 10px; color:#858796; margin-left:0px;"><a href="{% url 'profile' project.FloatedBy.id %}">{{project.FloatedBy}}</a></h3> -->
 <div id="projectTop">
-  <div id="projectTitle">{{ project.Title }}</div>
+  <div id="projectTitle" class="vertical-center">{{ project.Title }}</div>
 </div>
-<div id="projectMain">
-  <div id="tagsContainer">
-    <div class="tagsTitle">Tags:</div>
-    <div class="tag">HTML</div>
-    <div class="tag">CSS</div>
-    <div class="tag">javascript</div>
-  </div>
-  <div id="buttons">
-    <div class="singleButton">
-      <div class="buttonContent buttonSelected">
-        <div class="buttonText">
+<div id="projectMain" class="horizontal-center">
+  <div class="left-container">
+    <div id="tagsContainer" class="vertical-center">
+      <div class="tagsTitle">Tags:</div>
+      <div class="tag vertical-center">
+        <div class="horizontal-center">
+          HTML
+        </div>
+      </div>
+      <div class="tag vertical-center">
+        <div class="horizontal-center">
+          CSS
+        </div>
+      </div>
+      <div class="tag vertical-center">
+        <div class="horizontal-center">
+          JAVASCRIPT
+        </div>
+      </div>
+    </div>
+    <div id="buttons">
+      <div class="seperator"></div>
+      <div class="buttonContent buttonSelected vertical-center">
+        <div class="horizontal-center">
           Description
         </div>
       </div>
-    </div>
-    <div class="singleButton">
-      <div class="buttonContent">
-        <div class="buttonText">
+      <div class="seperator"></div>
+      <div class="buttonContent vertical-center">
+        <div class="horizontal-center">
           Pre-requisite
         </div>
       </div>
-    </div>
-    <div class="singleButton">
-      <div class="buttonContent">
-        <div class="buttonText">
+      <div class="seperator"></div>
+      <div class="buttonContent vertical-center">
+        <div class="horizontal-center">
           Selection Criteria
         </div>
       </div>
+      <div class="seperator"></div>
+    </div>
+
+    <div id="projectDescription">
+      <div id="prodes" class="">
+        {{ project.Description }}
+      </div>
+      <div id="proprereq" class="invisible">
+        {{ project.PreRequisite }}
+      </div>
+      <div id="proselcrit" class="invisible">
+        {{ project.SelectionCriteria }}
+      </div>
+    </div>
+
+    <div id="applyNow">
+      {% if project.id not in projects_id.0 and project.id not in projects_id.2 %}
+      <a href="/project/task/?task=Apply&project_id={{project.id}}" class="applyText">Apply Now</a>
+      {% endif %}
     </div>
   </div>
-  <div id="projectDescription">
-    <div id="prodes" class="">
-      {{ project.Description }}
-    </div>
-    <div id="proprereq" class="invisible">
-      {{ project.PreRequisite }}
-    </div>
-    <div id="proselcrit" class="invisible">
-      {{ project.SelectionCriteria }}
-    </div>
-  </div>
-  <div id="projectDetails">
-    <div class="detail">
-      <div class="detailTitle">
-        Floated By :
+  <div class="right-container">
+    <div id="projectDetails">
+      <div class="detail">
+        <div class="detailTitle">
+          Floated By :
+        </div>
+        <div class="detailContent">
+          {{project.FloatedBy}} <a href="{% url 'profile' project.FloatedBy.id %}"><i class="fa fa-external-link"></i></a>
+        </div>
       </div>
-      <div class="detailContent">
-        {{project.FloatedBy}} <a href="{% url 'profile' project.FloatedBy.id %}"><i class="fa fa-external-link"></i></a>
+      <div class="detail">
+        <div class="detailTitle">
+          Mentors:
+        </div>
+        <div class="detailContent">
+          {% for users in project.Mentors.all %} {{ users }} {% endfor %}
+          {% if project.Mentors.all.count == 0 %} No one {% endif %}
+        </div>
       </div>
-    </div>
-    <div class="detail">
-      <div class="detailTitle">
-        Mentors:
+      <div class="detail">
+        <div class="detailTitle">
+          Status:
+        </div>
+        <div class="detailContent">
+          {{ project.Status }}
+        </div>
       </div>
-      <div class="detailContent">
-        {% for users in project.Mentors.all %} {{ users }} {% endfor %}
-        {% if project.Mentors.all.count == 0 %} No one {% endif %}
+      <div class="detail">
+        <div class="detailTitle">
+          Duration:
+        </div>
+        <div class="detailContent">
+          {{ project.Duration }}
+        </div>
       </div>
-    </div>
-    <div class="detail">
-      <div class="detailTitle">
-        Status:
+      <div class="detail">
+        <div class="detailTitle">
+          Opened for:
+        </div>
+        <div class="detailContent">
+          {{project.OpenedFor}}
+        </div>
       </div>
-      <div class="detailContent">
-        {{ project.Status }}
+      <div class="detail">
+        <div class="detailTitle">
+          Difficulty:
+        </div>
+        <div class="detailContent">
+          {{project.Difficulty}}
+        </div>
       </div>
-    </div>
-    <div class="detail">
-      <div class="detailTitle">
-        Duration:
-      </div>
-      <div class="detailContent">
-        {{ project.Duration }}
-      </div>
-    </div>
-    <div class="detail">
-      <div class="detailTitle">
-        Opened for:
-      </div>
-      <div class="detailContent">
-        {{project.OpenedFor}}
-      </div>
-    </div>
-    <div class="detail">
-      <div class="detailTitle">
-        Difficulty:
-      </div>
-      <div class="detailContent">
-        {{project.Difficulty}}
-      </div>
-    </div>
-    <div class="detail">
-      <div class="detailTitle">
-        DateFloated:
-      </div>
-      <div class="detailContent">
-        {{ project.DatePosted }}
+      <div class="detail">
+        <div class="detailTitle">
+          DateFloated:
+        </div>
+        <div class="detailContent">
+          {{ project.DatePosted }}
+        </div>
       </div>
     </div>
-  </div>
-  <div id="alreadyApplied">
-    <div id="alreadyAppliedTitle">Already Applied:</div>
-    <div id="alreadyAppliedUsers">
-      {% for users in project.AlreadyApplied.all %}
-      <div class="user"><a href="{% url 'profile' users.profile.id %}"><img src="{{users.profile.image.url}}" title="{{users}}"></a></div>
-      {% endfor %}
-      {% if project.AlreadyApplied.all.count == 0 %} No selections yet {% endif %}
+    <div id="alreadyApplied">
+      <div id="alreadyAppliedTitle">Already Applied:</div>
+      <div id="alreadyAppliedUsers">
+        {% for users in project.AlreadyApplied.all %}
+        <div class="user"><a href="{% url 'profile' users.profile.id %}"><img src="{{users.profile.image.url}}" title="{{users}}"></a></div>
+        {% endfor %}
+        {% if project.AlreadyApplied.all.count == 0 %} No selections yet {% endif %}
+      </div>
     </div>
-  </div>
-  <div id="applyNow">
-    {% if project.id not in projects_id.0 and project.id not in projects_id.2 %}
-    <a href="/project/task/?task=Apply&project_id={{project.id}}" class="applyText">Apply Now</a>
-    {% endif %}
   </div>
 </div>
 {% comment %}

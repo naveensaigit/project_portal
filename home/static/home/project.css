@@ -16,6 +16,18 @@
   min-height: 92vh;
 }
 
+.horizontal-center {
+  margin: 0 auto;
+}
+.vertical-center {
+  display: flex;
+  align-items: center;
+}
+.invisible {
+  display: none;
+}
+
+
 #projectTop {
   margin: 0px;
   width: 100%;
@@ -31,75 +43,72 @@
 #projectTitle {
   margin-left: 5vw;
   color: white;
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
+  height: 250px;
   font-size: 40px;
   font-weight: 600;
 }
 
+
 #projectMain {
-  height: 63vh;
-  position: relative;
+  display: flex;
+  width: 87%;
+  height: 66vh;
+}
+.left-container{
+  width: 71%;
+  padding-right: 5.6%;
+}
+.right-container{
+  width: 28.4%;
 }
 
 #tagsContainer {
-  position: absolute;
-  left: 5%;
-  top: 8%;
   display: flex;
+  margin-top: 53px;
 }
-
 .tagsTitle {
-  margin: 10px;
+  margin-right: 2vw;
   color: #19258C;
   font-weight: 700;
   width: 5vw;
 }
-
 .tag {
+  min-width: 82px;
+  height: 25px;
+  margin-right: 1vw;
+  text-align: center;
   border: 1px solid rgba(0, 0, 0, 0.25);
   box-sizing: border-box;
   border-radius: 15px;
-  padding: 5px;
-  padding-top: 3px;
-  margin-right: 1vw;
-  min-width: 5vw;
-  height: 25px;
-  margin-top: 7px;
-  text-align: center;
+  padding: 2px;
 }
 
 #buttons {
-  width: 50vw;
-  position: absolute;
-  top: 20%;
-  left: 5%;
+  margin-top: 40px;
+  height: 60px;
+  width: 91.9%;
   display: flex;
-  justify-content: space-evenly;
-  background: #19258C;
   border: 1px solid rgba(218, 218, 218, 0.74);
   box-sizing: border-box;
 }
-
-.singleButton {
-  width: 16vw;
-  background-color: white;
-  padding: 0px 0.5vw 0px 0.5vw;
+.seperator{
+  width: 1.2%;
+  height: 58px;
+  background-color: #19258C;
 }
-
 .buttonContent {
+  margin: 0px 1%;
+  width: 30.5%;
   background: #F6F4F4;
-  min-height: 60px;
-  position: relative;
+  padding: 0px 0.5vw 0px 0.5vw;
+  height: 58px;
 }
 
-.buttonText {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translateY(-50%) translateX(-50%);
+.buttonSelected {
+  background-color: #C9D8FF !important;
 }
+
+
 
 #projectDescription {
   width: 50vw;
@@ -107,9 +116,6 @@
   box-sizing: border-box;
   border-radius: 10px;
   padding: 36px 21px;
-  top: 38%;
-  left: 5%;
-  position: absolute;
   min-height: 250px;
   max-height: 300px;
   overflow: scroll;
@@ -120,10 +126,24 @@
   display: none;
 }
 
+#applyNow{
+  height: 50px;
+  width: 17vw;
+  background: #19258C;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 10px;
+  text-align: center;
+  padding-top: 15px;
+  max-width: 200px !important;
+}
+.applyText{
+  font-size: 23px;
+  vertical-align: middle;
+  color: white !important;
+}
+
+
 #projectDetails {
-  position: absolute;
-  top: 10%;
-  left: 63%;
   width: 28vw;
   padding: 20px 10px;
   border: 1px solid rgba(0, 0, 0, 0.25);
@@ -149,9 +169,6 @@
 }
 
 #alreadyApplied {
-  position: absolute;
-  top: 78%;
-  left: 62.5%;
   width: 28.5vw;
   display: flex;
 }
@@ -176,31 +193,4 @@
 
 #alreadyAppliedUsers img {
   height: 40px;
-}
-
-#applyNow{
-  position: absolute;
-  top: 85%;
-  left: 22vw;
-  height: 50px;
-  width: 17vw;
-  background: #19258C;
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-  border-radius: 10px;
-  text-align: center;
-  padding-top: 15px;
-  max-width: 200px !important;
-}
-.applyText{
-  font-size: 23px;
-  vertical-align: middle;
-  color: white !important;
-}
-
-.buttonSelected {
-  background-color: #C9D8FF !important;
-}
-
-.invisible {
-  display: none;
 }
