@@ -143,23 +143,23 @@
       </div>
       {% if project.id not in projects_id.0 %}
       <div id="applyNow">
-        {% if project.id not in projects_id.1 and project.id not in projects_id.2 %}
+        {% if project.id not in projects_id.2 and project.id not in projects_id.3 %}
         <div class="applyText vertical-center" data-toggle="modal" data-target="#applyModal">
           <div class="horizontal-center">
             Apply Now
           </div>
         </div>
         {% else %}
-        {% if project.id in projects_id.1 %}
+        {% if project.id in projects_id.2 %}
         <div class="applyText vertical-center" data-toggle="modal" data-target="#leaveModal">
           <div class="horizontal-center">
             Leave
           </div>
         </div>
         {% else %}
-        <div class="applyText vertical-center" data-toggle="modal" data-target="#leaveModal">
+        <div class="applyText vertical-center" data-toggle="modal" data-target="#withdrawModal">
           <div class="horizontal-center">
-            Leave
+            Withdraw
           </div>
         </div>
         {% endif %}
