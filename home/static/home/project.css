@@ -272,16 +272,16 @@
   font-size: 18px;
   color: #F7F4F4;
 }
-
 .accept {
   background: #34A853;
   border: 2px solid #34A853;
 }
-
 .reject {
-  /* margin-left: 2.16%; */
   background: #F50000;
   border: 1px solid #F50000;
+}
+.rejectall{
+  margin-left: 2.16%;
 }
 /* --------------- */
 
