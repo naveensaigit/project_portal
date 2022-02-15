@@ -263,8 +263,7 @@
   color: black;
 }
 
-#acceptAll,
-#rejectAll {
+.accept, .reject {
   width: 118px;
   height: 35px;
   box-sizing: border-box;
@@ -274,13 +273,13 @@
   color: #F7F4F4;
 }
 
-#acceptAll {
+.accept {
   background: #34A853;
   border: 2px solid #34A853;
 }
 
-#rejectAll {
-  margin-left: 2.16%;
+.reject {
+  /* margin-left: 2.16%; */
   background: #F50000;
   border: 1px solid #F50000;
 }

@@ -4,6 +4,77 @@
 <link rel="stylesheet" type="text/css" href="{% static 'home/project.css' %}">
 {% endblock customStylesheets %}
 {% block content %}
+{% block modals %}
+<div class="modal fade" id="applyModal" tabindex="-1" role="dialog" aria-labelledby="applyModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="applyModalLabel">Project Apply</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        Do you wish to apply for the project {{ project.Title }}
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="reject" data-dismiss="modal">Close</button>
+        <a href="/project/task/?task=Apply&project_id={{project.id}}">
+          <button type="button" class="accept">
+            Apply
+          </button>
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal fade" id="leaveModal" tabindex="-1" role="dialog" aria-labelledby="leaveModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="leaveModalLabel">Project Leave</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        Do you wish to leave the project {{ project.Title }}
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="accept" data-dismiss="modal">Close</button>
+        <a href="/project/task/?task=Leave&project_id={{project.id}}">
+          <button type="button" class="reject">
+            Leave
+          </button>
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal fade" id="withdrawModal" tabindex="-1" role="dialog" aria-labelledby="withdrawModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="withdrawModalLabel">Project Withdraw</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        Do you wish to withdraw the application request for project {{ project.Title }}
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="accept" data-dismiss="modal">Close</button>
+        <a href="/project/task/?task=Withdraw&project_id={{project.id}}">
+          <button type="button" class="reject">
+            Withdraw
+          </button>
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock modals %}
 {% block messageBlock %} {% if messages %} {% for message in messages %}
 <div class="card-header py-3">{{message}}</div>
 {% endfor %} {% endif %} {% endblock messageBlock %}
@@ -73,24 +144,24 @@
       {% if project.id not in projects_id.0 %}
       <div id="applyNow">
         {% if project.id not in projects_id.1 and project.id not in projects_id.2 %}
-        <a href="/project/task/?task=Apply&project_id={{project.id}}" class="applyText vertical-center">
+        <div class="applyText vertical-center" data-toggle="modal" data-target="#applyModal">
           <div class="horizontal-center">
             Apply Now
           </div>
-        </a>
+        </div>
         {% else %}
         {% if project.id in projects_id.1 %}
-        <a href="/project/task/?task=Leave&project_id={{project.id}}" class="applyText vertical-center">
+        <div class="applyText vertical-center" data-toggle="modal" data-target="#leaveModal">
           <div class="horizontal-center">
             Leave
           </div>
-        </a>
+        </div>
         {% else %}
-        <a href="/project/task/?task=Withdraw&project_id={{project.id}}" class="applyText vertical-center">
+        <div class="applyText vertical-center" data-toggle="modal" data-target="#leaveModal">
           <div class="horizontal-center">
-            Withdraw
+            Leave
           </div>
-        </a>
+        </div>
         {% endif %}
         {% endif %}
       </div>
@@ -177,12 +248,12 @@
           Applications:
         </div>
         <div id="tableOptions">
-          <div id="acceptAll" class='vertical-center'>
+          <div class='accept vertical-center'>
             <div class="horizontal-center">
               Accept All
             </div>
           </div>
-          <div id="rejectAll" class='vertical-center'>
+          <div class='reject vertical-center'>
             <div class="horizontal-center">
               Reject All
             </div>
@@ -206,15 +277,15 @@
             <td></td>
             <td>Pending</td>
           </tr>
-          {% endfor %} 
+          {% endfor %}
           {% if project.ApplyRequest.all.count == 0 %}
           <tr>
             <td colspan='4'>
               No requests
-            </td> 
+            </td>
           </tr>
-          {% endif %} 
-          {% comment %} 
+          {% endif %}
+          {% comment %}
           <div>
             <a href="/project/accept/?project_id={{project.id}}&request_user={{request_user}}"><button class="btn btn-primary btn-user btn-block" style="width: 30%; ">ACCEPT</button></a>
             <a href="/project/reject/?project_id={{project.id}}&request_user={{request_user}}"><button class="btn btn-primary btn-user btn-block" style="width: 30%; ">REJECT</button></a>
