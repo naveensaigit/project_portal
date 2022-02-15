@@ -71,11 +71,15 @@
       </div>
     </div>
 
+    {% if project.id not in projects_id.0 and project.id not in projects_id.2 %}
     <div id="applyNow">
-      {% if project.id not in projects_id.0 and project.id not in projects_id.2 %}
-      <a href="/project/task/?task=Apply&project_id={{project.id}}" class="applyText">Apply Now</a>
-      {% endif %}
+      <a href="/project/task/?task=Apply&project_id={{project.id}}" class="applyText vertical-center">
+        <div class="horizontal-center">
+          Apply Now
+        </div>
+      </a>
     </div>
+    {% endif %}
   </div>
   <div class="right-container">
     <div id="projectDetails">
@@ -138,8 +142,8 @@
       </div>
     </div>
     <div id="alreadyApplied">
-      <div id="alreadyAppliedTitle">Already Applied:</div>
-      <div id="alreadyAppliedUsers">
+      <div id="alreadyAppliedTitle" class="vertical-center">Already Applied:</div>
+      <div id="alreadyAppliedUsers" class="vertical-center">
         {% for users in project.AlreadyApplied.all %}
         <div class="user"><a href="{% url 'profile' users.profile.id %}"><img src="{{users.profile.image.url}}" title="{{users}}"></a></div>
         {% endfor %}
