@@ -29,7 +29,7 @@
   display: none;
 }
 
-
+/* ========== TOP CARD STYLING ========== */
 #projectTop {
   margin: 0px;
   width: 100%;
@@ -50,11 +50,18 @@
   font-weight: 600;
 }
 
+/* ===================================== */
 
+/* ========== MAIN CONTENT STYLING ===== */
 #projectMain {
-  display: flex;
   width: 87%;
-  height: 585px;
+}
+
+/* ----- USER VIEW STYLING ----- */
+/* ---- GENERAL STLING ---- */
+.userView {
+  height: 570px;
+  display: flex;
 }
 
 .left-container {
@@ -66,6 +73,10 @@
   width: 28.4%;
 }
 
+/* ------------------------ */
+
+/* ---- LEFT COLUMN STYLING ----- */
+/* -----Tage styling----- */
 #tagsContainer {
   display: flex;
   margin-top: 53px;
@@ -88,6 +99,9 @@
   padding: 2px;
 }
 
+/* --------------------- */
+
+/* ---Buttons styling--- */
 #buttons {
   margin-top: 40px;
   height: 60px;
@@ -115,7 +129,9 @@
   background-color: #C9D8FF !important;
 }
 
+/* ----------------------- */
 
+/* --Description styling-- */
 #projectDescription {
   border: 1px solid #E5E5E5;
   box-sizing: border-box;
@@ -153,11 +169,15 @@
   vertical-align: middle;
   color: white !important;
 }
-#applyNow > a:hover{
+
+#applyNow>a:hover {
   text-decoration: none;
 }
 
+/* ---------------------- */
 
+
+/* ---- RIGHT COLUMN STYLING ------ */
 #projectDetails {
   margin-top: 53px;
   width: 100%;
@@ -210,3 +230,96 @@
 #alreadyAppliedUsers img {
   height: 40px;
 }
+
+/* -------------------------- */
+/* ------- USER VIEW STYLING END ------ */
+
+/* ------- ADMIN VIEW STYLING --------- */
+.horizontal-line {
+  border: 1px solid rgba(85, 85, 85, 0.178)
+}
+
+/* ---- TABLE CONTAINER STYLING ---- */
+/* Table top styling */
+#tableTop {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+}
+
+#tableOptions {
+  display: flex;
+  margin-right: 4.8%;
+}
+
+#tableTitle {
+  width: 218px;
+  height: 45px;
+
+  font-weight: bold;
+  font-size: 20px;
+  line-height: 23px;
+
+  color: black;
+}
+
+#acceptAll,
+#rejectAll {
+  width: 118px;
+  height: 35px;
+  box-sizing: border-box;
+  border-radius: 5px;
+  font-weight: 600;
+  font-size: 18px;
+  color: #F7F4F4;
+}
+
+#acceptAll {
+  background: #34A853;
+  border: 2px solid #34A853;
+}
+
+#rejectAll {
+  margin-left: 2.16%;
+  background: #F50000;
+  border: 1px solid #F50000;
+}
+/* --------------- */
+
+/* Table styling */
+#applicationsTable {
+  margin-top: 10px;
+  width: 100%;
+}
+table {
+  border-collapse: separate;
+  border: 1px solid #C9D8FF;
+  border-radius: 15px;
+  border-spacing: 0px;
+}
+thead th {
+  background: #C9D8FF;
+}
+thead th:first-child{
+  border-radius: 15px 0 0 0;
+}
+thead th:last-child{
+  border-radius: 0 15px 0 0;
+}
+th , td {
+  text-align: center;
+  padding: 29px 0;
+  border-bottom: 1px solid rgba(47, 47, 47, 0.25);
+  border-right: 1px solid rgba(44, 44, 44, 0.25);
+}
+th:last-child, td:last-child{
+  border-right: 0px;
+}
+tr:last-child td{
+  border-bottom: 0px;
+}
+/* --------------- */
+/* --------------------------------- */
+/* ------- ADMIN VIEW STYLING END ------ */
+
+/* ========= MAIN CONTENT STYLING END ========== */
