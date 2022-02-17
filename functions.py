@@ -145,8 +145,8 @@ def send_notification(request, project):
         recipient_list = [project.FloatedBy.email,]
         send_mail( subject, message, email_from, recipient_list )
 
-def delete_notification(request, project):
-    Notification.objects.filter(notification_from = request.user).filter(project_requested = project).delete()
+def delete_notification(current_user, project):
+    Notification.objects.filter(notification_from = current_user).filter(project_requested = project).delete()
 
 def apply_on_project(request, project):
     current_user = request.user
@@ -170,7 +170,7 @@ def apply_on_project(request, project):
 
 def withdraw_from_project(request, project):
     current_user = request.user
-    delete_notification(request, project)
+    delete_notification(current_user, project)
     ApplyRequest.objects.all().get(User = current_user).filter(Project = project).delete()
 
 def leave_project(request, project):
@@ -178,26 +178,27 @@ def leave_project(request, project):
     if project.FloatedBy != current_user:
         project.AlreadyApplied.remove(current_user)
         ApplyRequest.objects.all().get(User = current_user).delete()
-        delete_notification(request, project)
+        delete_notification(current_user, project)
         messages.success(request,f"{project} is dropped successfully.")
     else:
         messages.error(request, 'You cannot leave this project because it is floated by you.')
 
-def all_apply_requests_task(request, project, task):
+def all_apply_requests_task(project, task):
     apply_requests = ApplyRequest.objects.all().filter(Project=project)
     for apply_request in apply_requests:
         if(task=="AcceptAll"):
-            apply_request_task(request, apply_request, "Accept")
+            apply_request_task(apply_request, "Accept")
         else:
-            apply_request_task(request, apply_request, "Reject")
+            apply_request_task(apply_request, "Reject")
 
-def apply_request_task(request, apply_request,task):
-    newStatus = task + "ed"
-    apply_request.Status = newStatus
-    if newStatus == "Accepted":
-        apply_request.Project.AlreadyApplied.add(apply_request.User)
-    delete_notification(request, apply_request.Project)
-    apply_request.save()
+def apply_request_task(apply_request,task):
+    if apply_request.Status == "Pending":
+        newStatus = task + "ed"
+        apply_request.Status = newStatus
+        if newStatus == "Accepted":
+            apply_request.Project.AlreadyApplied.add(apply_request.User)
+        delete_notification(apply_request.User, apply_request.Project)
+        apply_request.save()
 
 def do_task(request):
     project_id = request.GET.get('project_id')
@@ -227,11 +228,11 @@ def do_task(request):
     elif task == "Accept" or task == "Reject":
         request_user_name = request.GET.get('request_user')
         request_user = User.objects.filter(username = request_user_name).first()
-        apply_request = ApplyRequest.objects.all().filter(User = request_user).filter(Project = project)
+        apply_request = ApplyRequest.objects.all().filter(User = request_user).filter(Project = project).first()
 
-        apply_request_task(request, apply_request, task)
+        apply_request_task(apply_request, task)
     elif task == "AcceptAll" or task == "RejectAll":
-        all_apply_requests_task(request, project, task)
+        all_apply_requests_task(project, task)
 
 def get_projects_view_details(request):
     view = request.GET.get('view')
