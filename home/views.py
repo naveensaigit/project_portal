@@ -145,10 +145,9 @@ def projectDelete(request):
 @login_required
 def projectTask(request):
     project_id = request.GET.get('project_id')
-    task = request.GET.get('task')
     page_number = request.GET.get('page_number')
 
-    do_task(request, task)
+    do_task(request)
 
     if page_number:
         url = f'/?page={page_number}'
@@ -159,20 +158,7 @@ def projectTask(request):
 
 @login_required
 @user_is_project_author
-def projectAccept(request):
+def projectApplyRequestTask(request):
     project_id = request.GET.get('project_id')
-    task = "Accept"
-    if request.GET.get('all')!=None:
-        task = "AcceptAll"
-    do_task(request, task)
-    return redirect(f'/project/?project_id={project_id}')
-
-@login_required
-@user_is_project_author
-def projectReject(request):
-    project_id = request.GET.get('project_id')
-    task = "Reject"
-    if request.GET.get('all')!=None:
-        task = "RejectAll"
-    do_task(request, task)
+    do_task(request)
     return redirect(f'/project/?project_id={project_id}')
