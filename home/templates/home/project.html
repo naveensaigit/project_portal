@@ -74,6 +74,27 @@
     </div>
   </div>
 </div>
+<div class="modal fade" id="viewAnswerModal" tabindex="-1" role="dialog" aria-labelledby="viewAnswerModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-body">
+        View Answer modal
+      </div>
+      <div class="modal-footer">
+        <a href="/project/reject/?project_id={{project.id}}&request_user={{request_user}}">
+          <button type="button" class="reject" data-dismiss="modal">
+            Reject
+          </button>
+        </a>
+        <a href="/project/accept/?project_id={{project.id}}&request_user={{request_user}}">
+          <button type="button" class="accept">
+            Accept
+          </button>
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
 {% endblock modals %}
 {% block messageBlock %} {% if messages %} {% for message in messages %}
 <div class="card-header py-3">{{message}}</div>
@@ -270,12 +291,16 @@
           </tr>
         </thead>
         <tbody>
-          {% for request_user in project.ApplyRequest.all %}
+          {% for application in applications %}
           <tr>
-            <td>{{request_user.name}}</td>
-            <td>{{request_user.roll_no}}</td>
-            <td></td>
-            <td>Pending</td>
+            <td>{{application.User}}</td>
+            <td>{{application.User.profile.rollno}}</td>
+            <td>
+              <button class="viewAnswer" data-toggle="modal" data-target="#viewAnswerModal">
+                View
+              </button>
+            </td>
+            <td>{{application.Status}}</td>
           </tr>
           {% endfor %}
           {% if project.ApplyRequest.all.count == 0 %}
@@ -285,12 +310,6 @@
             </td>
           </tr>
           {% endif %}
-          {% comment %}
-          <div>
-            <a href="/project/accept/?project_id={{project.id}}&request_user={{request_user}}"><button class="btn btn-primary btn-user btn-block" style="width: 30%; ">ACCEPT</button></a>
-            <a href="/project/reject/?project_id={{project.id}}&request_user={{request_user}}"><button class="btn btn-primary btn-user btn-block" style="width: 30%; ">REJECT</button></a>
-          </div>
-          {% endcomment %}
         </tbody>
       </table>
       <br>

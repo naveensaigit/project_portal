@@ -32,7 +32,12 @@ NOTIFICATION_CHOICES = (
     ('On','On'),
     ('Off','Off'),
 )
-# Create your models here.
+
+REQUEST_STATUS_CHOICES = (
+    ('Pending','Pending'),
+    ('Accepted','Accepted'),
+    ('Rejected','Rejected'),
+)
 
 class Tag(models.Model):
     Title = models.CharField(max_length=20)
@@ -54,9 +59,17 @@ class Project(models.Model):
     DatePosted = models.DateTimeField(default = timezone.now)
     SelectionCriteria = models.TextField()
     MailNotification = models.CharField(max_length=5, choices=NOTIFICATION_CHOICES,default='On')
-    ApplyRequest = models.ManyToManyField(User, related_name='ApplyRequest', blank = True)
     AlreadyApplied = models.ManyToManyField(User, related_name='AlreadyApplied', blank = True)
     Likes = models.IntegerField(default=0)
 
     def __str__(self):
         return f"{self.Title}"
+
+class ApplyRequest(models.Model):
+    Project = models.OneToOneField(Project, on_delete=models.CASCADE)
+    User = models.ForeignKey(User, on_delete=models.CASCADE)
+    Message = models.TextField()
+    Status = models.CharField(max_length=10, choices=REQUEST_STATUS_CHOICES)
+
+    def __str__(self):
+        return f"{self.User}->{self.Project}"

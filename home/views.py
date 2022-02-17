@@ -92,6 +92,7 @@ def project(request):
         'project': project,
         'projects_id': projects_id,
         'notifications': Notification.objects.filter(user = request.user).order_by('-time'),
+        'applications': ApplyRequest.objects.all().filter(Project = project)
     }
     return render(request, 'home/project.html', context)
 

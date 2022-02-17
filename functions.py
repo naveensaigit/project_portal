@@ -1,4 +1,4 @@
-from home.models import Project, Tag
+from home.models import Project, Tag, ApplyRequest
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from users.models import Notification
 from django.core.mail import send_mail
@@ -64,7 +64,11 @@ def get_user_projects(user):
     all_project_list = Project.objects.all().order_by('-DatePosted')
     applied = all_project_list.filter(AlreadyApplied=user)
     floated = all_project_list.filter(FloatedBy=user)
-    requested = all_project_list.filter(ApplyRequest=user)
+
+    requested = []
+    for apply_request in ApplyRequest.objects.all().filter(User=user).filter(Status = "Pending"):
+        requested.append(apply_request.Project)
+
     starred = user.profile.starred_projects.all()
     return [floated, applied, requested, starred]
 
@@ -79,7 +83,7 @@ def get_user_projects_id(user):
     floated = all_project_list.filter(FloatedBy =  user)
     liked = user.profile.liked_projects.all()
     applied = all_project_list.filter(AlreadyApplied =  user)
-    requested = all_project_list.filter(ApplyRequest = user)
+    apply_requests = ApplyRequest.objects.all().filter(User=user).filter(Status = "Pending")
     starred = user.profile.starred_projects.all()
 
     for project in floated:
@@ -88,8 +92,8 @@ def get_user_projects_id(user):
         liked_id.append(project.id)
     for project in applied:
         applied_id.append(project.id)
-    for project in requested:
-        requested_id.append(project.id)
+    for apply_request in apply_requests:
+        requested_id.append(apply_request.Project.id)
     for project in starred:
         starred_id.append(project.id)
 
@@ -154,7 +158,11 @@ def apply_on_project(request, project):
     else:
         user_branch = f"{year} Year {branch}"
         if("All" in project.OpenedFor or user_branch in project.OpenedFor):
-            project.ApplyRequest.add(current_user)
+            message = request.GET.get('message')
+            if message == None:
+                message = ""
+            applyrequest = ApplyRequest(User = current_user, Project=project, Message=message, Status = "Pending")
+            applyrequest.save()
             messages.success(request,"Successfully Requested!")
             send_notification(request, project)
         else:
@@ -163,12 +171,13 @@ def apply_on_project(request, project):
 def withdraw_from_project(request, project):
     current_user = request.user
     delete_notification(request, project)
-    project.ApplyRequest.remove(current_user)
+    ApplyRequest.objects.all().get(User = current_user).delete()
 
 def leave_project(request, project):
     current_user = request.user
     if project.FloatedBy != current_user:
         project.AlreadyApplied.remove(current_user)
+        ApplyRequest.objects.all().get(User = current_user).delete()
         messages.success(request,f"{project} is dropped successfully.")
     else:
         messages.error(request, 'You cannot leave this project because it is floated by you.')
@@ -201,7 +210,6 @@ def do_task(request, task):
         request_user_name = request.GET.get('request_user')
         request_user = User.objects.filter(username = request_user_name).first()
 
-        project.ApplyRequest.remove(request_user)
         if task == "Apply":
             project.AlreadyApplied.add(request_user)
 
