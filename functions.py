@@ -182,21 +182,21 @@ def leave_project(request, project):
     else:
         messages.error(request, 'You cannot leave this project because it is floated by you.')
 
-def all_requests_task(project, task):
+def all_apply_requests_task(project, task):
     apply_requests = ApplyRequest.objects.all().filter(Project=project)
-
-    newStatus = ""
-    if task == "AcceptAll":
-        newStatus = "Accepted"
-    elif task == "RejectAll":
-        newStatus = "Rejected"
-
     for apply_request in apply_requests:
-        apply_request.Status = newStatus
-        if newStatus == "Accepted":
-            apply_request.Project.AlreadyApplied.add(apply_request.User)
-        apply_request.save()
-        print(apply_request)
+        if(task=="AcceptAll"):
+            apply_request_task(apply_request, "Accept")
+        else:
+            apply_request_task(apply_request, "Reject")
+
+def apply_request_task(apply_request,task):
+    print(apply_request)
+    newStatus = task + "ed"
+    apply_request.Status = newStatus
+    if newStatus == "Accepted":
+        apply_request.Project.AlreadyApplied.add(apply_request.User)
+    apply_request.save()
 
 def do_task(request):
     project_id = request.GET.get('project_id')
@@ -205,11 +205,7 @@ def do_task(request):
     project = Project.objects.get(id=project_id)
     current_user = request.user
 
-    if task == "Apply":
-        apply_on_project(request, project)
-    elif task == "Withdraw":
-        withdraw_from_project(request,project)
-    elif task == "Leave":
+    if task == "Leave":
         leave_project(request, project)
     elif task == "Star":
         current_user.profile.starred_projects.add(project)
@@ -223,6 +219,11 @@ def do_task(request):
         current_user.profile.liked_projects.remove(project)
         project.Likes -= 1
         project.save()
+    elif task == "Apply":
+        # perform notification, applyrequest, project already applied changes
+        apply_on_project(request, project)
+    elif task == "Withdraw":
+        withdraw_from_project(request,project)
     elif task == "Accept" or task == "Reject":
         request_user_name = request.GET.get('request_user')
         request_user = User.objects.filter(username = request_user_name).first()
@@ -230,7 +231,7 @@ def do_task(request):
         if task == "Accept":
             project.AlreadyApplied.add(request_user)
     elif task == "AcceptAll" or task == "RejectAll":
-        all_requests_task(project, task)
+        all_apply_requests_task(project, task)
 
 def get_projects_view_details(request):
     view = request.GET.get('view')
