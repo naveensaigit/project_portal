@@ -123,6 +123,7 @@
   background: #F6F4F4;
   padding: 0px 0.5vw 0px 0.5vw;
   height: 58px;
+  cursor: pointer;
 }
 
 .buttonSelected {
@@ -271,6 +272,7 @@
   font-weight: 600;
   font-size: 18px;
   color: #F7F4F4;
+  cursor: pointer;
 }
 .accept {
   background: #34A853;

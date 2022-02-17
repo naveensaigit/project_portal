@@ -303,7 +303,7 @@
             <td>{{application.Status}}</td>
           </tr>
           {% endfor %}
-          {% if project.ApplyRequest.all.count == 0 %}
+          {% if applications|length == 0 %}
           <tr>
             <td colspan='4'>
               No requests
