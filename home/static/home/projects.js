@@ -116,3 +116,11 @@ function unselect(){
             x.classList.add("invisible");
     }
 }
+$(".viewAnswer").click(function () {
+    var name = $(this).attr('userName');
+    var projectID = $(this).attr('projectID');
+    var acceptLink = "applyRequestTask/?project_id="+projectID+"&request_user="+name+"&task=Accept";
+    var rejectLink = "applyRequestTask/?project_id="+projectID+"&request_user="+name+"&task=Reject";
+    $('#rejectButton').attr("href",rejectLink);
+    $('#acceptButton').attr("href",acceptLink);
+});

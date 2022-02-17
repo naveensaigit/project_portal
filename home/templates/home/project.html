@@ -81,12 +81,12 @@
         View Answer modal
       </div>
       <div class="modal-footer">
-        <a href="/project/reject/?project_id={{project.id}}&request_user={{request_user}}">
+        <a href="#" id="rejectButton">
           <button type="button" class="reject" data-dismiss="modal">
             Reject
           </button>
         </a>
-        <a href="/project/accept/?project_id={{project.id}}&request_user={{request_user}}">
+        <a href="#" id="acceptButton">
           <button type="button" class="accept">
             Accept
           </button>
@@ -300,7 +300,7 @@
             <td>{{application.User}}</td>
             <td>{{application.User.profile.rollno}}</td>
             <td>
-              <button class="viewAnswer" data-toggle="modal" data-target="#viewAnswerModal">
+              <button class="viewAnswer" data-toggle="modal" data-target="#viewAnswerModal" userName="{{application.User}}" projectID="{{project.id}}">
                 View
               </button>
             </td>
