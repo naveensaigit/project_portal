@@ -183,7 +183,7 @@ def leave_project(request, project):
         messages.error(request, 'You cannot leave this project because it is floated by you.')
 
 def all_requests_task(project, task):
-    requests = ApplyRequest.objects.all().filter(Project=project)
+    apply_requests = ApplyRequest.objects.all().filter(Project=project)
 
     newStatus = ""
     if task == "AcceptAll":
@@ -191,12 +191,12 @@ def all_requests_task(project, task):
     elif task == "RejectAll":
         newStatus = "Rejected"
 
-    print(requests)
-    # for request in requests:
-    #     request.Status = newStatus
-    #     if task == "AcceptAll":
-    #         request.Project.AlreadyApplied.add(request.User)
-    #     request.save()
+    for apply_request in apply_requests:
+        apply_request.Status = newStatus
+        if newStatus == "Accepted":
+            apply_request.Project.AlreadyApplied.add(apply_request.User)
+        apply_request.save()
+        print(apply_request)
 
 def do_task(request):
     project_id = request.GET.get('project_id')
