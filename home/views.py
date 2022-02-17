@@ -161,12 +161,18 @@ def projectTask(request):
 @user_is_project_author
 def projectAccept(request):
     project_id = request.GET.get('project_id')
-    do_task(request, "Accept")
+    task = "Accept"
+    if request.GET.get('all')!=None:
+        task = "AcceptAll"
+    do_task(request, task)
     return redirect(f'/project/?project_id={project_id}')
 
 @login_required
 @user_is_project_author
 def projectReject(request):
     project_id = request.GET.get('project_id')
-    do_task(request, "Reject")
+    task = "Reject"
+    if request.GET.get('all')!=None:
+        task = "RejectAll"
+    do_task(request, task)
     return redirect(f'/project/?project_id={project_id}')

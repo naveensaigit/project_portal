@@ -28,6 +28,9 @@
 .invisible {
   display: none;
 }
+a:hover{
+  text-decoration: none;
+}
 
 /* ========== TOP CARD STYLING ========== */
 #projectTop {

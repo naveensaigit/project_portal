@@ -269,16 +269,20 @@
           Applications:
         </div>
         <div id="tableOptions">
-          <div class='accept vertical-center'>
-            <div class="horizontal-center">
-              Accept All
+          <a href="/project/accept/?project_id={{project.id}}&all">
+            <div class='accept vertical-center'>
+              <div class="horizontal-center">
+                Accept All
+              </div>
             </div>
-          </div>
-          <div class='reject vertical-center rejectall'>
-            <div class="horizontal-center">
-              Reject All
+          </a>
+          <a href="/project/reject/?project_id={{project.id}}&all">
+            <div class='reject vertical-center rejectall'>
+              <div class="horizontal-center">
+                Reject All
+              </div>
             </div>
-          </div>
+          </a>
         </div>
       </div>
       <table id="applicationsTable">
