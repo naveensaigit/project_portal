@@ -77,8 +77,18 @@
 <div class="modal fade" id="viewAnswerModal" tabindex="-1" role="dialog" aria-labelledby="viewAnswerModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="viewAnswerModalLabel">Apply Request</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
       <div class="modal-body">
         View Answer modal
+        <div id="Profile"></div>
+        <div id="Skills"></div>
+        <div id="Links"></div>
+        <div id="Message"></div>
       </div>
       <div class="modal-footer">
         <a href="#" id="rejectButton">
@@ -300,7 +310,7 @@
             <td>{{application.User}}</td>
             <td>{{application.User.profile.rollno}}</td>
             <td>
-              <button class="viewAnswer" data-toggle="modal" data-target="#viewAnswerModal" userName="{{application.User}}" projectID="{{project.id}}">
+              <button id="viewAnswer" data-toggle="modal" data-target="#viewAnswerModal" userName="{{application.User}}" projectID="{{project.id}}">
                 View
               </button>
             </td>
@@ -343,5 +353,9 @@
 {% endcomment %}
 {% endblock content %}
 {% block customScripts %}
+<script>
+  var users = {{users_html | safe}};
+  var apply_requests = {{apply_requests_html | safe}};
+</script>
 <script src="{% static 'home/projects.js' %}"></script>
 {% endblock customScripts %}

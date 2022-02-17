@@ -123,4 +123,10 @@ $(".viewAnswer").click(function () {
     var rejectLink = "applyRequestTask/?project_id="+projectID+"&request_user="+name+"&task=Reject";
     $('#rejectButton').attr("href",rejectLink);
     $('#acceptButton').attr("href",acceptLink);
+    for(var i = 0;i<apply_requests.length;i++){
+        console.log(apply_requests[i].fields);
+    }
+    for(var i = 0;i<users.length;i++){
+        console.log(users[i].fields);
+    }
 });

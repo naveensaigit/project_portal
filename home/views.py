@@ -27,8 +27,6 @@ def main(request):
         'title': 'Home',
         'users':User.objects.all(),
         'tags': Tag.objects.all(),
-        'users_html':serialize("json", User.objects.all()),
-        'tags_html':serialize("json", Tag.objects.all()),
         'projects': projects,
         'projects_id': projects_id,
         'notifications': Notification.objects.filter(user = request.user).order_by('-time'),
@@ -86,13 +84,16 @@ def project(request):
     project = Project.objects.get(id=project_id)
 
     projects_id = get_user_projects_id(request.user)
+    applications = ApplyRequest.objects.all().filter(Project = project)
 
     context = {
         'title': 'Project',
         'project': project,
         'projects_id': projects_id,
         'notifications': Notification.objects.filter(user = request.user).order_by('-time'),
-        'applications': ApplyRequest.objects.all().filter(Project = project)
+        'applications': applications,
+        'users_html':serialize("json", User.objects.all()),
+        'apply_requests_html':serialize("json", applications),
     }
     return render(request, 'home/project.html', context)
 
