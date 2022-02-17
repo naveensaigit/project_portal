@@ -116,7 +116,7 @@ function unselect(){
             x.classList.add("invisible");
     }
 }
-$(".viewAnswer").click(function () {
+$("#viewAnswer").click(function () {
     var name = $(this).attr('userName');
     var projectID = $(this).attr('projectID');
     var acceptLink = "applyRequestTask/?project_id="+projectID+"&request_user="+name+"&task=Accept";
