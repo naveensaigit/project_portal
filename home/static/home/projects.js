@@ -117,16 +117,23 @@ function unselect(){
     }
 }
 $("#viewAnswer").click(function () {
-    var name = $(this).attr('userName');
-    var projectID = $(this).attr('projectID');
-    var acceptLink = "applyRequestTask/?project_id="+projectID+"&request_user="+name+"&task=Accept";
-    var rejectLink = "applyRequestTask/?project_id="+projectID+"&request_user="+name+"&task=Reject";
+    var user_profile_id = $(this).attr('user_profile_id');
+    var application_id = $(this).attr('application_id');
+
+    var user_profile = user_profiles[user_profiles.findIndex(obj => obj.pk == user_profile_id)].fields;
+    var user = users[users.findIndex(obj => obj.pk == user_profile['user'])].fields;
+    var application = applications[applications.findIndex(obj => obj.pk == application_id)].fields;
+
+    console.log(user_profile);
+    console.log(user);
+    console.log(application);
+
+    linkAcceptAndReject(application['Project'], user['username']);
+});
+
+function linkAcceptAndReject(project_id, user_name){
+    var acceptLink = "applyRequestTask/?project_id="+project_id+"&request_user="+user_name+"&task=Accept";
+    var rejectLink = "applyRequestTask/?project_id="+project_id+"&request_user="+user_name+"&task=Reject";
     $('#rejectButton').attr("href",rejectLink);
     $('#acceptButton').attr("href",acceptLink);
-    for(var i = 0;i<apply_requests.length;i++){
-        console.log(apply_requests[i].fields);
-    }
-    for(var i = 0;i<users.length;i++){
-        console.log(users[i].fields);
-    }
-});
+}

@@ -8,6 +8,7 @@ from .models import Project
 from .forms import ProjectRegisterForm, ProjectUpdateForm
 from functions import *
 from django.core.serializers import serialize
+from users.models import Profile
 
 @login_required
 def main(request):
@@ -93,6 +94,7 @@ def project(request):
         'notifications': Notification.objects.filter(user = request.user).order_by('-time'),
         'applications': applications,
         'users_html':serialize("json", User.objects.all()),
+        'user_profiles_html':serialize("json", Profile.objects.all()),
         'apply_requests_html':serialize("json", applications),
     }
     return render(request, 'home/project.html', context)

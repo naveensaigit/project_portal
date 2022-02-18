@@ -310,7 +310,7 @@
             <td>{{application.User}}</td>
             <td>{{application.User.profile.rollno}}</td>
             <td>
-              <button id="viewAnswer" data-toggle="modal" data-target="#viewAnswerModal" userName="{{application.User}}" projectID="{{project.id}}">
+              <button id="viewAnswer" data-toggle="modal" data-target="#viewAnswerModal" application_id="{{application.id}}" user_profile_id="{{application.User.profile.id}}">
                 View
               </button>
             </td>
@@ -354,8 +354,9 @@
 {% endblock content %}
 {% block customScripts %}
 <script>
-  var users = {{users_html | safe}};
-  var apply_requests = {{apply_requests_html | safe}};
+  var users = {{users_html | safe}}
+  var user_profiles = {{user_profiles_html | safe}};
+  var applications = {{apply_requests_html | safe}};
 </script>
 <script src="{% static 'home/projects.js' %}"></script>
 {% endblock customScripts %}
