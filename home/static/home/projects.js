@@ -124,16 +124,19 @@ $("#viewAnswer").click(function () {
     var user = users[users.findIndex(obj => obj.pk == user_profile['user'])].fields;
     var application = applications[applications.findIndex(obj => obj.pk == application_id)].fields;
 
-    console.log(user_profile);
-    console.log(user);
-    console.log(application);
+    var acceptLink = "applyRequestTask/?project_id="+application['Project']+"&request_user="+user['username']+"&task=Accept";
+    var rejectLink = "applyRequestTask/?project_id="+application['Project']+"&request_user="+user['username']+"&task=Reject";
 
-    linkAcceptAndReject(application['Project'], user['username']);
-});
-
-function linkAcceptAndReject(project_id, user_name){
-    var acceptLink = "applyRequestTask/?project_id="+project_id+"&request_user="+user_name+"&task=Accept";
-    var rejectLink = "applyRequestTask/?project_id="+project_id+"&request_user="+user_name+"&task=Reject";
+    $("#Profile_image").html(user_profile['image']);
+    $("#Name").html(user['first_name']+" "+user['last_name']);
+    $("#Year").html(user_profile['year']+" year-"+user_profile['branch']);
+    $("#Rollno").html(user_profile['rollno']);
+    $("#Skills").html(user_profile['techskills']);
+    $("#Linkedin_link").html(user_profile['linked_in_link']);
+    $("#Portfolio_link").html(user_profile['portfolio_link']);
+    $("#Github_link").html(user_profile['github_link']);
+    $("#Resume").html(user_profile['cv']);
+    $("#Message").html(application['Message']);
     $('#rejectButton').attr("href",rejectLink);
     $('#acceptButton').attr("href",acceptLink);
-}
+});

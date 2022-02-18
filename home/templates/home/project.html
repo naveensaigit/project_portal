@@ -84,7 +84,14 @@
         </button>
       </div>
       <div class="modal-body">
-        View Answer modal
+        <div id="Name"></div>
+        <div id="Year"></div>
+        <div id="Rollno"></div>
+        <div id="Profile_image"></div>
+        <div id="Linkedin_link"></div>
+        <div id="Portfolio_link"></div>
+        <div id="Github_link"></div>
+        <div id="Resume"></div>
         <div id="Profile"></div>
         <div id="Skills"></div>
         <div id="Links"></div>
@@ -314,7 +321,11 @@
                 View
               </button>
             </td>
-            <td>{{application.Status}}</td>
+            <td>
+              <div class="{{application.Status}}">
+                {{application.Status}}
+              </div>
+            </td>
           </tr>
           {% endfor %}
           {% if applications|length == 0 %}

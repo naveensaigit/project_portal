@@ -332,6 +332,15 @@ th:last-child, td:last-child{
 tr:last-child td{
   border-bottom: 0px;
 }
+.Pending{
+  color: #FFAF37;
+}
+.Accepted{
+  color: #34A853;
+}
+.Rejected{
+  color: red;
+}
 /* --------------- */
 /* --------------------------------- */
 /* ------- ADMIN VIEW STYLING END ------ */
