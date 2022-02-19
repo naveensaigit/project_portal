@@ -127,15 +127,15 @@ $("#viewAnswer").click(function () {
     var acceptLink = "applyRequestTask/?project_id="+application['Project']+"&request_user="+user['username']+"&task=Accept";
     var rejectLink = "applyRequestTask/?project_id="+application['Project']+"&request_user="+user['username']+"&task=Reject";
 
-    $("#Profile_image").html(user_profile['image']);
+    $("#Profile_image").html("<img src = \"/media/" + user_profile['image']+"\"></img>");
     $("#Name").html(user['first_name']+" "+user['last_name']);
     $("#Year").html(user_profile['year']+" year-"+user_profile['branch']);
     $("#Rollno").html(user_profile['rollno']);
-    $("#Skills").html(user_profile['techskills']);
+    $("#SkillsContent").html(user_profile['techskills']);
     $("#Linkedin_link").html(user_profile['linked_in_link']);
     $("#Portfolio_link").html(user_profile['portfolio_link']);
     $("#Github_link").html(user_profile['github_link']);
-    $("#Resume").html(user_profile['cv']);
+    $("#Resume").html("<a href = \"/media/" + user_profile['cv']+"\" target = \"_blank\">Resume</a>");
     $("#Message").html(application['Message']);
     $('#rejectButton').attr("href",rejectLink);
     $('#acceptButton').attr("href",acceptLink);

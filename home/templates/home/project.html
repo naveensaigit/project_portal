@@ -75,38 +75,74 @@
   </div>
 </div>
 <div class="modal fade" id="viewAnswerModal" tabindex="-1" role="dialog" aria-labelledby="viewAnswerModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
+  <div id="viewModalMain" class="modal-dialog" role="document">
     <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="viewAnswerModalLabel">Apply Request</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <div id="Name"></div>
-        <div id="Year"></div>
-        <div id="Rollno"></div>
+      <div id="viewAnswerTop" class="horizontal-center vertical-center">
         <div id="Profile_image"></div>
-        <div id="Linkedin_link"></div>
-        <div id="Portfolio_link"></div>
-        <div id="Github_link"></div>
-        <div id="Resume"></div>
-        <div id="Profile"></div>
-        <div id="Skills"></div>
-        <div id="Links"></div>
-        <div id="Message"></div>
+        <div id="viewAnswerTopRight">
+          <div class="profileField">
+            <div class="profileFieldLabel">Name:</div>
+            <div id="Name" class="profileFieldContent"></div>
+          </div>
+          <div class="profileField">
+            <div class="profileFieldLabel">Year/Branch:</div>
+            <div id="Year" class="profileFieldContent"></div>
+          </div>
+          <div class="profileField">
+            <div class="profileFieldLabel">RollNo:</div>
+            <div id="Rollno" class="profileFieldContent"></div>
+          </div>
+        </div>
       </div>
-      <div class="modal-footer">
+      <div id="viewAnswerMiddle" class="horizontal-center vertical-center">
+        <div id="Skills">
+          <div class="myLabel">Skills</div>
+          <div id="SkillsContent" class="myContent vertical-center"></div>
+        </div>
+        <div id="Links">
+          <div class="myLabel">Links</div>
+          <div class="myContent vertical-center">
+            <div>
+              <div class="profileLinkField">
+                <div class="profileLinkFieldLabel">LinkedIn:</div>
+                <div id="Linkedin_link" class="profileLinkFieldContent"></div>
+              </div>
+              <div class="profileLinkField">
+                <div class="profileLinkFieldLabel">Portfolio:</div>
+                <div id="Portfolio_link" class="profileLinkFieldContent"></div>
+              </div>
+              <div class="profileLinkField">
+                <div class="profileLinkFieldLabel">Github:</div>
+                <div id="Github_link" class="profileLinkFieldContent"></div>
+              </div>
+              <div class="profileLinkField">
+                <div class="profileLinkFieldLabel">Resume:</div>
+                <div id="Resume" class="profileLinkFieldContent"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div id="viewAnswerBottom" class="horizontal-center vertical-center">
+        <div id="MessageField">
+          <div id="MessageFieldLabel">Answer:</div>
+          <div id="Message"></div>
+        </div>
+      </div>
+      <div id="viewAnswerAcceptReject" class="horizontal-center vertical-center">
         <a href="#" id="rejectButton">
-          <button type="button" class="reject">
-            Reject
-          </button>
+          <div type="button" class="goodReject vertical-center">
+            <div class="horizontal-center">
+              Reject
+            </div>
+          </div>
         </a>
         <a href="#" id="acceptButton">
-          <button type="button" class="accept">
-            Accept
-          </button>
+          <div type="button" class="accept vertical-center">
+            <div class="horizontal-center">
+              Accept
+            </div>
+          </div>
         </a>
       </div>
     </div>

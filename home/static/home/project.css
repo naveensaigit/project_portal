@@ -270,7 +270,7 @@ button{
   color: black;
 }
 
-.accept, .reject {
+.accept, .reject, .goodReject {
   width: 118px;
   height: 35px;
   box-sizing: border-box;
@@ -342,6 +342,101 @@ tr:last-child td{
   color: red;
 }
 /* --------------- */
+/* --------------------------------- */
+/* --- View answer modal styling --- */
+#viewModalMain{
+  width: 79%;
+  max-width: none;
+}
+
+#viewAnswerTop, #viewAnswerMiddle, #viewAnswerBottom, #viewAnswerAcceptReject{
+  width: 74.12%;
+  display: flex;
+}
+
+#viewAnswerTop{
+  margin-top: 81px;
+}
+#viewAnswerTopRight{
+  margin-left: 9.6%;
+  width: 69%;
+}
+#Profile_image > img{
+  height: 170px;
+  width: 170px;
+  border-radius: 300px;
+}
+.profileField{
+  display: flex;
+  margin-bottom: 15px;
+}
+.profileFieldLabel{
+  width: 45%;
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 23px;
+  color: #404040;
+}
+
+#viewAnswerMiddle{
+  margin-top: 85px;
+}
+#Skills{
+  height: 185px;
+  margin-right: 18.6%;
+  width: 40.1%;
+}
+#Links{
+  width: 40.1%;
+}
+.myLabel{
+  font-weight: bold;
+  font-size: 20px;
+  line-height: 23px;
+  
+  color: #404040;
+}
+.myContent{
+  height: 152px;
+  width: 100%;
+  border: 1px solid rgba(0, 0, 0, 0.25);
+  box-sizing: border-box;
+  border-radius: 10px;
+  padding: 0px 30px;
+}
+.profileLinkField{
+  display: flex;
+}
+.profileLinkFieldLabel{
+  margin-right: 10%;
+}
+
+#viewAnswerBottom{
+  display: block;
+}
+#MessageFieldLabel{
+  font-weight: bold;
+  font-size: 20px;
+  line-height: 23px;
+  margin-top: 85px;
+  color: #19258C;
+}
+#Message{
+  height: 303px;
+  border: 1px solid rgba(0, 0, 0, 0.25);
+  box-sizing: border-box;
+  border-radius: 10px;
+}
+#viewAnswerAcceptReject{
+  margin-top: 21px;
+  margin-bottom: 130px;
+  justify-content: space-between ;
+}
+.goodReject{
+  background: white;
+  border: 1px solid #F50000;
+  color: #F50000;
+}
 /* --------------------------------- */
 /* ------- ADMIN VIEW STYLING END ------ */
 
