@@ -167,21 +167,13 @@
     <div class="left-container">
       <div id="tagsContainer" class="vertical-center">
         <div class="tagsTitle">Tags:</div>
+        {% for tag in project.Tags.all %}
         <div class="tag vertical-center">
           <div class="horizontal-center">
-            HTML
+            <a href="/?Tags={{tag.id}}">{{ tag }}</a>
           </div>
         </div>
-        <div class="tag vertical-center">
-          <div class="horizontal-center">
-            CSS
-          </div>
-        </div>
-        <div class="tag vertical-center">
-          <div class="horizontal-center">
-            JAVASCRIPT
-          </div>
-        </div>
+        {% endfor %}
       </div>
       <div id="buttons">
         <div class="seperator"></div>
