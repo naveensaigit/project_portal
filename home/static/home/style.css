@@ -4003,7 +4003,7 @@ input[type="button"].btn-block {
 
 .input-group-prepend .btn,
 .input-group-append .btn {
-    position: relative;
+    /*position: relative;*/
     z-index: 2;
 }
 
@@ -7174,7 +7174,7 @@ button.bg-dark:focus {
 }
 
 .bg-white {
-    background-color: white !important;
+    background-color: #C9D8FF !important;
 }
 
 .bg-transparent {
@@ -10708,7 +10708,7 @@ a:focus {
 }
 
 .text-gray-400 {
-    color: #d1d3e2 !important;
+    color:  #022160 !important;
 }
 
 .text-gray-500 {
@@ -10716,7 +10716,7 @@ a:focus {
 }
 
 .text-gray-600 {
-    color: #858796 !important;
+    color:  #022160 !important;
 }
 
 .text-gray-700 {
@@ -10897,7 +10897,7 @@ a:focus {
 
 .topbar .topbar-divider {
     width: 0;
-    border-right: 1px solid #e3e6f0;
+    border-right: 1px solid  #022160;
     height: calc(4.375rem - 2rem);
     margin: auto 1rem;
 }
@@ -10933,21 +10933,22 @@ a:focus {
 }
 
 .topbar .dropdown-list .dropdown-header {
-    background-color: #022160;
-    border: 1px solid #022160;
+    background-color: rgb(201, 216, 255);
+    border: 1px solid rgb(201, 216, 255);
     padding-top: 0.75rem;
     padding-bottom: 0.75rem;
-    color: #fff;
+    color: black;
 }
 
 .topbar .dropdown-list .dropdown-item {
     white-space: normal;
     padding-top: 0.5rem;
     padding-bottom: 0.5rem;
-    border-left: 1px solid #e3e6f0;
-    border-right: 1px solid #e3e6f0;
-    border-bottom: 1px solid #e3e6f0;
+    border-left: 1px solid #f7f4f4;
+    border-right: 1px solid #f7f4f4;
+    border-bottom: 1px solid #f7f4f4;
     line-height: 1.3rem;
+    background: #f7f4f4;
 }
 
 .topbar .dropdown-list .dropdown-item .dropdown-list-image {
@@ -11010,7 +11011,7 @@ a:focus {
 }
 
 .topbar.navbar-light .navbar-nav .nav-item .nav-link {
-    color: #d1d3e2;
+    color:  #022160;
 }
 
 .topbar.navbar-light .navbar-nav .nav-item .nav-link:hover {
