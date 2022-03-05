@@ -1,6 +1,9 @@
 {% extends 'home/base.html' %}
 {% load static %}
 {% block customStylesheets %}
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://unpkg.com/bootstrap-table@1.18.1/dist/bootstrap-table.min.css" />
 <link rel="stylesheet" type="text/css" href="{% static 'home/project.css' %}">
 {% endblock customStylesheets %}
 {% block content %}
@@ -177,19 +180,19 @@
       </div>
       <div id="buttons">
         <div class="seperator"></div>
-        <div class="buttonContent buttonSelected vertical-center">
+        <div class="buttonContent buttonSelected vertical-center" onClick="takeAction(this,'Description')">
           <div class="horizontal-center">
             Description
           </div>
         </div>
         <div class="seperator"></div>
-        <div class="buttonContent vertical-center">
+        <div class="buttonContent vertical-center" onClick="takeAction(this,'Pre-requisite')">
           <div class="horizontal-center">
             Pre-requisite
           </div>
         </div>
         <div class="seperator"></div>
-        <div class="buttonContent vertical-center">
+        <div class="buttonContent vertical-center" onClick="takeAction(this,'Selection Criteria')">
           <div class="horizontal-center">
             Selection Criteria
           </div>
@@ -313,6 +316,14 @@
         <div id="tableTitle">
           Applications:
         </div>
+        <div id="toolbar">
+          <select class="form-control">
+              <option value="">All</option>
+              <option value="Pending">Pending</option>
+              <option value="Accepted">Accepted</option>
+              <option value="Rejected">Rejected</option>
+          </select>
+        </div>
         <div id="tableOptions">
           <a href="/project/applyRequestTask/?project_id={{project.id}}&task=AcceptAll">
             <div class='accept vertical-center'>
@@ -330,13 +341,17 @@
           </a>
         </div>
       </div>
-      <table id="applicationsTable">
+      <table id="table"
+        data-toggle="table"
+        data-search="true"
+        data-filter-control="true"
+        data-toolbar="#toolbar">
         <thead>
           <tr>
-            <th>Name</th>
-            <th>Roll No</th>
-            <th>View Answer</th>
-            <th>Status</th>
+            <th data-field="name" data-sortable="true">Name</th>
+            <th data-field="roll" data-sortable="true">Roll No</th>
+            <th data-field="answer" data-sortable="false">View Answer</th>
+            <th data-field="status" data-filter-control="select">Status</th>
           </tr>
         </thead>
         <tbody>
@@ -349,10 +364,8 @@
                 View
               </button>
             </td>
-            <td>
-              <div class="{{application.Status}}">
-                {{application.Status}}
-              </div>
+            <td class="{{application.Status}}">
+              {{application.Status}}
             </td>
           </tr>
           {% endfor %}
@@ -392,10 +405,14 @@
 {% endcomment %}
 {% endblock content %}
 {% block customScripts %}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/bootstrap-table@1.18.1/dist/bootstrap-table.min.js"></script>
+<script src="{% static 'home/projectInfo.js' %}"></script>
 <script>
   var users = {{users_html | safe}}
   var user_profiles = {{user_profiles_html | safe}};
   var applications = {{apply_requests_html | safe}};
 </script>
-<script src="{% static 'home/projects.js' %}"></script>
 {% endblock customScripts %}

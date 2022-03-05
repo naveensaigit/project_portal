@@ -301,15 +301,13 @@ button{
 /* --------------- */
 
 /* Table styling */
-#applicationsTable {
+#table {
   margin-top: 10px;
   width: 100%;
-}
-table {
-  border-collapse: separate;
   border: 1px solid #C9D8FF;
   border-radius: 15px;
   border-spacing: 0px;
+  border-collapse: separate;
 }
 thead th {
   background: #C9D8FF;
