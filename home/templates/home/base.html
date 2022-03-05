@@ -85,12 +85,22 @@
                                 </div>
                             </li>
                             <!-- Nav Item - Alerts -->
-                            <a class="nav-link" href="{% url 'home' %}" role="button" style="margin-top: 13px;">
-                                <i class="fas fa-home fa-fw fa-sm mr-2 text-gray-400"></i>
-                                <!-- Counter - Alerts -->
-                            </a>
+                            <div class="notif-tooltip">
+                                <span class="notif-tooltiptext">Create New Project</span>
+                                <a class="nav-link" href="/project/new">
+                                    <i class="fas fa-plus-square fa-sm fa-fw mr-2 text-gray-400" style="margin-top: 18px;"></i>
+                                </a>
+                            </div>
+                            <div class="notif-tooltip">
+                                <span class="notif-tooltiptext">Home</span>
+                                <a class="nav-link" href="{% url 'home' %}" role="button" style="margin-top: 13px;">
+                                    <i class="fas fa-home fa-fw fa-sm mr-2 text-gray-400"></i>
+                                    <!-- Counter - Alerts -->
+                                </a>
+                            </div>
                             <li class="nav-item dropdown no-arrow mx-1">
-                                <a class="nav-link dropdown-toggle" id="alertsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <a class="nav-link dropdown-toggle notif-tooltip" id="alertsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <span class="notif-tooltiptext">Notifications</span>
                                     <i class="fas fa-bell fa-fw"></i>
                                     <!-- Counter - Alerts -->
                                     {% if notifications.count != 0 %}
