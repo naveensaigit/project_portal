@@ -177,7 +177,7 @@ def leave_project(request, project):
     current_user = request.user
     if project.FloatedBy != current_user:
         project.AlreadyApplied.remove(current_user)
-        ApplyRequest.objects.all().get(User = current_user).delete()
+        ApplyRequest.objects.all().filter(User = current_user).delete()
         delete_notification(current_user, project)
         messages.success(request,f"{project} is dropped successfully.")
     else:

@@ -7,6 +7,7 @@ from django.contrib.auth.decorators import login_required
 from django.core.files.storage import default_storage
 from functions import *
 from django.core.serializers import serialize
+from django.contrib.auth import logout
 
 def signup(request):
     if request.method == 'POST':
@@ -117,3 +118,7 @@ def projects_view(request):
 def oauth(request):
     url = '/accounts/google/login/?process=login/'
     return redirect(url)
+
+def Logout(request):
+    logout(request)
+    return redirect('/login')
