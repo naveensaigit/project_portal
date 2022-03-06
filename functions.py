@@ -171,7 +171,7 @@ def apply_on_project(request, project):
 def withdraw_from_project(request, project):
     current_user = request.user
     delete_notification(current_user, project)
-    ApplyRequest.objects.all().get(User = current_user).filter(Project = project).delete()
+    ApplyRequest.objects.all().filter(User = current_user).filter(Project = project).delete()
 
 def leave_project(request, project):
     current_user = request.user

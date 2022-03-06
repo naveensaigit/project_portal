@@ -66,7 +66,7 @@ class Project(models.Model):
         return f"{self.Title}"
 
 class ApplyRequest(models.Model):
-    Project = models.OneToOneField(Project, on_delete=models.CASCADE)
+    Project = models.ForeignKey(Project, on_delete=models.CASCADE)
     User = models.ForeignKey(User, on_delete=models.CASCADE)
     Message = models.TextField()
     Status = models.CharField(max_length=10, choices=REQUEST_STATUS_CHOICES)

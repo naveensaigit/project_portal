@@ -34,6 +34,14 @@ function takeAction(elem,action){
     elem.className += " buttonSelected";
 }
 
+$("#applyQuestion").on("input", function(){
+    var input = document.querySelector('#applyQuestion');
+    var projectId = $("#applyNow").attr("projectId");
+
+    var link = `/project/task/?task=Apply&project_id=${projectId}&message=${input.value}`;
+    $("#applyModal > div > div > div.modal-footer > a").attr("href", link);
+});
+
 $("#viewAnswer").click(function () {
     var user_profile_id = $(this).attr('user_profile_id');
     var application_id = $(this).attr('application_id');
