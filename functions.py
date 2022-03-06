@@ -150,23 +150,18 @@ def delete_notification(current_user, project):
 
 def apply_on_project(request, project):
     current_user = request.user
-    year= current_user.profile.year
-    branch=current_user.profile.branch
-    if(len(year)==0 or len(branch)==0):
-        messages.warning(request,"Please update your year and branch in profile section")
-        return redirect('/profile/edit')
+
+    user_branch = f"{current_user.year} Year {current_user.branch}"
+    if("All" in project.OpenedFor or user_branch in project.OpenedFor):
+        message = request.GET.get('message')
+        if message == None:
+            message = ""
+        applyrequest = ApplyRequest(User = current_user, Project=project, Message=message, Status = "Pending")
+        applyrequest.save()
+        messages.success(request,"Successfully Requested!")
+        send_notification(request, project)
     else:
-        user_branch = f"{year} Year {branch}"
-        if("All" in project.OpenedFor or user_branch in project.OpenedFor):
-            message = request.GET.get('message')
-            if message == None:
-                message = ""
-            applyrequest = ApplyRequest(User = current_user, Project=project, Message=message, Status = "Pending")
-            applyrequest.save()
-            messages.success(request,"Successfully Requested!")
-            send_notification(request, project)
-        else:
-            messages.warning(request,"You are not eligible to opt this project.")
+        messages.warning(request,"You are not eligible to opt this project.")
 
 def withdraw_from_project(request, project):
     current_user = request.user
@@ -255,3 +250,18 @@ def get_projects_view_details(request):
         heading = "Projects Starred:"
     req_projects = req_projects.order_by('-DatePosted')
     return req_projects, title, heading
+
+def check_user_profile(user):
+    user_fields = [user.username, user.first_name, user.last_name, user.email]
+    for field in user_fields:
+        if field == None or (len(field) == 0):
+            return True
+
+    profile = user.profile
+    profile_fields = [profile.image, profile.rollno ,profile.year ,profile.branch]
+    for field in profile_fields:
+        if field == None or (len(field) == 0):
+            return True
+    if str(profile.cv) == "" or len(profile.techskills.all()) == 0:
+        return True
+    return False

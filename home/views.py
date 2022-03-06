@@ -12,6 +12,10 @@ from users.models import Profile
 
 @login_required
 def main(request):
+    if check_user_profile(request.user):
+        messages.error(request, 'Please complete your profile first.')
+        return redirect(f'/profile/edit')
+
     all_projects = Project.objects.all().order_by('-DatePosted')
     projects = get_filtered_projects(request, all_projects)
     # shellScript()

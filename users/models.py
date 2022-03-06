@@ -31,7 +31,7 @@ class Profile(models.Model):
     techskills = models.ManyToManyField(Tag, related_name='techskills')
     starred_projects = models.ManyToManyField(Project, related_name='starred_projects', blank = True)
     liked_projects = models.ManyToManyField(Project, related_name='liked_projects', blank = True)
-    cv = models.FileField(blank = True, upload_to='resumes',validators=[FileExtensionValidator(allowed_extensions=['pdf'])])
+    cv = models.FileField(upload_to='resumes',validators=[FileExtensionValidator(allowed_extensions=['pdf'])])
     linked_in_link = models.CharField(blank=True, max_length=100)
     portfolio_link = models.CharField(blank=True, max_length=100)
     github_link = models.CharField(blank=True, max_length=100)

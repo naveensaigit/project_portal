@@ -26,6 +26,7 @@ class UserUpdateForm(forms.ModelForm):
 class ProfileUpdateForm(forms.ModelForm):
     image = forms.FileField(
         widget = FileInput(),
+        required=False
     )
     class Meta:
         model = Profile
