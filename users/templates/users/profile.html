@@ -159,7 +159,9 @@
             style="border: 1px solid rgba(0, 0, 0, 0.25); box-sizing: border-box; border-radius: 10px; margin-left: 25px; margin-right: 25px; height: 125px; ">
             <p
               style="font-family: 'Public Sans', sans-serif;font-style: normal;font-weight: normal;font-size: 16px;line-height: 19px;color: #404040; margin-left: 20px; margin-right: 20px; margin-top: 20px;">
-              {{ profile_user.profile.techskills }}
+              {% for skill in profile_user.profile.techskills.all %}
+                {{ skill }}
+              {% endfor %}
             </p>
           </div>
           <br>

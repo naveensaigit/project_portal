@@ -4,6 +4,7 @@ from PIL import Image
 from home.models import Project
 from django.utils import timezone
 from django.core.validators import FileExtensionValidator
+from home.models import Tag
 
 YEAR_CHOICES = (
     ('1st', '1st'),
@@ -27,7 +28,7 @@ class Profile(models.Model):
     rollno = models.CharField(max_length=10)
     year = models.CharField(max_length=30, choices = YEAR_CHOICES)
     branch = models.CharField(max_length=30, choices = BRANCH_CHOICES)
-    techskills = models.TextField()
+    techskills = models.ManyToManyField(Tag, related_name='techskills')
     starred_projects = models.ManyToManyField(Project, related_name='starred_projects', blank = True)
     liked_projects = models.ManyToManyField(Project, related_name='liked_projects', blank = True)
     cv = models.FileField(blank = True, upload_to='resumes',validators=[FileExtensionValidator(allowed_extensions=['pdf'])])
