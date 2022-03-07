@@ -82,8 +82,14 @@
   .main-br{
     display:none;
   }
-
-
+  .form-inline{
+      flex-direction: column;
+  }
+}
+@media only screen and (min-width: 600px) and (max-width: 930px){
+    .form-inline{
+      flex-direction: row;
+  }
 }
 @media only screen and (min-width: 930px) {.blog-container{
     flex: 1 0 45%;
@@ -111,7 +117,11 @@
 }
 .main-br{
   display:none;
-}}
+}
+/*.form-inline{*/
+/*      flex-direction: column;*/
+/*  }*/
+}
 @media only screen and (min-width: 1260px) {.blog-container{
         flex: 1 0 45%;
   margin:30px;
