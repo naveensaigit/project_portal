@@ -2,7 +2,7 @@ from django.contrib.auth.models import User
 from django.shortcuts import redirect, render
 
 from home.decorators import user_profile_completed
-# from .forms import UserRegisterForm, ProfileRegisterForm, ProfileUpdateForm, UserUpdateForm
+from .forms import UserRegisterForm, ProfileRegisterForm, ProfileUpdateForm, UserUpdateForm
 from django.contrib import messages
 from .models import Profile,Notification
 from django.contrib.auth.decorators import login_required
