@@ -148,6 +148,13 @@ def send_notification(request, project):
 def delete_notification(current_user, project):
     Notification.objects.filter(notification_from = current_user).filter(project_requested = project).delete()
 
+    if project.MailNotification == "On":
+        subject = 'Project Application Accepted'
+        message = f"Your request for application on {project} Project has been accepted"
+        email_from = settings.EMAIL_HOST_USER
+        recipient_list = [current_user.email,]
+        send_mail( subject, message, email_from, recipient_list )
+
 def apply_on_project(request, project):
     current_user = request.user
     user_branch = f"{current_user.profile.year} Year {current_user.profile.branch}"
