@@ -66,7 +66,7 @@ button{
 /* ----- USER VIEW STYLING ----- */
 /* ---- GENERAL STLING ---- */
 .userView {
-  height: 570px;
+  min-height: 570px;
   display: flex;
 }
 
@@ -225,6 +225,8 @@ button{
 }
 
 #alreadyAppliedUsers {
+  overflow-x: hidden;
+  overflow-x: scroll;
   margin-left: 6.5%;
   border: 1px solid #C4C4C4;
   box-sizing: border-box;
@@ -232,6 +234,9 @@ button{
   width: 100%;
   padding-left: 3%;
   display: flex;
+}
+#alreadyAppliedUsers::-webkit-scrollbar{
+  display: none;
 }
 
 #alreadyAppliedUsers img {

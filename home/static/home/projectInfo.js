@@ -1,8 +1,8 @@
 colors = Array("#BEFFE0", "#FFD493", "#C9D8FF");
 
-var tags = document.getElementById("tagsContainer").children;
-for(var i = 1;i<tags.length;i++){
-    var tag = tags[i];
+var tagsToDisplay = document.getElementById("tagsContainer").children;
+for(var i = 1;i<tagsToDisplay.length;i++){
+    var tag = tagsToDisplay[i];
     var ind = Math.floor(Math.random()*3);
     tag.style.backgroundColor = colors[ind];
 }
@@ -52,12 +52,16 @@ $("#viewAnswer").click(function () {
 
     var acceptLink = "applyRequestTask/?project_id="+application['Project']+"&request_user="+user['username']+"&task=Accept";
     var rejectLink = "applyRequestTask/?project_id="+application['Project']+"&request_user="+user['username']+"&task=Reject";
+    
+    var skills = "";
+    for(var i = 0;i<user_profile['techskills'].length;i++)
+        skills += tags[tags.findIndex(obj => obj.pk == user_profile['techskills'][i])].fields.Title + " ";
 
     $("#Profile_image").html("<img src = \"/media/" + user_profile['image']+"\"></img>");
     $("#Name").html(user['first_name']+" "+user['last_name']);
     $("#Year").html(user_profile['year']+" year-"+user_profile['branch']);
     $("#Rollno").html(user_profile['rollno']);
-    $("#SkillsContent").html(user_profile['techskills']);
+    $("#SkillsContent").html(skills);
     $("#Linkedin_link").html(user_profile['linked_in_link']);
     $("#Portfolio_link").html(user_profile['portfolio_link']);
     $("#Github_link").html(user_profile['github_link']);

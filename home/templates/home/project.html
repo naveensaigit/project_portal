@@ -351,7 +351,7 @@
           <tr>
             <th data-field="name" data-sortable="true">Name</th>
             <th data-field="roll" data-sortable="true">Roll No</th>
-            <th data-field="answer" data-sortable="false">View Answer</th>
+            <th data-field="answer" data-sortable="false">View Application</th>
             <th data-field="status" data-filter-control="select">Status</th>
           </tr>
         </thead>
@@ -407,7 +407,8 @@
 {% endblock content %}
 {% block customScripts %}
 <script>
-  var users = {{users_html | safe}}
+  var users = {{users_html | safe}};
+  var tags = {{tags_html | safe}};
   var user_profiles = {{user_profiles_html | safe}};
   var applications = {{apply_requests_html | safe}};
 </script>

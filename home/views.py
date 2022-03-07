@@ -97,6 +97,7 @@ def project(request):
         'notifications': Notification.objects.filter(user = request.user).order_by('-time'),
         'applications': applications,
         'users_html':serialize("json", User.objects.all()),
+        'tags_html':serialize("json", Tag.objects.all()),
         'user_profiles_html':serialize("json", Profile.objects.all()),
         'apply_requests_html':serialize("json", applications),
     }
