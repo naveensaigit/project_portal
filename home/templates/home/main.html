@@ -151,7 +151,7 @@
 
 
     <form method="get" class="form-inline justify-content-lg-center h5 mb-0 text-gray-800 " style="width: 100%;">
-        <div class="" style="padding-right:23px;width: 220px;">
+        <div class="" style="padding:23px;width: 220px;">
             <label for="id_Status" style="font-size: 16px; font-weight: 300;float: left; ">Status</label>
             <select name="Status" id="id_Status" style="background-color:#EBEBEB; border: 1px solid rgba(0, 0, 0, 0.25); border-radius: 5px;width:210px; height:44px;">
                 <option value="">None</option>
@@ -160,7 +160,7 @@
                 <option value="Completed">Completed</option>
             </select>
         </div>
-        <div class="" style="padding-right:23px; width: 220px;">
+        <div class="" style="padding:23px; width: 220px;">
             <label for="id_Difficulty" style="font-size: 16px; font-weight: 300;float: left; ">Difficulty</label>
             <select name="Difficulty" id="id_Difficulty" style="background-color:#EBEBEB; border: 1px solid rgba(0, 0, 0, 0.25); border-radius: 5px;width:210px; height:44px;">
                 <option value="">None</option>
@@ -173,7 +173,7 @@
 {#            <label for="id_Duration" style="font-size: 16px; font-weight: 300; float: left;">Duration</label>#}
 {#            <input type="text" name="Duration" id="id_Duration" style="background-color:#EBEBEB; border: 1px solid rgba(0, 0, 0, 0.25); border-radius: 5px;width:242px; height:44px;" placeholder="None">#}
 {#        </div>#}
-        <div class="select2-selection select2-selection--single" style="padding-right:23px;width: 220px; margin-bottom: 2px;">
+        <div class="select2-selection select2-selection--single" style="padding:23px;width: 220px; margin-bottom: 2px;">
             <label for="id_FloatedBy" style="font-size: 16px; font-weight: 300;float: left; ">FloatedBy</label>
             <select name="FloatedBy" id="id_FloatedBy" class="searchable-select select2-selection__rendered" style="background-color:#EBEBEB; border: 1px solid rgba(0, 0, 0, 0.25); border-radius: 5px;width:210px; height:44px;">
                 <option value="">None</option>
@@ -182,7 +182,7 @@
                 {% endfor %}
             </select>
         </div>
-        <div class="" style="padding-right:23px;width: 220px; margin-bottom: 5px;">
+        <div class="" style="padding:23px;width: 220px; margin-bottom: 5px;">
             <label for="id_Tags" style="font-size: 16px; font-weight: 300;float: left; ">Tags</label>
             <select name="Tags" id="id_Tags" class="searchable-select-clearable select2-selection select2-selection--multiple" multiple="multiple" style="background-color:#EBEBEB; border: 1px solid rgba(0, 0, 0, 0.25); border-radius: 5px;width:210px; height:44px;">
                 {% for TAG in tags %}
@@ -190,16 +190,16 @@
                 {% endfor %}
             </select>
         </div>
-        <div class="" style="padding-right:23px; width: 220px; margin-bottom: 5px;">
+        <div class="" style="padding:23px; width: 220px; margin-bottom: 5px;">
             <label for="id_FilterBy" style="font-size: 16px; font-weight: 300;float: left; ">Filter Tags By</label>
             <select name="FilterBy" id="id_FilterBy" style="background-color:#EBEBEB; border: 1px solid rgba(0, 0, 0, 0.25); border-radius: 5px;width:210px; height:44px;">
                 <option value="Or" selected>Or</option>
                 <option value="And">And</option>
             </select>
         </div>
-        <div class="" style="padding-top: 20px;">
-            <button type="button" onclick="clearFilters()" style="width: 95px; height: 44px; margin-left:0px; background: #19258C; color: white; border-radius: 5px; padding-top: 6px; border: 1px; padding-left: 12px; padding-right: 12px;">Clear</button>
-            <button class="btn btn-primary" type="Submit" style="width: 95px; height: 44px; margin-left:0px; background: #19258C; color: white; border-radius: 5px; padding-top: 6px; padding-bottom: 1px;">Filter</button>
+        <div class="" style="padding: 23px; padding-top: 43px;">
+            <button type="button" onclick="clearFilters()" style="width: 95px; height: 44px; margin-left:0px; background: #19258C; color: white; border-radius: 5px; padding-top: 6px; border: 1px; padding-left: 12px; padding-right: 12px; padding-bottom: 6px">Clear</button>
+            <button class="btn btn-primary" type="Submit" style="width: 95px; height: 44px; margin-left:0px; background: #19258C; color: white; border-radius: 5px; padding-top: 6px; padding-bottom: 6px;">Filter</button>
         </div>
     </form>
         <br>
