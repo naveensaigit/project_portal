@@ -150,8 +150,7 @@ def delete_notification(current_user, project):
 
 def apply_on_project(request, project):
     current_user = request.user
-
-    user_branch = f"{current_user.year} Year {current_user.branch}"
+    user_branch = f"{current_user.profile.year} Year {current_user.profile.branch}"
     if("All" in project.OpenedFor or user_branch in project.OpenedFor):
         message = request.GET.get('message')
         if message == None:

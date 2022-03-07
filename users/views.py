@@ -1,6 +1,8 @@
 from django.contrib.auth.models import User
 from django.shortcuts import redirect, render
-from .forms import UserRegisterForm, ProfileRegisterForm, ProfileUpdateForm, UserUpdateForm
+
+from home.decorators import user_profile_completed
+# from .forms import UserRegisterForm, ProfileRegisterForm, ProfileUpdateForm, UserUpdateForm
 from django.contrib import messages
 from .models import Profile,Notification
 from django.contrib.auth.decorators import login_required
@@ -9,36 +11,37 @@ from functions import *
 from django.core.serializers import serialize
 from django.contrib.auth import logout
 
-def signup(request):
-    if request.method == 'POST':
-        user_form = UserRegisterForm(request.POST)
-        profile_form = ProfileRegisterForm(request.POST, request.FILES)
-        if user_form.is_valid() and profile_form.is_valid():
-            user_form.save()
-            newusername = user_form.cleaned_data.get('username')
-            newuser = User.objects.filter(username = newusername).first()
+# def signup(request):
+#     if request.method == 'POST':
+#         user_form = UserRegisterForm(request.POST)
+#         profile_form = ProfileRegisterForm(request.POST, request.FILES)
+#         if user_form.is_valid() and profile_form.is_valid():
+#             user_form.save()
+#             newusername = user_form.cleaned_data.get('username')
+#             newuser = User.objects.filter(username = newusername).first()
 
-            profile_form = ProfileRegisterForm(request.POST,request.FILES, instance = newuser.profile)
-            profile_form.save()
+#             profile_form = ProfileRegisterForm(request.POST,request.FILES, instance = newuser.profile)
+#             profile_form.save()
 
-            messages.success(request, f"Account created for {newusername}!")
-            return redirect('login')
-        else:
-            messages.error(request, 'Please correct the error below.')
-    else:
-        user_form = UserRegisterForm()
-        profile_form = ProfileRegisterForm()
+#             messages.success(request, f"Account created for {newusername}!")
+#             return redirect('login')
+#         else:
+#             messages.error(request, 'Please correct the error below.')
+#     else:
+#         user_form = UserRegisterForm()
+#         profile_form = ProfileRegisterForm()
 
-    context = {
-        'title': 'Register',
-        'user_form': user_form,
-        'profile_form': profile_form
-    }
+#     context = {
+#         'title': 'Register',
+#         'user_form': user_form,
+#         'profile_form': profile_form
+#     }
 
-    return render(request, 'users/signup.html', context)
+#     return render(request, 'users/signup.html', context)
 
 
 @login_required
+@user_profile_completed
 def profile(request, user_id):
     user = User.objects.get(id=user_id)
     projects = get_user_projects(user)
@@ -93,6 +96,7 @@ def profile_edit(request):
 
 
 @login_required
+@user_profile_completed
 def projects_view(request):
     req_projects, title, heading = get_projects_view_details(request)
     projects = get_filtered_projects(request, req_projects)

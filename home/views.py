@@ -3,7 +3,7 @@ from django.shortcuts import redirect, render
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
-from home.decorators import user_is_project_author
+from home.decorators import user_is_project_author, user_profile_completed
 from .models import Project
 from .forms import ProjectRegisterForm, ProjectUpdateForm
 from functions import *
@@ -11,11 +11,8 @@ from django.core.serializers import serialize
 from users.models import Profile
 
 @login_required
+@user_profile_completed
 def main(request):
-    if check_user_profile(request.user):
-        messages.error(request, 'Please complete your profile first.')
-        return redirect(f'/profile/edit')
-
     all_projects = Project.objects.all().order_by('-DatePosted')
     projects = get_filtered_projects(request, all_projects)
     # shellScript()
@@ -41,6 +38,7 @@ def main(request):
     return render(request, 'home/main.html', context)
 
 @login_required
+@user_profile_completed
 def projectRegister(request):
     if request.method == 'POST':
         project_form = ProjectRegisterForm(request.POST)
@@ -84,6 +82,7 @@ def createNewTag(request):
     return JsonResponse({"status":status, "tag_id":tag.id, "tag_title":tag.Title}, status = 200)
 
 @login_required
+@user_profile_completed
 def project(request):
     project_id = request.GET.get('project_id')
     project = Project.objects.get(id=project_id)
@@ -103,8 +102,8 @@ def project(request):
     }
     return render(request, 'home/project.html', context)
 
-
 @login_required
+@user_profile_completed
 @user_is_project_author
 def projectUpdate(request):
     project_id = request.GET.get('project_id')
@@ -131,6 +130,7 @@ def projectUpdate(request):
 
 
 @login_required
+@user_profile_completed
 @user_is_project_author
 def projectDelete(request):
     project_id = request.GET.get('project_id')
@@ -150,6 +150,7 @@ def projectDelete(request):
 
 
 @login_required
+@user_profile_completed
 def projectTask(request):
     project_id = request.GET.get('project_id')
     page_number = request.GET.get('page_number')
@@ -164,6 +165,7 @@ def projectTask(request):
     return redirect(url)
 
 @login_required
+@user_profile_completed
 @user_is_project_author
 def projectApplyRequestTask(request):
     project_id = request.GET.get('project_id')
