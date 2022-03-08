@@ -317,6 +317,7 @@
             {% with request.get_full_path as querystring %}
                 {% if projects.has_other_pages %}
                     <ul class="pagination">
+                        <h5 style="padding-top:7px;">Projects per page:&nbsp;</h5>
                         {% if 'limit' in querystring %}
                             <select id="num_of_rows" onchange="if (this.value) window.location.href=this.value;">
                                 {% if '6' in  querystring %}
@@ -342,12 +343,13 @@
                             <option value="?limit=18">18</option>
                         </select>
                         {% endif %}
+                        &nbsp;&nbsp;&nbsp;&nbsp;
                         {% if projects.has_previous %}
-                            {% if 'Status' in querystring or 'Difficulty' in querystring %}
+                            {% if 'Status' in querystring or 'Difficulty' in querystring or 'limit' in querystring%}
                                 {% if 'page' in querystring %}
                                     <li><a href="{{ querystring|slice:":-1 " }}{{ projects.previous_page_number }}">&laquo;</a></li>
                                 {% else %}
-                                <li><a href="{{ querystring }}&page={{ projects.previous_page_number }}">&laquo;</a></li>
+                                    <li><a href="{{ querystring }}&page={{ projects.previous_page_number }}">&laquo;</a></li>
                                 {% endif %}
                             {% else %}
                                 <li><a href="/?page={{ projects.previous_page_number }}">&laquo;</a></li>
@@ -357,7 +359,7 @@
                             {% if projects.number == i %}
                                 <li class = "selected">{{ i }}</li>
                             {% else %}
-                                {% if 'Status' in querystring  or 'Difficulty' in querystring %}
+                                {% if 'Status' in querystring  or 'Difficulty' in querystring or 'limit' in querystring%}
                                     {% if 'page' in querystring %}
                                         <li><a href="{{ querystring|slice:":-1 " }}{{ i }}">{{i}}</a></li>
                                     {% else %}
@@ -369,7 +371,7 @@
                             {% endif %}
                         {% endfor %}
                         {% if projects.has_next %}
-                            {% if 'Status' in querystring  or 'Difficulty' in querystring %}
+                            {% if 'Status' in querystring  or 'Difficulty' in querystring or 'limit' in querystring%}
                                 {% if 'page' in querystring %}
                                     <li><a href="{{ querystring|slice:":-1 " }}{{ projects.next_page_number }}">&raquo;</a></li>
                                 {% else %}
