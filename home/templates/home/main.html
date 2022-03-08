@@ -317,6 +317,31 @@
             {% with request.get_full_path as querystring %}
                 {% if projects.has_other_pages %}
                     <ul class="pagination">
+                        {% if 'limit' in querystring %}
+                            <select id="num_of_rows" onchange="if (this.value) window.location.href=this.value;">
+                                {% if '6' in  querystring %}
+                                    <option value="?limit=6" selected>6</option>
+                                    <option value="?limit=12">12</option>
+                                    <option value="?limit=18">18</option>
+                                {% elif '12' in querystring %}
+                                    <option value="?limit=6">6</option>
+                                    <option value="?limit=12" selected>12</option>
+                                    <option value="?limit=18">18</option>
+                                {% else %}
+                                    <option value="?limit=6">6</option>
+                                    <option value="?limit=12">12</option>
+                                    <option value="?limit=18" selected>18</option>
+                                {% endif %}
+                                {% comment %} <option value="opel">Opel</option>
+                                <option value="audi">Audi</option> {% endcomment %}
+                            </select>
+                        {% else %}
+                        <select id="num_of_rows" onchange="if (this.value) window.location.href=this.value;">
+                            <option value="?limit=6" selected>6</option>
+                            <option value="?limit=12">12</option>
+                            <option value="?limit=18">18</option>
+                        </select>
+                        {% endif %}
                         {% if projects.has_previous %}
                             {% if 'Status' in querystring or 'Difficulty' in querystring %}
                                 {% if 'page' in querystring %}

@@ -100,9 +100,9 @@ def get_user_projects_id(user):
 
     return [floated_id, liked_id, applied_id, requested_id, starred_id]
 
-def get_paginated_projects(request, projects):
+def get_paginated_projects(request, projects,number_of_projects):
     page = request.GET.get('page', 1)
-    paginator = Paginator(projects, 6)
+    paginator = Paginator(projects, number_of_projects)
     try:
         paginated_projects = paginator.page(page)
     except PageNotAnInteger:
