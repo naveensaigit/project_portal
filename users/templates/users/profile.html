@@ -12,7 +12,7 @@
         <a style="color: white;" href="/profile/edit"><i class="fas fa-pen"></i> </a>
       </div>
     </div>
-    <img src="{{ profile_user.profile.image.url }}" alt="">
+      <img class="profileImage" src="{{ profile_user.profile.image.url }}" alt="">
     <div class="leftColumnCard horizontal-center">
       <div class="cardTitle">
         Profile
@@ -147,8 +147,12 @@
           </div>
           {% endfor %}
           {% if projects_category.count == 0 %}
-          <img class="doodle" src="https://doodleipsum.com/700/hand-drawn?i=0b3f4112a9c5e358c439c4be74380e54">
-          {% endif %}
+          <div class="vertical-center">
+            <div class = "horizontal-center">
+              <img class="doodle" src="/media/hand-drawn.png">
+            </div>
+          </div>
+            {% endif %}
           {% if projects_category.count > 5 %}
           <div style="text-align: right;">
             {% if index == 0 %}

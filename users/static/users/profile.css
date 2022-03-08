@@ -16,8 +16,8 @@
 }
 
 .doodle{
-  width: 500px;
-  height: 500px;
+  width: 65vw;
+  max-width: 700px;
 }
 
 /* -------------------- */
@@ -39,7 +39,7 @@
   border-radius: 10px;
 }
 
-img {
+.profileImage{
   width: 50%;
   max-width: 160px;
   margin-left: 22%;
