@@ -1,9 +1,10 @@
+from tkinter import FLAT
 from home.models import Project, Tag, ApplyRequest
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from users.models import Notification
 from django.core.mail import send_mail
 from django.conf import settings
-from django.shortcuts import redirect
+# from django.shortcuts import redirect
 from django.contrib import messages
 from home.filters import ProjectFilter
 from django.contrib.auth.models import User
@@ -243,7 +244,8 @@ def get_projects_view_details(request):
         title = 'Projects Applied'
         heading = "Projects Applied For:"
     elif view == "requested":
-        req_projects = all_projects.filter(ApplyRequest = request.user)
+        req_projects_id = list(ApplyRequest.objects.all().filter(User = request.user).values_list('Project', flat=True))
+        req_projects = Project.objects.all().filter(id__in = req_projects_id)
         title = 'Projects Requested'
         heading = "Projects Requested:"
     elif view == "floated":

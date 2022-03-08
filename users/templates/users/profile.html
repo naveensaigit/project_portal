@@ -117,73 +117,51 @@
 {% endblock customStylesheets %}
 {% block ajaxBlock %}{% endblock ajaxBlock %}
 {% block content %}
-{% block messageBlock %}
-{% if messages %} {% for message in messages %}
-<div style="margin-left: 20px; color: #022160; font-size: 30px; background-color: white;">{{message}}</div>
-{% endfor %} {% endif %}
-{% endblock messageBlock %}
-
-
-
 <div class="row profile-row" style="padding-bottom:100px; ">
   <div class="justify-content-center">
     <div class="col-sm-4">
       <div class="card" style="width: 415px; height: 900px; margin-top: 83px;">
-        <div class="card-body"
-          style="box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.25); background: #F7F4F4; border-radius: 10px;">
+        <div class="card-body" style="box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.25); background: #F7F4F4; border-radius: 10px;">
           <div class="d-flex flex-column align-items-center text-center">
-            <div
-              style="background: #19258C; margin-left:340px; box-sizing: border-box; border-radius: 10px; color: white; padding: 0.45rem; width: 2.5rem;">
+            <div style="background: #19258C; margin-left:340px; box-sizing: border-box; border-radius: 10px; color: white; padding: 0.45rem; width: 2.5rem;">
               <a style="color: white;" href="/profile/edit"><i class="fas fa-pen"></i> </a>
             </div>
-            <img src="{{ profile_user.profile.image.url }}" alt=""
-              style=" height:200px;height:200px; border-radius: 100%;">
+            <img src="{{ profile_user.profile.image.url }}" alt="" style=" height:200px;height:200px; border-radius: 100%;">
           </div>
-          <p
-            style="color: #404040; margin-left: 26px; font-family: 'Public Sans', sans-serif; font-style: normal; font-weight: bold; font-size: 20px;">
+          <p style="color: #404040; margin-left: 26px; font-family: 'Public Sans', sans-serif; font-style: normal; font-weight: bold; font-size: 20px;">
             Profile</p>
-          <div
-            style="border: 1px solid rgba(0, 0, 0, 0.25); box-sizing: border-box; border-radius: 10px; margin-left: 25px; margin-right: 25px; height: 125px; ">
-            <p
-              style="font-family: 'Public Sans', sans-serif;font-style: normal;font-weight: normal;font-size: 16px;line-height: 19px;color: #404040; margin-left: 20px; margin-right: 20px; margin-top: 20px; line-height: 1.6;">
+          <div style="border: 1px solid rgba(0, 0, 0, 0.25); box-sizing: border-box; border-radius: 10px; margin-left: 25px; margin-right: 25px; height: 125px; ">
+            <p style="font-family: 'Public Sans', sans-serif;font-style: normal;font-weight: normal;font-size: 16px;line-height: 19px;color: #404040; margin-left: 20px; margin-right: 20px; margin-top: 20px; line-height: 1.6;">
               {{ profile_user.first_name }} {{ profile_user.last_name }}
               <br>{{ profile_user.profile.year }} Year - {{ profile_user.profile.branch }}<br>
               {{ profile_user.email }}
             </p>
           </div>
           <br>
-          <p
-            style="color: #404040; margin-left: 26px; font-family: 'Public Sans', sans-serif; font-style: normal; font-weight: bold; font-size: 20px;">
+          <p style="color: #404040; margin-left: 26px; font-family: 'Public Sans', sans-serif; font-style: normal; font-weight: bold; font-size: 20px;">
             Skills</p>
-          <div
-            style="border: 1px solid rgba(0, 0, 0, 0.25); box-sizing: border-box; border-radius: 10px; margin-left: 25px; margin-right: 25px; height: 125px; ">
-            <p
-              style="font-family: 'Public Sans', sans-serif;font-style: normal;font-weight: normal;font-size: 16px;line-height: 19px;color: #404040; margin-left: 20px; margin-right: 20px; margin-top: 20px;">
+          <div style="border: 1px solid rgba(0, 0, 0, 0.25); box-sizing: border-box; border-radius: 10px; margin-left: 25px; margin-right: 25px; height: 125px; ">
+            <p style="font-family: 'Public Sans', sans-serif;font-style: normal;font-weight: normal;font-size: 16px;line-height: 19px;color: #404040; margin-left: 20px; margin-right: 20px; margin-top: 20px;">
               {% for skill in profile_user.profile.techskills.all %}
-                {{ skill }}
+              {{ skill }}
               {% endfor %}
             </p>
           </div>
           <br>
-          <p
-            style="color: #404040; margin-left: 26px; font-family: 'Public Sans', sans-serif; font-style: normal; font-weight: bold; font-size: 20px;">
+          <p style="color: #404040; margin-left: 26px; font-family: 'Public Sans', sans-serif; font-style: normal; font-weight: bold; font-size: 20px;">
             Links</p>
-          <div
-            style="border: 1px solid rgba(0, 0, 0, 0.25); box-sizing: border-box; border-radius: 10px; margin-left: 25px; margin-right: 25px; height: 145px; ">
-            <p
-              style="font-family: 'Public Sans', sans-serif;font-style: normal;font-weight: normal;font-size: 16px;line-height: 19px;color: #404040; margin-left: 20px; margin-right: 20px; margin-top: 20px; line-height: 1.6;">
+          <div style="border: 1px solid rgba(0, 0, 0, 0.25); box-sizing: border-box; border-radius: 10px; margin-left: 25px; margin-right: 25px; height: 145px; ">
+            <p style="font-family: 'Public Sans', sans-serif;font-style: normal;font-weight: normal;font-size: 16px;line-height: 19px;color: #404040; margin-left: 20px; margin-right: 20px; margin-top: 20px; line-height: 1.6;">
               <i class="fab fa-linkedin" style="margin-right: 5px;"></i>Linkedin :
               {% if profile_user.profile.linked_in_link|length > 0%}
-              <a href={{profile_user.profile.linked_in_link}}
-                target="_blank">{{profile_user.profile.linked_in_link}}</a>
+              <a href={{profile_user.profile.linked_in_link}} target="_blank">{{profile_user.profile.linked_in_link}}</a>
               {% else %}
               NA
               {% endif %}
               <br>
               <i class="fas fa-globe" style="margin-right: 5px;"></i>Portfolio :
               {% if profile_user.profile.portfolio_link|length > 0%}
-              <a href={{profile_user.profile.portfolio_link}}
-                target="_blank">{{profile_user.profile.portfolio_link}}</a>
+              <a href={{profile_user.profile.portfolio_link}} target="_blank">{{profile_user.profile.portfolio_link}}</a>
               {% else %}
               NA
               {% endif %}
@@ -209,8 +187,6 @@
         </div>
       </div>
     </div>
-
-
   </div>
   <div class="justify-content-center">
     <div class="col-md">
@@ -219,40 +195,32 @@
           <div class="buttons">
             <div class="row justify-content-center">
               <div class="vertical-line-profile"></div>
-              <div class="toggle-options col-xl-3 col-md-6 mb-4"
-                style=" margin-bottom: 5px; padding:0px; max-width: 23%;">
-                <a class="profButton" onclick="toggleVisibility('projects0')" id='projects0button'
-                  style="margin-left: 4px; padding-top: 13px;">
+              <div class="toggle-options col-xl-3 col-md-6 mb-4" style=" margin-bottom: 5px; padding:0px; max-width: 23%;">
+                <a class="profButton" onclick="toggleVisibility('projects0')" id='projects0button' style="margin-left: 4px; padding-top: 13px;">
                   <p class="toggle-p" style="font-weight: 300;margin-bottom: 0px;">PROJECTS FLOATED:<br>
                     <h3 class="toggle-h" style="font-weight: 500;">{{ projects_id.0|length }}</h3>
                   </p>
                 </a>
               </div>
               <div class="vertical-line-profile"></div>
-              <div class="toggle-options col-xl-3 col-md-6 mb-4"
-                style=" margin-bottom: 5px; padding:0px;  max-width: 23%">
-                <a class="profButton" onclick="toggleVisibility('projects1')" id='projects1button'
-                  style="margin-left: 4px; padding-top: 13px;">
+              <div class="toggle-options col-xl-3 col-md-6 mb-4" style=" margin-bottom: 5px; padding:0px;  max-width: 23%">
+                <a class="profButton" onclick="toggleVisibility('projects1')" id='projects1button' style="margin-left: 4px; padding-top: 13px;">
                   <p style="font-weight: 300; font-size: 12px;margin-bottom: 0px;">PROJECTS APPLIED:<br>
                     <h3 style="font-weight: 500;font-size: 28px;">{{ projects_id.2|length }}</h3>
                   </p>
                 </a>
               </div>
               <div class="vertical-line-profile"></div>
-              <div class="toggle-options col-xl-3 col-md-6 mb-4"
-                style=" margin-bottom: 5px; padding:0px;  max-width: 23%; ">
-                <a class="profButton" onclick="toggleVisibility('projects2')" id='projects2button'
-                  style="margin-left: 4px; padding-top: 13px;">
+              <div class="toggle-options col-xl-3 col-md-6 mb-4" style=" margin-bottom: 5px; padding:0px;  max-width: 23%; ">
+                <a class="profButton" onclick="toggleVisibility('projects2')" id='projects2button' style="margin-left: 4px; padding-top: 13px;">
                   <p style="font-weight: 300; font-size: 12px;margin-bottom: 0px;">PROJECTS REQUESTED:<br>
                     <h3 style="font-weight: 500;font-size: 28px;">{{ projects_id.3|length }}</h3>
                   </p>
                 </a>
               </div>
               <div class="vertical-line-profile"></div>
-              <div class="toggle-options col-xl-3 col-md-6 mb-4"
-                style=" margin-bottom: 5px; padding:0px; max-width: 23%">
-                <a class="profButton" onclick="toggleVisibility('projects3')" id='projects3button'
-                  style="margin-left: 4px; padding-top: 13px;">
+              <div class="toggle-options col-xl-3 col-md-6 mb-4" style=" margin-bottom: 5px; padding:0px; max-width: 23%">
+                <a class="profButton" onclick="toggleVisibility('projects3')" id='projects3button' style="margin-left: 4px; padding-top: 13px;">
                   <p style="font-weight: 300; font-size: 12px;margin-bottom: 0px;">PROJECTS STARRED:<br>
                     <h3 style="font-weight: 500;font-size: 28px;">{{ projects_id.4|length }}</h3>
                   </p>
@@ -264,14 +232,10 @@
               {% with index=forloop.counter0 %}
               <div id="projects{{index}}" style="display:none;">
                 {% for project in projects_category|slice:":5" %}
-                <div class="profile-content-card card"
-                  style=" margin-bottom: 29px;border: 1px solid #E5E5E5; box-sizing: border-box;border-radius: 10px;">
-                  <div class="card-body"
-                    style="background-color: #fff; box-shadow: none;border-radius: 10px; padding: 1rem;">
-                    <h4 class="card-title"><a class="card-title profile-title"
-                        href="/project/?project_id={{project.id}}">{{ project.Title}}</a></h4>
+                <div class="profile-content-card card" style=" margin-bottom: 29px;border: 1px solid #E5E5E5; box-sizing: border-box;border-radius: 10px;">
+                  <div class="card-body" style="background-color: #fff; box-shadow: none;border-radius: 10px; padding: 1rem;">
+                    <h4 class="card-title"><a class="card-title profile-title" href="/project/?project_id={{project.id}}">{{ project.Title}}</a></h4>
                     <p class="card-text demo-2 card-desc">{{project.Description}}</p>
-
                   </div>
                 </div>
                 {% endfor %}
@@ -279,7 +243,6 @@
                 <!-- <div>No projects</div> -->
                 <img src="https://st2.depositphotos.com/3986623/8565/v/600/depositphotos_85657376-stock-illustration-hand-drawn-lettering.jpg" alt="no projects found" style="padding-top: 6rem;">
                 {% endif %}
-
                 <div style="text-align: right;">
                   {% if projects_category.count > 5 %}
                   {% if index == 0 %}
@@ -291,7 +254,6 @@
                         {% else %}
                         <a href="/profile/projects/view/?view=starred">
                           {% endif %}
-
                           Read more..
                         </a>
                         {% endif %}
@@ -299,54 +261,14 @@
               </div>
               {% endwith %}
               {% endfor %}
-              <!-- ==================================== -->
-              <!-- {% for projects_category in projects %}
-          {% with index=forloop.counter0 %}
-          <div id="projects{{index}}" style="display:none;">
-            {% for project in projects_category %}
-            <div class="card-box" style="padding-top: 0px;padding-bottom: 0px; margin-top: 15px; margin-bottom: 30px;">
-              <div class="blog-body">
-                <div class="demo-a profile-project-title">
-                  <h1 style="font-size: 1.8rem;"><a href="/project/?project_id={{project.id}}">{{ project.Title}}</a>
-                  </h1>
-                </div>
-                <div class="demo-2 profile-project-desc">
-                  <p>{{project.Description}}</p>
-                </div>
-              </div>
             </div>
-            {% endfor %}
-            {% if projects_category.count == 0 %}
-            <div>No projects</div>
-            {% endif %}
-            {% if projects_category.count > 5 %}
-                  {% if index == 0 %}
-                    <a href="/profile/projects/view/?view=floated">
-                  {% elif index == 1 %}
-                    <a href="/profile/projects/view/?view=applied">
-                  {% elif index == 2 %}
-                    <a href="/profile/projects/view/?view=requested">
-                  {% else %}
-                      <a href="/profile/projects/view/?view=starred">
-                  {% endif %}
-                  Read more..
-                  </a>
-            {% endif %}
           </div>
-          </div>
-
-          {% endwith %}
-          {% endfor %}
         </div>
-      </div>
-      <br><br><br><br><br><br><br><br><br>
-      </div>
-      </div>
       </div>
     </div>
   </div>
-
-  {% endblock content %}
-  {% block customScripts %}
-  <script src="{% static 'users/profile.js' %}"></script>
-  {% endblock customScripts %}
+</div>
+{% endblock content %}
+{% block customScripts %}
+<script src="{% static 'users/profile.js' %}"></script>
+{% endblock customScripts %}
