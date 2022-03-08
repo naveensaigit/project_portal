@@ -61,7 +61,9 @@
   width: 83%;
   min-height: 150px;
   overflow-x: hidden;
-  margin-top: 20px;
+  margin-top: 15px;
+  margin-bottom: 15px;
+
 }
 
 .cardTitle {
