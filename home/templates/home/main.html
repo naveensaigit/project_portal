@@ -64,7 +64,10 @@
         background-color: #EBEBEB;
         border-radius: 5px;
     }
-
+    #num_of_rows{
+        margin-top: 7px;
+        height:30px;
+    }
 </style>
 {% endblock customStylesheets %}
 {% block content %}
@@ -333,8 +336,6 @@
                                     <option value="?limit=12">12</option>
                                     <option value="?limit=18" selected>18</option>
                                 {% endif %}
-                                {% comment %} <option value="opel">Opel</option>
-                                <option value="audi">Audi</option> {% endcomment %}
                             </select>
                         {% else %}
                         <select id="num_of_rows" onchange="if (this.value) window.location.href=this.value;">

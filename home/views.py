@@ -19,11 +19,8 @@ def main(request):
 
     if request.method == "POST" and request.POST['search']!="":
         projects = get_searched_projects(request)
-    number_of_projects = request.GET.get('limit')
-    if(number_of_projects==None):
-        number_of_projects=6
-    
-    projects = get_paginated_projects(request, projects,number_of_projects)
+
+    projects = get_paginated_projects(request, projects)
     projects_id = get_user_projects_id(request.user)
 
     common_tags = get_most_common_tags(10)
