@@ -68,6 +68,7 @@
         margin-top: 7px;
         height:30px;
     }
+
 </style>
 {% endblock customStylesheets %}
 {% block content %}
@@ -151,8 +152,6 @@
     <br>
     {% block filterBlock %}
 
-
-
     <form method="get" class="form-inline justify-content-lg-center h5 mb-0 text-gray-800 " style="width: 100%;">
         <div class="" style="padding:23px;width: 220px;">
             <label for="id_Status" style="font-size: 16px; font-weight: 300;float: left; ">Status</label>
@@ -204,9 +203,7 @@
             <button type="button" onclick="clearFilters()" style="width: 95px; height: 44px; margin-left:0px; background: #19258C; color: white; border-radius: 5px; padding-top: 6px; border: 1px; padding-left: 12px; padding-right: 12px; padding-bottom: 6px">Clear</button>
             <button class="btn btn-primary" type="Submit" style="width: 95px; height: 44px; margin-left:0px; background: #19258C; color: white; border-radius: 5px; padding-top: 6px; padding-bottom: 6px;">Filter</button>
         </div>
-    </form>
-        <br>
-
+    </form><br>
     {% endblock filterBlock %}
     {% block tagsBlock %}
         <div class = "blog-container" style="flex: 1 0 45%; margin: 30px; width: 1260px; height: 75px; max-width: 1260px; margin-left: 45px; alignment: center; align-self: center; padding-top: 0px;">
@@ -219,14 +216,6 @@
             {% endfor %}
         </ul>
         </div>
-{#        <hr style="width: 300px; border-top: 1px solid rgba(0, 0, 0, 0.25); margin-left: 0px; margin-bottom: 0px;">#}
-{#        <div class="blog-tags" style="margin-left: 20px;">#}
-{#            <br>#}
-{#            <ul>#}
-{#            FILTERED BY:#}
-{#            </ul>#}
-{#            <br>#}
-{#        </div>#}
         </div>
 
     {% endblock tagsBlock %}
@@ -315,12 +304,8 @@
         <div>No projects</div>
         {% endif %}
     </div>
-    {% endblock allProjectsBlock %}
-        {% block paginationBlock %}
-            {% with request.get_full_path as querystring %}
-                {% if projects.has_other_pages %}
-                    <ul class="pagination">
-                        <h5 style="padding-top:7px;">Projects per page:&nbsp;</h5>
+        <div style="float:right; padding-right: 140px;">
+                    <h5 >Projects per page:&nbsp;</h5>
                         {% if 'limit' in querystring %}
                             <select id="num_of_rows" onchange="if (this.value) window.location.href=this.value;">
                                 {% if '6' in  querystring %}
@@ -344,7 +329,13 @@
                             <option value="?limit=18">18</option>
                         </select>
                         {% endif %}
-                        &nbsp;&nbsp;&nbsp;&nbsp;
+                    </div>
+        <br><br><br>
+    {% endblock allProjectsBlock %}
+        {% block paginationBlock %}
+            {% with request.get_full_path as querystring %}
+                {% if projects.has_other_pages %}
+                    <ul class="pagination">
                         {% if projects.has_previous %}
                             {% if 'Status' in querystring or 'Difficulty' in querystring or 'limit' in querystring%}
                                 {% if 'page' in querystring %}
@@ -383,6 +374,34 @@
                             {% endif %}
                         {% endif %}
                     </ul>
+{#                    <div style="float: right;">#}
+{#                    <h5 >Projects per page:&nbsp;</h5>#}
+{#                        {% if 'limit' in querystring %}#}
+{#                            <select id="num_of_rows" onchange="if (this.value) window.location.href=this.value;">#}
+{#                                {% if '6' in  querystring %}#}
+{#                                    <option value="?limit=6" selected>6</option>#}
+{#                                    <option value="?limit=12">12</option>#}
+{#                                    <option value="?limit=18">18</option>#}
+{#                                {% elif '12' in querystring %}#}
+{#                                    <option value="?limit=6">6</option>#}
+{#                                    <option value="?limit=12" selected>12</option>#}
+{#                                    <option value="?limit=18">18</option>#}
+{#                                {% else %}#}
+{#                                    <option value="?limit=6">6</option>#}
+{#                                    <option value="?limit=12">12</option>#}
+{#                                    <option value="?limit=18" selected>18</option>#}
+{#                                {% endif %}#}
+{#                                {% comment %} <option value="opel">Opel</option>#}
+{#                                <option value="audi">Audi</option> {% endcomment %}#}
+{#                            </select>#}
+{#                        {% else %}#}
+{#                        <select id="num_of_rows" onchange="if (this.value) window.location.href=this.value;">#}
+{#                            <option value="?limit=6" selected>6</option>#}
+{#                            <option value="?limit=12">12</option>#}
+{#                            <option value="?limit=18">18</option>#}
+{#                        </select>#}
+{#                        {% endif %}#}
+{#                    </div>#}
                 {% endif %}
             {% endwith %}
         {% endblock paginationBlock %}
