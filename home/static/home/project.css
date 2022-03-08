@@ -289,7 +289,8 @@ button{
   background: #34A853;
   border: 2px solid #34A853;
 }
-.reject, .goodReject {
+
+.reject, .goodReject{
   background: #F50000;
   border: 1px solid #F50000;
 }
@@ -397,7 +398,6 @@ tr:last-child td{
   font-weight: bold;
   font-size: 20px;
   line-height: 23px;
-
   color: #404040;
 }
 .myContent{
@@ -437,8 +437,10 @@ tr:last-child td{
   justify-content: center ;
 }
 .goodReject{
+
   /* background: white;
   border: 1px solid #F50000;
+
   color: #F50000; */
   margin-right: 15px;
 }
