@@ -289,11 +289,11 @@ button{
   background: #34A853;
   border: 2px solid #34A853;
 }
-.reject {
+.reject, .goodReject {
   background: #F50000;
   border: 1px solid #F50000;
 }
-.rejectall{
+.rejectall, .goodReject{
   margin-left: 2.16%;
 }
 #viewAnswer{
@@ -348,25 +348,25 @@ tr:last-child td{
 /* --------------------------------- */
 /* --- View answer modal styling --- */
 #viewModalMain{
-  width: 79%;
-  max-width: none;
+  width: 70%;
+  max-width: 800px;
 }
 
 #viewAnswerTop, #viewAnswerMiddle, #viewAnswerBottom, #viewAnswerAcceptReject{
-  width: 74.12%;
+  width: 80%;
   display: flex;
 }
 
 #viewAnswerTop{
-  margin-top: 81px;
+  margin-top: 40px;
 }
 #viewAnswerTopRight{
-  margin-left: 9.6%;
+  margin-left: 8%;
   width: 69%;
 }
 #Profile_image > img{
-  height: 170px;
-  width: 170px;
+  height: 150px;
+  width: 150px;
   border-radius: 300px;
 }
 .profileField{
@@ -382,25 +382,26 @@ tr:last-child td{
 }
 
 #viewAnswerMiddle{
-  margin-top: 85px;
+  margin-top: 25px;
 }
 #Skills{
-  height: 185px;
+  height: 140px;
   margin-right: 18.6%;
   width: 40.1%;
 }
 #Links{
+  height: 140px;
   width: 40.1%;
 }
 .myLabel{
   font-weight: bold;
   font-size: 20px;
   line-height: 23px;
-  
+
   color: #404040;
 }
 .myContent{
-  height: 152px;
+  height: 110px;
   width: 100%;
   border: 1px solid rgba(0, 0, 0, 0.25);
   box-sizing: border-box;
@@ -421,24 +422,25 @@ tr:last-child td{
   font-weight: bold;
   font-size: 20px;
   line-height: 23px;
-  margin-top: 85px;
+  margin-top: 25px;
   color: #19258C;
 }
 #Message{
-  height: 303px;
+  height: 150px;
   border: 1px solid rgba(0, 0, 0, 0.25);
   box-sizing: border-box;
   border-radius: 10px;
 }
 #viewAnswerAcceptReject{
   margin-top: 21px;
-  margin-bottom: 130px;
-  justify-content: space-between ;
+  margin-bottom: 50px;
+  justify-content: center ;
 }
 .goodReject{
-  background: white;
+  /* background: white;
   border: 1px solid #F50000;
-  color: #F50000;
+  color: #F50000; */
+  margin-right: 15px;
 }
 /* --------------------------------- */
 /* ------- ADMIN VIEW STYLING END ------ */
