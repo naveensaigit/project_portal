@@ -1,272 +1,186 @@
 {% extends 'home/main.html' %} {% load static %}
 {% block customStylesheets %}
 <link rel="stylesheet" type="text/css" href="{% static 'users/profile.css' %}">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
-{% comment %}
-<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script> {% endcomment %}
-{% comment %}
-<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script> {% endcomment %}
-{% comment %}
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script> {% endcomment %}
-<style media="screen">
-  .vertical-line-profile {
-    width: 6px;
-    height: 75px;
-    background-color: #19258c;
-    /* margin-left: -5px;
-    margin-right: 10px; */
-  }
-
-
-  .cards-hr {
-    height: 0px;
-    left: 87px;
-    top: 280px;
-    border-top: 1px solid rgba(0, 0, 0, 0.25);
-  }
-
-  .card-profile {
-    width: 816px;
-    height: 120px;
-    padding-left: 538px;
-    padding-top: 268px;
-
-    border: 1px solid #E5E5E5;
-
-    border-radius: 10px;
-  }
-
-  .profile-card {
-    width: 52.5rem;
-    height: 59.875rem;
-  }
-
-  .profile-row {
-    margin-left: 5%;
-  }
-
-  .profile-content-card {
-    width: 51rem;
-    height: 7.5rem;
-  }
-
-  .buttons a {
-    font-size: 20px;
-  }
-
-  .card-desc {
-    font-size: 16px;
-  }
-
-  .toggle-p {
-    font-size: 12px;
-  }
-
-  .toggle-h {
-    font-size: 28px;
-  }
-
-  @media only screen and (max-width:600px) {
-    .profile-card {
-      width: 300px;
-      height: 1050px;
-
-    }
-
-    .profile-content-card {
-      width: 270px;
-      height: 150px;
-    }
-
-    .justify-content-center {
-      margin-left: auto;
-      margin-right: auto;
-
-    }
-
-    .vertical-line-profile {
-      display: none;
-    }
-
-    .buttons a {
-      font-size: 15px;
-      width: 70px;
-    }
-
-    .card-desc {
-      font-size: 12px;
-    }
-
-    .toggle-options {
-      width: 70px;
-
-      .prof-button {
-        width: 70px;
-      }
-
-      .buttons p {
-        font-size: 7px;
-      }
-
-      .toggle-h {
-        font-size: 7px;
-      }
-
-    }
 </style>
 {% endblock customStylesheets %}
 {% block ajaxBlock %}{% endblock ajaxBlock %}
 {% block content %}
-<div class="row profile-row" style="padding-bottom:100px; ">
-  <div class="justify-content-center">
-    <div class="col-sm-4">
-      <div class="card" style="width: 415px; height: 900px; margin-top: 83px;">
-        <div class="card-body" style="box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.25); background: #F7F4F4; border-radius: 10px;">
-          <div class="d-flex flex-column align-items-center text-center">
-            <div style="background: #19258C; margin-left:340px; box-sizing: border-box; border-radius: 10px; color: white; padding: 0.45rem; width: 2.5rem;">
-              <a style="color: white;" href="/profile/edit"><i class="fas fa-pen"></i> </a>
-            </div>
-            <img src="{{ profile_user.profile.image.url }}" alt="" style=" height:200px;height:200px; border-radius: 100%;">
-          </div>
-          <p style="color: #404040; margin-left: 26px; font-family: 'Public Sans', sans-serif; font-style: normal; font-weight: bold; font-size: 20px;">
-            Profile</p>
-          <div style="border: 1px solid rgba(0, 0, 0, 0.25); box-sizing: border-box; border-radius: 10px; margin-left: 25px; margin-right: 25px; height: 125px; ">
-            <p style="font-family: 'Public Sans', sans-serif;font-style: normal;font-weight: normal;font-size: 16px;line-height: 19px;color: #404040; margin-left: 20px; margin-right: 20px; margin-top: 20px; line-height: 1.6;">
-              {{ profile_user.first_name }} {{ profile_user.last_name }}
-              <br>{{ profile_user.profile.year }} Year - {{ profile_user.profile.branch }}<br>
-              {{ profile_user.email }}
-            </p>
-          </div>
+<div id="profile" class="horizontal-center">
+  <div id="leftColumn">
+    <div id="editButton" class="vertical-center">
+      <div class="horizontal-center">
+        <a style="color: white;" href="/profile/edit"><i class="fas fa-pen"></i> </a>
+      </div>
+    </div>
+      <img class="profileImage" src="{{ profile_user.profile.image.url }}" alt="">
+    <div class="leftColumnCard horizontal-center">
+      <div class="cardTitle">
+        Profile
+      </div>
+      <div class="cardDetails vertical-center">
+        <div>
+          {{ profile_user.first_name }} {{ profile_user.last_name }}
           <br>
-          <p style="color: #404040; margin-left: 26px; font-family: 'Public Sans', sans-serif; font-style: normal; font-weight: bold; font-size: 20px;">
-            Skills</p>
-          <div style="border: 1px solid rgba(0, 0, 0, 0.25); box-sizing: border-box; border-radius: 10px; margin-left: 25px; margin-right: 25px; height: 125px; ">
-            <p style="font-family: 'Public Sans', sans-serif;font-style: normal;font-weight: normal;font-size: 16px;line-height: 19px;color: #404040; margin-left: 20px; margin-right: 20px; margin-top: 20px;">
-              {% for skill in profile_user.profile.techskills.all %}
-              {{ skill }}
-              {% endfor %}
-            </p>
-          </div>
+          {{ profile_user.profile.year }} Year - {{ profile_user.profile.branch }}
           <br>
-          <p style="color: #404040; margin-left: 26px; font-family: 'Public Sans', sans-serif; font-style: normal; font-weight: bold; font-size: 20px;">
-            Links</p>
-          <div style="border: 1px solid rgba(0, 0, 0, 0.25); box-sizing: border-box; border-radius: 10px; margin-left: 25px; margin-right: 25px; height: 145px; ">
-            <p style="font-family: 'Public Sans', sans-serif;font-style: normal;font-weight: normal;font-size: 16px;line-height: 19px;color: #404040; margin-left: 20px; margin-right: 20px; margin-top: 20px; line-height: 1.6;">
-              <i class="fab fa-linkedin" style="margin-right: 5px;"></i>Linkedin :
-              {% if profile_user.profile.linked_in_link|length > 0%}
-              <a href={{profile_user.profile.linked_in_link}} target="_blank">{{profile_user.profile.linked_in_link}}</a>
-              {% else %}
-              NA
-              {% endif %}
-              <br>
-              <i class="fas fa-globe" style="margin-right: 5px;"></i>Portfolio :
-              {% if profile_user.profile.portfolio_link|length > 0%}
-              <a href={{profile_user.profile.portfolio_link}} target="_blank">{{profile_user.profile.portfolio_link}}</a>
-              {% else %}
-              NA
-              {% endif %}
-              <br>
-              <i class="fab fa-github" style="margin-right: 5px;"></i>Github :
-              {% if profile_user.profile.github_link|length > 0%}
-              <a href={{profile_user.profile.github_link}} target="_blank">{{profile_user.profile.github_link}}</a>
-              {% else %}
-              NA
-              {% endif %}
-              <br>
-              <i class="far fa-file" style="margin-right: 5px;"></i>Resume :
-              {% if profile_user.profile.cv|length > 0%}
-              <a href="{{profile_user.profile.cv.url}}" target="_blank">
-                Click Here
+          {{ profile_user.email }}
+        </div>
+      </div>
+    </div>
+    <div class="leftColumnCard horizontal-center">
+      <div class="cardTitle">
+        Skills
+      </div>
+      <div class="cardDetails vertical-center">
+        <div>
+          {% for skill in profile_user.profile.techskills.all %}
+          {{ skill }}
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+    <div class="leftColumnCard horizontal-center">
+      <div class="cardTitle">
+        Links
+      </div>
+      <div class="cardDetails vertical-center">
+        <div>
+          <i class="fab fa-linkedin" style="margin-right: 5px;"></i>Linkedin :
+          {% if profile_user.profile.linked_in_link|length > 0%}
+          <a href={{profile_user.profile.linked_in_link}} target="_blank">{{profile_user.profile.linked_in_link}}</a>
+          {% else %}
+          NA
+          {% endif %}
+          <br>
+          <i class="fas fa-globe" style="margin-right: 5px;"></i>Portfolio :
+          {% if profile_user.profile.portfolio_link|length > 0%}
+          <a href={{profile_user.profile.portfolio_link}} target="_blank">{{profile_user.profile.portfolio_link}}</a>
+          {% else %}
+          NA
+          {% endif %}
+          <br>
+          <i class="fab fa-github" style="margin-right: 5px;"></i>Github :
+          {% if profile_user.profile.github_link|length > 0%}
+          <a href={{profile_user.profile.github_link}} target="_blank">{{profile_user.profile.github_link}}</a>
+          {% else %}
+          NA
+          {% endif %}
+          <br>
+          <i class="far fa-file" style="margin-right: 5px;"></i>Resume :
+          {% if profile_user.profile.cv|length > 0%}
+          <a href="{{profile_user.profile.cv.url}}" target="_blank">
+            Click Here
+          </a>
+          {% else %}
+          NA
+          {% endif %}
+          <br>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div id="rightColumn">
+    <div id="profileProjects">
+      <div id="projectButtons">
+        <div class="vertical-line">
+          <div class="line"></div>
+        </div>
+        <div class="projectButton buttonSelected" id='projects0button' onclick="toggleVisibility('projects0')">
+          <div class="projectButtonTitle">
+            PROJECTS FLOATED:
+          </div>
+          <div class="projectsNumbers">
+            {{ projects_id.0|length }}
+          </div>
+        </div>
+        <div class="vertical-line">
+          <div class="line"></div>
+        </div>
+        <div class="projectButton" id='projects1button' onclick="toggleVisibility('projects1')">
+          <div class="projectButtonTitle">
+            PROJECTS APPLIED:
+          </div>
+          <div class="projectsNumbers">
+            {{ projects_id.2|length }}
+          </div>
+        </div>
+        <div class="vertical-line">
+          <div class="line"></div>
+        </div>
+        <div class="projectButton" id='projects2button' onclick="toggleVisibility('projects2')">
+          <div class="projectButtonTitle">
+            PROJECTS REQUESTED:
+          </div>
+          <div class="projectsNumbers">
+            {{ projects_id.3|length }}
+          </div>
+        </div>
+        <div class="vertical-line">
+          <div class="line"></div>
+        </div>
+        <div class="projectButton" id='projects3button' onclick="toggleVisibility('projects3')">
+          <div class="projectButtonTitle">
+            PROJECTS STARRED:
+          </div>
+          <div class="projectsNumbers">
+            {{ projects_id.4|length }}
+          </div>
+        </div>
+        <div class="vertical-line">
+          <div class="line"></div>
+        </div>
+      </div>
+      <div id="Projects">
+        {% for projects_category in projects %}
+        {% with index=forloop.counter0 %}
+        <div id="projects{{index}}" class="invisible">
+          {% for project in projects_category|slice:":5" %}
+          <div class="project-card">
+            <div class="project-card-title">
+              <a href="/project/?project_id={{project.id}}">
+                {{ project.Title}}
               </a>
-              {% else %}
-              NA
-              {% endif %}
-              <br>
-            </p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="justify-content-center">
-    <div class="col-md">
-      <div class="profile-card card" style="margin-top: 83px; overflow: hidden; height: 900px;">
-        <div class="card-body" style="background-color:white;box-shadow: none; padding: 0px; height: 900px;">
-          <div class="buttons">
-            <div class="row justify-content-center">
-              <div class="vertical-line-profile"></div>
-              <div class="toggle-options col-xl-3 col-md-6 mb-4" style=" margin-bottom: 5px; padding:0px; max-width: 23%;">
-                <a class="profButton" onclick="toggleVisibility('projects0')" id='projects0button' style="margin-left: 4px; padding-top: 13px;">
-                  <p class="toggle-p" style="font-weight: 300;margin-bottom: 0px;">PROJECTS FLOATED:<br>
-                    <h3 class="toggle-h" style="font-weight: 500;">{{ projects_id.0|length }}</h3>
-                  </p>
-                </a>
-              </div>
-              <div class="vertical-line-profile"></div>
-              <div class="toggle-options col-xl-3 col-md-6 mb-4" style=" margin-bottom: 5px; padding:0px;  max-width: 23%">
-                <a class="profButton" onclick="toggleVisibility('projects1')" id='projects1button' style="margin-left: 4px; padding-top: 13px;">
-                  <p style="font-weight: 300; font-size: 12px;margin-bottom: 0px;">PROJECTS APPLIED:<br>
-                    <h3 style="font-weight: 500;font-size: 28px;">{{ projects_id.2|length }}</h3>
-                  </p>
-                </a>
-              </div>
-              <div class="vertical-line-profile"></div>
-              <div class="toggle-options col-xl-3 col-md-6 mb-4" style=" margin-bottom: 5px; padding:0px;  max-width: 23%; ">
-                <a class="profButton" onclick="toggleVisibility('projects2')" id='projects2button' style="margin-left: 4px; padding-top: 13px;">
-                  <p style="font-weight: 300; font-size: 12px;margin-bottom: 0px;">PROJECTS REQUESTED:<br>
-                    <h3 style="font-weight: 500;font-size: 28px;">{{ projects_id.3|length }}</h3>
-                  </p>
-                </a>
-              </div>
-              <div class="vertical-line-profile"></div>
-              <div class="toggle-options col-xl-3 col-md-6 mb-4" style=" margin-bottom: 5px; padding:0px; max-width: 23%">
-                <a class="profButton" onclick="toggleVisibility('projects3')" id='projects3button' style="margin-left: 4px; padding-top: 13px;">
-                  <p style="font-weight: 300; font-size: 12px;margin-bottom: 0px;">PROJECTS STARRED:<br>
-                    <h3 style="font-weight: 500;font-size: 28px;">{{ projects_id.4|length }}</h3>
-                  </p>
-                </a>
-              </div>
-              <div class="vertical-line-profile"></div>
-              <!-- ============================= -->
-              {% for projects_category in projects %}
-              {% with index=forloop.counter0 %}
-              <div id="projects{{index}}" style="display:none;">
-                {% for project in projects_category|slice:":5" %}
-                <div class="profile-content-card card" style=" margin-bottom: 29px;border: 1px solid #E5E5E5; box-sizing: border-box;border-radius: 10px;">
-                  <div class="card-body" style="background-color: #fff; box-shadow: none;border-radius: 10px; padding: 1rem;">
-                    <h4 class="card-title"><a class="card-title profile-title" href="/project/?project_id={{project.id}}">{{ project.Title}}</a></h4>
-                    <p class="card-text demo-2 card-desc">{{project.Description}}</p>
-                  </div>
-                </div>
-                {% endfor %}
-                {% if projects_category.count == 0 %}
-                <!-- <div>No projects</div> -->
-                <img src="https://st2.depositphotos.com/3986623/8565/v/600/depositphotos_85657376-stock-illustration-hand-drawn-lettering.jpg" alt="no projects found" style="padding-top: 6rem;">
-                {% endif %}
-                <div style="text-align: right;">
-                  {% if projects_category.count > 5 %}
-                  {% if index == 0 %}
-                  <a href="/profile/projects/view/?view=floated">
-                    {% elif index == 1 %}
-                    <a href="/profile/projects/view/?view=applied">
-                      {% elif index == 2 %}
-                      <a href="/profile/projects/view/?view=requested">
-                        {% else %}
-                        <a href="/profile/projects/view/?view=starred">
-                          {% endif %}
-                          Read more..
-                        </a>
-                        {% endif %}
-                </div>
-              </div>
-              {% endwith %}
-              {% endfor %}
+            </div>
+            <div class="project-card-description">
+              {{project.Description}}
             </div>
           </div>
+          {% endfor %}
+          {% if projects_category.count == 0 %}
+          <div class="vertical-center">
+            <div class = "horizontal-center">
+              <img class="doodle" src="/media/hand-drawn.png">
+            </div>
+          </div>
+            {% endif %}
+          {% if projects_category.count > 5 %}
+          <div style="text-align: right;">
+            {% if index == 0 %}
+            <a href="/profile/projects/view/?view=floated">
+              Read more..
+            </a>
+            {% elif index == 1 %}
+            <a href="/profile/projects/view/?view=applied">
+              Read more..
+            </a>
+            {% elif index == 2 %}
+            <a href="/profile/projects/view/?view=requested">
+              Read more..
+            </a>
+            {% else %}
+            <a href="/profile/projects/view/?view=starred"></a>
+            Read more..
+            </a>
+            {% endif %}
+          </div>
+          {% endif %}
         </div>
+        {% endwith %}
+        {% endfor %}
       </div>
     </div>
   </div>
+</div>
 </div>
 {% endblock content %}
 {% block customScripts %}
