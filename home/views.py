@@ -92,7 +92,14 @@ def project(request):
 
     projects_id = get_user_projects_id(request.user)
     applications = ApplyRequest.objects.all().filter(Project = project)
-
+    openedFor = project.OpenedFor
+    openedFor = openedFor.replace(',',';')
+    openedFor = openedFor.replace('[','')
+    openedFor = openedFor.replace(']','')
+    openedFor = openedFor.replace("'",'')
+    if('All' in openedFor):
+        openedFor=openedFor[5:]
+    project.OpenedFor = openedFor
     context = {
         'title': 'Project',
         'project': project,
