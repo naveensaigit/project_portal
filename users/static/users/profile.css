@@ -140,6 +140,7 @@
   overflow: hidden;
   margin: 1.5vw;
   padding: 1.5vw;
+  padding-top: 0.5vw;
   border: 1px solid #E5E5E5;
   box-sizing: border-box;
   border-radius: 10px;
@@ -160,7 +161,7 @@
 }
 
 .project-card-description {
-  max-height: 45px;
+  height: 56px;
   margin-bottom: 15px;
   overflow: hidden;
 }

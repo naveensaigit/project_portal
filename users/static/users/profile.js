@@ -43,7 +43,20 @@ function changeSize(className, size2, size1) {
         else
             elem[i].style.fontSize = String(m * 1100 + c) + "px";
     }
-    // console.log(x.style.fontSize);
+}
+
+function changeHeight(className, size2, size1) {
+    var w, m, c;
+    w = window.innerWidth;
+    m = (size2 - size1) / 650;
+    c = size2 - m * 1500;
+    var elem = document.getElementsByClassName(className);
+    for (var i = 0; i < elem.length; i++) {
+        if (w > 1100)
+            elem[i].style.height = String(m * w + c) + "px";
+        else
+            elem[i].style.height = String(m * 1100 + c) + "px";
+    }
 }
 
 function makeChanges() {
@@ -53,5 +66,6 @@ function makeChanges() {
     changeSize('cardTitle', 20, 15);
     changeSize('project-card-title', 20, 15);
     changeSize('project-card-description', 18, 13);
+    changeHeight('project-card-description', 56, 45);
 }
 window.onresize = makeChanges;
