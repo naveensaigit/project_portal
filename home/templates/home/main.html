@@ -304,6 +304,7 @@
         <div>No projects</div>
         {% endif %}
     </div>
+    {% with request.get_full_path as querystring %}
         <div style="float:right; padding-right: 140px;">
                     <h5 >Projects per page:&nbsp;</h5>
                         {% if 'limit' in querystring %}
@@ -331,6 +332,7 @@
                         {% endif %}
                     </div>
         <br><br><br>
+    {%endwith%}
     {% endblock allProjectsBlock %}
         {% block paginationBlock %}
             {% with request.get_full_path as querystring %}
