@@ -149,12 +149,16 @@ def send_notification(request, project):
         recipient_list = [project.FloatedBy.email,]
         send_mail( subject, message, email_from, recipient_list )
 
-def delete_notification(current_user, project):
+def delete_notification(current_user, project, task):
     Notification.objects.filter(notification_from = current_user).filter(project_requested = project).delete()
 
     if project.MailNotification == "On":
-        subject = 'Project Application Accepted'
-        message = f"Your request for application on {project} Project has been accepted"
+        if task == "Removed":
+            subject = "Project Left"
+            message = f"Your left the {project} Project"
+        else:
+            subject = 'Project Application ' + task
+            message = f"Your request for application on {project} Project has been " + task
         email_from = settings.EMAIL_HOST_USER
         recipient_list = [current_user.email,]
         send_mail( subject, message, email_from, recipient_list )
@@ -175,7 +179,7 @@ def apply_on_project(request, project):
 
 def withdraw_from_project(request, project):
     current_user = request.user
-    delete_notification(current_user, project)
+    delete_notification(current_user, project, "Withdrawn")
     ApplyRequest.objects.all().filter(User = current_user).filter(Project = project).delete()
 
 def leave_project(request, project):
@@ -183,7 +187,7 @@ def leave_project(request, project):
     if project.FloatedBy != current_user:
         project.AlreadyApplied.remove(current_user)
         ApplyRequest.objects.all().filter(User = current_user).delete()
-        delete_notification(current_user, project)
+        delete_notification(current_user, project, "Removed")
         messages.success(request,f"{project} is dropped successfully.")
     else:
         messages.error(request, 'You cannot leave this project because it is floated by you.')
@@ -202,7 +206,7 @@ def apply_request_task(apply_request,task):
         apply_request.Status = newStatus
         if newStatus == "Accepted":
             apply_request.Project.AlreadyApplied.add(apply_request.User)
-        delete_notification(apply_request.User, apply_request.Project)
+        delete_notification(apply_request.User, apply_request.Project, "accepted")
         apply_request.save()
 
 def do_task(request):
