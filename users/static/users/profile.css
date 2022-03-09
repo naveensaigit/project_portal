@@ -16,7 +16,7 @@
 }
 
 .doodle{
-  width: 63vw;
+  width: 57vw;
   max-width: 700px;
 }
 
@@ -25,7 +25,7 @@
 #profile {
   width: 89%;
   display: flex;
-  min-height: 800px;
+  min-height: 780px;
   margin-bottom: 60px;
   margin-top: 60px;
 }
@@ -33,6 +33,7 @@
 
 #leftColumn {
   width: 25%;
+  min-width: 250px;
   position: relative;
   background: #F7F4F4;
   box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.25);
@@ -94,6 +95,7 @@
 
 #projectButtons {
   display: flex;
+  min-height: 60px;
 }
 
 .vertical-line {
@@ -109,7 +111,6 @@
 }
 
 #projectButtons>div {
-  min-height: 80px;
   background: #F7F4F4;
   text-align: center;
 }
@@ -126,6 +127,7 @@
 
 .projectsNumbers {
   font-size: 25px;
+  margin-bottom: 15px;
 }
 
 .buttonSelected {
@@ -135,20 +137,21 @@
 .project-card {
   max-height: 125px;
   overflow: hidden;
-  margin: 15px;
-  padding: 15px 15px 20px 15px;
+  margin: 1.5vw;
+  padding: 1.5vw;
   border: 1px solid #E5E5E5;
   box-sizing: border-box;
   border-radius: 10px;
 }
 
-.project-card-title>a {
+.project-card-title {
   font-family: sans-serif;
   font-style: normal;
   font-weight: bold;
   font-size: 20px;
   line-height: 24px;
-
+}
+.project-card-title > a{
   color: #404040;
 }
 .project-card-title{

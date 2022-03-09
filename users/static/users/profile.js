@@ -24,7 +24,7 @@ function toggleVisibility(divId) {
     }
 }
 
-function changeSize(x, size2, size1) {
+function changeSize(className, size2, size1) {
     // size1 750
     // size2 1500
 
@@ -36,18 +36,22 @@ function changeSize(x, size2, size1) {
     w = window.innerWidth;
     m = (size2 - size1) / 650;
     c = size2 - m * 1500;
-    x = String(m * w + c) + "px";
+    var elem = document.getElementsByClassName(className);
+    for (var i = 0; i < elem.length; i++) {
+        if (w > 1100)
+            elem[i].style.fontSize = String(m * w + c) + "px";
+        else
+            elem[i].style.fontSize = String(m * 1100 + c) + "px";
+    }
+    // console.log(x.style.fontSize);
 }
 
 function makeChanges() {
-    var elem = document.getElementsByClassName('projectButtonTitle');
-    for (var i = 0; i < elem.length; i++) {
-        changeSize(elem[i].style.fontSize, 15, 10);
-    }
-
-    elem = document.getElementsByClassName('projectsNumbers');
-    for (var i = 0; i < elem.length; i++) {
-        changeSize(elem[i].style.fontSize, 20, 15);
-    }
+    changeSize('projectButtonTitle', 15, 10);
+    changeSize('projectsNumbers', 20, 15);
+    changeSize('cardDetails', 17, 10);
+    changeSize('cardTitle', 25, 15);
+    changeSize('project-card-title', 20, 15);
+    changeSize('project-card-description', 18, 13);
 }
 window.onresize = makeChanges;
