@@ -42,6 +42,7 @@ class Tag(models.Model):
 
 class Project(models.Model):
     Title = models.CharField(max_length=100)
+    Image = models.ImageField(default = 'images.jpeg', upload_to='project_pics', blank=True)
     Description = models.TextField()
     FloatedBy = models.ForeignKey(User, on_delete=models.CASCADE,related_name="FloatedBy")
     Mentors = models.ManyToManyField(User,related_name='Mentors')
@@ -53,6 +54,7 @@ class Project(models.Model):
     Duration = models.CharField(max_length=30, choices=DURATION_CHOICES)
     DatePosted = models.DateTimeField(default = timezone.now)
     SelectionCriteria = models.TextField()
+    Question = models.TextField()
     MailNotification = models.CharField(max_length=5, choices=NOTIFICATION_CHOICES,default='On')
     AlreadyApplied = models.ManyToManyField(User, related_name='AlreadyApplied', blank = True)
     Likes = models.IntegerField(default=0)

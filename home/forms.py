@@ -1,5 +1,6 @@
 from django import forms
 from .models import Project
+from django.forms.widgets import FileInput
 
 OPENED_FOR_CHOICES = (
     ('All','All'),
@@ -38,9 +39,13 @@ class ProjectRegisterForm(forms.ModelForm):
         label="Opened For", choices=OPENED_FOR_CHOICES, required=True,
         widget = forms.CheckboxSelectMultiple(),    
     )
+    Image = forms.FileField(
+        widget = FileInput(),
+        required=False
+    )
     class Meta:
         model = Project
-        fields = ['Title','Description','Mentors','Status','OpenedFor','Difficulty','PreRequisite','Tags','Duration','SelectionCriteria','MailNotification']
+        fields = ['Title', 'Image', 'Description','Mentors','Status','OpenedFor','Difficulty','PreRequisite','Tags','Duration','SelectionCriteria', 'Question', 'MailNotification']
 
 
 
@@ -49,6 +54,10 @@ class ProjectUpdateForm(forms.ModelForm):
         label="Opened For", choices=OPENED_FOR_CHOICES, required=True,
         widget = forms.CheckboxSelectMultiple(),    
     )
+    Image = forms.FileField(
+        widget = FileInput(),
+        required=False
+    )
     class Meta:
         model = Project
-        fields = ['Title','Description','Mentors','Status','OpenedFor','Difficulty','PreRequisite','Tags','Duration','SelectionCriteria','MailNotification']
+        fields = ['Title', 'Image', 'Description','Mentors','Status','OpenedFor','Difficulty','PreRequisite','Tags','Duration','SelectionCriteria', 'Question', 'MailNotification']
