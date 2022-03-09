@@ -49,8 +49,8 @@ function changeSize(className, size2, size1) {
 function makeChanges() {
     changeSize('projectButtonTitle', 15, 10);
     changeSize('projectsNumbers', 20, 15);
-    changeSize('cardDetails', 17, 10);
-    changeSize('cardTitle', 25, 15);
+    changeSize('cardDetails', 15, 10);
+    changeSize('cardTitle', 20, 15);
     changeSize('project-card-title', 20, 15);
     changeSize('project-card-description', 18, 13);
 }
