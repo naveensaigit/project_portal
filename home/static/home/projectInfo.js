@@ -1,5 +1,15 @@
-colors = Array("#BEFFE0", "#FFD493", "#C9D8FF");
+$(document).ready(function () {
+    moveFilters();
+});
 
+function moveFilters() {
+    var controls = document.getElementById("tableControls");
+    var bootstrapControlsDiv = document.querySelector("#tableContainer > div.bootstrap-table.bootstrap4 > div.fixed-table-toolbar");
+    controls.innerHTML = bootstrapControlsDiv.outerHTML;
+    bootstrapControlsDiv.innerHTML = "";
+}
+
+colors = Array("#BEFFE0", "#FFD493", "#C9D8FF");
 var tagsToDisplay = document.getElementById("tagsContainer").children;
 for(var i = 1;i<tagsToDisplay.length;i++){
     var tag = tagsToDisplay[i];

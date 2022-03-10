@@ -265,7 +265,8 @@ button{
 }
 
 #tableTitle {
-  width: 218px;
+  width: 110px;
+  margin-top: 5px;
   height: 45px;
 
   font-weight: bold;
@@ -314,6 +315,15 @@ button{
   border-radius: 15px;
   border-spacing: 0px;
   border-collapse: separate;
+}
+#tableControls{
+  margin-left: 10px;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+#tableControls > div > div.bs-bars.float-left{
+  margin-right: 3px;
 }
 thead th {
   background: #C9D8FF;
