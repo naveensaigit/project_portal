@@ -38,7 +38,7 @@ class Tag(models.Model):
 
 class Project(models.Model):
     Title = models.CharField(max_length=100)
-    Image = models.ImageField(default = 'images.jpeg', upload_to='project_pics', blank=True, validators=[FileExtensionValidator(allowed_extensions=['png, jpg, jpeg'])])
+    Image = models.ImageField(default = 'images.jpeg', upload_to='project_pics', blank=True, validators=[FileExtensionValidator(allowed_extensions=['png', 'jpg', 'jpeg'])])
     Description = models.TextField()
     FloatedBy = models.ForeignKey(User, on_delete=models.CASCADE,related_name="FloatedBy")
     Mentors = models.ManyToManyField(User,related_name='Mentors')
