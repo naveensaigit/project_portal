@@ -163,7 +163,7 @@
 <a href="/project/update/?project_id={{project.id}}"><button class="btn btn-primary btn-user btn-block" style="display: inline-block;">UPDATE PROJECT</button></a>
 {% endif %} {% endcomment %}
 <!-- <h3 style="margin-top: 10px; color:#858796; margin-left:0px;"><a href="{% url 'profile' project.FloatedBy.id %}">{{project.FloatedBy}}</a></h3> -->
-<div id="projectTop" style="background-image :linear-gradient(to right, rgb(30, 14, 121, 0.9), rgb(255, 255, 255, 0.1)), url(/media/project_pics/{{project.Image}});">
+<div id="projectTop" style="background-image :linear-gradient(to right, rgb(30, 14, 121, 0.9), rgb(255, 255, 255, 0.1)), url(/media/{{project.Image}});">
   <div id="projectTitle" class="vertical-center">{{ project.Title }}</div>
 </div>
 <div id="projectMain" class="horizontal-center">
