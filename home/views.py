@@ -41,13 +41,13 @@ def main(request):
 @user_profile_completed
 def projectRegister(request):
     if request.method == 'POST':
-        project_form = ProjectRegisterForm(request.POST)
+        project_form = ProjectRegisterForm(request.POST, request.FILES)
         if project_form.is_valid():
 
             newproj = Project(FloatedBy = request.user)
             newproj.save()
 
-            project_form = ProjectRegisterForm(request.POST, instance = newproj)
+            project_form = ProjectRegisterForm(request.POST, request.FILES, instance = newproj)
             project_form.save()
 
             project_title = project_form.cleaned_data.get('Title')
