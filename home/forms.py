@@ -45,7 +45,7 @@ class ProjectRegisterForm(forms.ModelForm):
     )
     class Meta:
         model = Project
-        fields = ['Title', 'Image', 'Description','Mentors','Status','OpenedFor','Difficulty','PreRequisite','Tags','Duration','SelectionCriteria', 'Question', 'MailNotification']
+        fields = ['Title', 'Image', 'Description','Mentors','Status','OpenedFor','Difficulty','PreRequisite','Tags','Duration','SelectionCriteria', 'Question']
 
 
 
@@ -60,4 +60,4 @@ class ProjectUpdateForm(forms.ModelForm):
     )
     class Meta:
         model = Project
-        fields = ['Title', 'Image', 'Description','Mentors','Status','OpenedFor','Difficulty','PreRequisite','Tags','Duration','SelectionCriteria', 'Question', 'MailNotification']
+        fields = ['Title', 'Image', 'Description','Mentors','Status','OpenedFor','Difficulty','PreRequisite','Tags','Duration','SelectionCriteria', 'Question']

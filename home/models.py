@@ -23,11 +23,6 @@ DURATION_CHOICES = (
     
 )
 
-NOTIFICATION_CHOICES = (
-    ('On','On'),
-    ('Off','Off'),
-)
-
 REQUEST_STATUS_CHOICES = (
     ('Pending','Pending'),
     ('Accepted','Accepted'),
@@ -55,7 +50,6 @@ class Project(models.Model):
     DatePosted = models.DateTimeField(default = timezone.now)
     SelectionCriteria = models.TextField()
     Question = models.TextField()
-    MailNotification = models.CharField(max_length=5, choices=NOTIFICATION_CHOICES,default='On')
     AlreadyApplied = models.ManyToManyField(User, related_name='AlreadyApplied', blank = True)
     Likes = models.IntegerField(default=0)
 

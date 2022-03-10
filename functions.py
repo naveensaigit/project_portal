@@ -142,26 +142,24 @@ def send_notification(request, project):
     notification=Notification(user=project.FloatedBy, project_requested = project, notification_from = request.user, title= "Apply Request", message=notification_message,url=project_url)
     notification.save()
 
-    if project.MailNotification == "On":
-        subject = 'Project Application'
-        message = notification_message
-        email_from = settings.EMAIL_HOST_USER
-        recipient_list = [project.FloatedBy.email,]
-        send_mail( subject, message, email_from, recipient_list )
+    subject = 'Project Application'
+    message = notification_message
+    email_from = settings.EMAIL_HOST_USER
+    recipient_list = [project.FloatedBy.email,]
+    send_mail( subject, message, email_from, recipient_list )
 
 def delete_notification(current_user, project, task):
     Notification.objects.filter(notification_from = current_user).filter(project_requested = project).delete()
 
-    if project.MailNotification == "On":
-        if task == "Removed":
-            subject = "Project Left"
-            message = f"Your left the {project} Project"
-        else:
-            subject = 'Project Application ' + task
-            message = f"Your request for application on {project} Project has been " + task
-        email_from = settings.EMAIL_HOST_USER
-        recipient_list = [current_user.email,]
-        send_mail( subject, message, email_from, recipient_list )
+    if task == "Removed":
+        subject = "Project Left"
+        message = f"Your left the {project} Project"
+    else:
+        subject = 'Project Application ' + task
+        message = f"Your request for application on {project} Project has been " + task
+    email_from = settings.EMAIL_HOST_USER
+    recipient_list = [current_user.email,]
+    send_mail( subject, message, email_from, recipient_list )
 
 def apply_on_project(request, project):
     current_user = request.user
