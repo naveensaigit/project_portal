@@ -52,7 +52,7 @@ def projectRegister(request):
 
             project_title = project_form.cleaned_data.get('Title')
             messages.success(request, f"Project-{project_title} created!")
-            return redirect('home')
+            return redirect(f"/project/?project_id={newproj.id}")
         else:
             messages.error(request, 'Please correct the error below.')
     else:
