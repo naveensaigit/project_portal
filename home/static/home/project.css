@@ -85,6 +85,7 @@ button{
 #tagsContainer {
   display: flex;
   margin-top: 53px;
+  max-width: 91.9%;
 }
 
 .tagsTitle {

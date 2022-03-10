@@ -174,12 +174,12 @@
 <div id="projectMain" class="horizontal-center">
   <div class="userView">
     <div class="left-container">
-      <div id="tagsContainer" class="vertical-center">
+      <div id="tagsContainer" class="vertical-center" >
         <div class="tagsTitle">Tags:</div>
         {% for tag in project.Tags.all %}
         <div class="tag vertical-center">
-          <div class="horizontal-center">
-            <a href="/?Tags={{tag.id}}">{{ tag }}</a>
+          <div class="horizontal-center" >
+            <a href="/?Tags={{tag.id}}" style="font-size: 13px;">{{ tag }}</a>
           </div>
         </div>
         {% endfor %}
@@ -242,7 +242,7 @@
       </div>
       {% endif %}
     </div>
-    <div class="right-container">
+    <div class="right-container" >
       <div id="projectDetails">
         <div class="detail">
           <div class="detailTitle">

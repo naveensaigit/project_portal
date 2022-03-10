@@ -13,7 +13,7 @@ colors = Array("#BEFFE0", "#FFD493", "#C9D8FF");
 var tagsToDisplay = document.getElementById("tagsContainer").children;
 for(var i = 1;i<tagsToDisplay.length;i++){
     var tag = tagsToDisplay[i];
-    var ind = Math.floor(Math.random()*3);
+    var ind = i%3;
     tag.style.backgroundColor = colors[ind];
 }
 function unselect(){
