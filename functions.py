@@ -104,7 +104,7 @@ def get_paginated_projects(request, projects):
     page = request.GET.get('page', 1)
     number_of_projects = request.GET.get('limit')
     if(number_of_projects==None):
-        number_of_projects=6
+        number_of_projects=12
 
     paginator = Paginator(projects, number_of_projects)
     try:
