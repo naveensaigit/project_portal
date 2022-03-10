@@ -1,3 +1,4 @@
+import re
 from home.models import Project, Tag, ApplyRequest
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from users.models import Notification
