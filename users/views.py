@@ -84,6 +84,8 @@ def profile_edit(request):
             profile_update_form.save()
 
             messages.success(request, "Your profile has been updated!")
+            if request.GET.get('firstLogin') == True:
+                return redirect('')
             return redirect('/profile/'+ str(request.user.id))
         else:
             messages.error(request, 'Please correct the error below.')
@@ -99,7 +101,6 @@ def profile_edit(request):
     }
 
     return render(request, 'users/profile_edit.html', context)
-
 
 @login_required
 @user_profile_completed

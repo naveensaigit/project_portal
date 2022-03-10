@@ -20,7 +20,7 @@ def user_profile_completed(function):
     def wrap(request, *args, **kwargs):
         if check_user_profile(request.user):
             messages.error(request, 'Please complete your profile first.')
-            return redirect(f'/profile/edit')
+            return redirect(f'/profile/edit?firstLogin=True')
         else:
             return function(request, *args, **kwargs)
     wrap.__doc__ = function.__doc__
