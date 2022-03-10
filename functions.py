@@ -235,24 +235,24 @@ def do_task(request):
     elif task == "AcceptAll" or task == "RejectAll":
         all_apply_requests_task(project, task)
 
-def get_projects_view_details(request):
+def get_projects_view_details(request, current_user):
     view = request.GET.get('view')
     all_projects = Project.objects.all()
     if view == "applied":
-        req_projects = all_projects.filter(AlreadyApplied = request.user)
+        req_projects = all_projects.filter(AlreadyApplied = current_user)
         title = 'Projects Applied'
         heading = "Projects Applied For:"
     elif view == "requested":
-        req_projects_id = list(ApplyRequest.objects.all().filter(User = request.user).values_list('Project', flat=True))
+        req_projects_id = list(ApplyRequest.objects.all().filter(User = current_user).values_list('Project', flat=True))
         req_projects = Project.objects.all().filter(id__in = req_projects_id)
         title = 'Projects Requested'
         heading = "Projects Requested:"
     elif view == "floated":
-        req_projects = all_projects.filter(FloatedBy = request.user)
+        req_projects = all_projects.filter(FloatedBy = current_user)
         title = 'Projects Floated'
         heading = "Projects Floated:"
     else:
-        req_projects = request.user.profile.starred_projects.all()
+        req_projects = current_user.profile.starred_projects.all()
         title = 'Projects Starred'
         heading = "Projects Starred:"
     req_projects = req_projects.order_by('-DatePosted')

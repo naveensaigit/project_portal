@@ -160,19 +160,19 @@
           {% if projects_category.count > 5 %}
           <div style="text-align: right;">
             {% if index == 0 %}
-            <a href="/profile/projects/view/?view=floated">
+            <a href="/profile/projects/view/{{profile_user.id}}?view=floated">
               Read more..
             </a>
             {% elif index == 1 %}
-            <a href="/profile/projects/view/?view=applied">
+            <a href="/profile/projects/view/{{profile_user.id}}?view=applied">
               Read more..
             </a>
             {% elif index == 2 %}
-            <a href="/profile/projects/view/?view=requested">
+            <a href="/profile/projects/view/{{profile_user.id}}?view=requested">
               Read more..
             </a>
             {% else %}
-            <a href="/profile/projects/view/?view=starred"></a>
+            <a href="/profile/projects/view/{{profile_user.id}}?view=starred"></a>
             Read more..
             </a>
             {% endif %}

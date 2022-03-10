@@ -43,22 +43,21 @@ from django.contrib.auth import logout
 @login_required
 @user_profile_completed
 def profile(request, user_id):
-    user = User.objects.get(id=user_id)
-    projects = get_user_projects(user)
-    projects_id = get_user_projects_id(user)
-    var = False
-    if(user_id==request.user.id):
-        var= True
-    else:
+    current_user = User.objects.get(id=user_id)
+    projects = get_user_projects(current_user)
+    projects_id = get_user_projects_id(current_user)
+
+    var = True
+    if(user_id!=request.user.id):
         var= False
-    if(var==False):
         projects.pop()
+
     context = {
         'title': 'Profile',
         'projects': projects,
         'projects_id': projects_id,
         'notifications': Notification.objects.filter(user=request.user).order_by('-time'),
-        'profile_user': user,
+        'profile_user': current_user,
         'user_is_author' : var
     }
 
@@ -104,12 +103,15 @@ def profile_edit(request):
 
 @login_required
 @user_profile_completed
-def projects_view(request):
-    req_projects, title, heading = get_projects_view_details(request)
+def projects_view(request, user_id):
+    current_user = User.objects.get(id=user_id)
+
+    req_projects, title, heading = get_projects_view_details(request, current_user)
     projects = get_filtered_projects(request, req_projects)
     projects = get_paginated_projects(request, projects)
-    projects_id = get_user_projects_id(request.user)
+    projects_id = get_user_projects_id(current_user)
     common_tags = get_most_common_tags(5)
+
 
     context = {
         'title': title,

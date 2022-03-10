@@ -163,13 +163,13 @@
                                     </a>
                                     <a class="dropdown-item" href="/project/new"><i class="fas fa-plus-square fa-sm fa-fw mr-2 text-gray-400"></i>Create New
                                         Project</a>
-                                    <a class="dropdown-item" href="/profile/projects/view/?view=applied"><i class="fas fa-address-card fa-sm fa-fw mr-2 text-gray-400"></i>Projects
+                                    <a class="dropdown-item" href="/profile/projects/view/{{user.id}}?view=applied"><i class="fas fa-address-card fa-sm fa-fw mr-2 text-gray-400"></i>Projects
                                         Applied for</a>
-                                    <a class="dropdown-item" href="/profile/projects/view/?view=floated"><i class="fas fa-laptop-code mr-2 fa-sm fa-fw text-gray-400"></i>Projects
+                                    <a class="dropdown-item" href="/profile/projects/view/{{user.id}}?view=floated"><i class="fas fa-laptop-code mr-2 fa-sm fa-fw text-gray-400"></i>Projects
                                         Floated by me</a>
-                                    <a class="dropdown-item" href="/profile/projects/view/?view=requested"><i class="fas fa-pager fa-fw mr-2 fa-sm fa-fw text-gray-400"></i>Projects
+                                    <a class="dropdown-item" href="/profile/projects/view/{{user.id}}?view=requested"><i class="fas fa-pager fa-fw mr-2 fa-sm fa-fw text-gray-400"></i>Projects
                                         Requested for</a>
-                                    <a class="dropdown-item" href="/profile/projects/view/?view=starred"><i class="fas fa-star fa-fw mr-2 fa-sm fa-fw text-gray-400"></i>Starred
+                                    <a class="dropdown-item" href="/profile/projects/view/{{user.id}}?view=starred"><i class="fas fa-star fa-fw mr-2 fa-sm fa-fw text-gray-400"></i>Starred
                                         Projects</a>
                                     <div class="dropdown-divider"></div>
                                     <a class="dropdown-item" href="{% url 'logout' %}">
