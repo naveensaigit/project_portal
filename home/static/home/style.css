@@ -11015,11 +11015,11 @@ a:focus {
 }
 
 .topbar.navbar-light .navbar-nav .nav-item .nav-link:hover {
-    color: #b7b9cc;
+    /*color: #b7b9cc;*/
 }
 
 .topbar.navbar-light .navbar-nav .nav-item .nav-link:active {
-    color: #858796;
+    /*color: #858796;*/
 }
 
 .sidebar {
