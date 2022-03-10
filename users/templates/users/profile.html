@@ -7,11 +7,13 @@
 {% block content %}
 <div id="profile" class="horizontal-center">
   <div id="leftColumn">
+    {% if user_is_author %}
     <div id="editButton" class="vertical-center">
       <div class="horizontal-center">
         <a style="color: white;" href="/profile/edit"><i class="fas fa-pen"></i> </a>
       </div>
     </div>
+    {% endif %}
       <img class="profileImage" src="{{ profile_user.profile.image.url }}" alt="">
     <div class="leftColumnCard horizontal-center">
       <div class="cardTitle">
