@@ -52,10 +52,7 @@ $("#applyQuestion").on("input", function(){
     $("#applyModal > div > div > div.modal-footer > a").attr("href", link);
 });
 
-$(".viewAnswer").click(function () {
-    var user_profile_id = $(this).attr('user_profile_id');
-    var application_id = $(this).attr('application_id');
-
+function fillModal(application_id, user_profile_id) {
     var user_profile = user_profiles[user_profiles.findIndex(obj => obj.pk == user_profile_id)].fields;
     var user = users[users.findIndex(obj => obj.pk == user_profile['user'])].fields;
     var application = applications[applications.findIndex(obj => obj.pk == application_id)].fields;
@@ -79,7 +76,7 @@ $(".viewAnswer").click(function () {
     $("#Message").html(application['Message']);
     $('#rejectButton').attr("href",rejectLink);
     $('#acceptButton').attr("href",acceptLink);
-});
+};
 
 var $table = $('#table');
 $(function () {

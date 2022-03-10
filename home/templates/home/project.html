@@ -367,7 +367,7 @@
             <td>{{application.User}}</td>
             <td>{{application.User.profile.rollno}}</td>
             <td>
-              <button class="viewAnswer" data-toggle="modal" data-target="#viewAnswerModal" application_id="{{application.id}}" user_profile_id="{{application.User.profile.id}}">
+              <button class="viewAnswer" data-toggle="modal" data-target="#viewAnswerModal" onClick="fillModal({{application.id}}, {{application.User.profile.id}})">
                 View
               </button>
             </td>
