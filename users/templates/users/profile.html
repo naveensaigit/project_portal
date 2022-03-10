@@ -150,7 +150,17 @@
             </div>
           </div>
           {% endfor %}
-          {% if projects_category.count == 0 %}
+          {% if index == 2 %}
+            {% if projects_category|length == 0 %}
+            <div class="vertical-center">
+              <div class = "horizontal-center">
+                <img class="doodle" src="/media/hand-drawn.png">
+              </div>
+            </div>
+            {% endif %}
+          {% endif %}
+
+          {% if projects_category.count == 0  %}
           <div class="vertical-center">
             <div class = "horizontal-center">
               <img class="doodle" src="/media/hand-drawn.png">
