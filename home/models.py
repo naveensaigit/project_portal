@@ -14,12 +14,12 @@ DIFFICULTY_CHOICES = (
 )
 
 DURATION_CHOICES = (
-    ('1', '< 1 month'),
-    ('1-2', '1-2 months'),
-    ('2-4', '2-4 months'),
-    ('4-6', '4-6 months'),
-    ('6-12', '6-12 months'),
-    ('12', '> 12 months'),
+    ('<1 month', '< 1 month'),
+    ('1-2 months', '1-2 months'),
+    ('2-4 months', '2-4 months'),
+    ('4-6 months', '4-6 months'),
+    ('6-12 months', '6-12 months'),
+    ('>12 months', '> 12 months'),
     
 )
 
