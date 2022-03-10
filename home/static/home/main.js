@@ -7,41 +7,29 @@ $(document).ready(function () {
     applyFilters();
 });
 
-// if ($( "#foo" ).hasClass('className')) {
-// 	$( "#foo" ).removeClass( 'className');
-// } else {
-//   $( "#foo" ).addClass( 'className');
-// }
 $(document).on('click', '.task', function () {
     var project_id = $(this).attr('project_id');
     var page_number = $(this).attr('page_number');
     var task = $(this).attr('task');
+    $(this).attr("disabled", "true");
     if(task==="Star")
     {
         $(this).attr('task',"Unstar");
-        $(this).removeClass('bi-star');
-        $(this).addClass('bi-star-fill');
     }
     else if(task==="Unstar")
     {
         $(this).attr('task',"Star");
-        $(this).removeClass('bi-star-fill');
-        $(this).addClass('bi-star');
     }
     if(task==="Unlike")
     {
         var ele = parseInt($(this).children("div:first")[0].innerHTML);
         $(this).attr('task',"Like");
-        $(this).removeClass('bi-hand-thumbs-up-fill');
-        $(this).addClass('bi-hand-thumbs-up');
         $(this).children("div:first")[0].innerHTML=String(ele-1);
     }
     else if(task==="Like")
     {
         var ele = parseInt($(this).children("div:first")[0].innerHTML);
         $(this).attr('task',"Unlike");
-        $(this).removeClass('bi-hand-thumbs-up');
-        $(this).addClass('bi-hand-thumbs-up-fill');
         $(this).children("div:first")[0].innerHTML=String(ele+1);
     }
     $.ajaxSetup({
@@ -60,6 +48,7 @@ $(document).on('click', '.task', function () {
             console.log(rs.responseText);
         },
     });
+    $(this).attr("disabled", "false");
 });
 
 function clearFilters() {
