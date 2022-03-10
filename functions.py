@@ -133,6 +133,9 @@ def get_searched_projects(request):
     searched_projects = searched_projects.order_by('-DatePosted')
     return searched_projects
 
+def send_mail_notification(subject, message, email_from , recipient_list):
+    send_mail( subject, message, email_from, recipient_list )
+
 def send_notification(request, project):
     project_id = request.GET.get('project_id')
     current_user = request.user
@@ -142,24 +145,8 @@ def send_notification(request, project):
     notification=Notification(user=project.FloatedBy, project_requested = project, notification_from = request.user, title= "Apply Request", message=notification_message,url=project_url)
     notification.save()
 
-    subject = 'Project Application'
-    message = notification_message
-    email_from = settings.EMAIL_HOST_USER
-    recipient_list = [project.FloatedBy.email,]
-    send_mail( subject, message, email_from, recipient_list )
-
-def delete_notification(current_user, project, task):
+def delete_notification(current_user, project):
     Notification.objects.filter(notification_from = current_user).filter(project_requested = project).delete()
-
-    if task == "Removed":
-        subject = "Project Left"
-        message = f"Your left the {project} Project"
-    else:
-        subject = 'Project Application ' + task
-        message = f"Your request for application on {project} Project has been " + task
-    email_from = settings.EMAIL_HOST_USER
-    recipient_list = [current_user.email,]
-    send_mail( subject, message, email_from, recipient_list )
 
 def apply_on_project(request, project):
     current_user = request.user
@@ -172,12 +159,15 @@ def apply_on_project(request, project):
         applyrequest.save()
         messages.success(request,"Successfully Requested!")
         send_notification(request, project)
+        send_mail_notification('Project Application', f"{current_user} has requested for {project} Project", settings.EMAIL_HOST_USER, [project.FloatedBy.email,])
     else:
         messages.warning(request,"You are not eligible to opt this project.")
 
 def withdraw_from_project(request, project):
     current_user = request.user
     delete_notification(current_user, project, "Withdrawn")
+    send_mail_notification('Project Application Withdrawn', f"Your request for application on {project} Project has been withdrawn", settings.EMAIL_HOST_USER, [current_user.email,])
+    send_mail_notification('Project Application Withdrawn', f"{current_user} withdrew his application for {project} Project", settings.EMAIL_HOST_USER, [project.FloatedBy.email,])
     ApplyRequest.objects.all().filter(User = current_user).filter(Project = project).delete()
 
 def leave_project(request, project):
@@ -186,6 +176,8 @@ def leave_project(request, project):
         project.AlreadyApplied.remove(current_user)
         ApplyRequest.objects.all().filter(User = current_user).delete()
         delete_notification(current_user, project, "Removed")
+        send_mail_notification('Project Left', f"Your left the {project} Project", settings.EMAIL_HOST_USER, [current_user.email,])
+        send_mail_notification('Project Left', f"{current_user} left the {project} Project", settings.EMAIL_HOST_USER, [project.FloatedBy.email,])
         messages.success(request,f"{project} is dropped successfully.")
     else:
         messages.error(request, 'You cannot leave this project because it is floated by you.')
