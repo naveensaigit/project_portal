@@ -215,13 +215,15 @@ def do_task(request):
     elif task == "Unstar":
         current_user.profile.starred_projects.remove(project)
     elif task == "Like":
-        current_user.profile.liked_projects.add(project)
-        project.Likes += 1
-        project.save()
+        if project not in current_user.profile.liked_projects.all():
+            current_user.profile.liked_projects.add(project)
+            project.Likes += 1
+            project.save()
     elif task == "Unlike":
-        current_user.profile.liked_projects.remove(project)
-        project.Likes -= 1
-        project.save()
+        if project in current_user.profile.liked_projects.all():
+            current_user.profile.liked_projects.remove(project)
+            project.Likes -= 1
+            project.save()
     elif task == "Apply":
         apply_on_project(request, project)
     elif task == "Withdraw":
