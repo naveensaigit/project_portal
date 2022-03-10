@@ -165,7 +165,7 @@ def apply_on_project(request, project):
 
 def withdraw_from_project(request, project):
     current_user = request.user
-    delete_notification(current_user, project, "Withdrawn")
+    delete_notification(current_user, project)
     send_mail_notification('Project Application Withdrawn', f"Your request for application on {project} Project has been withdrawn", settings.EMAIL_HOST_USER, [current_user.email,])
     send_mail_notification('Project Application Withdrawn', f"{current_user} withdrew his application for {project} Project", settings.EMAIL_HOST_USER, [project.FloatedBy.email,])
     ApplyRequest.objects.all().filter(User = current_user).filter(Project = project).delete()
@@ -175,8 +175,8 @@ def leave_project(request, project):
     if project.FloatedBy != current_user:
         project.AlreadyApplied.remove(current_user)
         ApplyRequest.objects.all().filter(User = current_user).delete()
-        delete_notification(current_user, project, "Removed")
-        send_mail_notification('Project Left', f"Your left the {project} Project", settings.EMAIL_HOST_USER, [current_user.email,])
+        delete_notification(current_user, project)
+        send_mail_notification('Project Left', f"You left the {project} Project", settings.EMAIL_HOST_USER, [current_user.email,])
         send_mail_notification('Project Left', f"{current_user} left the {project} Project", settings.EMAIL_HOST_USER, [project.FloatedBy.email,])
         messages.success(request,f"{project} is dropped successfully.")
     else:
@@ -196,7 +196,8 @@ def apply_request_task(apply_request,task):
         apply_request.Status = newStatus
         if newStatus == "Accepted":
             apply_request.Project.AlreadyApplied.add(apply_request.User)
-        delete_notification(apply_request.User, apply_request.Project, "accepted")
+        delete_notification(apply_request.User, apply_request.Project)
+        send_mail_notification(f'Project Application {newStatus}', f"Your application for {apply_request.Project} Project has been {newStatus}", settings.EMAIL_HOST_USER, [apply_request.User.email,])
         apply_request.save()
 
 def do_task(request):

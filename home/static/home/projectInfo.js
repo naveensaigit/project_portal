@@ -42,7 +42,7 @@ $("#applyQuestion").on("input", function(){
     $("#applyModal > div > div > div.modal-footer > a").attr("href", link);
 });
 
-$("#viewAnswer").click(function () {
+$(".viewAnswer").click(function () {
     var user_profile_id = $(this).attr('user_profile_id');
     var application_id = $(this).attr('application_id');
 

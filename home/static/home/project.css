@@ -297,7 +297,7 @@ button{
 .rejectall, .goodReject{
   margin-left: 2.16%;
 }
-#viewAnswer{
+.viewAnswer{
   border: 2px solid #19258C !important;
   border-radius: 5px;
   background-color: white;
