@@ -25,12 +25,13 @@
 	<br>
 	<div style="width:80%;">
 		<div class=" py-3 ">
-			<h2>Create New Project</h2>
+            <h2 style="color: #022160; text-align: center; margin-left: 18%; font-family: Public Sans; font-style: normal;">Create New Project</h2>
 		</div>
-		<div>
-			<form method="POST" enctype="multipart/form-data">
+        <br>
+		<div style="font-family: Public Sans; font-style: normal;">
+			<form method="POST" enctype="multipart/form-data" >
 				{% csrf_token %}
-				<fieldset>
+				<fieldset style="color: #19258C; width: 100%;">
 					{{ project_form|crispy }}
 				</fieldset>
 				<div>
