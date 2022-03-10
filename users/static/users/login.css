@@ -21,9 +21,6 @@ a{
     display: flex;
 }
 
-#left, #right{
-    height: 100vh;
-}
 
 #left {
     padding-top: 40vh;
