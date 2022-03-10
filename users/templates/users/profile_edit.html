@@ -53,11 +53,11 @@
             <div class="col-lg-7">
                 <div class="card">
                     <div class="card-body" style="margin-left: 15%;">
-                        <div class="row mb-3">
-                            <form method="POST" enctype="multipart/form-data">
+                        <div class="row mb-3" style="background-color: #F6F4F4;">
+                            <form method="POST" enctype="multipart/form-data" style="color: #19258C;">
                                 {% csrf_token %}
                                 <fieldset>
-                                    <legend>Profile Info</legend>
+                                    <legend style="color: #19258C;">Profile Info</legend>
                                     {{ user_form|crispy }}
 									{{ profile_form|crispy }}
                                 </fieldset>
