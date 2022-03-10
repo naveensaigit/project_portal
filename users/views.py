@@ -46,13 +46,20 @@ def profile(request, user_id):
     user = User.objects.get(id=user_id)
     projects = get_user_projects(user)
     projects_id = get_user_projects_id(user)
-
+    var = False
+    if(user_id==request.user.id):
+        var= True
+    else:
+        var= False
+    if(var==False):
+        projects.pop()
     context = {
         'title': 'Profile',
         'projects': projects,
         'projects_id': projects_id,
         'notifications': Notification.objects.filter(user=request.user).order_by('-time'),
-        'profile_user': user
+        'profile_user': user,
+        'user_is_author' : var
     }
 
     return render(request, 'users/profile.html', context)

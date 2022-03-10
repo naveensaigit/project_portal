@@ -118,17 +118,19 @@
         <div class="vertical-line">
           <div class="line"></div>
         </div>
-        <div class="projectButton" id='projects3button' onclick="toggleVisibility('projects3')">
-          <div class="projectButtonTitle">
-            PROJECTS STARRED:
+        {% if user_is_author %}
+          <div class="projectButton" id='projects3button' onclick="toggleVisibility('projects3')">
+            <div class="projectButtonTitle">
+              PROJECTS STARRED:
+            </div>
+            <div class="projectsNumbers">
+              {{ projects_id.4|length }}
+            </div>
           </div>
-          <div class="projectsNumbers">
-            {{ projects_id.4|length }}
+          <div class="vertical-line">
+            <div class="line"></div>
           </div>
-        </div>
-        <div class="vertical-line">
-          <div class="line"></div>
-        </div>
+        {% endif %}
       </div>
       <div id="Projects">
         {% for projects_category in projects %}
