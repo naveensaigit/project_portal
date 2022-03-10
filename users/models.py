@@ -24,7 +24,7 @@ BRANCH_CHOICES = (
 
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    image = models.ImageField(default = 'default.jpg', upload_to='profile_pics', blank=True)
+    image = models.ImageField(default = 'default.jpg', upload_to='profile_pics', blank=True, validators=[FileExtensionValidator(allowed_extensions=['png, jpg, jpeg'])])
     rollno = models.CharField(max_length=10)
     year = models.CharField(max_length=30, choices = YEAR_CHOICES)
     branch = models.CharField(max_length=30, choices = BRANCH_CHOICES)
