@@ -57,6 +57,8 @@ $(document).ready(function () {
             }
         })
     });
+    // $('.treeInput').prop('checked', true);
+    // $('.collapsable > ul').hide();
 });
 
 $('#id_OpenedFor_0').on('click', function () {
@@ -105,7 +107,6 @@ $('#div_id_OpenedFor > div > strong:nth-child(17)').on('click', function () {
     toggleCheckBoxes('4');
 });
 
-$('.TreeInput').prop('checked', true);
 function checkParents($li, state) {
     var $siblings = $li.siblings();
     var $parent = $li.parent().closest('li');
@@ -120,14 +121,27 @@ function checkParents($li, state) {
         checkParents($parent, state);
 }
 
-$('.TreeInput').change(function () {
+$('.treeInput').change(function () {
     var $li = $(this).closest('li');
     var state = $(this).prop('checked');
 
     // check all children
-    $li.find('.TreeInput').prop('checked', state);
+    $li.find('.treeInput').prop('checked', state);
 
     // check all parents, as applicable
     if ($li.parents('li').length)
         checkParents($li, state);
 });
+
+// $('.collapsable').on('click', function(){
+//     var $ul = $(this).children('ul').first();
+//     console.log();
+//     if($ul.css('display') == 'none'){
+//         console.log("Showing");
+//         $ul.show();
+//     }
+//     else{
+//         console.log("Hide");
+//         $ul.hide();
+//     }
+// });

@@ -241,7 +241,8 @@
 ul {
     list-style: none;
 }
-#id_OpenedFor > ul{
+
+#id_OpenedFor>ul {
     border: 1px solid #aaa;
     background-color: white;
     border-radius: 4px;
@@ -250,9 +251,14 @@ ul {
 li {
     margin-left: -20px;
 }
-label{
+
+label {
     width: 100%;
 }
-.TreeInput{
+
+.treeInput {
     width: 30px;
+}
+text{
+    margin-right: 5px;
 }
