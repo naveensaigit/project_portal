@@ -602,9 +602,15 @@ button {
 button:focus:not(:focus-visible) {
     outline: 0;
 }
+button
+{
+    margin: 0;
+    font-family: inherit;
+    font-size: inherit;
+    line-height: inherit;
+}
 
 input,
-button,
 select,
 optgroup,
 textarea {
@@ -612,6 +618,7 @@ textarea {
     font-family: inherit;
     font-size: inherit;
     line-height: inherit;
+    width: 90%;
 }
 
 button,
@@ -630,6 +637,7 @@ select {
 
 select {
     word-wrap: normal;
+        width: 30%;
 }
 
 button,
@@ -667,8 +675,8 @@ textarea {
 
 fieldset {
     min-width: 0;
-    padding: 0;
-    margin: 0;
+    padding: 5%;
+    margin: 5%;
     border: 0;
 }
 

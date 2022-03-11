@@ -85,7 +85,7 @@ def profile_edit(request):
 
             messages.success(request, "Your profile has been updated!")
             if request.GET.get('firstLogin') == 'True':
-                return redirect('')
+                return redirect('/')
             return redirect('/profile/'+ str(request.user.id))
         else:
             messages.error(request, 'Please correct the error below.')

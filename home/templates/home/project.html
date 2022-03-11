@@ -171,18 +171,7 @@
   <div class="userView">
     <div class="left-container">
       <br>
-      <div class="update-delete">
-        {% if project.FloatedBy == user %}
 
-        <br>
-        <a href="/project/update/?project_id={{project.id}}"><button class="btn btn-success btn-icon-split" style="display: inline-block;width: 130px; padding-top: 0px; padding-bottom: 0px;">UPDATE PROJECT</button></a>
-        <a href="/project/delete/?project_id={{project.id}}" class="btn btn-danger btn-circle" style="height: 48px;
-    padding-top: 12px;">
-          <i class="fas fa-trash" style="color:white;"></i>
-        </a>
-        {% endif %}
-
-      </div>
       <div id="tagsContainer" class="vertical-center" >
         <div class="tagsTitle">Tags:</div>
         {% for tag in project.Tags.all %}
@@ -225,6 +214,15 @@
           {{ project.SelectionCriteria }}
         </div>
       </div>
+      <div class="update-delete">
+        {% if project.FloatedBy == user %}
+
+        <br>
+        <a href="/project/update/?project_id={{project.id}}"><button class="btn btn-success btn-icon-split" style="display: inline-block;width: 130px ;height:35px; padding-top: 0px; padding-bottom: 0px;"><b>UPDATE</b></button></a>
+        <a href="/project/delete/?project_id={{project.id}}"><button class="btn btn-danger btn-icon-split" style="display: inline-block;width: 130px; height:35px;padding-top: 0px; padding-bottom: 0px;"><b>DELETE</b></button></a>
+        {% endif %}
+<!-- /project/delete/?project_id={{project.id}} -->
+      </div>
       {% if project.id not in projects_id.0 %}
       <div id="applyNow" projectId={{project.id}}>
         {% if project.id not in projects_id.2 and project.id not in projects_id.3 %}
@@ -266,8 +264,8 @@
             Mentors:
           </div>
           <div class="detailContent">
-            {% for users in project.Mentors.all %} {{ users }} {% endfor %}
-            {% if project.Mentors.all.count == 0 %} No one {% endif %}
+            {{project.FloatedBy}} {% for users in project.Mentors.all %} {{ users }} {% endfor %}
+            <!-- {% if project.Mentors.all.count == 0 %} No one {% endif %} -->
           </div>
         </div>
         <div class="detail">
