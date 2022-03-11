@@ -28,7 +28,7 @@
             <h2 style="color: #022160; text-align: center; margin-left: 18%; font-family: Public Sans; font-style: normal;"><b>Create New Project</b></h2>
 		</div>
         <br>
-		<div style="font-family: Public Sans; font-style: normal;">
+		<div style="color: #19258C; font-family: Public Sans; font-style: normal; justify-content: center;">
 			<form method="POST" enctype="multipart/form-data" >
 				{% csrf_token %}
 				<div class="fieldWrapper">
@@ -44,6 +44,7 @@
 				<div class="fieldWrapper">
 					{{ project_form.Description.errors }}
 					{{ project_form.Description.label_tag }}
+					<br>
 					{{ project_form.Description }}
 				</div>
 				<div class="fieldWrapper">
@@ -146,6 +147,7 @@
 				<div class="fieldWrapper">
 					{{ project_form.PreRequisite.errors }}
 					{{ project_form.PreRequisite.label_tag }}
+					<br>
 					{{ project_form.PreRequisite }}
 				</div>
 				<div class="fieldWrapper">
@@ -161,11 +163,13 @@
 				<div class="fieldWrapper">
 					{{ project_form.SelectionCriteria.errors }}
 					{{ project_form.SelectionCriteria.label_tag }}
+					<br>
 					{{ project_form.SelectionCriteria }}
 				</div>
 				<div class="fieldWrapper">
 					{{ project_form.Question.errors }}
 					{{ project_form.Question.label_tag }}
+					<br>
 					{{ project_form.Question }}
 				</div>
 				{% comment %} <fieldset style="color: #19258C; width: 100%;">

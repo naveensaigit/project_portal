@@ -612,6 +612,7 @@ textarea {
     font-family: inherit;
     font-size: inherit;
     line-height: inherit;
+    width: 90%;
 }
 
 button,
@@ -630,6 +631,7 @@ select {
 
 select {
     word-wrap: normal;
+        width: 20%;
 }
 
 button,
