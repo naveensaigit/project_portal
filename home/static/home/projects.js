@@ -109,7 +109,12 @@ $('.TreeInput').prop('checked', true);
 function checkParents($li, state) {
     var $siblings = $li.siblings();
     var $parent = $li.parent().closest('li');
-    state = state && $siblings.children('label').find('input').prop('checked');
+
+    var siblingStates =  $siblings.children('label').find('input');
+    for (var i = 0;i<siblingStates.length;i++){
+        state = state && siblingStates[i]['checked'];
+    }
+
     $parent.children('label').find('input').prop('checked', state);
     if ($parent.parents('li').length)
         checkParents($parent, state);
