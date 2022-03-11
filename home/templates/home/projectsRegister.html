@@ -1,22 +1,19 @@
 {% extends 'home/base.html' %} {% load static %} {% load crispy_forms_tags %}
-
 {% block stylesheets %}
 <link rel="stylesheet" type="text/css" href="{% static 'home/style.css' %}">
 <link rel="stylesheet" type="text/css" href="{% static 'home/footer.css' %}">
 {% endblock stylesheets %}
-
 {% block customStylesheets %}
 <link rel="stylesheet" type="text/css" href="{% static 'home/projectsRegister.css' %}">
 {% endblock customStylesheets %}
-
 {% block content %}
 {% block messageBlock %}
 {% if messages %} {% for message in messages %}
 <div class="alert alert-warning alert-dismissible fade show" role="alert">
-    {{message}}
-    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-        <span aria-hidden="true">&times;</span>
-    </button>
+	{{message}}
+	<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+		<span aria-hidden="true">&times;</span>
+	</button>
 </div>
 {% endfor %} {% endif %}
 {% endblock messageBlock %}
@@ -25,11 +22,11 @@
 	<br>
 	<div style="width:80%;">
 		<div class=" py-3 ">
-            <h2 style="color: #022160; text-align: center; margin-left: 18%; font-family: Public Sans; font-style: normal;"><b>Create New Project</b></h2>
+			<h2 style="color: #022160; text-align: center; margin-left: 18%; font-family: Public Sans; font-style: normal;"><b>Create New Project</b></h2>
 		</div>
-        <br>
+		<br>
 		<div style="color: #19258C; font-family: Public Sans; font-style: normal; justify-content: center;">
-			<form method="POST" enctype="multipart/form-data" >
+			<form method="POST" enctype="multipart/form-data">
 				{% csrf_token %}
 				<div class="fieldWrapper">
 					{{ project_form.Title.errors }}
@@ -61,82 +58,81 @@
 					{{ project_form.OpenedFor.errors }}
 					{{ project_form.OpenedFor.label_tag }}
 					<div id="id_OpenedFor">
-						<div>
-							<label for="id_OpenedFor_0"><input type="checkbox" name="OpenedFor" value="All" id="id_OpenedFor_0">
-								All</label>
-						</div>
-						<div><label>CSE</label>
-							<div>
-								<label for="id_OpenedFor_1_0"><input type="checkbox" name="OpenedFor" value="CSE 1st Year" id="id_OpenedFor_1_0">
-									CSE 1st Year</label>
-							</div>
-							<div>
-								<label for="id_OpenedFor_1_1"><input type="checkbox" name="OpenedFor" value="CSE 2nd Year" id="id_OpenedFor_1_1">
-									CSE 2nd Year</label>
-							</div>
-							<div>
-								<label for="id_OpenedFor_1_2"><input type="checkbox" name="OpenedFor" value="CSE 3rd Year" id="id_OpenedFor_1_2">
-									CSE 3rd Year</label>
-							</div>
-							<div>
-								<label for="id_OpenedFor_1_3"><input type="checkbox" name="OpenedFor" value="CSE 4th Year" id="id_OpenedFor_1_3">
-									CSE 4th Year</label>
-							</div>
-						</div>
-						<div><label>DSE</label>
-							<div>
-								<label for="id_OpenedFor_2_0"><input type="checkbox" name="OpenedFor" value="DSE 1st Year" id="id_OpenedFor_2_0">
-									DSE 1st Year</label>
-							</div>
-							<div>
-								<label for="id_OpenedFor_2_1"><input type="checkbox" name="OpenedFor" value="DSE 2nd Year" id="id_OpenedFor_2_1">
-									DSE 2nd Year</label>
-							</div>
-							<div>
-								<label for="id_OpenedFor_2_2"><input type="checkbox" name="OpenedFor" value="DSE 3rd Year" id="id_OpenedFor_2_2">
-									DSE 3rd Year</label>
-							</div>
-							<div>
-								<label for="id_OpenedFor_2_3"><input type="checkbox" name="OpenedFor" value="DSE 4th Year" id="id_OpenedFor_2_3">
-									DSE 4th Year</label>
-							</div>
-						</div>
-						<div><label>CE</label>
-							<div>
-								<label for="id_OpenedFor_3_0"><input type="checkbox" name="OpenedFor" value="CE 1st Year" id="id_OpenedFor_3_0">
-									CE 1st Year</label>
-							</div>
-							<div>
-								<label for="id_OpenedFor_3_1"><input type="checkbox" name="OpenedFor" value="CE 2nd Year" id="id_OpenedFor_3_1">
-									CE 2nd Year</label>
-							</div>
-							<div>
-								<label for="id_OpenedFor_3_2"><input type="checkbox" name="OpenedFor" value="CE 3rd Year" id="id_OpenedFor_3_2">
-									CE 3rd Year</label>
-							</div>
-							<div>
-								<label for="id_OpenedFor_3_3"><input type="checkbox" name="OpenedFor" value="CE 4th Year" id="id_OpenedFor_3_3">
-									CE 4th Year</label>
-							</div>
-						</div>
-						<div><label>BioE</label>
-							<div>
-								<label for="id_OpenedFor_4_0"><input type="checkbox" name="OpenedFor" value="BioE 1st Year" id="id_OpenedFor_4_0">
-									BioE 1st Year</label>
-							</div>
-							<div>
-								<label for="id_OpenedFor_4_1"><input type="checkbox" name="OpenedFor" value="BioE 2nd Year" id="id_OpenedFor_4_1">
-									BioE 2nd Year</label>
-							</div>
-							<div>
-								<label for="id_OpenedFor_4_2"><input type="checkbox" name="OpenedFor" value="BioE 3rd Year" id="id_OpenedFor_4_2">
-									BioE 3rd Year</label>
-							</div>
-							<div>
-								<label for="id_OpenedFor_4_3"><input type="checkbox" name="OpenedFor" value="BioE 4th Year" id="id_OpenedFor_4_3">
-									BioE 4th Year</label>
-							</div>
-						</div>
+						<ul>
+							<li>
+								<label for="id_OpenedFor_0"><input class="TreeInput" type="checkbox" name="OpenedFor" value="All" id="id_OpenedFor_0">All</label>
+								<ul>
+									<li>
+										<label><input class="TreeInput" type="checkbox" /> CSE</label>
+										<ul>
+											<li>
+												<label for="id_OpenedFor_1_0"><input class="TreeInput" type="checkbox" name="OpenedFor" value="CSE 1st Year" id="id_OpenedFor_1_0"/>1st Year</label>
+											</li>
+											<li>
+												<label for="id_OpenedFor_1_1"><input class="TreeInput" type="checkbox" name="OpenedFor" value="CSE 2nd Year" id="id_OpenedFor_1_1"/>2nd Year</label>
+											</li>
+											<li>
+												<label for="id_OpenedFor_1_2"><input class="TreeInput" type="checkbox" name="OpenedFor" value="CSE 3rd Year" id="id_OpenedFor_1_2"/>3rd Year</label>
+											</li>
+											<li>
+												<label for="id_OpenedFor_1_3"><input class="TreeInput" type="checkbox" name="OpenedFor" value="CSE 4th Year" id="id_OpenedFor_1_3"/>4th Year</label>
+											</li>
+										</ul>
+									</li>
+									<li>
+										<label><input class="TreeInput" type="checkbox" /> DSE</label>
+										<ul>
+											<li>
+												<label for="id_OpenedFor_2_0"><input class="TreeInput" type="checkbox" name="OpenedFor" value="DSE 1st Year" id="id_OpenedFor_2_0"/>1st Year</label>
+											</li>
+											<li>
+												<label for="id_OpenedFor_2_1"><input class="TreeInput" type="checkbox" name="OpenedFor" value="DSE 2nd Year" id="id_OpenedFor_2_1"/>2nd Year</label>
+											</li>
+											<li>
+												<label for="id_OpenedFor_2_2"><input class="TreeInput" type="checkbox" name="OpenedFor" value="DSE 3rd Year" id="id_OpenedFor_2_2"/>3rd Year</label>
+											</li>
+											<li>
+												<label for="id_OpenedFor_2_3"><input class="TreeInput" type="checkbox" name="OpenedFor" value="DSE 4th Year" id="id_OpenedFor_2_3"/>4th Year</label>
+											</li>
+										</ul>
+									</li>
+									<li>
+										<label><input class="TreeInput" type="checkbox" /> CE</label>
+										<ul>
+											<li>
+												<label for="id_OpenedFor_3_0"><input class="TreeInput" type="checkbox" name="OpenedFor" value="CE 1st Year" id="id_OpenedFor_3_0"/>1st Year</label>
+											</li>
+											<li>
+												<label for="id_OpenedFor_3_1"><input class="TreeInput" type="checkbox" name="OpenedFor" value="CE 2nd Year" id="id_OpenedFor_3_1"/>2nd Year</label>
+											</li>
+											<li>
+												<label for="id_OpenedFor_3_2"><input class="TreeInput" type="checkbox" name="OpenedFor" value="CE 3rd Year" id="id_OpenedFor_3_2"/>3rd Year</label>
+											</li>
+											<li>
+												<label for="id_OpenedFor_3_3"><input class="TreeInput" type="checkbox" name="OpenedFor" value="CE 4th Year" id="id_OpenedFor_3_3"/>4th Year</label>
+											</li>
+										</ul>
+									</li>
+									<li>
+										<label><input class="TreeInput" type="checkbox" /> BioE</label>
+										<ul>
+											<li>
+												<label for="id_OpenedFor_4_0"><input class="TreeInput" type="checkbox" name="OpenedFor" value="BioE 1st Year" id="id_OpenedFor_4_0"/>1st Year</label>
+											</li>
+											<li>
+												<label for="id_OpenedFor_4_1"><input class="TreeInput" type="checkbox" name="OpenedFor" value="BioE 2nd Year" id="id_OpenedFor_4_1"/>2nd Year</label>
+											</li>
+											<li>
+												<label for="id_OpenedFor_4_2"><input class="TreeInput" type="checkbox" name="OpenedFor" value="BioE 3rd Year" id="id_OpenedFor_4_2"/>3rd Year</label>
+											</li>
+											<li>
+												<label for="id_OpenedFor_4_3"><input class="TreeInput" type="checkbox" name="OpenedFor" value="BioE 4th Year" id="id_OpenedFor_4_3"/>4th Year</label>
+											</li>
+										</ul>
+									</li>
+								</ul>
+							</li>
+						</ul>
 					</div>
 				</div>
 				<div class="fieldWrapper">
@@ -185,7 +181,6 @@
 	<br>
 </div>
 {% endblock content %}
-
 {% block customScripts %}
-	<script src="{% static 'home/projects.js' %}"></script>
+<script src="{% static 'home/projects.js' %}"></script>
 {% endblock customScripts %}

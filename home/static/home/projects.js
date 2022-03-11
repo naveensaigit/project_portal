@@ -104,3 +104,25 @@ $('#div_id_OpenedFor > div > strong:nth-child(12)').on('click', function () {
 $('#div_id_OpenedFor > div > strong:nth-child(17)').on('click', function () {
     toggleCheckBoxes('4');
 });
+
+$('.TreeInput').prop('checked', true);
+function checkParents($li, state) {
+    var $siblings = $li.siblings();
+    var $parent = $li.parent().closest('li');
+    state = state && $siblings.children('label').find('input').prop('checked');
+    $parent.children('label').find('input').prop('checked', state);
+    if ($parent.parents('li').length)
+        checkParents($parent, state);
+}
+
+$('.TreeInput').change(function () {
+    var $li = $(this).closest('li');
+    var state = $(this).prop('checked');
+
+    // check all children
+    $li.find('.TreeInput').prop('checked', state);
+
+    // check all parents, as applicable
+    if ($li.parents('li').length)
+        checkParents($li, state);
+});

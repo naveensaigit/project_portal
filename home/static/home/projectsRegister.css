@@ -237,3 +237,22 @@
     -webkit-line-clamp: 3;
     -webkit-box-orient: vertical;
 }
+
+ul {
+    list-style: none;
+}
+#id_OpenedFor > ul{
+    border: 1px solid #aaa;
+    background-color: white;
+    border-radius: 4px;
+}
+
+li {
+    margin-left: -20px;
+}
+label{
+    width: 100%;
+}
+.TreeInput{
+    width: 30px;
+}

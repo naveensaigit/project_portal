@@ -1,6 +1,5 @@
-@color: #f36;
 body {
-  color: @color;
+  color: #f36;
   background: #171717;
 }
 ul {

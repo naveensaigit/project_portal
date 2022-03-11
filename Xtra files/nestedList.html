@@ -1,18 +1,92 @@
-<ul>
-	<li><label><input type="checkbox" /> All Accounts</label>
-		<ul class="accounts">
-			<li><label><input type="checkbox" /> Alice</label>
-				<ul class="subaccounts">
-					<li><label><input type="checkbox" /> Foo</label></li>
-					<li><label><input type="checkbox" /> Bar</label></li>
-				</ul>
-			</li>
-			<li><label><input type="checkbox" /> Bob</label>
-				<ul class="subaccounts">
-					<li><label><input type="checkbox" /> Baz</label></li>
-					<li><label><input type="checkbox" /> Qux</label></li>
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Document</title>
+		<link rel="stylesheet" href="nestedList.css">
+		<script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+	</head>
+
+	<body>
+		<ul>
+			<li>
+				<label for="id_OpenedFor_0"><input class="TreeInput" type="checkbox" name="OpenedFor" value="All" id="id_OpenedFor_0">All</label>
+				<ul>
+					<li>
+						<label><input class="TreeInput" type="checkbox" /> CSE</label>
+						<ul>
+							<li>
+								<label for="id_OpenedFor_1_0"><input class="TreeInput" type="checkbox" name="OpenedFor" value="CSE 1st Year" id="id_OpenedFor_1_0">1st Year</label>
+							</li> 
+							<li>
+								<label for="id_OpenedFor_1_1"><input class="TreeInput" type="checkbox" name="OpenedFor" value="CSE 2nd Year" id="id_OpenedFor_1_1">2nd Year</label>
+							</li> 
+							<li>
+								<label for="id_OpenedFor_1_2"><input class="TreeInput" type="checkbox" name="OpenedFor" value="CSE 3rd Year" id="id_OpenedFor_1_2">3rd Year</label>
+							</li> 
+							<li>
+								<label for="id_OpenedFor_1_3"><input class="TreeInput" type="checkbox" name="OpenedFor" value="CSE 4th Year" id="id_OpenedFor_1_3">4th Year</label>
+							</li> 
+						</ul>
+					</li>
+					<li>
+						<label><input class="TreeInput" type="checkbox" /> DSE</label>
+						<ul>
+							<li>
+								<label for="id_OpenedFor_2_0"><input class="TreeInput" type="checkbox" name="OpenedFor" value="DSE 1st Year" id="id_OpenedFor_2_0">1st Year</label>
+							</li> 
+							<li>
+								<label for="id_OpenedFor_2_1"><input class="TreeInput" type="checkbox" name="OpenedFor" value="DSE 2nd Year" id="id_OpenedFor_2_1">2nd Year</label>
+							</li> 
+							<li>
+								<label for="id_OpenedFor_2_2"><input class="TreeInput" type="checkbox" name="OpenedFor" value="DSE 3rd Year" id="id_OpenedFor_2_2">3rd Year</label>
+							</li> 
+							<li>
+								<label for="id_OpenedFor_2_3"><input class="TreeInput" type="checkbox" name="OpenedFor" value="DSE 4th Year" id="id_OpenedFor_2_3">4th Year</label>
+							</li> 
+						</ul>
+					</li>
+					<li>
+						<label><input class="TreeInput" type="checkbox" /> CE</label>
+						<ul>
+							<li>
+								<label for="id_OpenedFor_3_0"><input class="TreeInput" type="checkbox" name="OpenedFor" value="CE 1st Year" id="id_OpenedFor_3_0">1st Year</label>
+							</li> 
+							<li>
+								<label for="id_OpenedFor_3_1"><input class="TreeInput" type="checkbox" name="OpenedFor" value="CE 2nd Year" id="id_OpenedFor_3_1">2nd Year</label>
+							</li> 
+							<li>
+								<label for="id_OpenedFor_3_2"><input class="TreeInput" type="checkbox" name="OpenedFor" value="CE 3rd Year" id="id_OpenedFor_3_2">3rd Year</label>
+							</li> 
+							<li>
+								<label for="id_OpenedFor_3_3"><input class="TreeInput" type="checkbox" name="OpenedFor" value="CE 4th Year" id="id_OpenedFor_3_3">4th Year</label>
+							</li> 
+						</ul>
+					</li>
+					<li>
+						<label><input class="TreeInput" type="checkbox" /> BioE</label>
+						<ul>
+							<li>
+								<label for="id_OpenedFor_4_0"><input class="TreeInput" type="checkbox" name="OpenedFor" value="BioE 1st Year" id="id_OpenedFor_4_0">1st Year</label>
+							</li> 
+							<li>
+								<label for="id_OpenedFor_4_1"><input class="TreeInput" type="checkbox" name="OpenedFor" value="BioE 2nd Year" id="id_OpenedFor_4_1">2nd Year</label>
+							</li> 
+							<li>
+								<label for="id_OpenedFor_4_2"><input class="TreeInput" type="checkbox" name="OpenedFor" value="BioE 3rd Year" id="id_OpenedFor_4_2">3rd Year</label>
+							</li> 
+							<li>
+								<label for="id_OpenedFor_4_3"><input class="TreeInput" type="checkbox" name="OpenedFor" value="BioE 4th Year" id="id_OpenedFor_4_3">4th Year</label>
+							</li> 
+						</ul>
+					</li>
 				</ul>
 			</li>
 		</ul>
-	</li>
-</ul>
+		<script src="nestedList.js"></script>
+	</body>
+
+</html>
