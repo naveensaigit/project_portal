@@ -263,11 +263,11 @@
         </div>
         <div class="detail">
           <div class="detailTitle">
-            Mentors:
+            Mentors: 
           </div>
           <div class="detailContent">
-            {% for users in project.Mentors.all %} {{ users }} {% endfor %}
-            {% if project.Mentors.all.count == 0 %} No one {% endif %}
+            {{project.FloatedBy}} {% for users in project.Mentors.all %} {{ users }} {% endfor %}
+            <!-- {% if project.Mentors.all.count == 0 %} No one {% endif %} -->
           </div>
         </div>
         <div class="detail">
