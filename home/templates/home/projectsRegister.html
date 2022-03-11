@@ -31,9 +31,146 @@
 		<div style="font-family: Public Sans; font-style: normal;">
 			<form method="POST" enctype="multipart/form-data" >
 				{% csrf_token %}
-				<fieldset style="color: #19258C; width: 100%;">
+				<div class="fieldWrapper">
+					{{ project_form.Title.errors }}
+					{{ project_form.Title.label_tag }}
+					{{ project_form.Title }}
+				</div>
+				<div class="fieldWrapper">
+					{{ project_form.Image.errors }}
+					{{ project_form.Image.label_tag }}
+					{{ project_form.Image }}
+				</div>
+				<div class="fieldWrapper">
+					{{ project_form.Description.errors }}
+					{{ project_form.Description.label_tag }}
+					{{ project_form.Description }}
+				</div>
+				<div class="fieldWrapper">
+					{{ project_form.Mentors.errors }}
+					{{ project_form.Mentors.label_tag }}
+					{{ project_form.Mentors }}
+				</div>
+				<div class="fieldWrapper">
+					{{ project_form.Status.errors }}
+					{{ project_form.Status.label_tag }}
+					{{ project_form.Status }}
+				</div>
+				<div class="fieldWrapper">
+					{{ project_form.OpenedFor.errors }}
+					{{ project_form.OpenedFor.label_tag }}
+					<div id="id_OpenedFor">
+						<div>
+							<label for="id_OpenedFor_0"><input type="checkbox" name="OpenedFor" value="All" id="id_OpenedFor_0">
+								All</label>
+						</div>
+						<div><label>CSE</label>
+							<div>
+								<label for="id_OpenedFor_1_0"><input type="checkbox" name="OpenedFor" value="CSE 1st Year" id="id_OpenedFor_1_0">
+									CSE 1st Year</label>
+							</div>
+							<div>
+								<label for="id_OpenedFor_1_1"><input type="checkbox" name="OpenedFor" value="CSE 2nd Year" id="id_OpenedFor_1_1">
+									CSE 2nd Year</label>
+							</div>
+							<div>
+								<label for="id_OpenedFor_1_2"><input type="checkbox" name="OpenedFor" value="CSE 3rd Year" id="id_OpenedFor_1_2">
+									CSE 3rd Year</label>
+							</div>
+							<div>
+								<label for="id_OpenedFor_1_3"><input type="checkbox" name="OpenedFor" value="CSE 4th Year" id="id_OpenedFor_1_3">
+									CSE 4th Year</label>
+							</div>
+						</div>
+						<div><label>DSE</label>
+							<div>
+								<label for="id_OpenedFor_2_0"><input type="checkbox" name="OpenedFor" value="DSE 1st Year" id="id_OpenedFor_2_0">
+									DSE 1st Year</label>
+							</div>
+							<div>
+								<label for="id_OpenedFor_2_1"><input type="checkbox" name="OpenedFor" value="DSE 2nd Year" id="id_OpenedFor_2_1">
+									DSE 2nd Year</label>
+							</div>
+							<div>
+								<label for="id_OpenedFor_2_2"><input type="checkbox" name="OpenedFor" value="DSE 3rd Year" id="id_OpenedFor_2_2">
+									DSE 3rd Year</label>
+							</div>
+							<div>
+								<label for="id_OpenedFor_2_3"><input type="checkbox" name="OpenedFor" value="DSE 4th Year" id="id_OpenedFor_2_3">
+									DSE 4th Year</label>
+							</div>
+						</div>
+						<div><label>CE</label>
+							<div>
+								<label for="id_OpenedFor_3_0"><input type="checkbox" name="OpenedFor" value="CE 1st Year" id="id_OpenedFor_3_0">
+									CE 1st Year</label>
+							</div>
+							<div>
+								<label for="id_OpenedFor_3_1"><input type="checkbox" name="OpenedFor" value="CE 2nd Year" id="id_OpenedFor_3_1">
+									CE 2nd Year</label>
+							</div>
+							<div>
+								<label for="id_OpenedFor_3_2"><input type="checkbox" name="OpenedFor" value="CE 3rd Year" id="id_OpenedFor_3_2">
+									CE 3rd Year</label>
+							</div>
+							<div>
+								<label for="id_OpenedFor_3_3"><input type="checkbox" name="OpenedFor" value="CE 4th Year" id="id_OpenedFor_3_3">
+									CE 4th Year</label>
+							</div>
+						</div>
+						<div><label>BioE</label>
+							<div>
+								<label for="id_OpenedFor_4_0"><input type="checkbox" name="OpenedFor" value="BioE 1st Year" id="id_OpenedFor_4_0">
+									BioE 1st Year</label>
+							</div>
+							<div>
+								<label for="id_OpenedFor_4_1"><input type="checkbox" name="OpenedFor" value="BioE 2nd Year" id="id_OpenedFor_4_1">
+									BioE 2nd Year</label>
+							</div>
+							<div>
+								<label for="id_OpenedFor_4_2"><input type="checkbox" name="OpenedFor" value="BioE 3rd Year" id="id_OpenedFor_4_2">
+									BioE 3rd Year</label>
+							</div>
+							<div>
+								<label for="id_OpenedFor_4_3"><input type="checkbox" name="OpenedFor" value="BioE 4th Year" id="id_OpenedFor_4_3">
+									BioE 4th Year</label>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="fieldWrapper">
+					{{ project_form.Difficulty.errors }}
+					{{ project_form.Difficulty.label_tag }}
+					{{ project_form.Difficulty }}
+				</div>
+				<div class="fieldWrapper">
+					{{ project_form.PreRequisite.errors }}
+					{{ project_form.PreRequisite.label_tag }}
+					{{ project_form.PreRequisite }}
+				</div>
+				<div class="fieldWrapper">
+					{{ project_form.Tags.errors }}
+					{{ project_form.Tags.label_tag }}
+					{{ project_form.Tags }}
+				</div>
+				<div class="fieldWrapper">
+					{{ project_form.Duration.errors }}
+					{{ project_form.Duration.label_tag }}
+					{{ project_form.Duration }}
+				</div>
+				<div class="fieldWrapper">
+					{{ project_form.SelectionCriteria.errors }}
+					{{ project_form.SelectionCriteria.label_tag }}
+					{{ project_form.SelectionCriteria }}
+				</div>
+				<div class="fieldWrapper">
+					{{ project_form.Question.errors }}
+					{{ project_form.Question.label_tag }}
+					{{ project_form.Question }}
+				</div>
+				{% comment %} <fieldset style="color: #19258C; width: 100%;">
 					{{ project_form|crispy }}
-				</fieldset>
+				</fieldset> {% endcomment %}
 				<div>
 					<button class="btn btn-primary btn-user btn-block" type="submit" style="background: #022160; color: white; margin-left: 2%; width: 120%;">Create</button>
 				</div>
