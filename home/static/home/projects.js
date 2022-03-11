@@ -40,7 +40,7 @@ $(document).ready(function () {
             url: `/tag/new/?newTagTitle=${newTagTitle}`,
             success: function (response) {
                 data = $('#id_Tags').val();
-                
+
                 if (response.status == "ok") {
                     var newOption = new Option(response.tag_title, response.tag_id, false, false);
                     $('#id_Tags').append(newOption);
@@ -59,24 +59,48 @@ $(document).ready(function () {
     });
 });
 
-$('#id_OpenedFor_0').on('click', function(){
+$('#id_OpenedFor_0').on('click', function () {
     var pre = "id_OpenedFor_";
-    var mid = ['1_','2_','3_','4_'];
-    var end = ['0','1','2','3'];
-    if(this.checked){
-        for(var i = 0;i<mid.length;i++){
-            for(var j = 0;j<end.length;j++){
-                var div = document.getElementById(pre+mid[i]+end[j]);
+    var mid = ['1_', '2_', '3_', '4_'];
+    var end = ['0', '1', '2', '3'];
+    if (this.checked) {
+        for (var i = 0; i < mid.length; i++) {
+            for (var j = 0; j < end.length; j++) {
+                var div = document.getElementById(pre + mid[i] + end[j]);
                 div.checked = true;
             }
         }
     }
-    else{
-        for(var i = 0;i<mid.length;i++){
-            for(var j = 0;j<end.length;j++){
-                var div = document.getElementById(pre+mid[i]+end[j]);
+    else {
+        for (var i = 0; i < mid.length; i++) {
+            for (var j = 0; j < end.length; j++) {
+                var div = document.getElementById(pre + mid[i] + end[j]);
                 div.checked = false;
             }
         }
     }
+});
+
+function toggleCheckBoxes(branchCode){
+    var state = false;
+    var branch = ['#id_OpenedFor_'+branchCode+'_0', '#id_OpenedFor_'+branchCode+'_1', '#id_OpenedFor_'+branchCode+'_2', '#id_OpenedFor_'+branchCode+'_3']
+    for (var i = 0; i < branch.length; i++) {
+        if ($(branch[i]).is(':checked')==false)
+            state = true;
+    }
+    for (var i = 0; i < branch.length; i++) {
+        $(branch[i]).prop('checked', state);
+    }
+}
+$('#div_id_OpenedFor > div > strong:nth-child(2)').on('click', function () {
+    toggleCheckBoxes('1');
+});
+$('#div_id_OpenedFor > div > strong:nth-child(7)').on('click', function () {
+    toggleCheckBoxes('2');
+});
+$('#div_id_OpenedFor > div > strong:nth-child(12)').on('click', function () {
+    toggleCheckBoxes('3');
+});
+$('#div_id_OpenedFor > div > strong:nth-child(17)').on('click', function () {
+    toggleCheckBoxes('4');
 });
