@@ -15,89 +15,23 @@
 <div class="container">
     <div class="main-body">
         <div class="row">
-            <div class="col-lg-4">
-                <div class="card">
-                    <div class="card-body" style=" background-color: #F6F4F4; color: #022160; font-family: Public Sans; font-style: normal;">
-                        <div class="d-flex flex-column align-items-center text-center" style="margin: 7%;">
-                            <img src="{{ user.profile.image.url }}" alt="" style="height:100px;height:100px">
-                            <div class="mt-3">
-                                <h4 style="color: #022160; font-family: Public Sans; font-style: normal;"><b>{{ user.first_name }} {{ user.last_name }}</b></h4>
-                                <p class="text-secondary mb-1" style="color: #022160 !important; font-family: Public Sans; font-style: normal;">{{ user.profile.year }} Year</p>
-                                <p class="text-muted font-size-sm" style="color: #022160 !important; font-family: Public Sans; font-style: normal;">{{ user.profile.branch }}</p>
-                            </div>
-                        </div>
-                        <hr class="my-4" style="color: #022160; margin-bottom: 0rem !important; margin-top: 1.5rem !important;">
-                        <ul class="list-group list-group-flush">
-                            <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
-                                <h6 style="margin-left:2px; " class="mb-0"><svg xmlns="http://www.w3.org/2000/svg" width="24" color="#022160" height="24" viewBox="0 0 24 24"><path d="M4.98 3.5c0 1.381-1.11 2.5-2.48 2.5s-2.48-1.119-2.48-2.5c0-1.38 1.11-2.5 2.48-2.5s2.48 1.12 2.48 2.5zm.02 4.5h-5v16h5v-16zm7.982 0h-4.968v16h4.969v-8.399c0-4.67 6.029-5.052 6.029 0v8.399h4.988v-10.131c0-7.88-8.922-7.593-11.018-3.714v-2.155z"/></svg> LinkedIn</h6>
-                                <span class="text-secondary">{% if user.profile.linked_in_link|length > 0%}
-                                  <a href={{user.profile.linked_in_link}} target="_blank">LinkedIn Profile</a>
-                                  {% else %}
-                                  NA
-                                  {% endif %}
-                                </span>
-                            </li>
-                            <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
-                                <h6 class="mb-0"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-globe me-2 icon-inline">
-										<circle cx="12" cy="12" r="10"></circle>
-										<line x1="2" y1="12" x2="22" y2="12"></line>
-										<path
-											d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z">
-										</path>
-									</svg>Portfolio</h6>
-                                <span class="text-secondary">{% if user.profile.portfolio_link|length > 0%}
-                                  <a href={{user.profile.portfolio_link}} target="_blank">Portfolio Page</a>
-                                  {% else %}
-                                  NA
-                                  {% endif %}
-                                </span>
-                            </li>
-                            <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
-                                <h6 class="mb-0"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-github me-2 icon-inline">
-										<path
-											d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22">
-										</path>
-									</svg>GitHub</h6>
-                                <span class="text-secondary">
-                                    {% if user.profile.github_link|length > 0%}
-                                      <a href={{user.profile.github_link}} target="_blank">GitHub Profile</a>
-                                      {% else %}
-                                      NA
-                                      {% endif %}
-                                </span>
-                            </li>
-                            <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
-                                <h6 class="mb-0" style="margin-left: 2px;"><svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" x="0px" y="0px" viewBox="0 0 103.12 122.88" style="enable-background:new 0 0 103.12 122.88" xml:space="preserve"><g><path d="M1.18,122.01C0.49,121.69,0,121,0,120.18V2c0-1.1,0.89-2,2-2H21.4h79.72c1.1,0,2,0.89,2,2v107.73 c0,0.11-0.01,0.21-0.02,0.31c-0.28,3.93-1.56,6.99-3.86,9.19c-2.3,2.18-5.53,3.4-9.72,3.64c-0.09,0.01-0.17,0.02-0.26,0.02H2.83 C2.15,122.88,1.54,122.53,1.18,122.01L1.18,122.01z M45.42,39.08c2.47,5.14,9.94,5.32,12.3,0.03c-0.64-0.65-1.12-1.35-1.6-2.04 c-0.08-0.11-0.16-0.23-0.23-0.34c-1.14,0.9-2.52,1.48-4.32,1.48c-1.94,0-3.41-0.75-4.61-1.85c-0.07-0.07-0.14-0.13-0.21-0.2 c-0.17,0.48-0.39,1.05-0.62,1.58C45.89,38.25,45.65,38.73,45.42,39.08L45.42,39.08L45.42,39.08z M58.41,38.54 c2.63,1.86,9.03,2.31,11.49,3.68c0.82,0.45,1.55,1.03,2.15,1.82c1.24,1.63,3.76,7.56-0.34,7.87H64l0.95-10.62 c-2.07-0.4-4.26-0.72-6.55-2.04c-1.41,6.21-11,7.1-13.76,0.17c-2.05,1.03-4.05,1.63-6.44,1.99l1.49,10.49h-8.28 c-4.1-0.31-1.57-6.24-0.34-7.87c0.59-0.78,1.33-1.36,2.15-1.82c2.45-1.37,8.82-1.82,11.47-3.66c0.19-0.29,0.4-0.72,0.6-1.18 c0.3-0.69,0.58-1.45,0.76-1.97c-0.74-0.87-1.37-1.85-1.98-2.82l-2-3.19c-0.73-1.09-1.11-2.09-1.14-2.91 c-0.01-0.39,0.05-0.74,0.2-1.04c0.15-0.32,0.38-0.59,0.69-0.8c0.14-0.1,0.31-0.18,0.49-0.25c-0.13-1.73-0.18-3.91-0.09-5.73 c0.04-0.43,0.13-0.87,0.25-1.3c0.51-1.83,1.8-3.3,3.39-4.32c0.88-0.56,1.84-0.98,2.84-1.26c0.63-0.18-0.09-1.61,0.57-1.68 c3.18-0.33,7.88,1.98,10.1,4.38c1.11,1.2,1.81,2.8,1.96,4.91l-0.13,5.2v0c0.56,0.17,0.91,0.52,1.06,1.09 c0.16,0.63-0.01,1.52-0.55,2.74l0,0c-0.01,0.02-0.02,0.04-0.03,0.07l-2.28,3.76c-0.84,1.38-1.69,2.77-2.8,3.86 c0.1,0.14,0.2,0.29,0.3,0.44c0.45,0.66,0.91,1.33,1.49,1.92C58.38,38.5,58.4,38.52,58.41,38.54L58.41,38.54L58.41,38.54z M43.45,25.32c-0.44,0.02-0.78,0.11-1.01,0.26c-0.13,0.09-0.23,0.2-0.29,0.33c-0.07,0.15-0.1,0.33-0.09,0.54 c0.02,0.61,0.34,1.41,0.95,2.33l0.01,0.01l2,3.19c0.8,1.28,1.65,2.58,2.69,3.54c1.01,0.92,2.23,1.54,3.84,1.55 c1.75,0,3.03-0.64,4.07-1.62c1.08-1.01,1.93-2.4,2.77-3.78l2.26-3.72c0.42-0.96,0.57-1.6,0.48-1.98c-0.06-0.22-0.3-0.33-0.73-0.36 c-0.09,0-0.18-0.01-0.27,0c-0.1,0-0.21,0.01-0.32,0.02c-0.06,0.01-0.12,0-0.17-0.01c-0.2,0.01-0.41,0-0.62-0.03l0.77-3.42 c-5.74,0.9-10.03-3.36-16.1-0.85l0.44,4.03C43.9,25.36,43.67,25.35,43.45,25.32L43.45,25.32L43.45,25.32L43.45,25.32z M70.47,108.18c-1.09,0-1.98-0.89-1.98-2c0-1.1,0.88-2,1.98-2h16.68c1.09,0,1.98,0.89,1.98,2c0,1.1-0.88,2-1.98,2H70.47 L70.47,108.18z M16.82,93.62c-1.09,0-1.98-0.89-1.98-2c0-1.1,0.88-2,1.98-2h70.5c1.09,0,1.98,0.89,1.98,2c0,1.1-0.88,2-1.98,2 H16.82L16.82,93.62z M17.14,79.06c-1.09,0-1.98-0.89-1.98-2c0-1.1,0.88-2,1.98-2h70c1.09,0,1.98,0.89,1.98,2c0,1.1-0.88,2-1.98,2 H17.14L17.14,79.06z M16.82,64.5c-1.09,0-1.98-0.89-1.98-2c0-1.1,0.88-2,1.98-2h30.13c1.09,0,1.98,0.89,1.98,2c0,1.1-0.88,2-1.98,2 H16.82L16.82,64.5z M54.64,64.5c-1.09,0-1.98-0.89-1.98-2c0-1.1,0.88-2,1.98-2h32.5c1.09,0,1.98,0.89,1.98,2c0,1.1-0.88,2-1.98,2 H54.64L54.64,64.5z M99.13,109.68V3.99H21.4H3.99v114.9h85.26l0.04,0c3.21-0.18,5.61-1.04,7.2-2.55 C98.06,114.85,98.93,112.62,99.13,109.68L99.13,109.68z"/></g></svg>Resume</h6>
-                                <span class="text-secondary">
-                                    {% if user.profile.cv|length > 0%}
-                                      <a href="{{user.profile.cv.url}}" target="_blank">
-                                        Resume Document
-                                      </a>
-                                      {% else %}
-                                      NA
-                                      {% endif %}
-                                </span>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
+
 <!--            <div class="col-lg-7">-->
 <!--                <div class="card">-->
-                    <div class="card-body" style="margin-left: 15%; width: fit-content;">
-                        <div class="row mb-3" style="background-color: #F6F4F4; width: 103%; margin-bottom: 0rem !important;">
+                    <div class="card-body" style="margin-left: 15%; justify-content: center; background-color: #F6F4F4; width: 103%; margin-bottom: 0rem !important;">
+<!--                        <div class="row mb-3" style="background-color: #F6F4F4; width: 103%; margin-bottom: 0rem !important;">-->
                             <form method="POST" enctype="multipart/form-data" style="color: #19258C; font-family: Public Sans; font-style: normal;">
                                 {% csrf_token %}
                                 <fieldset>
-                                    <legend style="color: #022160; text-align: center; margin-left: 18%; font-family: Public Sans; font-style: normal;"><b>Profile Info</b></legend>
+                                   <legend><h2 style="color: #022160; text-align: center; font-family: Public Sans; font-style: normal;"><b>Profile Info</b></h2></legend>
                                     {{ user_form|crispy }}
 									{{ profile_form|crispy }}
                                 </fieldset>
                                 <div>
-                                    <button class="btn btn-primary btn-user btn-block" type="submit" style="background: #022160; color: white; margin: 3%; width: 120%;">Update</button>
+                                    <button class="btn btn-primary btn-user btn-block" type="submit" style="background: #022160; color: white; margin-left: 30%; margin-bottom: 5%; width: 40%; ">Update</button>
                                 </div>
                             </form>
-                        </div>
+<!--                        </div>-->
                     </div>
 <!--                </div>-->
 <!--            </div>-->
