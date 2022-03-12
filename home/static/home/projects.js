@@ -58,7 +58,7 @@ $(document).ready(function () {
         })
     });
     // $('.treeInput').prop('checked', true);
-    // $('.collapsable > ul').hide();
+    $('.collapsable').closest('li').children('ul').hide();
 });
 
 $('#id_OpenedFor_0').on('click', function () {
@@ -111,12 +111,12 @@ function checkParents($li, state) {
     var $siblings = $li.siblings();
     var $parent = $li.parent().closest('li');
 
-    var siblingStates =  $siblings.children('label').find('input');
+    var siblingStates =  $siblings.children('div').find('input');
     for (var i = 0;i<siblingStates.length;i++){
         state = state && siblingStates[i]['checked'];
     }
 
-    $parent.children('label').find('input').prop('checked', state);
+    $parent.children('div').find('input').prop('checked', state);
     if ($parent.parents('li').length)
         checkParents($parent, state);
 }
@@ -133,15 +133,17 @@ $('.treeInput').change(function () {
         checkParents($li, state);
 });
 
-// $('.collapsable').on('click', function(){
-//     var $ul = $(this).children('ul').first();
-//     console.log();
-//     if($ul.css('display') == 'none'){
-//         console.log("Showing");
-//         $ul.show();
-//     }
-//     else{
-//         console.log("Hide");
-//         $ul.hide();
-//     }
-// });
+$('.collapsable').on('click', function(){
+    var $i = $(this).children('i');
+    var $ul = $(this).closest('li').children('ul').first();
+    if($ul.css('display') == 'none'){
+        console.log("Showing");
+        $i.toggleClass('fa-angle-down fa-angle-right');
+        $ul.show();
+    }
+    else{
+        console.log("Hide");
+        $i.toggleClass('fa-angle-right fa-angle-down');
+        $ul.hide();
+    }
+});

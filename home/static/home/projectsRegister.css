@@ -262,3 +262,6 @@ label {
 text{
     margin-right: 5px;
 }
+.collapsable{
+    cursor: pointer;
+}
