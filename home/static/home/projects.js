@@ -61,60 +61,64 @@ $(document).ready(function () {
     $('.collapsable').closest('li').children('ul').hide();
 });
 
-$('#id_OpenedFor_0').on('click', function () {
-    var pre = "id_OpenedFor_";
-    var mid = ['1_', '2_', '3_', '4_'];
-    var end = ['0', '1', '2', '3'];
-    if (this.checked) {
-        for (var i = 0; i < mid.length; i++) {
-            for (var j = 0; j < end.length; j++) {
-                var div = document.getElementById(pre + mid[i] + end[j]);
-                div.checked = true;
-            }
-        }
-    }
-    else {
-        for (var i = 0; i < mid.length; i++) {
-            for (var j = 0; j < end.length; j++) {
-                var div = document.getElementById(pre + mid[i] + end[j]);
-                div.checked = false;
-            }
-        }
-    }
-});
+// $('#id_OpenedFor_0').on('click', function () {
+//     var pre = "id_OpenedFor_";
+//     var mid = ['1_', '2_', '3_', '4_'];
+//     var end = ['0', '1', '2', '3'];
+//     if (this.checked) {
+//         for (var i = 0; i < mid.length; i++) {
+//             for (var j = 0; j < end.length; j++) {
+//                 var div = document.getElementById(pre + mid[i] + end[j]);
+//                 div.checked = true;
+//             }
+//         }
+//     }
+//     else {
+//         for (var i = 0; i < mid.length; i++) {
+//             for (var j = 0; j < end.length; j++) {
+//                 var div = document.getElementById(pre + mid[i] + end[j]);
+//                 div.checked = false;
+//             }
+//         }
+//     }
+// });
 
-function toggleCheckBoxes(branchCode){
-    var state = false;
-    var branch = ['#id_OpenedFor_'+branchCode+'_0', '#id_OpenedFor_'+branchCode+'_1', '#id_OpenedFor_'+branchCode+'_2', '#id_OpenedFor_'+branchCode+'_3']
-    for (var i = 0; i < branch.length; i++) {
-        if ($(branch[i]).is(':checked')==false)
-            state = true;
-    }
-    for (var i = 0; i < branch.length; i++) {
-        $(branch[i]).prop('checked', state);
-    }
+// function toggleCheckBoxes(branchCode){
+//     var state = false;
+//     var branch = ['#id_OpenedFor_'+branchCode+'_0', '#id_OpenedFor_'+branchCode+'_1', '#id_OpenedFor_'+branchCode+'_2', '#id_OpenedFor_'+branchCode+'_3']
+//     for (var i = 0; i < branch.length; i++) {
+//         if ($(branch[i]).is(':checked')==false)
+//             state = true;
+//     }
+//     for (var i = 0; i < branch.length; i++) {
+//         $(branch[i]).prop('checked', state);
+//     }
+// }
+// $('#div_id_OpenedFor > div > strong:nth-child(2)').on('click', function () {
+//     toggleCheckBoxes('1');
+// });
+// $('#div_id_OpenedFor > div > strong:nth-child(7)').on('click', function () {
+//     toggleCheckBoxes('2');
+// });
+// $('#div_id_OpenedFor > div > strong:nth-child(12)').on('click', function () {
+//     toggleCheckBoxes('3');
+// });
+// $('#div_id_OpenedFor > div > strong:nth-child(17)').on('click', function () {
+//     toggleCheckBoxes('4');
+// });
+
+function findParentStateFromSibling(siblingStates, state){
+    for (var i = 0; i < siblingStates.length; i++)
+        state = state && siblingStates[i]['checked'];
+    return state;
 }
-$('#div_id_OpenedFor > div > strong:nth-child(2)').on('click', function () {
-    toggleCheckBoxes('1');
-});
-$('#div_id_OpenedFor > div > strong:nth-child(7)').on('click', function () {
-    toggleCheckBoxes('2');
-});
-$('#div_id_OpenedFor > div > strong:nth-child(12)').on('click', function () {
-    toggleCheckBoxes('3');
-});
-$('#div_id_OpenedFor > div > strong:nth-child(17)').on('click', function () {
-    toggleCheckBoxes('4');
-});
 
 function checkParents($li, state) {
     var $siblings = $li.siblings();
     var $parent = $li.parent().closest('li');
 
-    var siblingStates =  $siblings.children('div').find('input');
-    for (var i = 0;i<siblingStates.length;i++){
-        state = state && siblingStates[i]['checked'];
-    }
+    state = findParentStateFromSibling($siblings.children('div').find('.treeInput'),state);
+    state = findParentStateFromSibling($siblings.children('label').find('.treeInput'),state);
 
     $parent.children('div').find('input').prop('checked', state);
     if ($parent.parents('li').length)
@@ -133,16 +137,14 @@ $('.treeInput').change(function () {
         checkParents($li, state);
 });
 
-$('.collapsable').on('click', function(){
+$('.collapsable').on('click', function () {
     var $i = $(this).children('i');
     var $ul = $(this).closest('li').children('ul').first();
-    if($ul.css('display') == 'none'){
-        console.log("Showing");
+    if ($ul.css('display') == 'none') {
         $i.toggleClass('fa-angle-down fa-angle-right');
         $ul.show();
     }
-    else{
-        console.log("Hide");
+    else {
         $i.toggleClass('fa-angle-right fa-angle-down');
         $ul.hide();
     }

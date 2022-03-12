@@ -246,6 +246,14 @@ ul {
     border: 1px solid #aaa;
     background-color: white;
     border-radius: 4px;
+
+    max-height: 250px;
+    overflow: scroll;
+    overflow-x: hidden;
+}
+
+#id_OpenedFor>ul::-webkit-scrollbar{
+    display: none;
 }
 
 li {
