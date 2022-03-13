@@ -167,6 +167,185 @@
 <div id="projectTop" style="background-image :linear-gradient(to right, rgb(30, 14, 121, 0.9), rgb(255, 255, 255, 0.1)), url(/media/{{project.Image}});">
   <div id="projectTitle" class="vertical-center">{{ project.Title }}</div>
 </div>
+<!-- ================================================================== -->
+<div class="container-fluid" style="
+    padding-left: 4%;
+    padding-right: 4%;
+">
+	<div class="row" >
+		<div  class="col-md-8" style="
+      padding-left: 4%;
+      padding-right: 4%;
+  " >
+			<div class="row">
+				<div id="tagsContainer" class="col-md-12">
+          <div class="tagsTitle">Tags:</div>
+          {% for tag in project.Tags.all %}
+          <div class="tag vertical-center">
+            <div class="horizontal-center" >
+              <a href="/?Tags={{tag.id}}" style="font-size: 13px;">{{ tag }}</a>
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+			</div>
+			<div class="row">
+				<div id="buttons" class="col-md-12">
+          <div class="seperator"></div>
+          <div class="buttonContent buttonSelected vertical-center" onClick="takeAction(this,'Description')">
+            <div class="horizontal-center">
+              Description
+            </div>
+          </div>
+          <div class="seperator"></div>
+          <div class="buttonContent vertical-center" onClick="takeAction(this,'Pre-requisite')">
+            <div class="horizontal-center">
+              Pre-requisite
+            </div>
+          </div>
+          <div class="seperator"></div>
+          <div class="buttonContent vertical-center" onClick="takeAction(this,'Selection Criteria')">
+            <div class="horizontal-center">
+              Selection Criteria
+            </div>
+          </div>
+          <div class="seperator"></div>
+        </div>
+			</div>
+			<div class="row">
+				<div id="projectDescription" class="col-md-12">
+          <div id="prodes" class="">
+            {{ project.Description }}
+          </div>
+          <div id="proprereq" class="invisible">
+            {{ project.PreRequisite }}
+          </div>
+          <div id="proselcrit" class="invisible">
+            {{ project.SelectionCriteria }}
+          </div>
+        </div>
+			</div>
+			<div class="row">
+        <div class="update-delete col-md-12">
+          {% if project.FloatedBy == user %}
+
+          <br>
+          <a href="/project/update/?project_id={{project.id}}"><button class="btn btn-success btn-icon-split" style="display: inline-block;width: 130px ;height:35px; padding-top: 0px; padding-bottom: 0px;"><b>UPDATE</b></button></a>
+          <a href="/project/delete/?project_id={{project.id}}"><button class="btn btn-danger btn-icon-split" style="display: inline-block;width: 130px; height:35px;padding-top: 0px; padding-bottom: 0px;"><b>DELETE</b></button></a>
+          {% endif %}
+        </div>
+        {% if project.id not in projects_id.0 %}
+				<div id="applyNow" class="col-md-12" projectId={{project.id}}>
+
+
+
+          {% if project.id not in projects_id.2 and project.id not in projects_id.3 %}
+          <div class="applyText vertical-center" data-toggle="modal" data-target="#applyModal">
+            <div class="horizontal-center" style="cursor: pointer;">
+              Apply Now
+            </div>
+          </div>
+          {% else %}
+          {% if project.id in projects_id.2 %}
+          <div class="applyText vertical-center" data-toggle="modal" data-target="#leaveModal">
+            <div class="horizontal-center">
+              Leave
+            </div>
+          </div>
+          {% else %}
+          <div class="applyText vertical-center" data-toggle="modal" data-target="#withdrawModal">
+            <div class="horizontal-center">
+              Withdraw
+            </div>
+          </div>
+          {% endif %}
+          {% endif %}
+        </div>{% endif %}
+			</div>
+			<div class="row">
+				<div class="col-md-12"></div>
+			</div>
+		</div>
+		<div class="col-md-4" style="
+      padding-left: 4%;
+      padding-right: 4%;
+  ">
+			<div class="row">
+				<div id="projectDetails" class="col-md-12">
+          <div class="detail">
+            <div class="detailTitle">
+              Floated By :
+            </div>
+            <div class="detailContent">
+              {{project.FloatedBy}} <a href="{% url 'profile' project.FloatedBy.id %}"><i class="fa fa-external-link"></i></a>
+            </div>
+          </div>
+          <div class="detail">
+            <div class="detailTitle">
+              Mentors:
+            </div>
+            <div class="detailContent">
+              {{project.FloatedBy}} {% for users in project.Mentors.all %} {{ users }} {% endfor %}
+              <!-- {% if project.Mentors.all.count == 0 %} No one {% endif %} -->
+            </div>
+          </div>
+          <div class="detail">
+            <div class="detailTitle">
+              Status:
+            </div>
+            <div class="detailContent">
+              {{ project.Status }}
+            </div>
+          </div>
+          <div class="detail">
+            <div class="detailTitle">
+              Duration:
+            </div>
+            <div class="detailContent">
+              {{ project.Duration }}
+            </div>
+          </div>
+          <div class="detail">
+            <div class="detailTitle">
+              Opened for:
+            </div>
+            <div class="detailContent">
+              {{project.OpenedFor}}
+            </div>
+          </div>
+          <div class="detail">
+            <div class="detailTitle">
+              Difficulty:
+            </div>
+            <div class="detailContent">
+              {{project.Difficulty}}
+            </div>
+          </div>
+          <div class="detail">
+            <div class="detailTitle">
+              DateFloated:
+            </div>
+            <div class="detailContent">
+              {{ project.DatePosted }}
+            </div>
+          </div>
+        </div>
+			</div>
+			<div class="row">
+				<div  id="alreadyApplied" class="col-md-12">
+          <div id="alreadyAppliedTitle" class="vertical-center">Already Applied:</div>
+          <div id="alreadyAppliedUsers" class="vertical-center">
+            {% for users in project.AlreadyApplied.all %}
+            <div class="user"><a href="{% url 'profile' users.profile.id %}"><img src="{{users.profile.image.url}}" title="{{users}}"></a></div>
+            {% endfor %}
+            {% if project.AlreadyApplied.all.count == 0 %} No selections yet {% endif %}
+          </div>
+        </div>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- ================================================================ -->
 <div id="projectMain" class="horizontal-center">
   <div class="userView">
     <div class="left-container">
