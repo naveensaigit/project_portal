@@ -158,13 +158,14 @@ button{
 
 #applyNow {
   margin-top: 22px;
-  margin-left: 35%;
+  /* margin-left: 35%; */
   height: 61px;
   width: 23.4%;
   background: #19258C;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   border-radius: 10px;
   text-align: center;
+  cursor: pointer;
 }
 
 .applyText {
