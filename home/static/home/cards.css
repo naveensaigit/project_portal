@@ -54,10 +54,22 @@
 }
 
 /* Extra small devices (phones, 600px and down) */
-@media only screen and (max-width:600px){
+@media only screen and (max-width:620px){
+  .container-fluid{
+    padding: 0px ;
+  }
+  #content > div > div > div.blog-container > div > ul{
+    font-size: 15px !important;
+  }
+  #content > div > div > div.blog-container > div > ul > li > a{
+    font-size: 13px !important;
+  }
+  #content > div > div > div.blog-container > div{
+    margin-right: 10px;
+  }
   .blog-container{
     margin:30px;
-    width:400px;
+    width:370px;
     height:260px;
     padding-top:0px;
   }
@@ -65,12 +77,32 @@
     height:30px;
   }
   .blog-body{
-     margin-left: 20px;
+      margin-left: 20px;
       padding: 15px;
   }
   .blog-title h1 a {
     font-size: 28px;
 
+  }
+  #content > div > div > form > div:nth-child(6) > button {
+    height: 35px !important;
+    width: 65px !important;
+  }
+  #content > div > div > div.blog-container > div > ul > li {
+    margin-left: 3px !important;
+    margin-bottom:16px !important;
+  }
+  #content > div > div > div:nth-child(6) > h5{
+    font-size: 15px !important;
+  }
+  #num_of_rows{
+    font-size: 14px ;
+  }
+  #content > div > div > div:nth-child(6){
+    padding-right: 250px !important;
+  }
+  #content > div > div > form > div{
+    padding: 0px !important;
   }
   .blog-summary p {
       font-size: 16px;
@@ -82,7 +114,11 @@
   .main-br{
     display:none;
   }
+  .label{
+    font-size: 15px;
+  }
   .form-inline{
+    font-size: 15px;
       flex-direction: column;
   }
   .blog-tags li:nth-child(5){
