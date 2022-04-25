@@ -31,18 +31,6 @@
     </div>
     <div class="leftColumnCard horizontal-center">
       <div class="cardTitle">
-        Skills
-      </div>
-      <div class="cardDetails vertical-center">
-        <div>
-          {% for skill in profile_user.profile.techskills.all %}
-          {{ skill }}
-          {% endfor %}
-        </div>
-      </div>
-    </div>
-    <div class="leftColumnCard horizontal-center">
-      <div class="cardTitle">
         Links
       </div>
       <div class="cardDetails vertical-center">
@@ -77,6 +65,18 @@
           NA
           {% endif %}
           <br>
+        </div>
+      </div>
+    </div>
+    <div class="leftColumnCard horizontal-center">
+      <div class="cardTitle">
+        Skills
+      </div>
+      <div class="cardDetails vertical-center">
+        <div>
+          {% for skill in profile_user.profile.techskills.all %}
+          {{ skill }}
+          {% endfor %}
         </div>
       </div>
     </div>
