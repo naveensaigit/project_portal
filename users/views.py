@@ -127,7 +127,7 @@ def projects_view(request, user_id):
         'heading': heading
     }
 
-    return render(request, 'users/projects_view.html', context)
+    return render(request, 'home/main.html', context)
 
 def oauth(request):
     url = '/accounts/google/login/?process=login/'

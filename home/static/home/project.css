@@ -68,6 +68,7 @@ button{
 }
 
 #projectTitle {
+  line-height: 40px;
   margin-left: 5vw;
   color: white;
   height: 272px;
@@ -476,7 +477,28 @@ tr:last-child td{
   color: #F50000; */
   margin-right: 15px;
 }
+#content > div > div.adminView{
+  padding: 10px;
+}
 /* --------------------------------- */
 /* ------- ADMIN VIEW STYLING END ------ */
 
 /* ========= MAIN CONTENT STYLING END ========== */
+
+@media only screen and (max-width: 450px){
+  #table > thead > tr > th > div.th-inner.sortable.both{
+    padding-right: 7px !important;
+    padding-left: 7px !important;
+  }
+  #tableTitle{
+    font-size: 17px;
+    margin-left: 10px;
+  }
+  #tableOptions > a > div{
+    width: 20vw;
+    font-size: 15px;
+  }
+  #tableControls > div > div{
+    width: 70%;
+  }
+}
