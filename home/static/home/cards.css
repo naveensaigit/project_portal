@@ -54,6 +54,17 @@
 }
 
 /* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width:450px){
+  .blog-container{
+    width: 350px !important;
+  }
+  #content > div > div > div:nth-child(6) > h5{
+    margin-bottom: 0px !important;
+  }
+  #num_of_rows{
+    margin-top: 12px !important;
+  }
+}
 @media only screen and (max-width:620px){
   .container-fluid{
     padding: 0px ;
