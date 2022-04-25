@@ -63,7 +63,12 @@
   }
   #num_of_rows{
     margin-top: 12px !important;
+    width: 35px !important;
   }
+  #content > div > div > div:nth-child(6){
+    margin-left: 20px;
+  }
+
 }
 @media only screen and (max-width:620px){
   .container-fluid{
