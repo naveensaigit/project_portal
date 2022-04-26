@@ -17,15 +17,22 @@
 </div>
 {% endfor %} {% endif %}
 {% endblock messageBlock %}
+<style>
+    .container-fluid{
+        padding-left: 0.5rem !important;
+        padding-right: 0.5rem !important;
+    }
+</style>
+
 <div class="card" style="width:75%">
 	<br>
 	<br>
-	<div style="width:80%;">
-		<div class=" py-3 ">
-			<h2 style="color: #022160; text-align: center; margin-left: 18%; font-family: Public Sans; font-style: normal;"><b>Create New Project</b></h2>
+	<div class = "row">
+		<div class="col-md-12 py-3 ">
+			<h2 style="color: #022160; text-align: center; font-family: Public Sans; font-style: normal;"><b>Create New Project</b></h2>
 		</div>
 		<br>
-		<div style="color: #19258C; font-family: Public Sans; font-style: normal; justify-content: center;">
+		<div class = "col-md-12 py-3" style="color: #19258C; font-family: Public Sans; font-style: normal; justify-content: center;">
 			<form method="POST" enctype="multipart/form-data">
 				{% csrf_token %}
 				<div class="fieldWrapper">
@@ -202,7 +209,7 @@
 					{{ project_form|crispy }}
 				</fieldset> {% endcomment %}
 				<div>
-					<button class="btn btn-primary btn-user btn-block" type="submit" style="background: #022160; color: white; margin-left: 2%; width: 120%;">Create</button>
+					<button class="btn btn-primary btn-user btn-block" type="submit" style="background: #022160; color: white;">Create</button>
 				</div>
 			</form>
 		</div>
