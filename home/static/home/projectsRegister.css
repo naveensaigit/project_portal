@@ -38,7 +38,7 @@
     padding-bottom: 40px;
     background: #F6F4F4
 }
-
+/* 
 @media screen and (max-width: 767px) {
     .blog-container {
         width: 28rem;
@@ -63,7 +63,7 @@
     .fieldWrapper{
         width: 100% !important;
     }
-}
+} */
 .fieldWrapper > input, textarea, select{
     width: 100% !important;
 }
@@ -80,7 +80,7 @@
 #content > div > div > div > div:nth-child(3) > form > div:nth-child(10) > span > span.selection > span > ul > li{
     margin-left: 5px;
 }
-
+/* 
 @media screen and (min-width: 767px) {
     .blog-container {
         width: 40rem;
@@ -101,7 +101,7 @@
     #content > div > div > div > div.py-3 > h2{
         margin: 0px !important;
     }
-}
+} */
 
 .blog-container a {
     color: #4d4dff;

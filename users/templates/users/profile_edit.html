@@ -10,15 +10,23 @@
 <link rel="stylesheet" type="text/css" href="{% static 'users/cards.css' %}">
 {% endblock customStylesheets %}
 
+
 {% block cardBlock %}{% endblock cardBlock %}
 {% block mainContentBlock %}
-<div class="container">
+<style>
+    .container-fluid{
+        padding-left: 2rem !important;
+        padding-right: 2rem !important;
+    }
+</style>
+
+<div class="container" style="padding-left: 2rem !important; padding-right: 2rem !important;">
     <div class="main-body">
         <div class="row">
 
 <!--            <div class="col-lg-7">-->
 <!--                <div class="card">-->
-                    <div class="card-body" style="margin-left: 15%; justify-content: center; background-color: #F6F4F4; width: 103%; margin-bottom: 0rem !important;">
+                    <div class="card-body col-xs-12" style=" justify-content: center; background-color: #F6F4F4;  margin-bottom: 0rem !important;">
 <!--                        <div class="row mb-3" style="background-color: #F6F4F4; width: 103%; margin-bottom: 0rem !important;">-->
                             <form method="POST" enctype="multipart/form-data" style="color: #19258C; font-family: Public Sans; font-style: normal;">
                                 {% csrf_token %}

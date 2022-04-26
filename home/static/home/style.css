@@ -10516,8 +10516,8 @@ a:focus {
 .container-md,
 .container-lg,
 .container-xl {
-    padding-left: 87px;
-    padding-right: 87px;
+    padding-left: 4rem;
+    padding-right: 4rem;
     /*border-left: 30px solid #EE7210;*/
 }
 
