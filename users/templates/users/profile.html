@@ -5,122 +5,193 @@
 {% endblock customStylesheets %}
 {% block ajaxBlock %}{% endblock ajaxBlock %}
 {% block content %}
+
 <div id="profile" class="horizontal-center">
-  <div id="leftColumn">
+  <div class="row">
+    <div class="col-xs-12 col-md-4"  style="margin-top: 1rem;">
+      <div id="leftColumn" ">
     {% if user_is_author %}
-    <div id="editButton" class="vertical-center">
-      <div class="horizontal-center">
-        <a style="color: white;" href="/profile/edit"><i class="fas fa-pen"></i> </a>
+    <div id=" editButton" class="vertical-center">
+        <div class="horizontal-center">
+          <a style="color: white;" href="/profile/edit"><i class="fas fa-pen"></i> </a>
+        </div>
       </div>
-    </div>
-    {% endif %}
+      {% endif %}
       <img class="profileImage" src="{{ profile_user.profile.image.url }}" alt="">
-    <div class="leftColumnCard horizontal-center">
-      <div class="cardTitle">
-        Profile
-      </div>
-      <div class="cardDetails vertical-center">
-        <div>
-          {{ profile_user.first_name }} {{ profile_user.last_name }}
-          <br>
-          {{ profile_user.profile.year }} Year - {{ profile_user.profile.branch }}
-          <br>
-          {{ profile_user.email }}
+      <div class="leftColumnCard horizontal-center">
+        <div class="cardTitle">
+          Profile
+        </div>
+        <div class="cardDetails vertical-center">
+          <div>
+            {{ profile_user.first_name }} {{ profile_user.last_name }}
+            <br>
+            {{ profile_user.profile.year }} Year - {{ profile_user.profile.branch }}
+            <br>
+            {{ profile_user.email }}
+          </div>
         </div>
       </div>
-    </div>
-    <div class="leftColumnCard horizontal-center">
-      <div class="cardTitle">
-        Links
-      </div>
-      <div class="cardDetails vertical-center">
-        <div>
-          <i class="fab fa-linkedin" style="margin-right: 5px;"></i>LinkedIn :
-          {% if profile_user.profile.linked_in_link|length > 0%}
-          <a href={{profile_user.profile.linked_in_link}} target="_blank">{{profile_user.profile.linked_in_link}}</a>
-          {% else %}
-          NA
-          {% endif %}
-          <br>
-          <i class="fas fa-globe" style="margin-right: 5px;"></i>Portfolio :
-          {% if profile_user.profile.portfolio_link|length > 0%}
-          <a href={{profile_user.profile.portfolio_link}} target="_blank">{{profile_user.profile.portfolio_link}}</a>
-          {% else %}
-          NA
-          {% endif %}
-          <br>
-          <i class="fab fa-github" style="margin-right: 5px;"></i>GitHub :
-          {% if profile_user.profile.github_link|length > 0%}
-          <a href={{profile_user.profile.github_link}} target="_blank">{{profile_user.profile.github_link}}</a>
-          {% else %}
-          NA
-          {% endif %}
-          <br>
-          <i class="far fa-file" style="margin-right: 5px;"></i>Resume :
-          {% if profile_user.profile.cv|length > 0%}
-          <a href="{{profile_user.profile.cv.url}}" target="_blank">
-            Click Here
-          </a>
-          {% else %}
-          NA
-          {% endif %}
-          <br>
+      <div class="leftColumnCard horizontal-center">
+        <div class="cardTitle">
+          Links
+        </div>
+        <div class="cardDetails vertical-center">
+          <div>
+            <i class="fab fa-linkedin" style="margin-right: 5px;"></i>LinkedIn :
+            {% if profile_user.profile.linked_in_link|length > 0%}
+            <a href={{profile_user.profile.linked_in_link}} target="_blank">{{profile_user.profile.linked_in_link}}</a>
+            {% else %}
+            NA
+            {% endif %}
+            <br>
+            <i class="fas fa-globe" style="margin-right: 5px;"></i>Portfolio :
+            {% if profile_user.profile.portfolio_link|length > 0%}
+            <a href={{profile_user.profile.portfolio_link}} target="_blank">{{profile_user.profile.portfolio_link}}</a>
+            {% else %}
+            NA
+            {% endif %}
+            <br>
+            <i class="fab fa-github" style="margin-right: 5px;"></i>GitHub :
+            {% if profile_user.profile.github_link|length > 0%}
+            <a href={{profile_user.profile.github_link}} target="_blank">{{profile_user.profile.github_link}}</a>
+            {% else %}
+            NA
+            {% endif %}
+            <br>
+            <i class="far fa-file" style="margin-right: 5px;"></i>Resume :
+            {% if profile_user.profile.cv|length > 0%}
+            <a href="{{profile_user.profile.cv.url}}" target="_blank">
+              Click Here
+            </a>
+            {% else %}
+            NA
+            {% endif %}
+            <br>
+          </div>
         </div>
       </div>
-    </div>
-    <div class="leftColumnCard horizontal-center">
-      <div class="cardTitle">
-        Skills
-      </div>
-      <div class="cardDetails vertical-center">
-        <div>
-          {% for skill in profile_user.profile.techskills.all %}
-          {{ skill }}
-          {% endfor %}
+      <div class="leftColumnCard horizontal-center">
+        <div class="cardTitle">
+          Skills
+        </div>
+        <div class="cardDetails vertical-center">
+          <div>
+            {% for skill in profile_user.profile.techskills.all %}
+            {{ skill }}
+            {% endfor %}
+          </div>
         </div>
       </div>
     </div>
   </div>
-  <div id="rightColumn">
-    <div id="profileProjects">
-      <div id="projectButtons">
-        <div class="vertical-line">
-          <div class="line"></div>
+
+  <div class="col-sm-12 col-md-8 " style="margin-top: 1rem;">
+    <div class="container" style="padding-left: 0rem !important;padding-right: 0rem !important;">
+    <div id="rightColumn">
+      <div  id="profileProjects">
+        <!-- <div class="row align-items-center"> -->
+
+        <div class="container" style="padding-left: 1rem !important;padding-right: 1rem !important;">
+            <div class="row" id="projectButtons">
+                <div class="col-sm-6 col-md-3">
+                  <div class="vertical-line">
+                    <div class="line"></div>
+                  </div>
+                  <div class="projectButton buttonSelected" id='projects0button' onclick="toggleVisibility('projects0')">
+                    <div class="projectButtonTitle">
+                      PROJECTS FLOATED:
+                    </div>
+                    <div class="projectsNumbers">
+                      {{ projects_id.0|length }}
+                    </div>
+                  </div>
+                </div>
+                <div class="col-sm-6 col-md-3">
+                  <div class="vertical-line">
+                    <div class="line"></div>
+                  </div>
+                  <div class="projectButton" id='projects1button' onclick="toggleVisibility('projects1')">
+                    <div class="projectButtonTitle">
+                      PROJECTS APPLIED:
+                    </div>
+                    <div class="projectsNumbers">
+                      {{ projects_id.2|length }}
+                    </div>
+                  </div>
+                </div>
+                <div class="col-sm-6 col-md-3">
+                  <div class="vertical-line">
+                    <div class="line"></div>
+                  </div>
+                  <div class="projectButton" id='projects2button' onclick="toggleVisibility('projects2')">
+                    <div class="projectButtonTitle">
+                      PROJECTS REQUESTED:
+                    </div>
+                    <div class="projectsNumbers">
+                      {{ projects_id.3|length }}
+                    </div>
+                  </div>
+                </div>
+                <div class="col-sm-6 col-md-3">
+                  <div class="vertical-line">
+                    <div class="line"></div>
+                  </div>
+                  {% if user_is_author %}
+                  <div class="projectButton" id='projects3button' onclick="toggleVisibility('projects3')">
+                    <div class="projectButtonTitle">
+                      PROJECTS STARRED:
+                    </div>
+                    <div class="projectsNumbers">
+                      {{ projects_id.4|length }}
+                    </div>
+                  </div>
+                  <div class="vertical-line">
+                    <div class="line"></div>
+                  </div>
+                  {% endif %}
+                </div>
+            </div>
         </div>
-        <div class="projectButton buttonSelected" id='projects0button' onclick="toggleVisibility('projects0')">
-          <div class="projectButtonTitle">
-            PROJECTS FLOATED:
+
+        <!-- <div id="projectButtons">
+          <div class="vertical-line">
+            <div class="line"></div>
           </div>
-          <div class="projectsNumbers">
-            {{ projects_id.0|length }}
+          <div class="projectButton buttonSelected" id='projects0button' onclick="toggleVisibility('projects0')">
+            <div class="projectButtonTitle">
+              PROJECTS FLOATED:
+            </div>
+            <div class="projectsNumbers">
+              {{ projects_id.0|length }}
+            </div>
           </div>
-        </div>
-        <div class="vertical-line">
-          <div class="line"></div>
-        </div>
-        <div class="projectButton" id='projects1button' onclick="toggleVisibility('projects1')">
-          <div class="projectButtonTitle">
-            PROJECTS APPLIED:
+          <div class="vertical-line">
+            <div class="line"></div>
           </div>
-          <div class="projectsNumbers">
-            {{ projects_id.2|length }}
+          <div class="projectButton" id='projects1button' onclick="toggleVisibility('projects1')">
+            <div class="projectButtonTitle">
+              PROJECTS APPLIED:
+            </div>
+            <div class="projectsNumbers">
+              {{ projects_id.2|length }}
+            </div>
           </div>
-        </div>
-        <div class="vertical-line">
-          <div class="line"></div>
-        </div>
-        <div class="projectButton" id='projects2button' onclick="toggleVisibility('projects2')">
-          <div class="projectButtonTitle">
-            PROJECTS REQUESTED:
+          <div class="vertical-line">
+            <div class="line"></div>
           </div>
-          <div class="projectsNumbers">
-            {{ projects_id.3|length }}
+          <div class="projectButton" id='projects2button' onclick="toggleVisibility('projects2')">
+            <div class="projectButtonTitle">
+              PROJECTS REQUESTED:
+            </div>
+            <div class="projectsNumbers">
+              {{ projects_id.3|length }}
+            </div>
           </div>
-        </div>
-        <div class="vertical-line">
-          <div class="line"></div>
-        </div>
-        {% if user_is_author %}
+          <div class="vertical-line">
+            <div class="line"></div>
+          </div>
+          {% if user_is_author %}
           <div class="projectButton" id='projects3button' onclick="toggleVisibility('projects3')">
             <div class="projectButtonTitle">
               PROJECTS STARRED:
@@ -132,68 +203,76 @@
           <div class="vertical-line">
             <div class="line"></div>
           </div>
-        {% endif %}
-      </div>
-      <div id="Projects">
-        {% for projects_category in projects %}
-        {% with index=forloop.counter0 %}
-        <div id="projects{{index}}" class="invisible">
-          {% for project in projects_category|slice:":5" %}
-          <div class="project-card">
-            <div class="project-card-title">
-              <a href="/project/?project_id={{project.id}}">
-                {{ project.Title}}
-              </a>
+          {% endif %}
+        <!-- </div> ->
+      </div> -->
+
+      <!-- <div class="row align-items-center"> -->
+        <div id="Projects">
+          {% for projects_category in projects %}
+          {% with index=forloop.counter0 %}
+          <div id="projects{{index}}" class="invisible">
+            {% for project in projects_category|slice:":5" %}
+            <div class="project-card">
+              <div class="project-card-title">
+                <a href="/project/?project_id={{project.id}}">
+                  {{ project.Title}}
+                </a>
+              </div>
+              <div class="project-card-description">
+                {{project.Description}}
+              </div>
             </div>
-            <div class="project-card-description">
-              {{project.Description}}
-            </div>
-          </div>
-          {% endfor %}
-          {% if index == 2 %}
+            {% endfor %}
+            {% if index == 2 %}
             {% if projects_category|length == 0 %}
             <div class="vertical-center">
-              <div class = "horizontal-center">
+              <div class="horizontal-center">
                 <img class="doodle" src="/media/hand-drawn.png">
               </div>
             </div>
             {% endif %}
-          {% endif %}
+            {% endif %}
 
-          {% if projects_category.count == 0  %}
-          <div class="vertical-center">
-            <div class = "horizontal-center">
-              <img class="doodle" src="/media/hand-drawn.png">
+            {% if projects_category.count == 0 %}
+            <div class="vertical-center">
+              <div class="horizontal-center">
+                <img class="doodle" src="/media/hand-drawn.png">
+              </div>
             </div>
-          </div>
             {% endif %}
-          {% if projects_category.count > 5 %}
-          <div style="text-align: right;">
-            {% if index == 0 %}
-            <a href="/profile/projects/view/{{profile_user.id}}?view=floated">
+            {% if projects_category.count > 5 %}
+            <div style="text-align: right;">
+              {% if index == 0 %}
+              <a href="/profile/projects/view/{{profile_user.id}}?view=floated">
+                Read more..
+              </a>
+              {% elif index == 1 %}
+              <a href="/profile/projects/view/{{profile_user.id}}?view=applied">
+                Read more..
+              </a>
+              {% elif index == 2 %}
+              <a href="/profile/projects/view/{{profile_user.id}}?view=requested">
+                Read more..
+              </a>
+              {% else %}
+              <a href="/profile/projects/view/{{profile_user.id}}?view=starred"></a>
               Read more..
-            </a>
-            {% elif index == 1 %}
-            <a href="/profile/projects/view/{{profile_user.id}}?view=applied">
-              Read more..
-            </a>
-            {% elif index == 2 %}
-            <a href="/profile/projects/view/{{profile_user.id}}?view=requested">
-              Read more..
-            </a>
-            {% else %}
-            <a href="/profile/projects/view/{{profile_user.id}}?view=starred"></a>
-            Read more..
-            </a>
+              </a>
+              {% endif %}
+            </div>
             {% endif %}
           </div>
-          {% endif %}
+          {% endwith %}
+          {% endfor %}
         </div>
-        {% endwith %}
-        {% endfor %}
+      <!-- </div> -->
       </div>
     </div>
+    </div>
   </div>
+  </div>
+</div>
 </div>
 </div>
 {% endblock content %}
