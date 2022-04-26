@@ -46,15 +46,15 @@
   width: 100%;
   height: 20%;
   max-width: 160px;
-  margin-left: 22%;
-  margin-top: 25px;
+  /* margin-left: 22%; */
+  margin-top: 2.5rem;
   border-radius: 100%;
 }
 
 #editButton {
   position: relative;
-  left: 83%;
-  top: 15px;
+  left: 80%;
+  top: 1.5rem;
   background-color: darkblue;
   height: 3rem;
   width: 3rem;
@@ -102,7 +102,7 @@
   /* margin: 5px; */
   min-width: 70%;
   display: flex;
-  border-right: 6px solid rgba(0, 0, 139);
+  border-right: 7px solid rgba(0, 0, 139);
   /* min-height: 60px; */
 }
 
@@ -121,7 +121,7 @@
 }
 
 #projectButtons>div {
-  border-left: 6px solid rgba(0, 0, 139);
+  border-left: 7px solid rgba(0, 0, 139);
 
   /* padding-left: 0.75rem;
   padding-right: 0.75rem; */
