@@ -143,18 +143,22 @@ def projectUpdate(request):
 def projectDelete(request):
     project_id = request.GET.get('project_id')
     project = Project.objects.get(id=project_id)
-    if request.method == 'POST':
-        project.delete()
-        messages.success(request, "Project has been deleted!")
-        return redirect('home')
+    project.delete()
+    messages.success(request, "Project has been deleted!")
+    return redirect('home')
 
-    context = {
-        'title': 'Update-Project',
-        'project': project,
-        'notifications': Notification.objects.filter(user = request.user).order_by('-time'),
-    }
+    # if request.method == 'POST':
+        # project.delete()
+        # messages.success(request, "Project has been deleted!")
+        # return redirect('home')
 
-    return render(request, 'home/projectDelete.html', context)
+    # context = {
+    #     'title': 'Update-Project',
+    #     'project': project,
+    #     'notifications': Notification.objects.filter(user = request.user).order_by('-time'),
+    # }
+
+    # return render(request, 'home/projectDelete.html', context)
 
 
 @login_required
