@@ -1,6 +1,10 @@
 .blog-container{
     flex: 1 0 45%; margin: 30px; width: 600px; height: 289px; max-width: 600px;"
   }
+#content > nav > ul > div:nth-child(3) > a >i {
+    /* font-size: 17px !important; */
+    margin-top: 7px !important;
+}
 .blog-container {
     background: #fff;
     border: 1px solid rgba(0, 0, 0, 0.25);

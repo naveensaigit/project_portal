@@ -1,6 +1,10 @@
 {% extends 'home/projectsRegister.html' %}
 {% load static %}
 {% load crispy_forms_tags %}
+{% block customStylesheets %}
+<link rel="stylesheet" type="text/css" href="{% static 'home/projectsRegister.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'home/projectsUpdater.css' %}">
+{% endblock customStylesheets %}
 {% block content %}
 <div>
 	<br>
