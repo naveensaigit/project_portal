@@ -1,0 +1,9 @@
+#content > div > div > div > div > div{
+    width: 50%;
+}
+#content > div > div > div > div > div{
+    overflow-x: hidden;
+}
+#div_id_techskills > div > span{
+    width: 53vw !important;
+}
