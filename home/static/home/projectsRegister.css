@@ -38,6 +38,12 @@
     padding-bottom: 40px;
     background: #F6F4F4
 }
+#content > div > div > div > div:nth-child(3) > form > div:nth-child(10) > span{
+    width: 50vw !important;
+}
+#content > div > div > div > div:nth-child(3) > form > div:nth-child(5) > span{
+    width: 50vw !important;
+}
 /* 
 @media screen and (max-width: 767px) {
     .blog-container {
