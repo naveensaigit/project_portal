@@ -463,6 +463,7 @@ tr:last-child td{
   border: 1px solid rgba(0, 0, 0, 0.25);
   box-sizing: border-box;
   border-radius: 10px;
+  padding: 4%;
 }
 #viewAnswerAcceptReject{
   margin-top: 21px;
