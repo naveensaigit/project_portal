@@ -58,9 +58,9 @@
                     <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
                         <div class="sidebar-brand-text mx-3" style="color: #022160; font-size: large; font-weight: bold"> <a href="/">UGAC PROJECT PORTAL</a></div>
                         <!-- Sidebar Toggle (Topbar) -->
-                        <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
+                        {% comment %} <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
                             <i class="fa fa-bars"></i>
-                        </button>
+                        </button> {% endcomment %}
                         <!-- Topbar Search -->
                         <form method="POST" action="{{request.get_full_path}}" class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
                             {% csrf_token %}
