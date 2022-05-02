@@ -135,4 +135,4 @@ def oauth(request):
 
 def Logout(request):
     logout(request)
-    return redirect('/login')
+    return redirect('')
