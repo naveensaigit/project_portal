@@ -206,7 +206,26 @@
       padding-left: 4%;
       padding-right: 4%;
   " >
-			<div class="row">
+
+  <!-- <div class = "blog-container" style="flex: 1 0 45%; margin: 2%; width: 82%; height: 5%; max-width: 82%; alignment: center; align-self: center; padding-top: 0px; margin-left: 9%;"> -->
+  <div class="row" style="padding-top: 20px;">
+  <div class="blog-tags-a" style="margin-left: 2.25%; margin-top: 1%;">
+
+  <br>
+  <ul>
+      <div class="tagsTitle">Tags:</div>
+      {% for tag in project.Tags.all %}
+          <li style="margin-left: 15px; margin-bottom: 20px;"><a href="/?Tags={{tag.id}}">{{ tag }}</a></li>
+      {% endfor %}
+  </ul>
+
+  </div>
+    </div>
+
+
+
+
+			<!-- <div class="row">
 				<div id="tagsContainer" class="col-md-12">
           <div class="tagsTitle">Tags:</div>
           {% for tag in project.Tags.all %}
@@ -217,7 +236,7 @@
           </div>
           {% endfor %}
         </div>
-			</div>
+			</div> -->
 			<div class="row">
         <div id="buttons" class="horizontal-center" style="width:100%">
           <div class="seperator"></div>

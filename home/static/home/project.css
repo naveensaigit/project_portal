@@ -483,10 +483,51 @@ tr:last-child td{
 #content > div > div.adminView{
   padding: 10px;
 }
+
+.blog-tags-a li:nth-child(1) a {
+  background: #BEFFE0;
+}
+
+.blog-tags-a li:nth-child(2) a {
+  background: #C9D8FF;
+}
+
+.blog-tags-a li:nth-child(3) a {
+  background: #FFD493;
+}
+
+.blog-tags-a li:nth-child(4) a {
+  background: #BEFFE0;
+}
+
+.blog-tags-a li:nth-child(5) a {
+  background: #C9D8FF;
+}
+
+.blog-tags-a li:nth-child(6) a {
+  background: #FFD493;
+}
+
+.blog-tags-a li:nth-child(7) a {
+  background: #BEFFE0;
+}
+
+.blog-tags-a li:nth-child(8) a {
+  background: #C9D8FF;
+}
+
+.blog-tags-a li:nth-child(9) a {
+  background: #FFD493;
+}
+
+.blog-tags-a li:nth-child(10) a {
+  background: #BEFFE0;
+}
 /* --------------------------------- */
 /* ------- ADMIN VIEW STYLING END ------ */
 
 /* ========= MAIN CONTENT STYLING END ========== */
+
 
 @media only screen and (max-width: 450px){
   #table > thead > tr > th > div.th-inner.sortable.both{
