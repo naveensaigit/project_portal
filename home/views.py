@@ -110,6 +110,9 @@ def project(request):
     }
     return render(request, 'home/project.html', context)
 
+def ugacPortal(request):
+    return render(request, 'home/ugac-portal.html')
+
 @login_required
 @user_profile_completed
 @user_is_project_author
