@@ -3,3 +3,35 @@
         padding: 0px !important;
     }
 }
+#div_id_Tags > div > span, #div_id_Mentors > div > span{
+    width: 30vw !important;
+    max-width: 500px !important;
+}
+.container{
+    width: 100% !important;
+    max-width: 700px;
+}
+#content > div > div > div > div > form{
+    padding-top: 50px;
+    padding-bottom: 20px;
+}
+label{
+    color: #19258C;
+}
+#content > div > div > div > div > form > fieldset > div:nth-child(13) > button{
+    background-color: #19258C;
+    color: white;
+    /* margin:  */
+    /* width: 80%; */
+}
+#div_id_OpenedFor > div{
+    border: 1px solid #d1d3e2;
+    border-radius: 0.5rem;
+    padding: 5px;
+    padding-left: 30px;
+    background-color: white;
+}
+/* fieldset > div > div > input{
+    border: 1px solid grey;
+    border-radius: 0.5rem;
+} */
