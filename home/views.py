@@ -186,3 +186,9 @@ def projectApplyRequestTask(request):
     project_id = request.GET.get('project_id')
     do_task(request)
     return redirect(f'/project/?project_id={project_id}')
+
+@login_required
+@user_profile_completed
+def Team(request):
+    context = {}
+    return render(request, 'home/team.html', context)
