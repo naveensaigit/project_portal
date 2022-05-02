@@ -64,6 +64,9 @@ class ProjectRegisterForm(forms.ModelForm):
         widget = FileInput(),
         required=False
     )
+    def __init__(self, *args, **kwargs):
+        super(ProjectRegisterForm, self).__init__(*args, **kwargs)
+        self.fields['Question'].label = "What question would you like to ask to the applicant?"
     class Meta:
         model = Project
         fields = ['Title', 'Image', 'Description','Mentors','Status','OpenedFor','Difficulty','PreRequisite','Tags','Duration','SelectionCriteria', 'Question']
@@ -79,6 +82,9 @@ class ProjectUpdateForm(forms.ModelForm):
         widget = FileInput(),
         required=False
     )
+    def __init__(self, *args, **kwargs):
+        super(ProjectRegisterForm, self).__init__(*args, **kwargs)
+        self.fields['Question'].label = "What question would you like to ask to the applicant?"
     class Meta:
         model = Project
         fields = ['Title', 'Image', 'Description','Mentors','Status','OpenedFor','Difficulty','PreRequisite','Tags','Duration','SelectionCriteria', 'Question']

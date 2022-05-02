@@ -215,7 +215,7 @@
   <ul>
       <div class="tagsTitle">Tags:</div>
       {% for tag in project.Tags.all %}
-          <li style="margin-left: 15px; margin-bottom: 20px;"><a href="/?Tags={{tag.id}}">{{ tag }}</a></li>
+          <li style="margin-left: 15px; margin-bottom: 20px;"><a href="/home/?Tags={{tag.id}}">{{ tag }}</a></li>
       {% endfor %}
   </ul>
 

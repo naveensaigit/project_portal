@@ -43,7 +43,7 @@ class Project(models.Model):
     FloatedBy = models.ForeignKey(User, on_delete=models.CASCADE,related_name="FloatedBy")
     Mentors = models.ManyToManyField(User,related_name='Mentors')
     Status = models.CharField(max_length=10, choices=STATUS_CHOICES, default='Open')
-    OpenedFor = models.CharField(max_length=300)
+    OpenedFor = models.CharField(max_length=2000)
     Difficulty = models.CharField(max_length=15, choices=DIFFICULTY_CHOICES, default='Beginner')
     PreRequisite = models.TextField()
     Tags = models.ManyToManyField(Tag, related_name='Tags')

@@ -217,7 +217,7 @@
         <ul>
             POPULAR TAGS:
             {% for tag in common_tags %}
-                <li style="margin-left: 15px; margin-bottom: 20px;"><a href="/?Tags={{tag.id}}">{{ tag }}</a></li>
+                <li style="margin-left: 15px; margin-bottom: 20px;"><a href="/home/?Tags={{tag.id}}">{{ tag }}</a></li>
             {% endfor %}
         </ul>
         </div>
@@ -247,12 +247,12 @@
                         <div class="blog-tags">
                         <br class="main-br">
                             <ul>
-                                <li><a href="/?Status={{project.Status}}">{{project.Status}}</a></li>
-                                <li><a href="/?Difficulty={{project.Difficulty}}">{{project.Difficulty}}</a></li>
+                                <li><a href="/home/?Status={{project.Status}}">{{project.Status}}</a></li>
+                                <li><a href="/home/?Difficulty={{project.Difficulty}}">{{project.Difficulty}}</a></li>
                                 {% for tag in project.Tags.all %}
                                     {% if forloop.counter <= 2 %}
                                         <li>
-                                            <a href="/?Tags={{tag.id}}">{{ tag }}</a>
+                                            <a href="/home/?Tags={{tag.id}}">{{ tag }}</a>
                                         </li>
                                     {% endif %}
                                     {% if forloop.counter == 3 %}
