@@ -18,6 +18,27 @@ OPENED_FOR_CHOICES = (
         ('DSE 4th Year', 'DSE 4th Year'),
         )
     ),
+    ('EE',(
+        ('EE 1st Year', 'EE 1st Year'),
+        ('EE 2nd Year', 'EE 2nd Year'),
+        ('EE 3rd Year', 'EE 3rd Year'),
+        ('EE 4th Year', 'EE 4th Year'),
+        )
+    ),
+    ('ME',(
+        ('ME 1st Year', 'ME 1st Year'),
+        ('ME 2nd Year', 'ME 2nd Year'),
+        ('ME 3rd Year', 'ME 3rd Year'),
+        ('ME 4th Year', 'ME 4th Year'),
+        )
+    ),
+    ('EP',(
+        ('EP 1st Year', 'EP 1st Year'),
+        ('EP 2nd Year', 'EP 2nd Year'),
+        ('EP 3rd Year', 'EP 3rd Year'),
+        ('EP 4th Year', 'EP 4th Year'),
+        )
+    ),
     ('CE',(
         ('CE 1st Year', 'CE 1st Year'),
         ('CE 2nd Year', 'CE 2nd Year'),
