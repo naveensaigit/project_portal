@@ -10271,6 +10271,7 @@ button.bg-dark:focus {
 
 .font-weight-bold {
     font-weight: 700 !important;
+    color: #19258C;
 }
 
 .font-weight-bolder {
@@ -10956,7 +10957,7 @@ a:focus {
     border-right: 1px solid #f7f4f4;
     border-bottom: 1px solid #f7f4f4;
     line-height: 1.3rem;
-    background: #f7f4f4;
+    /*background: #f7f4f4;*/
 }
 
 .topbar .dropdown-list .dropdown-item .dropdown-list-image {
