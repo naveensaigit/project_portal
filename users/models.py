@@ -6,6 +6,10 @@ from django.utils import timezone
 from django.core.validators import FileExtensionValidator
 from home.models import Tag
 
+PROFILE_TYPE_CHOICES = (
+    ('Student', 'Student'),
+    ('Faculty', 'Faculty'),
+)
 YEAR_CHOICES = (
     ('1st', '1st'),
     ('2nd', '2nd'),
@@ -20,11 +24,15 @@ BRANCH_CHOICES = (
     ('EE', 'EE'),
     ('CE', 'CE'),
     ('BioE', 'BioE'),
+    ('EP', 'EP'),
 )
 
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     image = models.ImageField(default = 'default.jpg', upload_to='profile_pics', blank=True, validators=[FileExtensionValidator(allowed_extensions=['png', 'jpg', 'jpeg'])])
+    profile_type = models.CharField(max_length=30, choices = YEAR_CHOICES)
+    area_of_interest = models.CharField(max_length=100)
+    school = models.CharField(max_length=100)
     rollno = models.CharField(max_length=10)
     year = models.CharField(max_length=30, choices = YEAR_CHOICES)
     branch = models.CharField(max_length=30, choices = BRANCH_CHOICES)
