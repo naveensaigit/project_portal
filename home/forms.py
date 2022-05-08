@@ -83,7 +83,7 @@ class ProjectUpdateForm(forms.ModelForm):
         required=False
     )
     def __init__(self, *args, **kwargs):
-        super(ProjectRegisterForm, self).__init__(*args, **kwargs)
+        super(ProjectUpdateForm, self).__init__(*args, **kwargs)
         self.fields['Question'].label = "What question would you like to ask to the applicant?"
     class Meta:
         model = Project
