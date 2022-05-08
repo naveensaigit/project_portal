@@ -23,9 +23,15 @@
         <div>
           {{ profile_user.first_name }} {{ profile_user.last_name }}
           <br>
-          {{ profile_user.profile.year }} Year - {{ profile_user.profile.branch }}
-          <br>
           {{ profile_user.email }}
+          <br>
+          {% if profile_user.profile.profile_type == Student %} 
+            {{ profile_user.profile.year }} Year - {{ profile_user.profile.branch }}
+          {% else %}
+            School - {{ profile_user.profile.school }} 
+            <br>
+            Area of Interest - {{ profile_user.profile.area_of_interest }}
+          {% endif %}
         </div>
       </div>
     </div>
@@ -98,17 +104,19 @@
         <div class="vertical-line">
           <div class="line"></div>
         </div>
-        <div class="projectButton" id='projects1button' onclick="toggleVisibility('projects1')">
-          <div class="projectButtonTitle">
-            PROJECTS APPLIED:
+        {% if profile_user.profile.profile_type == Student %} 
+          <div class="projectButton" id='projects1button' onclick="toggleVisibility('projects1')">
+            <div class="projectButtonTitle">
+              PROJECTS APPLIED:
+            </div>
+            <div class="projectsNumbers">
+              {{ projects_id.2|length }}
+            </div>
           </div>
-          <div class="projectsNumbers">
-            {{ projects_id.2|length }}
+          <div class="vertical-line">
+            <div class="line"></div>
           </div>
-        </div>
-        <div class="vertical-line">
-          <div class="line"></div>
-        </div>
+        {% endif %}
         <div class="projectButton" id='projects2button' onclick="toggleVisibility('projects2')">
           <div class="projectButtonTitle">
             PROJECTS REQUESTED:

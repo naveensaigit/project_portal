@@ -264,13 +264,30 @@ def check_user_profile(user):
     user_fields = [user.username, user.first_name, user.last_name, user.email]
     for field in user_fields:
         if field == None or (len(field) == 0):
+            print(" user fields is not completed")
             return True
 
     profile = user.profile
-    profile_fields = [profile.image, profile.rollno ,profile.year ,profile.branch]
-    for field in profile_fields:
+    general_profile = [profile.image, str(profile.cv), profile.techskills.all()]
+    for field in general_profile:
         if field == None or (len(field) == 0):
+            print(" General profile is not completed")
             return True
-    if str(profile.cv) == "" or len(profile.techskills.all()) == 0:
-        return True
+
+    person = profile.profile_type
+    if person == "Student":
+        student_profile = [profile.rollno ,profile.year ,profile.branch]
+        for field in student_profile:
+            if field == None or (len(field) == 0):
+                print(" Student profile is not completed")
+                return True
+    else:
+        faculty_profile = [profile.area_of_interest, profile.school]
+        for field in faculty_profile:
+            if field == None or (len(field) == 0):
+                print(" Faculty profile is not completed")
+                return True
     return False
+    # if str(profile.cv) == "" or len(profile.techskills.all()) == 0:
+    #     return True
+    # return False

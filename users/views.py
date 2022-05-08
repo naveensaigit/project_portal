@@ -1,8 +1,9 @@
 from django.contrib.auth.models import User
 from django.shortcuts import redirect, render
 
-from home.decorators import user_profile_completed
-from .forms import UserRegisterForm, ProfileRegisterForm, ProfileUpdateForm, UserUpdateForm
+from home.decorators import user_profile_completed, user_profile_type_set
+# from .forms import UserRegisterForm, ProfileRegisterForm, ProfileUpdateForm, UserUpdateForm
+from .forms import StudentProfileUpdateForm, FacultyProfileUpdateForm
 from django.contrib import messages
 from .models import Profile,Notification
 from django.contrib.auth.decorators import login_required
@@ -64,9 +65,14 @@ def profile(request, user_id):
     return render(request, 'users/profile.html', context)
 
 @login_required
+@user_profile_type_set
 def profile_edit(request):
+    user_type = Profile.objects.get(user = request.user).profile_type
     if request.method == 'POST':
-        profile_update_form = ProfileUpdateForm(request.POST, request.FILES, instance = request.user.profile)
+        if user_type == "Student":
+            profile_update_form = StudentProfileUpdateForm(request.POST, request.FILES, instance = request.user.profile)
+        else:
+            profile_update_form = FacultyProfileUpdateForm(request.POST, request.FILES, instance = request.user.profile)
 
         if profile_update_form.is_valid():
             user_profile = Profile.objects.get(user = request.user)
@@ -88,7 +94,10 @@ def profile_edit(request):
         else:
             messages.error(request, 'Please correct the error below.')
     else:
-        profile_update_form = ProfileUpdateForm(instance = request.user.profile)
+        if user_type == "Student":
+            profile_update_form = StudentProfileUpdateForm(instance = request.user.profile)
+        else:
+            profile_update_form = FacultyProfileUpdateForm(instance = request.user.profile)
 
     context = {
         'title': 'Profile Edit',
@@ -99,6 +108,7 @@ def profile_edit(request):
     return render(request, 'users/profile_edit.html', context)
 
 @login_required
+@user_profile_type_set
 @user_profile_completed
 def projects_view(request, user_id):
     current_user = User.objects.get(id=user_id)
