@@ -106,7 +106,7 @@ def get_paginated_projects(request, projects):
     if(number_of_projects==None):
         number_of_projects=12
 
-    paginator = Paginator(projects, number_of_projects)
+    paginator = Paginator(projects.order_by('-Likes', '-DatePosted'), number_of_projects)
     try:
         paginated_projects = paginator.page(page)
     except PageNotAnInteger:
@@ -131,7 +131,6 @@ def get_searched_projects(request):
     searched_projects_Title = Project.objects.filter(Title__contains = value)
     searched_projects_Desription = Project.objects.filter(Description__contains = value)
     searched_projects = searched_projects_Title | searched_projects_Desription
-    searched_projects = searched_projects.order_by('-DatePosted')
     return searched_projects
 
 def send_mail_notification(subject, message, email_from , recipient_list):

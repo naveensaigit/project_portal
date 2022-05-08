@@ -33,5 +33,8 @@ urlpatterns = [
     path('', include('home.urls')),
 ]
 
+handler404 = "home.views.errorPage404"
+handler500 = "home.views.errorPage500"
+
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)

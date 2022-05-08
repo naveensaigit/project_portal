@@ -10,6 +10,16 @@ from functions import *
 from django.core.serializers import serialize
 from users.models import Profile
 
+def errorPage404(request, exception):
+    response = render(request, template_name = "home/errorPage.html")
+    response.status_code = 404
+    return response
+
+def errorPage500(request):
+    response = render(request, template_name = "home/errorPage.html")
+    response.status_code = 500
+    return response
+
 @login_required
 @user_profile_completed
 def main(request):
