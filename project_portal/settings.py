@@ -25,10 +25,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-2hz8%7u%dbx&8f9vl!rq-!zo^qc(-2g0(w3lqlgvbrd*(8t@20'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = os.getenv('DEBUG')
 
-ALLOWED_HOSTS = ['ugac-project-portal.herokuapp.com', '127.0.0.1', 'localhost']
-CSRF_TRUSTED_ORIGINS = ['https://ugac-project-portal.herokuapp.com']
+ALLOWED_HOSTS = [os.getenv('ALLOWED_HOSTS'), '127.0.0.1', 'localhost']
+CSRF_TRUSTED_ORIGINS = [os.getenv('CSRF_TRUSTED_ORIGINS')]
 
 # Application definition
 
@@ -165,8 +165,8 @@ SOCIALACCOUNT_PROVIDERS = {
             'email',
         ],
         'APP': {
-            'client_id': '287293174124-sa09nhc6qophhhlhoa0mlca71gjpba1u.apps.googleusercontent.com',
-            'secret': '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',
+            'client_id': os.getenv('CLIENT_ID'),
+            'secret': os.getenv('SECRET'),
             'key': ''
         }
     }

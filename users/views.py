@@ -66,10 +66,9 @@ def profile(request, user_id):
 @login_required
 def profile_edit(request):
     if request.method == 'POST':
-        user_update_form = UserUpdateForm(request.POST, instance = request.user)
         profile_update_form = ProfileUpdateForm(request.POST, request.FILES, instance = request.user.profile)
 
-        if user_update_form.is_valid() and profile_update_form.is_valid():
+        if profile_update_form.is_valid():
             user_profile = Profile.objects.get(user = request.user)
             user_img = str(user_profile.image)
             user_cv = str(user_profile.cv)
@@ -80,7 +79,6 @@ def profile_edit(request):
                 elif request.FILES.get('cv') and user_cv:
                     default_storage.delete(user_cv)
 
-            user_update_form.save()
             profile_update_form.save()
 
             messages.success(request, "Your profile has been updated!")
@@ -90,12 +88,10 @@ def profile_edit(request):
         else:
             messages.error(request, 'Please correct the error below.')
     else:
-        user_update_form = UserUpdateForm(instance = request.user)
         profile_update_form = ProfileUpdateForm(instance = request.user.profile)
 
     context = {
         'title': 'Profile Edit',
-        'user_form': user_update_form,
         'notifications': Notification.objects.filter(user=request.user).order_by('-time'),
         'profile_form': profile_update_form,
     }
