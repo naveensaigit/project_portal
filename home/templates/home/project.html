@@ -276,6 +276,7 @@
           {% if project.FloatedBy == user %}
           <br>
           <a href="/project/update/?project_id={{project.id}}"><button class="btn btn-success btn-icon-split" style="display: inline-block;width: 130px ;height:35px; padding-top: 0px; padding-bottom: 0px;"><b>UPDATE</b></button></a>
+          <a href="/project/close/?project_id={{project.id}}"><button class="btn btn-warning btn-icon-split" style="display: inline-block;width: 130px ;height:35px; padding-top: 0px; padding-bottom: 0px;"><b>CLOSE</b></button></a>
           <a data-toggle="modal" data-target="#deleteModal"><button class="btn btn-danger btn-icon-split" style="display: inline-block;width: 130px; height:35px;padding-top: 0px; padding-bottom: 0px;"><b>DELETE</b></button></a>
           {% endif %}
         </div>
@@ -488,26 +489,10 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script>
 <script src="https://unpkg.com/bootstrap-table@1.18.1/dist/bootstrap-table.min.js"></script>
 <script>
-  var users = {
-    {
-      users_html | safe
-    }
-  };
-  var tags = {
-    {
-      tags_html | safe
-    }
-  };
-  var user_profiles = {
-    {
-      user_profiles_html | safe
-    }
-  };
-  var applications = {
-    {
-      apply_requests_html | safe
-    }
-  };
+  var users = {{ users_html | safe }};
+  var tags = {{ tags_html | safe }};
+  var user_profiles = {{ user_profiles_html | safe }};
+  var applications = {{ apply_requests_html | safe }};
 </script>
 <script src="{% static 'home/projectInfo.js' %}"></script>
 {% endblock customScripts %}

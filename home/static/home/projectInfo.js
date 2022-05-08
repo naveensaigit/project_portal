@@ -9,13 +9,14 @@ function moveFilters() {
     bootstrapControlsDiv.innerHTML = "";
 }
 
-colors = Array("#BEFFE0", "#FFD493", "#C9D8FF");
-var tagsToDisplay = document.getElementById("tagsContainer").children;
-for(var i = 1;i<tagsToDisplay.length;i++){
-    var tag = tagsToDisplay[i];
-    var ind = i%3;
-    tag.style.backgroundColor = colors[ind];
-}
+// colors = Array("#BEFFE0", "#FFD493", "#C9D8FF");
+// var tagsToDisplay = document.querySelector("#content > div > div.container-fluid > div > div.col-md-8 > div:nth-child(1) > div").children;
+// for(var i = 1;i<tagsToDisplay.length;i++){
+//     var tag = tagsToDisplay[i];
+//     var ind = i%3;
+//     tag.style.backgroundColor = colors[ind];
+// }
+
 function unselect(){
     var buttons = document.getElementsByClassName('buttonContent');
     for(var i = 0;i<buttons.length;i++){
@@ -73,6 +74,7 @@ function fillModal(application_id, user_profile_id) {
     $("#Portfolio_link").html(user_profile['portfolio_link']);
     $("#Github_link").html(user_profile['github_link']);
     $("#Resume").html("<a href = \"/media/" + user_profile['cv']+"\" target = \"_blank\">Resume</a>");
+    console.log(application['Message']);
     $("#Message").html(application['Message']);
     $('#rejectButton').attr("href",rejectLink);
     $('#acceptButton').attr("href",acceptLink);

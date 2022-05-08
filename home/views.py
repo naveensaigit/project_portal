@@ -116,6 +116,16 @@ def ugacPortal(request):
 @login_required
 @user_profile_completed
 @user_is_project_author
+def projectClose(request):
+    project_id = request.GET.get('project_id')
+    project = Project.objects.get(id=project_id)
+    project.Status = "Completed"
+    project.save()
+    return redirect(f"/project/?project_id={project_id}")
+
+@login_required
+@user_profile_completed
+@user_is_project_author
 def projectUpdate(request):
     project_id = request.GET.get('project_id')
     project = Project.objects.get(id=project_id)
