@@ -261,7 +261,8 @@ def get_projects_view_details(request, current_user):
     return req_projects, title, heading
 
 def check_user_profile(user):
-    user_fields = [user.username, user.first_name, user.last_name, user.email]
+    # user_fields = [user.username, user.first_name, user.last_name, user.email]
+    user_fields = [user.username, user.first_name, user.email]
     for field in user_fields:
         if field == None or (len(field) == 0):
             print(" user fields is not completed")

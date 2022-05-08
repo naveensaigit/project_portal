@@ -26,13 +26,19 @@ BRANCH_CHOICES = (
     ('BioE', 'BioE'),
     ('EP', 'EP'),
 )
+SCHOOL_CHOICES = (
+    ('SCEE', 'SCEE'),
+    ('SBS', 'SBS'),
+    ('SE', 'SE'),
+    ('SHSS', 'SHSS'),
+)
 
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     image = models.ImageField(default = 'default.jpg', upload_to='profile_pics', blank=True, validators=[FileExtensionValidator(allowed_extensions=['png', 'jpg', 'jpeg'])])
     profile_type = models.CharField(max_length=30, choices = YEAR_CHOICES)
     area_of_interest = models.CharField(max_length=100)
-    school = models.CharField(max_length=100)
+    school = models.CharField(max_length=100, choices=SCHOOL_CHOICES)
     rollno = models.CharField(max_length=10)
     year = models.CharField(max_length=30, choices = YEAR_CHOICES)
     branch = models.CharField(max_length=30, choices = BRANCH_CHOICES)

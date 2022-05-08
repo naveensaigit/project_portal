@@ -33,6 +33,7 @@
                                 {% csrf_token %}
                                 <fieldset>
                                     <legend><h2 style="color: #022160; text-align: center; font-family: Public Sans; font-style: normal;"><b>Profile Info</b></h2></legend>
+									{{ user_form|crispy }}
 									{{ profile_form|crispy }}
                                 </fieldset>
                                 <div>

@@ -3,7 +3,7 @@ from django.shortcuts import redirect, render
 
 from home.decorators import user_profile_completed, user_profile_type_set
 # from .forms import UserRegisterForm, ProfileRegisterForm, ProfileUpdateForm, UserUpdateForm
-from .forms import StudentProfileUpdateForm, FacultyProfileUpdateForm
+from .forms import UserUpdateForm, StudentProfileUpdateForm, FacultyProfileUpdateForm
 from django.contrib import messages
 from .models import Profile,Notification
 from django.contrib.auth.decorators import login_required
@@ -69,12 +69,13 @@ def profile(request, user_id):
 def profile_edit(request):
     user_type = Profile.objects.get(user = request.user).profile_type
     if request.method == 'POST':
+        user_update_form = UserUpdateForm(request.POST, instance = request.user)
         if user_type == "Student":
             profile_update_form = StudentProfileUpdateForm(request.POST, request.FILES, instance = request.user.profile)
         else:
             profile_update_form = FacultyProfileUpdateForm(request.POST, request.FILES, instance = request.user.profile)
 
-        if profile_update_form.is_valid():
+        if user_update_form.is_valid() and profile_update_form.is_valid():
             user_profile = Profile.objects.get(user = request.user)
             user_img = str(user_profile.image)
             user_cv = str(user_profile.cv)
@@ -85,6 +86,7 @@ def profile_edit(request):
                 elif request.FILES.get('cv') and user_cv:
                     default_storage.delete(user_cv)
 
+            user_update_form.save()
             profile_update_form.save()
 
             messages.success(request, "Your profile has been updated!")
@@ -94,6 +96,7 @@ def profile_edit(request):
         else:
             messages.error(request, 'Please correct the error below.')
     else:
+        user_update_form = UserUpdateForm(instance = request.user)
         if user_type == "Student":
             profile_update_form = StudentProfileUpdateForm(instance = request.user.profile)
         else:
@@ -102,6 +105,7 @@ def profile_edit(request):
     context = {
         'title': 'Profile Edit',
         'notifications': Notification.objects.filter(user=request.user).order_by('-time'),
+        'user_form': user_update_form,
         'profile_form': profile_update_form,
     }
 
