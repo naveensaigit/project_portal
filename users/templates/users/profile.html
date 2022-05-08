@@ -25,7 +25,7 @@
           <br>
           {{ profile_user.email }}
           <br>
-          {% if profile_user.profile.profile_type == Student %} 
+          {% if profile_user.profile.profile_type == 'Student' %} 
             {{ profile_user.profile.year }} Year - {{ profile_user.profile.branch }}
           {% else %}
             School - {{ profile_user.profile.school }} 
@@ -104,7 +104,7 @@
         <div class="vertical-line">
           <div class="line"></div>
         </div>
-        {% if profile_user.profile.profile_type == Student %} 
+        {% if profile_user.profile.profile_type == 'Student' %} 
           <div class="projectButton" id='projects1button' onclick="toggleVisibility('projects1')">
             <div class="projectButtonTitle">
               PROJECTS APPLIED:
