@@ -36,7 +36,7 @@ SCHOOL_CHOICES = (
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     image = models.ImageField(default = 'default.jpg', upload_to='profile_pics', blank=True, validators=[FileExtensionValidator(allowed_extensions=['png', 'jpg', 'jpeg'])])
-    profile_type = models.CharField(max_length=30, choices = YEAR_CHOICES)
+    profile_type = models.CharField(max_length=30, choices = PROFILE_TYPE_CHOICES)
     area_of_interest = models.CharField(max_length=100)
     school = models.CharField(max_length=100, choices=SCHOOL_CHOICES)
     rollno = models.CharField(max_length=10)

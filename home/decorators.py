@@ -33,10 +33,11 @@ def user_profile_type_set(function):
         user_profile = Profile.objects.get(user = request.user)
         user_type = user_profile.profile_type
         if(user_type == None or len(user_type) == 0):
-            user_type = "Student" if "students" in request.user.email else "Faculty"
-            if request.user.email == "b20123@students.iitmandi.ac.in":
-                user_type = "Faculty"
-            user_profile.profile_type = user_type
+            # user_type = "Student" if "students" in request.user.email else "Faculty"
+            # if request.user.email == "b20123@students.iitmandi.ac.in":
+            #     user_type = "Faculty"
+            # user_profile.profile_type = user_type
+            user_profile.profile_type = "Student" if "students" in request.user.email else "Faculty"
             user_profile.save()
         return function(request, *args, **kwargs)
     wrap.__doc__ = function.__doc__

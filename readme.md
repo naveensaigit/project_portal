@@ -1,5 +1,6 @@
 Project Deployed at - https://ugac-project-portal.herokuapp.com/
 
+1) sudo apt update && sudo apt install libldap2-dev libsasl2-dev
 
 # RUNNING ON LOCAL SERVER
 1) Download zip and extract it

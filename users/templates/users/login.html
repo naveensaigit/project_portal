@@ -1,57 +1,63 @@
-{% load static %}
-<!DOCTYPE html>
-<html lang="en">
+{% comment %} {% load static %} {% endcomment %}
+{% comment %}
+<!DOCTYPE html> {% endcomment %}
+{% comment %} <html lang="en"> {% endcomment %}
 
-    <head>
-        <meta charset="UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Login | Project Portal</title>
-        <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
-        <link rel="stylesheet" type="text/css" href="{% static 'users/login.css' %}">
-    </head>
+{% comment %}
 
-    <body>
-        {% comment %}
-        <div class="bg-gradient-primary">
-            <div class="container" style="padding-top:150px">
-                <!-- Outer Row -->
-                <div class="row justify-content-center">
-                    <div class="col-xl-10 col-lg-12 col-md-9">
-                        <div class="card o-hidden border-0 shadow-lg my-5">
-                            <div class="card-body p-0">
-                                <!-- Nested Row within Card Body -->
-                                <div class="row">
-                                    <div class="col-lg-6 d-none d-lg-block bg-login-image"></div>
-                                    <div class="col-lg-6">
-                                        <div class="p-5">
-                                            <div class="text-center">
-                                                <h1 class="h4 text-gray-900 mb-4">
-                                                    <b>LOGIN</b>
-                                                </h1>
-                                            </div>
-                                            <form method="POST" class="user">
-                                                {% csrf_token %}
-                                                <fieldset>
-                                                    {{ form|crispy }}
-                                                </fieldset>
-                                                <div>
-                                                    <button type="submit" class="btn btn-primary btn-user btn-block">Login</button>
-                                                </div>
-                                                <br>
-                                                <hr>
-                                            </form>
-                                            <a href="{% url 'oauth' %}" class="btn btn-google btn-user btn-block">
-                                                <i class="fab fa-google fa-fw"></i> Login with Google
-                                            </a>
-                                            <div class="text-center">
-                                                <div class="small">
-                                                    <div>
-                                                        Don't have an account? | <a href="{% url 'signup' %}">Sign Up</a>
-                                                    </div>
-                                                </div>
-                                            </div> <br>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login | Project Portal</title>
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
+        integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
+    <link rel="stylesheet" type="text/css" href="{% static 'users/login.css' %}">
+</head> {% endcomment %}
+
+{% comment %}
+
+<body> {% endcomment %}
+    {% load crispy_forms_tags %}
+    <div class="bg-gradient-primary">
+        <div class="container" style="padding-top:150px">
+            <!-- Outer Row -->
+            <div class="row justify-content-center">
+                <div class="col-xl-10 col-lg-12 col-md-9">
+                    <div class="card o-hidden border-0 shadow-lg my-5">
+                        <div class="card-body p-0">
+                            <!-- Nested Row within Card Body -->
+                            <div class="row">
+                                <div class="col-lg-6 d-none d-lg-block bg-login-image"></div>
+                                <div class="col-lg-6">
+                                    <div class="p-5">
+                                        <div class="text-center">
+                                            <h1 class="h4 text-gray-900 mb-4">
+                                                <b>LOGIN</b>
+                                            </h1>
                                         </div>
+                                        <form method="POST" class="user">
+                                            {% csrf_token %}
+                                            <fieldset>
+                                                {{ form|crispy }}
+                                            </fieldset>
+                                            <div>
+                                                <button type="submit"
+                                                    class="btn btn-primary btn-user btn-block">Login</button>
+                                            </div>
+                                        </form>
+                                        {% comment %} <a href="{% url 'oauth' %}"
+                                            class="btn btn-google btn-user btn-block">
+                                            <i class="fab fa-google fa-fw"></i> Login with Google
+                                        </a> {% endcomment %}
+                                        <div class="text-center">
+                                            <div class="small">
+                                                <div>
+                                                    {% comment %} Don't have an account? | <a
+                                                        href="{% url 'signup' %}">Sign Up</a> {% endcomment %}
+                                                </div>
+                                            </div>
+                                        </div> <br>
                                     </div>
                                 </div>
                             </div>
@@ -60,33 +66,11 @@
                 </div>
             </div>
         </div>
-        {% endcomment %}
-        <div id="main">
-            <div id="left">
-                <div>
-                    <span>
-                        Project
-                        <br>
-                        Portal 
-                    </span>
-                    <br>
-                    IIT MANDI
-                </div>
-            </div>
-            <div id="right">
-                <div>
-                    <div class="text-center">
-                        <h1 class="h4 text-gray-900 mb-4">
-                            <b>LOGIN</b>
-                        </h1>
-                    </div>
-                    <a href="{% url 'oauth' %}" class="btn btn-google btn-user btn-block">
-                        <i class="fab fa-google fa-fw"></i> Login with Google
-                    </a>
-                </div>
-            </div>
-        </div>
-        <img src="/media/logo.png" id = "logo">
-    </body>
+    </div>
+    {% comment %} <img src="/media/logo.png" id="logo"> {% endcomment %}
+    {% comment %}
+</body> {% endcomment %}
 
-</html>
+{% comment %}
+
+</html> {% endcomment %}

@@ -9,10 +9,11 @@ from .models import Profile
 #     class Meta:
 #         model = User
 #         fields = ['username', 'first_name', 'last_name', 'email', 'password1', 'password2']
-class UserUpdateForm(forms.ModelForm):
-    class Meta:
-        model = User
-        fields = ['username', 'first_name', 'last_name']
+
+# class UserUpdateForm(forms.ModelForm):
+#     class Meta:
+#         model = User
+#         fields = ['username', 'first_name', 'last_name']
 
 # class StudentProfileRegisterForm(forms.ModelForm):
 #     class Meta:
