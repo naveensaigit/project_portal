@@ -30,8 +30,6 @@ INSTALLED_APPS = [
 ]
 
 AUTH_LDAP_SERVER_URI = 'ldap://localhost'
-AUTH_LDAP_BIND_DN = 'cn=admin,dc=example,dc=com'
-AUTH_LDAP_BIND_PASSWORD = 'lazyghost'
 AUTH_LDAP_USER_SEARCH = LDAPSearch('dc=example,dc=com', ldap.SCOPE_SUBTREE,
                                    '(uid=%(user)s)')
 AUTH_LDAP_GROUP_SEARCH = LDAPSearch('dc=example,dc=com', ldap.SCOPE_SUBTREE,
@@ -46,7 +44,6 @@ AUTH_LDAP_USER_ATTR_MAP = {
     "username": "uid",
     "password": "userPassword",
 }
-# AUTH_LDAP_PROFILE_ATTR_MAP = {"home_directory": "homeDirectory"}
 AUTH_LDAP_USER_FLAGS_BY_GROUP = {
     "is_active": "cn=active,ou=groups,dc=example,dc=com",
     "is_staff": "cn=staff,ou=groups,dc=example,dc=com",
