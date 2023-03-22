@@ -36,34 +36,62 @@
 			<form method="POST" enctype="multipart/form-data">
 				{% csrf_token %}
 				<div class="fieldWrapper">
-					{{ project_form.Title.errors }}
-					{{ project_form.Title.label_tag }}
+					<div style="color:red;">
+						{{ project_form.Title.errors }}
+					</div>
+					<div style="display:flex;">
+						{% if project_form.Title.field.required %}*{% endif %}{{ project_form.Title.label_tag }}
+					</div>
 					{{ project_form.Title }}
 				</div>
+				<br>
 				<div class="fieldWrapper">
-					{{ project_form.Image.errors }}
-					{{ project_form.Image.label_tag }}
+					<div style="color:red;">
+						{{ project_form.Image.errors }}
+					</div>
+					<div style="display:flex;">
+						{% if project_form.Image.field.required %}*{% endif %}{{ project_form.Image.label_tag }}
+					</div>
 					{{ project_form.Image }}
 				</div>
+				<br>
 				<div class="fieldWrapper">
-					{{ project_form.Description.errors }}
-					{{ project_form.Description.label_tag }}
-					<br>
+					<div style="color:red;">
+						{{ project_form.Desription.errors }}
+					</div>
+					<div style="display:flex;">
+						{% if project_form.Description.field.required %}*{% endif %}{{ project_form.Description.label_tag }}
+					</div>
 					{{ project_form.Description }}
 				</div>
+				<br>
 				<div class="fieldWrapper">
-					{{ project_form.Mentors.errors }}
-					{{ project_form.Mentors.label_tag }}
+					<div style="color:red;">
+						{{ project_form.Mentors.errors }}
+					</div>
+					<div style="display:flex;">
+						{% if project_form.Mentors.field.required %}*{% endif %}{{ project_form.Mentors.label_tag }}
+					</div>
 					{{ project_form.Mentors }}
 				</div>
+				<br>
 				<div class="fieldWrapper">
-					{{ project_form.Status.errors }}
-					{{ project_form.Status.label_tag }}
+					<div style="color:red;">
+						{{ project_form.Status.errors }}
+					</div>
+					<div style="display:flex;">
+						{% if project_form.Status.field.required %}*{% endif %}{{ project_form.Status.label_tag }}
+					</div>
 					{{ project_form.Status }}
 				</div>
+				<br>
 				<div class="fieldWrapper">
-					{{ project_form.OpenedFor.errors }}
-					{{ project_form.OpenedFor.label_tag }}
+					<div style="color:red;">
+						{{ project_form.OpenedFor.errors }}
+					</div>
+					<div style="display:flex;">
+						{% if project_form.OpenedFor.field.required %}*{% endif %}{{ project_form.OpenedFor.label_tag }}
+					</div>
 					<div id="id_OpenedFor">
 						<ul>
 							<li>
@@ -241,39 +269,77 @@
 						</ul>
 					</div>
 				</div>
+				<br>
 				<div class="fieldWrapper">
-					{{ project_form.Difficulty.errors }}
-					{{ project_form.Difficulty.label_tag }}
+					<div style="color:red;">
+						{{ project_form.Difficulty.errors }}
+					</div>
+					<div style="display:flex;">
+						{% if project_form.Difficulty.field.required %}*{% endif %}
+						{{ project_form.Difficulty.label_tag }}
+					</div>
 					{{ project_form.Difficulty }}
 				</div>
+				<br>
 				<div class="fieldWrapper">
-					{{ project_form.PreRequisite.errors }}
-					{{ project_form.PreRequisite.label_tag }}
-					<br>
-					{{ project_form.PreRequisite }}
+					<div style="color:red;">
+						{{ project_form.DesiredQualifications.errors }}
+					</div>
+					<div style="display:flex;">
+						{% if project_form.DesiredQualifications.field.required %}*{% endif %}
+						{{ project_form.DesiredQualifications.label_tag }}
+					</div>
+					{{ project_form.DesiredQualifications }}
 				</div>
+				<br>
 				<div class="fieldWrapper">
-					{{ project_form.Tags.errors }}
-					{{ project_form.Tags.label_tag }}
+					<div style="color:red;">
+						{{ project_form.Tags.errors }}
+					</div>
+					<div style="display:flex;">
+						{% if project_form.Tags.field.required %}*{% endif %}
+						{{ project_form.Tags.label_tag }}
+					</div>
+					{{ project_form.Tags.help_text }}
+					<br>
 					{{ project_form.Tags }}
 				</div>
+				<br>
 				<div class="fieldWrapper">
-					{{ project_form.Duration.errors }}
-					{{ project_form.Duration.label_tag }}
+					<div style="color:red;">
+						{{ project_form.Duration.errors }}
+					</div>
+					<div style="display:flex;">
+						{% if project_form.Duration.field.required %}*{% endif %}
+						{{ project_form.Duration.label_tag }}
+					</div>
 					{{ project_form.Duration }}
 				</div>
+				<br>
 				<div class="fieldWrapper">
-					{{ project_form.SelectionCriteria.errors }}
-					{{ project_form.SelectionCriteria.label_tag }}
-					<br>
+					<div style="color:red;">
+						{{ project_form.SelectionCriteria.errors }}
+					</div>
+					<div style="display:flex;">
+						{% if project_form.SelectionCriteria.field.required %}*{% endif %}
+						{{ project_form.SelectionCriteria.label_tag }}
+					</div>
 					{{ project_form.SelectionCriteria }}
 				</div>
+				<br>
 				<div class="fieldWrapper">
-					{{ project_form.Question.errors }}
-					{{ project_form.Question.label_tag }}
+					<div style="color:red;">
+						{{ project_form.Question.errors }}
+					</div>
+					<div style="display:flex;">
+						{% if project_form.Question.field.required %}*{% endif %}
+						{{ project_form.Question.label_tag }}
+					</div>
+					{{ project_form.Question.help_text }}
 					<br>
 					{{ project_form.Question }}
 				</div>
+				<br>
 				{% comment %} <fieldset style="color: #19258C; width: 100%;">
 					{{ project_form|crispy }}
 				</fieldset> {% endcomment %}

@@ -41,4 +41,4 @@ class FacultyProfileUpdateForm(forms.ModelForm):
     )
     class Meta:
         model = Profile
-        fields = ['image', 'area_of_interest', 'school', 'techskills', 'cv','linked_in_link','portfolio_link','github_link']
+        fields = ['image', 'area_of_interest', 'school', 'cv','linked_in_link','portfolio_link','github_link']

@@ -66,10 +66,11 @@ class ProjectRegisterForm(forms.ModelForm):
     )
     def __init__(self, *args, **kwargs):
         super(ProjectRegisterForm, self).__init__(*args, **kwargs)
-        self.fields['Question'].label = "What question would you like to ask to the applicant?"
+        self.fields['Question'].help_text = "What question would you like to ask to the applicant?"
+        self.fields['Tags'].help_text = "Enter a new tag or select an existing one from the list."
     class Meta:
         model = Project
-        fields = ['Title', 'Image', 'Description','Mentors','Status','OpenedFor','Difficulty','PreRequisite','Tags','Duration','SelectionCriteria', 'Question']
+        fields = ['Title', 'Image', 'Description','Mentors','Status','OpenedFor','Difficulty','DesiredQualifications','Tags','Duration','SelectionCriteria', 'Question']
 
 
 
@@ -84,7 +85,8 @@ class ProjectUpdateForm(forms.ModelForm):
     )
     def __init__(self, *args, **kwargs):
         super(ProjectUpdateForm, self).__init__(*args, **kwargs)
-        self.fields['Question'].label = "What question would you like to ask to the applicant?"
+        self.fields['Question'].help_text = "What question would you like to ask to the applicant?"
+        self.fields['Tags'].help_text = "You can create a new tag yourself"
     class Meta:
         model = Project
-        fields = ['Title', 'Image', 'Description','Mentors','Status','OpenedFor','Difficulty','PreRequisite','Tags','Duration','SelectionCriteria', 'Question']
+        fields = ['Title', 'Image', 'Description','Mentors','Status','OpenedFor','Difficulty','DesiredQualifications','Tags','Duration','SelectionCriteria', 'Question']

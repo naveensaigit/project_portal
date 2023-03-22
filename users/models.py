@@ -27,10 +27,15 @@ BRANCH_CHOICES = (
     ('EP', 'EP'),
 )
 SCHOOL_CHOICES = (
-    ('SCEE', 'SCEE'),
     ('SBS', 'SBS'),
-    ('SE', 'SE'),
+    ('SCS', 'SCS'),
+    ('SPS', 'SPS'),
+    ('SMSS', 'SMSS'),
     ('SHSS', 'SHSS'),
+    ('SCEE', 'SCEE'),
+    ('SMMS', 'SMMS'),
+    ('SCENE', 'SCENE'),
+    ('SoM', 'SoM'),
 )
 
 class Profile(models.Model):

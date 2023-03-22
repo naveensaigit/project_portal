@@ -45,7 +45,7 @@ class Project(models.Model):
     Status = models.CharField(max_length=10, choices=STATUS_CHOICES, default='Open')
     OpenedFor = models.CharField(max_length=2000)
     Difficulty = models.CharField(max_length=15, choices=DIFFICULTY_CHOICES, default='Beginner')
-    PreRequisite = models.TextField()
+    DesiredQualifications = models.TextField()
     Tags = models.ManyToManyField(Tag, related_name='Tags')
     Duration = models.CharField(max_length=30, choices=DURATION_CHOICES)
     DatePosted = models.DateTimeField(default = timezone.now)
