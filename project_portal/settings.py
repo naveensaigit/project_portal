@@ -30,10 +30,17 @@ INSTALLED_APPS = [
 ]
 
 AUTH_LDAP_SERVER_URI = 'ldap://users.iitmandi.ac.in'
+#AUTH_LDAP_BIND_DN = 'cn=admin,dc=example,dc=com'
+#AUTH_LDAP_BIND_PASSWORD = 'lazyghost'
 AUTH_LDAP_USER_SEARCH = LDAPSearch('dc=iitmandi,dc=ac,dc=in', ldap.SCOPE_SUBTREE,
                                    '(uid=%(user)s)')
 AUTH_LDAP_GROUP_SEARCH = LDAPSearch('dc=iitmandi,dc=ac,dc=in', ldap.SCOPE_SUBTREE,
                                     '(objectClass=top)')
+                                  
+
+#AUTH_LDAP_GROUP_TYPE = PosixGroupType(name_attr="cn")
+#AUTH_LDAP_MIRROR_GROUPS = True
+#AUTH_LDAP_REQUIRE_GROUP = "cn=enabled,ou=groups,dc=example,dc=com"
 AUTH_LDAP_USER_ATTR_MAP = {
     "first_name": "givenName",
     "last_name": "sn",
@@ -41,17 +48,15 @@ AUTH_LDAP_USER_ATTR_MAP = {
     "username": "uid",
     "password": "userPassword",
 }
-# AUTH_LDAP_GROUP_TYPE = PosixGroupType(name_attr="cn")
-# AUTH_LDAP_MIRROR_GROUPS = True
-# AUTH_LDAP_REQUIRE_GROUP = "cn=enabled,ou=groups,dc=example,dc=com"
-# AUTH_LDAP_USER_FLAGS_BY_GROUP = {
-#     "is_active": "cn=active,ou=groups,dc=example,dc=com",
-#     "is_staff": "cn=staff,ou=groups,dc=example,dc=com",
-#     "is_superuser": "cn=superuser,ou=groups,dc=example,dc=com"
-# }
-# AUTH_LDAP_ALWAYS_UPDATE_USER = True
-# AUTH_LDAP_FIND_GROUP_PERMS = True
-# AUTH_LDAP_CACHE_TIMEOUT = 3600
+#AUTH_LDAP_PROFILE_ATTR_MAP = {"home_directory": "homeDirectory"}
+#AUTH_LDAP_USER_FLAGS_BY_GROUP = {
+#    "is_active": "dc=iitmandi,dc=ac,dc=in",
+#    "is_staff": "dc=iitmandi,dc=ac,dc=in",
+#    "is_superuser": "dc=iitmandi,dc=ac,dc=in"
+#}
+#AUTH_LDAP_ALWAYS_UPDATE_USER = True
+#AUTH_LDAP_FIND_GROUP_PERMS = True
+#AUTH_LDAP_CACHE_TIMEOUT = 3600
 
 AUTHENTICATION_BACKENDS = (
     'django_auth_ldap.backend.LDAPBackend',

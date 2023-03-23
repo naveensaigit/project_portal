@@ -1,3 +1,5 @@
+Project Deployed at - https://ugac-project-portal.herokuapp.com/
+
 1) sudo apt update && sudo apt install libldap2-dev libsasl2-dev
 
 # RUNNING ON LOCAL SERVER
@@ -10,8 +12,3 @@ EMAIL_PASSWORD=<password for email>
 3) Create virtualenv in python using ``virtualenv venv`` and activate it using ``source venv/bin/activate``
 4) Now install requirements using ``pip install -r requirements.txt``
 5) Now project is ready to run just do ``python manage.py runserver``
-
-
-# TODO -:
-1) Duration field , seperate number input and month, year dropdown 
-2) Queation field - change it so that putting it blank is possible
