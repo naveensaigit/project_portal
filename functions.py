@@ -1,4 +1,3 @@
-import re
 from home.models import Project, Tag, ApplyRequest
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from users.models import Notification
@@ -268,7 +267,7 @@ def check_user_profile(user):
             return True
 
     profile = user.profile
-    general_profile = [profile.image, str(profile.cv), profile.techskills.all()]
+    general_profile = [profile.image, str(profile.cv)]
     for field in general_profile:
         if field == None or (len(field) == 0):
             print(" General profile is not completed")
@@ -276,7 +275,7 @@ def check_user_profile(user):
 
     person = profile.profile_type
     if person == "Student":
-        student_profile = [profile.rollno ,profile.year ,profile.branch]
+        student_profile = [profile.techskills.all(), profile.rollno ,profile.year ,profile.branch]
         for field in student_profile:
             if field == None or (len(field) == 0):
                 print(" Student profile is not completed")
