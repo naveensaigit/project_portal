@@ -1,4 +1,7 @@
 venv/
 **/__pycache__
 .vscode/
+.bash_history
+.pm2/
+.cache/
 .env
