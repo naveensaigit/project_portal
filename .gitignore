@@ -4,4 +4,3 @@ venv/
 .bash_history
 .pm2/
 .cache/
-.env
