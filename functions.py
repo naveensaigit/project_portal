@@ -133,7 +133,10 @@ def get_searched_projects(request):
     return searched_projects
 
 def send_mail_notification(subject, message, email_from , recipient_list):
-    send_mail( subject, message, email_from, recipient_list )
+    try:
+        send_mail( subject, message, email_from, recipient_list )
+    except:
+        pass
 
 def send_notification(request, project):
     project_id = request.GET.get('project_id')
