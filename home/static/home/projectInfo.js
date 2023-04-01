@@ -31,10 +31,11 @@ function unselect(){
     }
     console.log(buttonTriggers)
 }
+
 function takeAction(elem,action){
     unselect();
-    if(action === "Pre-requisite"){
-        document.getElementById("proprereq").classList.remove("invisible");
+    if(action === "Desired Qualifications"){
+        document.getElementById("prodesqual").classList.remove("invisible");
     };
     if(action === "Description"){
         document.getElementById("prodes").classList.remove("invisible");
